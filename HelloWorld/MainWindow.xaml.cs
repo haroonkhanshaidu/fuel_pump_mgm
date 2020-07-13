@@ -26,7 +26,7 @@ namespace HelloWorld
         {
             InitializeComponent();
 
-            set_initial_values_petrol("12/7/2020","460","23");
+            set_initial_values_petrol("12/7/2020","46","23");
 
             //Entry obj = new Entry(getTotalLiters_petrol());
 
