@@ -1,0 +1,955 @@
+﻿<Window x:Class="HelloWorld.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:System="clr-namespace:System;assembly=mscorlib"
+        xmlns:local="clr-namespace:HelloWorld"
+        mc:Ignorable="d"      
+        WindowStyle="SingleBorderWindow"
+        Title="Fuel Pump Daily" d:DesignWidth="1534.4" d:DesignHeight="842.8">
+
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <TabControl Margin="10,10,9.667,9.667" BorderThickness="0" Background="White" Grid.ColumnSpan="4">
+            <TabControl.Resources>
+                <Style TargetType="TabItem">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="TabItem">
+                                <Grid Name="Panel">
+                                    <ContentPresenter x:Name="ContentSite"
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Center"
+                                        ContentSource="Header"
+                                        Margin="10,2"/>
+                                </Grid>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter TargetName="Panel" Property="Background" Value="gray" />
+                                    </Trigger>
+                                    <Trigger Property="IsSelected" Value="False">
+                                        <Setter TargetName="Panel" Property="Background" Value="White" />
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </TabControl.Resources>
+
+
+
+            <TabItem
+              Header="Entry Tab" Width="200" Height="40" FontSize="22" FontWeight="Bold" FontFamily="Yu Gothic UI Semibold"
+                         Margin="2" IsSelected="True">
+
+                <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+
+
+                    </Grid.RowDefinitions>
+
+
+
+                    <Grid Grid.RowSpan="3" Background="gray" >
+
+
+                        <TabControl TabStripPlacement="Left"  HorizontalAlignment="Stretch" Margin="10" BorderThickness="0" Background="Beige" >
+                            <TabControl.Resources>
+                                <Style TargetType="TabItem">
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="TabItem">
+                                                <Grid Name="Panel">
+                                                    <ContentPresenter x:Name="ContentSite"
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Center"
+                                        ContentSource="Header"
+                                        Margin="10,2"/>
+                                                </Grid>
+                                                <ControlTemplate.Triggers>
+                                                    <Trigger Property="IsSelected" Value="True">
+
+                                                        <Setter TargetName="Panel" Property="Background" Value="#FF235885" />
+                                                    </Trigger>
+                                                    <Trigger Property="IsSelected" Value="False">
+                                                        <Setter TargetName="Panel" Property="Background" Value="gray" />
+                                                    </Trigger>
+                                                </ControlTemplate.Triggers>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </TabControl.Resources>
+
+
+                            <TabItem Header="Petrol Entry" Foreground="White" FontSize="40"   HorizontalAlignment="Left"  FontWeight="Bold" FontFamily="Sitka Display"
+                           >
+                                <Grid  Background="Gray" >
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="11*"/>
+                                        <ColumnDefinition Width="2*"/>
+                                        <ColumnDefinition Width="10"/>
+                                        <ColumnDefinition Width="13*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="0*"/>
+                                        <RowDefinition Height="0.7*"/>
+                                        <RowDefinition Height="4*"/>
+                                        <RowDefinition Height="4*"/>
+                                    </Grid.RowDefinitions>
+
+                                    <!--<StackPanel Grid.Column="3" Margin="20" Grid.RowSpan="2">
+                                        <TextBlock Name="" Text=" Today : Oct 20, 2020" TextAlignment="Right"  FontSize="15"/>
+                                        <TextBlock  Text="last Entry :  Oct 20, 2020" Foreground="Red"  TextAlignment="Right"  FontSize="10"/>
+                                    </StackPanel>-->
+
+                                    <StackPanel Grid.Column="0" Grid.Row="1" Margin="20,0,20,0" VerticalAlignment="Bottom" Background="#FFBC6737" Orientation="Horizontal" Grid.ColumnSpan="4" >
+                                        <TextBlock  Text="Petrol Dispencer" VerticalAlignment="Center" Background="#FFBC6737" HorizontalAlignment="Left" Width="350"  Margin="5" FontSize="20" Foreground="White"/>
+                                        <TextBlock Name="petrol_Last_EntryDate" Text="last Entry 8/12/2090" VerticalAlignment="Center" Background="#FFBC6737" HorizontalAlignment="Center" Width="350"  Margin="5" FontSize="20" Foreground="White"/>
+                                        <DatePicker Name="petrol_entry_datepicker" Width="150"  DisplayDateEnd="{Binding Mode=OneWay, Source={x:Static System:DateTime.Today}}" ToolTip="click to change date" HorizontalAlignment="Right" Foreground="Black" Background="White" Margin="5" FontSize="15" />
+                                    </StackPanel>
+
+                                    <!--<StackPanel Grid.Column="3" Grid.Row="1" Margin="20,0,20,0" VerticalAlignment="Bottom" Background="#FF27E1EB" Orientation="Horizontal" >
+                        <TextBlock  Text="Diesel Dispencer" VerticalAlignment="Center" Background="#FF27E1EB" HorizontalAlignment="Center" Width="350"  Margin="5" FontSize="20"/>
+                        <DatePicker Name="deisel_entry_datepicker" Width="150" ToolTip="click to change date" DisplayDateEnd="{Binding Mode=OneWay, Source={x:Static System:DateTime.Today}}" HorizontalAlignment="Right" Background="Beige" Margin="5" FontSize="15" />
+                    </StackPanel>-->
+
+                                    <Grid Grid.Column="0" Grid.Row="2" Margin="20,0,20,0" Background="AliceBlue" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <StackPanel Orientation="Vertical" Margin="50,30,20,20">
+                                            <Label  Content="Meter Opening" Margin="0,20,0,0" Foreground="Gray" FontSize="25" />
+                                            <Label Content="Meter Closing*" Foreground="#FFBC6737" FontSize="25"/>
+                                        </StackPanel>
+
+                                        <StackPanel Grid.Column="1" Orientation="Vertical"  Margin="0,0,0,20">
+                                            <Label Content="Nozzel 1" Margin="0,0,0,0"  FontSize="20" Foreground="#FF235885" HorizontalAlignment="Right"/>
+                                            <TextBox Name="meterOpening_petrol_N1" Text="" Margin="0,20,0,6" IsEnabled="False" Width="150" FontSize="25"/>
+                                            <TextBox Name="meterClosing_petrol_N1" Text="" Margin="0,0,0,6"  Width="150" FontSize="25" TextChanged="meterClosing_petrol_N1_TextChanged"/>
+                                        </StackPanel>
+                                    </Grid>
+
+                                    <Grid Grid.Column="3" Grid.Row="2" Margin="0,0,20,0" Background="AliceBlue" Grid.RowSpan="2">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <StackPanel Orientation="Vertical" Margin="10,30,0,20">
+                                            <Label Content="Discount" FontSize="30" Foreground="Black" Margin="0,20,0,0" />
+                                            <Label Content="Credit" Foreground="Black" FontSize="30" Margin="0,40,0,0"/>
+                                            <Label Content="Today's sales Ltrs" Margin="0,155,0,0"  Foreground="Black" FontSize="25" />
+                                            <Label Content="Today's sales PKR" Margin="0,0,0,0" Foreground="Black" FontSize="25" />
+                                            <Label Content="Today's Profit PKR" Margin="0,0,0,0" Foreground="Black" FontSize="25" />
+                                        </StackPanel>
+
+                                        <StackPanel Grid.Column="1" Orientation="Vertical"  Margin="0,30,20,20">
+                                            <StackPanel Orientation="Vertical">
+                                                <TextBox Name="meterClosing_petrolN1" Text="" Foreground="Gray" Margin="0,20,0,6" FontSize="25" Width="120"/>
+                                            </StackPanel>
+                                            <StackPanel Orientation="Vertical" Margin="0,40,0,0">
+                                                <Label Content="NAME:" FontSize="17" Foreground="Black" Margin="0,30,0,0" VerticalAlignment="Center"/>
+                                                <TextBox Text="" Foreground="Gray" Margin="0,-35,0,6" FontSize="25"  Width="120"/>
+                                                <Label Content="AMOUNT:" FontSize="17" Foreground="Black" Margin="0,15,0,0" VerticalAlignment="Center" />
+                                                <TextBox Text="" Foreground="Gray"  Width="120" Margin="0,-35,0,6" FontSize="25"/>
+                                            </StackPanel>
+
+
+                                            <TextBox Text="" Margin="0,100,0,6" IsEnabled="False" Width="120" FontSize="25"/>
+                                            <TextBox Text="" Margin="0,0,0,6" IsEnabled="False" Width="120" FontSize="25"/>
+                                            <TextBox Text="" Margin="0,0,0,6" IsEnabled="False" Width="120" FontSize="25"/>
+                                            <Button HorizontalAlignment="Right" Foreground="White" Margin="0,50,0,0" Width="100" Background="#FF235885" FontSize="25">
+                                                Save
+                                            </Button>
+                                        </StackPanel>
+                                    </Grid>
+
+
+
+
+                                    <Grid Grid.Column="0" Grid.Row="2" Margin="20,150,20,0" Background="AliceBlue" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <StackPanel Orientation="Vertical" Margin="50,30,20,20">
+
+                                            <Label Content="Meter Opening" Foreground="Gray" FontSize="25" />
+                                            <Label Content="Meter Closing*"  Foreground="#FFBC6737" FontSize="25"/>
+                                            <Label Content="Rate*" Margin="30,30,0,0" Foreground="#FFBC6737" FontSize="25" />
+                                            <Label Content="Testing (Ltr)*" Margin="30,20,0,0" Foreground="#FFBC6737" FontSize="25"/>
+
+
+                                        </StackPanel>
+
+                                        <StackPanel Grid.Column="1" Orientation="Vertical"  Margin="0,0,20,20">
+                                            <Label Content="Nozzel 2"  FontSize="20" Margin="0,0,0,0" Foreground="#FF235885" HorizontalAlignment="Right"/>
+                                            <TextBox Text="" Margin="0,0,0,6" IsEnabled="False"  Width="150" FontSize="25" />
+                                            <TextBox Text="" Margin="0,0,0,6"  Width="150" FontSize="25"/>
+                                            <TextBox Text="" Margin="0,30,0,6"  Width="150" FontSize="25"/>
+                                            <TextBox Text="" Margin="0,20,0,6"  Width="150" FontSize="25"/>
+
+
+                                        </StackPanel>
+                                    </Grid>
+
+
+
+
+
+
+                                    <!--<Grid Grid.Column="3" Grid.Row="2" Margin="20,150,20,0" Background="AliceBlue" Grid.RowSpan="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Orientation="Vertical" Margin="50,30,20,20">
+
+                            <Label Content="Meter Opening" Foreground="Gray" />
+                            <Label Content="Meter Closing*"  Foreground="Blue"/>
+                            <Label Content="Rate*" Margin="30,30,0,0" Foreground="Blue" />
+                            <Label Content="Testing (Ltr)*" Margin="30,20,0,0" Foreground="Orange"/>
+                            <Label Content="Total sales Ltr" Margin="30,0,0,0"  Foreground="Black" />
+                            <Label Content="Total sales PKR" Margin="30,0,0,0" Foreground="Black" />
+
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="1" Orientation="Vertical"  Margin="20,0,20,20">
+                            <Label Content="Nozzel 2"  FontSize="20" Foreground="#FF27E1EB" HorizontalAlignment="Right"/>
+                            <TextBox Text="" Margin="0,0,0,6" IsEnabled="False"  Width="120" />
+                            <TextBox Text="" Margin="0,0,0,6"  Width="120"/>
+                            <TextBox Text="" Margin="0,30,0,6"  Width="120" />
+                            <TextBox Text="" Margin="0,20,0,6"  Width="120"/>
+                            <TextBox Text="" Margin="0,0,0,6" IsEnabled="False" Width="120"/>
+                            <TextBox Text="" Margin="0,0,0,6" IsEnabled="False" Width="120"/>
+                            <Button HorizontalAlignment="Right" Foreground="White" Width="80" Background="Blue">
+                                Save
+                            </Button>
+                        </StackPanel>
+                    </Grid>-->
+
+
+                                </Grid>
+
+                            </TabItem>
+                            <TabItem Header="Diesel Entry" Foreground="White" FontSize="40"   HorizontalAlignment="Left"  FontWeight="Bold" FontFamily="Sitka Display"
+                           >
+                                <Grid  Background="Gray">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="11*"/>
+                                        <ColumnDefinition Width="2*"/>
+                                        <ColumnDefinition Width="10"/>
+                                        <ColumnDefinition Width="13*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="0*"/>
+                                        <RowDefinition Height="0.7*"/>
+                                        <RowDefinition Height="4*"/>
+                                        <RowDefinition Height="4*"/>
+                                    </Grid.RowDefinitions>
+
+                                    <!--<StackPanel Grid.Column="3" Margin="20" Grid.RowSpan="2">
+                        <TextBlock  Text=" Today : Oct 20, 2020" TextAlignment="Right"  FontSize="15"/>
+                        <TextBlock  Text="last Entry :  Oct 20, 2020" Foreground="Red"  TextAlignment="Right"  FontSize="10"/>
+                    </StackPanel>-->
+
+                                    <StackPanel Grid.Column="0" Grid.Row="1" Margin="20,0,20,0" VerticalAlignment="Bottom" Background="#FF235885" Orientation="Horizontal" Grid.ColumnSpan="4" >
+                                        <TextBlock  Text="Diesel Dispencer" VerticalAlignment="Center" Background="#FF235885" Foreground="White" HorizontalAlignment="Left" Width="350"  Margin="5" FontSize="20"/>
+                                        <TextBlock Name="dieselLastEntryDate" Text="last Entry 8/12/2090" VerticalAlignment="Center" Foreground="White" Background="#FF235885" HorizontalAlignment="Center" Width="350"  Margin="5" FontSize="20"/>
+                                        <DatePicker Name="diesel_entry_datepicker" Width="150"  DisplayDateEnd="{Binding Mode=OneWay, Source={x:Static System:DateTime.Today}}" ToolTip="click to change date" HorizontalAlignment="Right" Foreground="Black" Background="White" Margin="5" FontSize="15" />
+                                    </StackPanel>
+
+                                    <!--<StackPanel Grid.Column="3" Grid.Row="1" Margin="20,0,20,0" VerticalAlignment="Bottom" Background="#FF27E1EB" Orientation="Horizontal" >
+                        <TextBlock  Text="Diesel Dispencer" VerticalAlignment="Center" Background="#FF27E1EB" HorizontalAlignment="Center" Width="350"  Margin="5" FontSize="20"/>
+                        <DatePicker Name="deisel_entry_datepicker" Width="150" ToolTip="click to change date" DisplayDateEnd="{Binding Mode=OneWay, Source={x:Static System:DateTime.Today}}" HorizontalAlignment="Right" Background="Beige" Margin="5" FontSize="15" />
+                    </StackPanel>-->
+
+                                    <Grid Grid.Column="0" Grid.Row="2" Margin="20,0,20,0" Background="AliceBlue" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <StackPanel Orientation="Vertical" Margin="50,30,20,20">
+                                            <Label Content="Meter Opening" Margin="0,20,0,0" Foreground="Gray" FontSize="25" />
+                                            <Label Content="Meter Closing*" Foreground="#FF4682B4" FontSize="25"/>
+                                        </StackPanel>
+
+                                        <StackPanel Grid.Column="1" Orientation="Vertical"  Margin="0,0,0,20">
+                                            <Label Content="Nozzel 1" Margin="0,0,0,0"  FontSize="20" Foreground="#FF235885" HorizontalAlignment="Right"/>
+                                            <TextBox Text="" Margin="0,20,0,6" IsEnabled="False" Width="150" FontSize="25"/>
+                                            <TextBox Text="" Margin="0,0,0,6"  Width="150" FontSize="25"/>
+                                        </StackPanel>
+                                    </Grid>
+
+                                    <Grid Grid.Column="3" Grid.Row="2" Margin="0,0,20,0" Background="AliceBlue" Grid.RowSpan="2">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <StackPanel Orientation="Vertical" Margin="10,30,0,20">
+                                            <Label Content="Discount" FontSize="30" Foreground="Black" Margin="0,20,0,0" />
+                                            <Label Content="Credit" Foreground="Black" FontSize="30" Margin="0,40,0,0"/>
+                                            <Label Content="Today's sales Ltrs" Margin="0,155,0,0"  Foreground="Black" FontSize="25" />
+                                            <Label Content="Today's sales PKR" Margin="0,0,0,0" Foreground="Black" FontSize="25" />
+                                            <Label Content="Today's Profit PKR" Margin="0,0,0,0" Foreground="Black" FontSize="25" />
+                                        </StackPanel>
+
+                                        <StackPanel Grid.Column="1" Orientation="Vertical"  Margin="0,30,20,20">
+                                            <StackPanel Orientation="Vertical">
+                                                <TextBox Text="" Foreground="Gray" Margin="0,20,0,6" FontSize="25" Width="120"/>
+                                            </StackPanel>
+                                            <StackPanel Orientation="Vertical" Margin="0,40,0,0">
+                                                <Label Content="NAME:" FontSize="17" Foreground="Black" Margin="0,30,0,0" VerticalAlignment="Center"/>
+                                                <TextBox Text="" Foreground="Gray" Margin="0,-35,0,6" FontSize="25"  Width="120"/>
+                                                <Label Content="AMOUNT:" FontSize="17" Foreground="Black" Margin="0,15,0,0" VerticalAlignment="Center" />
+                                                <TextBox Text="" Foreground="Gray"  Width="120" Margin="0,-35,0,6" FontSize="25"/>
+                                            </StackPanel>
+
+
+                                            <TextBox Text="" Margin="0,100,0,6" IsEnabled="False" Width="120" FontSize="25"/>
+                                            <TextBox Text="" Margin="0,0,0,6" IsEnabled="False" Width="120" FontSize="25"/>
+                                            <TextBox Text="" Margin="0,0,0,6" IsEnabled="False" Width="120" FontSize="25"/>
+                                            <Button HorizontalAlignment="Right" Foreground="White" Margin="0,50,0,0" Width="100" Background="#FF235885" FontSize="25">
+                                                Save
+                                            </Button>
+                                        </StackPanel>
+                                    </Grid>
+
+
+
+
+                                    <Grid Grid.Column="0" Grid.Row="2" Margin="20,150,20,0" Background="AliceBlue" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <StackPanel Orientation="Vertical" Margin="50,30,20,20">
+
+                                            <Label Content="Meter Opening" Foreground="Gray" FontSize="25" />
+                                            <Label Content="Meter Closing*"  Foreground="#FF4682B4" FontSize="25"/>
+                                            <Label Content="Rate*" Margin="30,30,0,0" Foreground="#FF4682B4" FontSize="25" />
+                                            <Label Content="Testing (Ltr)*" Margin="30,20,0,0" Foreground="#FF4682B4" FontSize="25"/>
+
+
+                                        </StackPanel>
+
+                                        <StackPanel Grid.Column="1" Orientation="Vertical"  Margin="0,0,20,20">
+                                            <Label Content="Nozzel 2"  FontSize="20" Margin="0,0,0,0" Foreground="#FF235885" HorizontalAlignment="Right"/>
+                                            <TextBox Text="" Margin="0,0,0,6" IsEnabled="False"  Width="150" FontSize="25" />
+                                            <TextBox Text="" Margin="0,0,0,6"  Width="150" FontSize="25"/>
+                                            <TextBox Text="" Margin="0,30,0,6"  Width="150" FontSize="25"/>
+                                            <TextBox Text="" Margin="0,20,0,6"  Width="150" FontSize="25"/>
+
+
+                                        </StackPanel>
+                                    </Grid>
+
+
+
+
+
+
+                                    <!--<Grid Grid.Column="3" Grid.Row="2" Margin="20,150,20,0" Background="AliceBlue" Grid.RowSpan="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Orientation="Vertical" Margin="50,30,20,20">
+
+                            <Label Content="Meter Opening" Foreground="Gray" />
+                            <Label Content="Meter Closing*"  Foreground="Blue"/>
+                            <Label Content="Rate*" Margin="30,30,0,0" Foreground="Blue" />
+                            <Label Content="Testing (Ltr)*" Margin="30,20,0,0" Foreground="Orange"/>
+                            <Label Content="Total sales Ltr" Margin="30,0,0,0"  Foreground="Black" />
+                            <Label Content="Total sales PKR" Margin="30,0,0,0" Foreground="Black" />
+
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="1" Orientation="Vertical"  Margin="20,0,20,20">
+                            <Label Content="Nozzel 2"  FontSize="20" Foreground="#FF27E1EB" HorizontalAlignment="Right"/>
+                            <TextBox Text="" Margin="0,0,0,6" IsEnabled="False"  Width="120" />
+                            <TextBox Text="" Margin="0,0,0,6"  Width="120"/>
+                            <TextBox Text="" Margin="0,30,0,6"  Width="120" />
+                            <TextBox Text="" Margin="0,20,0,6"  Width="120"/>
+                            <TextBox Text="" Margin="0,0,0,6" IsEnabled="False" Width="120"/>
+                            <TextBox Text="" Margin="0,0,0,6" IsEnabled="False" Width="120"/>
+                            <Button HorizontalAlignment="Right" Foreground="White" Width="80" Background="Blue">
+                                Save
+                            </Button>
+                        </StackPanel>
+                    </Grid>-->
+
+
+                                </Grid>
+
+                            </TabItem>
+
+
+                        </TabControl>
+
+
+                    </Grid>
+
+                </Grid>
+
+
+
+                <!--<Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="11*"/>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="10"/>
+                        <ColumnDefinition Width="13*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.7*"/>
+                        <RowDefinition Height="0.7*"/>
+                        <RowDefinition Height="4*"/>
+                        <RowDefinition Height="4*"/>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Grid.Column="3" Margin="20" Grid.RowSpan="2">
+                        <TextBlock  Text=" Today : Oct 20, 2020" TextAlignment="Right"  FontSize="15"/>
+                        <TextBlock  Text="last Entry :  Oct 20, 2020" Foreground="Red"  TextAlignment="Right"  FontSize="10"/>
+                        
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="0" Grid.Row="1" Margin="20,0,20,0" VerticalAlignment="Bottom" Background="#FF27E1EB" Orientation="Horizontal" Grid.ColumnSpan="2" >
+                        <TextBlock  Text="Patrol Dispencer" VerticalAlignment="Center" Background="#FF27E1EB" HorizontalAlignment="Center" Width="350"  Margin="5" FontSize="20"/>
+                        <DatePicker Name="petrol_entry_datepicker" Width="150"  DisplayDateEnd="{Binding Mode=OneWay, Source={x:Static System:DateTime.Today}}" ToolTip="click to change date" HorizontalAlignment="Right" Background="Beige" Margin="5" FontSize="15" />
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="3" Grid.Row="1" Margin="20,0,20,0" VerticalAlignment="Bottom" Background="#FF27E1EB" Orientation="Horizontal" >
+                        <TextBlock  Text="Diesel Dispencer" VerticalAlignment="Center" Background="#FF27E1EB" HorizontalAlignment="Center" Width="350"  Margin="5" FontSize="20"/>
+                        <DatePicker Name="deisel_entry_datepicker" Width="150" ToolTip="click to change date" DisplayDateEnd="{Binding Mode=OneWay, Source={x:Static System:DateTime.Today}}" HorizontalAlignment="Right" Background="Beige" Margin="5" FontSize="15" />
+                    </StackPanel>
+
+                    <Grid Grid.Column="0" Grid.Row="2" Margin="20,0,20,0" Background="AliceBlue" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Orientation="Vertical" Margin="50,30,20,20">
+                            <Label Content="Meter Opening" Margin="0,20,0,0" Foreground="Gray" />
+                            <Label Content="Meter Closing*" Foreground="Blue"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="1" Orientation="Vertical"  Margin="50,0,20,20">
+                            <Label Content="Nozzel 1"  FontSize="20" Foreground="#FF27E1EB" HorizontalAlignment="Right"/>
+                            <TextBox Text="" Margin="0,20,0,6" IsEnabled="False" Width="120"/>
+                            <TextBox Text="" Margin="0,0,0,6"  Width="120"/>
+                        </StackPanel>
+                    </Grid>
+
+                    <Grid Grid.Column="3" Grid.Row="2" Margin="20,0,20,0" Background="AliceBlue" Grid.RowSpan="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Orientation="Vertical" Margin="50,30,20,20">
+                            <Label Content="Meter Opening" Margin="0,20,0,0" Foreground="Gray" />
+                            <Label Content="Meter Closing*" Foreground="Blue"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="1" Orientation="Vertical"  Margin="50,0,20,20">
+                            <Label Content="Nozzel 1"  FontSize="20" Foreground="#FF27E1EB" HorizontalAlignment="Right"/>
+                            <TextBox Text="" Margin="0,20,0,6" IsEnabled="False" Width="120"/>
+                            <TextBox Text="" Margin="0,0,0,6"  Width="120"/>
+                        </StackPanel>
+                    </Grid>
+
+
+
+
+                    <Grid Grid.Column="0" Grid.Row="2" Margin="20,150,20,0" Background="AliceBlue" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Orientation="Vertical" Margin="50,30,20,20">
+
+                            <Label Content="Meter Opening" Foreground="Gray" />
+                            <Label Content="Meter Closing*"  Foreground="Blue"/>
+                            <Label Content="Rate*" Margin="30,30,0,0" Foreground="Blue" />
+                            <Label Content="Testing (Ltr)*" Margin="30,20,0,0" Foreground="Orange"/>
+                            <Label Content="Total sales Ltr" Margin="30,0,0,0"  Foreground="Black" />
+                            <Label Content="Total sales PKR" Margin="30,0,0,0" Foreground="Black" />
+
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="1" Orientation="Vertical"  Margin="20,0,20,20">
+                            <Label Content="Nozzel 2"  FontSize="20" Foreground="#FF27E1EB" HorizontalAlignment="Right"/>
+                            <TextBox Text="" Margin="0,0,0,6" IsEnabled="False"  Width="120" />
+                            <TextBox Text="" Margin="0,0,0,6"  Width="120"/>
+                            <TextBox Text="" Margin="0,30,0,6"  Width="120" />
+                            <TextBox Text="" Margin="0,20,0,6"  Width="120"/>
+                            <TextBox Text="" Margin="0,0,0,6" IsEnabled="False" Width="120"/>
+                            <TextBox Text="" Margin="0,0,0,6" IsEnabled="False" Width="120"/>
+                            <Button HorizontalAlignment="Right" Foreground="White" Width="80" Background="Blue">
+                                Save
+                            </Button>
+                        </StackPanel>
+                    </Grid>
+
+
+
+
+
+
+                    <Grid Grid.Column="3" Grid.Row="2" Margin="20,150,20,0" Background="AliceBlue" Grid.RowSpan="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Orientation="Vertical" Margin="50,30,20,20">
+
+                            <Label Content="Meter Opening" Foreground="Gray" />
+                            <Label Content="Meter Closing*"  Foreground="Blue"/>
+                            <Label Content="Rate*" Margin="30,30,0,0" Foreground="Blue" />
+                            <Label Content="Testing (Ltr)*" Margin="30,20,0,0" Foreground="Orange"/>
+                            <Label Content="Total sales Ltr" Margin="30,0,0,0"  Foreground="Black" />
+                            <Label Content="Total sales PKR" Margin="30,0,0,0" Foreground="Black" />
+
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="1" Orientation="Vertical"  Margin="20,0,20,20">
+                            <Label Content="Nozzel 2"  FontSize="20" Foreground="#FF27E1EB" HorizontalAlignment="Right"/>
+                            <TextBox Text="" Margin="0,0,0,6" IsEnabled="False"  Width="120" />
+                            <TextBox Text="" Margin="0,0,0,6"  Width="120"/>
+                            <TextBox Text="" Margin="0,30,0,6"  Width="120" />
+                            <TextBox Text="" Margin="0,20,0,6"  Width="120"/>
+                            <TextBox Text="" Margin="0,0,0,6" IsEnabled="False" Width="120"/>
+                            <TextBox Text="" Margin="0,0,0,6" IsEnabled="False" Width="120"/>
+                            <Button HorizontalAlignment="Right" Foreground="White" Width="80" Background="Blue">
+                                Save
+                            </Button>
+                        </StackPanel>
+                    </Grid>
+
+
+                </Grid>-->
+
+            </TabItem>
+
+
+
+
+            <TabItem Header="Expense Tab" FontSize="22" FontFamily="Yu Gothic UI Semibold" FontWeight="Bold" Width="200" Height="40"
+                   
+                         Margin="2" >
+                <Grid  Background="Gray">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="10"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="10*"/>
+                    </Grid.RowDefinitions>
+
+
+
+                    <!--<StackPanel Grid.Column="2"  Margin="0,0,20,0">
+                        <TextBlock  Text="Petrol in Tank 9438 Ltrs" Foreground="Blue"  TextAlignment="Right"  FontSize="15"/>
+                        <TextBlock  Text="Diesel in Tank 2387 Ltrs" Foreground="DarkBlue"  TextAlignment="Right"  FontSize="15"/>
+                    </StackPanel>-->
+
+                    <StackPanel Grid.Column="0" Grid.Row="1" Background="#FF235885" Margin="20,0,20,0" VerticalAlignment="Bottom" Orientation="Horizontal">
+                        <TextBlock  Text="Expenses" Background="#FF235885" HorizontalAlignment="Center" Foreground="White" Width="350"  Margin="5" FontSize="20"/>
+                        <TextBlock  Text="Date:" Background="#FF235885" Foreground="White" HorizontalAlignment="Center" Width="50"  Margin="5" FontSize="20"/>
+                        <DatePicker Name="expense_datepicker" DisplayDateEnd="{Binding Mode=OneWay, Source={x:Static System:DateTime.Today}}" ToolTip="click to change date" Width="150" HorizontalAlignment="Right" Background="White" Margin="5" FontSize="15" />
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="2" Grid.Row="1" Margin="20,0,20,0" VerticalAlignment="Bottom" Background="#FF235885" Orientation="Horizontal">
+                        <TextBlock  Text="Fuel" Background="#FF235885" Foreground="White" HorizontalAlignment="Left" Width="350"  Margin="5" FontSize="20"/>
+                        <TextBlock  Text="Date:" Background="#FF235885" Foreground="White" HorizontalAlignment="Center" Width="50"  Margin="5" FontSize="20"/>
+                        <DatePicker Name="fuel_datepicker" DisplayDateEnd="{Binding Mode=OneWay, Source={x:Static System:DateTime.Today}}" ToolTip="click to change date" Width="150" HorizontalAlignment="Right" Background="White" Margin="5" FontSize="15" />
+                    </StackPanel>
+
+
+
+                    <Grid Grid.Column="0" Grid.Row="2" Margin="20,0,20,0" Background="AliceBlue">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Orientation="Vertical" Margin="50,20,20,20">
+                            <Label Content="Staff Salaries" Margin="0,20,0,0" Foreground="Black" />
+                            <Label Content="Electricity Bill" Margin="0,0,0,4" Foreground="Black"/>
+                            <Label Content="Maintenance" Margin="0,0,0,4" Foreground="Black"/>
+                            <Label Content="Others" Margin="0,0,0,4" Foreground="Black"/>
+                            <Label Content="Mian Saib Withdraw" Margin="0,0,0,4" Foreground="Black"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="1" Orientation="Vertical"  Margin="50,30,20,20">
+                            <TextBox Text="" Margin="0,20,0,10" Width="120"/>
+                            <TextBox Text="" Margin="0,0,0,10"  Width="120"/>
+                            <TextBox Text="" Margin="0,0,0,10"  Width="120"/>
+                            <TextBox Text="" Margin="0,0,0,10"  Width="120"/>
+                            <TextBox Text="" Margin="0,0,0,10"  Width="120"/>
+                            <Button Content="SAVE" Foreground="White"  Width="80" FontSize="15" Margin="0,50,0,0"  Background="#FF235885"/>
+                        </StackPanel>
+
+
+
+
+                    </Grid>
+
+
+                    <Grid Grid.Column="2" Grid.Row="2" Margin="20,0,20,0" Background="AliceBlue">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.ColumnSpan="2" Margin="10" Content="Petrol" Foreground="#FFBC6737"/>
+
+                        <StackPanel Orientation="Vertical" Margin="50,20,20,20">
+                            <Label Content="Demand Draft (PKR)" Margin="0,20,0,0" Foreground="#FFBC6737" />
+                            <Label Content="Demand Draft (Ltr)" Margin="0,0,0,4" Foreground="#FFBC6737"/>
+
+
+
+                            <StackPanel Orientation="Vertical" Margin="0,20,20,20">
+
+                                <Label Grid.ColumnSpan="2" Margin="-40,40,0,0" Content="Diesel" Foreground="#FF0071FF"/>
+                                <Label Content="Demand Draft (PKR)" Margin="0,0,0,0" Foreground="#FF0071FF" />
+                                <Label Content="Demand Draft (Ltr)" Margin="0,0,0,4" Foreground="#FF0071FF"/>
+
+                            </StackPanel>
+
+
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="1" Orientation="Vertical"  Margin="50,30,20,20">
+                            <TextBox Text="" Margin="0,20,0,10" Width="120"/>
+                            <TextBox Text="" Margin="0,0,0,10"  Width="120"/>
+
+                            <!--<Button Content="SAVE" Foreground="White" Width="80" FontSize="15"  Background="Blue"/>-->
+                            <StackPanel Orientation="Vertical"  Margin="0,50,0,20">
+                                <TextBox Text="" Margin="0,20,0,10" Width="120"/>
+                                <TextBox Text="" Margin="0,0,0,10"  Width="120">
+
+                                </TextBox>
+
+                                <Button Content="SAVE" Foreground="White"  Width="80" FontSize="15"  Background="#FF235885"/>
+                            </StackPanel>
+
+
+                        </StackPanel>
+
+                        <StackPanel Grid.ColumnSpan="2" Orientation="Horizontal"  Margin="50,0,50,100" Background="#FF235885" VerticalAlignment="Bottom" >
+
+                            <Label Content="Mian saib Deposit Amount PKR*" Margin="5,20,0,20" Foreground="White" FontSize="18"/>
+                            <TextBox Text="" Margin="20" Height="30" Width="120" />
+                            <Button Content="SAVE" Foreground="#FF235885"  Width="80" FontSize="15"  Background="White" Margin="10,30,5,30"/>
+                        </StackPanel>
+
+
+                    </Grid>
+
+                </Grid>
+
+            </TabItem>
+
+
+
+
+            <TabItem Header="Analytics Tab" Width="200" Height="40" FontFamily="Yu Gothic UI Semibold" FontSize="22" FontWeight="Bold"
+                         Margin="2" >
+
+                <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+
+
+                    </Grid.RowDefinitions>
+
+
+
+                    <Grid Grid.RowSpan="3" Background="gray" >
+
+
+                        <TabControl TabStripPlacement="Left"  HorizontalAlignment="Stretch" Margin="10" BorderThickness="0" Background="Beige" >
+                            <TabControl.Resources>
+                                <Style TargetType="TabItem">
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="TabItem">
+                                                <Grid Name="Panel">
+                                                    <ContentPresenter x:Name="ContentSite"
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Center"
+                                        ContentSource="Header"
+                                        Margin="10,2"/>
+                                                </Grid>
+                                                <ControlTemplate.Triggers>
+                                                    <Trigger Property="IsSelected" Value="True">
+                                                        <Setter TargetName="Panel" Property="Background" Value="#FF235885" />
+                                                    </Trigger>
+                                                    <Trigger Property="IsSelected" Value="False">
+                                                        <Setter TargetName="Panel" Property="Background" Value="gray" />
+                                                    </Trigger>
+                                                </ControlTemplate.Triggers>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </TabControl.Resources>
+
+
+                            <TabItem Header="OverView" Foreground="White"  FontSize="30"  Name="entry"  HorizontalAlignment="Left" FontFamily="Yu Gothic UI Semibold" FontWeight="Bold"
+                               >
+                                <Grid Margin="0,-50,0,0"   Background="AliceBlue">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="0*"/>
+                                        <RowDefinition Height="0.5*"/>
+                                        <RowDefinition Height="5*"/>
+                                        <RowDefinition Height="0.5*"/>
+                                        <RowDefinition Height="5*"/>
+                                    </Grid.RowDefinitions>
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="5*"/>
+                                        <ColumnDefinition Width="5*"/>
+                                        <ColumnDefinition Width="5*"/>
+                                        <ColumnDefinition Width="5*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"  Margin="15,0,15,15" Orientation="Vertical" >
+
+                                        <Label FontSize="50" HorizontalAlignment="Center" Foreground="#FF235885" FontStyle="Oblique"   >Sales</Label>
+                                        <Label Foreground="#FFBC6737"  FontSize="45" Margin="50,0,0,-10">94859.00</Label>
+                                        <Label Foreground="#FFBC6737" HorizontalAlignment="Center" FontSize="15" Margin="0,-10,0,-10">Liters Petrol sold</Label>
+                                        <Label Foreground="#FF4682B4" FontSize="45" Margin="50,0,0,-10" >90383.00</Label>
+                                        <Label Foreground="#FF4682B4" HorizontalAlignment="Center" FontSize="15" Margin="0,-10,0,-10">Liters Diesel sold</Label>
+
+                                        <Label Foreground="#FFBC6737"  FontSize="25" Margin="50,0,0,-10">94859.00</Label>
+                                        <Label Foreground="#FFBC6737" HorizontalAlignment="Center" FontSize="15" Margin="-210,-15,0,-10">PKR</Label>
+                                        <Label Foreground="#FF4682B4" FontSize="25" Margin="50,-5,0,0" >90383.00</Label>
+                                        <Label Foreground="#FF4682B4" HorizontalAlignment="Center" FontSize="15" Margin="-210,-15,0,-10">PKR</Label>
+                                    </StackPanel>
+
+
+
+                                    <StackPanel Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2"  Margin="15,0,15,15" Orientation="Vertical" HorizontalAlignment="Center">
+
+                                        <!--<Image Source="sales.png" Width="200" Height="200" />-->
+                                        <Label FontSize="50" HorizontalAlignment="Center" Foreground="#FF235885" FontStyle="Oblique" >Fuel Tank</Label>
+                                        <Label Foreground="#FFBC6737"  FontSize="75" Margin="10,0,0,-10">39485.00</Label>
+                                        <Label Foreground="#FFBC6737" HorizontalAlignment="Right" FontSize="15" Margin="10,-10,0,-10">Liters petrol</Label>
+                                        <Label Foreground="#FF4682B4" FontSize="75" Margin="10,-5,0,0" >34885.00</Label>
+                                        <Label Foreground="#FF4682B4" HorizontalAlignment="Right" FontSize="15" Margin="10,-20,0,-10">Liters diesel</Label>
+                                    </StackPanel>
+
+
+
+
+                                    <StackPanel Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2"  Margin="15,0,15,15" Orientation="Vertical" HorizontalAlignment="Center">
+
+                                        <!--<Image Source="sales.png" Width="200" Height="200" />-->
+                                        <Label FontSize="50" HorizontalAlignment="Center" Foreground="#FF235885" FontStyle="Oblique" >Profit/Loss (Rate)</Label>
+                                        <Label Foreground="#FFBC6737"  FontSize="75" Margin="10,0,0,-10">39485.00</Label>
+                                        <Label Foreground="#FFBC6737" HorizontalAlignment="Right" FontSize="15" Margin="-10,-10,0,-10">From Petrol</Label>
+                                        <Label Foreground="#FF4682B4" FontSize="75" Margin="10,-5,0,0" >34885.00</Label>
+                                        <Label Foreground="#FF4682B4" HorizontalAlignment="Right" FontSize="15" Margin="10,-20,0,-10">From Diesel</Label>
+                                    </StackPanel>
+
+                                    <StackPanel  Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="2"  Margin="15,0,15,15" Orientation="Vertical" HorizontalAlignment="Center">
+
+                                        <Label FontSize="50" HorizontalAlignment="Center" Foreground="#FF235885" FontStyle="Oblique" >Total Profit</Label>
+                                        <Label Foreground="#FFBC6737"  FontSize="75" Margin="10,0,0,-10">39485.00</Label>
+                                        <Label Foreground="#FFBC6737" HorizontalAlignment="Right" FontSize="15" Margin="-10,-10,0,-10">From Petrol</Label>
+                                        <Label Foreground="#FF4682B4" FontSize="75" Margin="10,-5,0,0" >34885.00</Label>
+                                        <Label Foreground="#FF4682B4" HorizontalAlignment="Right" FontSize="15" Margin="10,-20,0,-10">From Diesel</Label>
+
+                                    </StackPanel>
+
+
+                                </Grid>
+
+                            </TabItem>
+                            <TabItem Header="Sales"  Foreground="White" FontSize="30"   HorizontalAlignment="Left" FontFamily="Yu Gothic UI Semibold" FontWeight="Bold"
+                           >
+                                <Grid Background="Beige">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="12*"/>
+                                    </Grid.RowDefinitions>
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="2*"/>
+                                        <ColumnDefinition Width="2*"/>
+                                        <ColumnDefinition Width="1.5*"/>
+                                        <ColumnDefinition Width="1.5*"/>
+                                        <ColumnDefinition Width="0.5*"/>
+
+                                    </Grid.ColumnDefinitions>
+
+                                    <Label  >tab sales</Label>
+                                    <Label Grid.Row="1" Grid.Column="2" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10">Date From:</Label>
+                                    <DatePicker Grid.Row="1" Grid.Column="2"  ToolTip="modify date to view records" Margin="10" HorizontalAlignment="Right" FontSize="14" Width="120" ></DatePicker>
+
+                                    <Label Grid.Row="1" Grid.Column="3" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10">Date To:</Label>
+                                    <DatePicker Grid.Row="1" Grid.Column="3"  ToolTip="modify date to view records" Margin="10" HorizontalAlignment="Right" FontSize="14" Width="120" ></DatePicker>
+
+                                    <Image Grid.Row="1" Margin="5" ToolTip="Print" HorizontalAlignment="Right" Grid.Column="4" Source="print_icon.png"></Image>
+
+                                    <Image Grid.Row="2" Grid.ColumnSpan="5" Source="Blog_how_to_do_a_weekly_sales_report_graph_3.png" Stretch="Fill" >
+
+                                    </Image>
+
+
+                                </Grid>
+
+                            </TabItem>
+                            <TabItem Header="Expenses"  Foreground="White" FontSize="30"  HorizontalAlignment="Left" FontFamily="Yu Gothic UI Semibold" FontWeight="Bold"
+                         Margin="2"  >
+                                <Grid Background="Beige">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="12*"/>
+                                    </Grid.RowDefinitions>
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="2*"/>
+                                        <ColumnDefinition Width="2*"/>
+                                        <ColumnDefinition Width="1.5*"/>
+                                        <ColumnDefinition Width="1.5*"/>
+                                        <ColumnDefinition Width="0.5*"/>
+
+                                    </Grid.ColumnDefinitions>
+
+                                    <Label  >tab expense</Label>
+                                    <Label Grid.Row="1" Grid.Column="2" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10">Date From:</Label>
+                                    <DatePicker Grid.Row="1" Grid.Column="2"  ToolTip="modify date to view records" Margin="10" HorizontalAlignment="Right" FontSize="14" Width="120" ></DatePicker>
+
+                                    <Label Grid.Row="1" Grid.Column="3" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10">Date To:</Label>
+                                    <DatePicker Grid.Row="1" Grid.Column="3"  ToolTip="modify date to view records" Margin="10" HorizontalAlignment="Right" FontSize="14" Width="120" ></DatePicker>
+
+                                    <Image Grid.Row="1" Margin="5" ToolTip="Print" HorizontalAlignment="Right" Grid.Column="4" Source="print_icon.png"></Image>
+
+                                    <Image Grid.Row="2" Grid.ColumnSpan="5" Source="Blog_how_to_do_a_weekly_sales_report_graph_3.png" Stretch="Fill" >
+
+                                    </Image>
+
+
+                                </Grid>
+                            </TabItem>
+                            <TabItem Header="Fuel Details"  Foreground="White" FontSize="30"  HorizontalAlignment="Left" FontFamily="Yu Gothic UI Semibold" FontWeight="Bold"
+                         Margin="2" Background="AliceBlue" >
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="12*"/>
+                                    </Grid.RowDefinitions>
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="2*"/>
+                                        <ColumnDefinition Width="2*"/>
+                                        <ColumnDefinition Width="1.5*"/>
+                                        <ColumnDefinition Width="1.5*"/>
+                                        <ColumnDefinition Width="0.5*"/>
+
+                                    </Grid.ColumnDefinitions>
+
+                                    <Label  >tab fuel details</Label>
+                                    <Label Grid.Row="1" Grid.Column="2" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10">Date From:</Label>
+                                    <DatePicker Grid.Row="1" Grid.Column="2"  ToolTip="modify date to view records" Margin="10" HorizontalAlignment="Right" FontSize="14" Width="120" ></DatePicker>
+
+                                    <Label Grid.Row="1" Grid.Column="3" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10">Date To:</Label>
+                                    <DatePicker Grid.Row="1" Grid.Column="3"  ToolTip="modify date to view records" Margin="10" HorizontalAlignment="Right" FontSize="14" Width="120" ></DatePicker>
+
+                                    <Image Grid.Row="1" Margin="5" ToolTip="Print" HorizontalAlignment="Right" Grid.Column="4" Source="print_icon.png"></Image>
+
+                                    <Image Grid.Row="2" Grid.ColumnSpan="5" Source="Blog_how_to_do_a_weekly_sales_report_graph_3.png" Stretch="Fill" >
+
+                                    </Image>
+
+
+                                </Grid>
+                            </TabItem>
+                            <TabItem Header="Mian Saib"  Foreground="White" FontSize="30"  HorizontalAlignment="Left" FontFamily="Yu Gothic UI Semibold" FontWeight="Bold"
+                            Margin="2" Background="AliceBlue" >
+
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="12*"/>
+                                    </Grid.RowDefinitions>
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="2*"/>
+                                        <ColumnDefinition Width="2*"/>
+                                        <ColumnDefinition Width="1.5*"/>
+                                        <ColumnDefinition Width="1.5*"/>
+                                        <ColumnDefinition Width="0.5*"/>
+
+                                    </Grid.ColumnDefinitions>
+
+                                    <Label  >tab fuel details</Label>
+                                    <Label Grid.Row="1" Grid.Column="2" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10">Date From:</Label>
+                                    <DatePicker Grid.Row="1" Grid.Column="2"  ToolTip="modify date to view records" Margin="10" HorizontalAlignment="Right" FontSize="14" Width="120" ></DatePicker>
+
+                                    <Label Grid.Row="1" Grid.Column="3" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10">Date To:</Label>
+                                    <DatePicker Grid.Row="1" Grid.Column="3"  ToolTip="modify date to view records" Margin="10" HorizontalAlignment="Right" FontSize="14" Width="120" ></DatePicker>
+
+                                    <Image Grid.Row="1" Margin="5" ToolTip="Print" HorizontalAlignment="Right" Grid.Column="4" Source="print_icon.png"></Image>
+
+                                    <Image Grid.Row="2" Grid.ColumnSpan="5" Source="Blog_how_to_do_a_weekly_sales_report_graph_3.png" Stretch="Fill" >
+
+                                    </Image>
+
+
+                                </Grid>
+
+
+                            </TabItem>
+
+
+                        </TabControl>
+
+
+                    </Grid>
+
+                </Grid>
+
+            </TabItem>
+
+        </TabControl>
+    </Grid>
+</Window>
