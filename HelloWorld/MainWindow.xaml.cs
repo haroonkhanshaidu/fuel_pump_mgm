@@ -403,5 +403,116 @@ namespace HelloWorld
                 }
             }
         }
+
+        private void crediterName_petrol_TB_KeyUp(object sender, KeyEventArgs e)
+        {
+            bool found = false;
+            //var border = (resultStack.Parent as ScrollViewer).Parent as Border;
+            var data = GetData();
+
+            string query = (sender as TextBox).Text;
+
+            if (query.Length == 0)
+            {
+                // Clear   
+                resultStack.Children.Clear();
+                scrollView.Visibility = System.Windows.Visibility.Collapsed;
+            }
+            else
+            {
+
+                scrollView.Visibility = System.Windows.Visibility.Visible;
+            }
+
+            // Clear the list   
+            resultStack.Children.Clear();
+
+            // Add the result   
+            foreach (var obj in data)
+            {
+                if (obj.Key.ToLower().StartsWith(query.ToLower()))
+                {
+                    // The word starts with this... Autocomplete must work   
+                    addItem(obj.Key);
+                    found = true;
+                }
+            }
+
+            if (!found)
+            {
+                resultStack.Children.Clear();
+                scrollView.Visibility = System.Windows.Visibility.Collapsed;
+                //resultStack.Children.Add(new TextBlock() { Text = "No results found.", FontSize = 15, Background = Brushes.White, Foreground = Brushes.Black }) ;
+            }
+
+        }
+
+        static public Dictionary<string,string> GetData()
+        {
+            Dictionary<string,string> data = new Dictionary<string, string>();
+
+            data.Add("Afzaal","10");
+            data.Add("Ahmad","10");
+            data.Add("Bilal","30");
+            return data;
+        }
+
+        private void addItem(string text)
+        {
+            TextBlock block = new TextBlock();
+
+            // Add the text   
+            block.Text = text;
+            block.Foreground = Brushes.Black;
+            block.FontSize = 15;
+
+            // A little style...   
+            block.Margin = new Thickness(2, 3, 2, 3);
+            block.Cursor = Cursors.Hand;
+
+            // Mouse events   
+            block.MouseLeftButtonUp += (sender, e) =>
+            {
+                var data = GetData();
+                resultStack.Children.Clear();
+                scrollView.Visibility = System.Windows.Visibility.Collapsed;
+                string creditorName = (sender as TextBlock).Text;
+                crediterName_petrol_TB.Text = creditorName;
+                crediterOldAmount_petrol_TB.Content = data[creditorName];
+            };
+
+            block.MouseEnter += (sender, e) =>
+            {
+                TextBlock b = sender as TextBlock;
+                b.Background = Brushes.PeachPuff;
+            };
+
+            block.MouseLeave += (sender, e) =>
+            {
+                TextBlock b = sender as TextBlock;
+                b.Background = Brushes.Transparent;
+            };
+
+            // Add to the panel   
+            resultStack.Children.Add(block);
+        }
+
+        private void save_petrol_entry_BTN_Click(object sender, RoutedEventArgs e)
+        {
+            string name = crediterName_petrol_TB.Text;
+            string amount = creditedAmount_petrol_TB.Text;
+            TextBlock block = new TextBlock();
+
+            // Add the text     
+            block.Text = name+"            "+amount;
+            block.Foreground = Brushes.Black;
+            block.FontSize = 15;
+
+            // A little style...   
+            block.Margin = new Thickness(2, 3, 2, 3);
+            credit_added_users.Children.Add(block);
+            crediterName_petrol_TB.Text = "";
+            creditedAmount_petrol_TB.Text = "";
+        }
     }
 }

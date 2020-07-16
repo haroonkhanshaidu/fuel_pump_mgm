@@ -236,7 +236,7 @@
                                                 <Label Grid.Row="4" Content="Today's profit PKR"  Foreground="Black" FontSize="22" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
                                                 <Label Grid.Row="7" Content="Credit Account:" Foreground="DarkRed" FontSize="22" HorizontalAlignment="Right" VerticalAlignment="Bottom" />
                                                 <ScrollViewer Grid.Row="8" Grid.RowSpan="4" VerticalScrollBarVisibility="Auto" Name="creditAccountScrollViewer" >
-                                                 
+                                                    <StackPanel Name="credit_added_users"></StackPanel>
                                                 </ScrollViewer>
                                             </Grid>
                                         </DockPanel>
@@ -276,12 +276,16 @@
                                                     Save
                                                 </Button>
                                                 <Label Grid.Row="7" Grid.Column="1" Content="NAME:" FontSize="17" Foreground="DarkRed"  HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
-                                                <Label Grid.Row="9" Grid.Column="1" Content="AMOUNT:" FontSize="17" Foreground="DarkRed"  HorizontalAlignment="Left" VerticalAlignment="Bottom" />
+                                                <Label Grid.Row="9" Grid.Column="1" Content="AMOUNT:" FontSize="17" Foreground="DarkRed"  HorizontalAlignment="Left" VerticalAlignment="Bottom" Name="amount_label" />
 
-                                                <TextBox Grid.Row="8" Grid.Column="1" Name="crediterName_petrol_TB" Text="" Foreground="Black" Margin="5" FontSize="25"  FontFamily="Arial"/>
+                                                <TextBox Grid.Row="8" Grid.Column="1" Name="crediterName_petrol_TB" Text="" Foreground="Black" Margin="5" FontSize="15"  FontFamily="Arial" KeyUp="crediterName_petrol_TB_KeyUp"/>
+                                               <ScrollViewer Grid.Row="9" Grid.RowSpan="2" Grid.Column="1" Panel.ZIndex="2" VerticalScrollBarVisibility="Auto" Visibility="Collapsed" Name="scrollView"  Background="White">
+                                                    <StackPanel Name="resultStack"></StackPanel>
+                                                </ScrollViewer>
                                                 <TextBox Grid.Row="10" Grid.Column="1" Name="creditedAmount_petrol_TB" PreviewTextInput="NumberValidationTextBox" Text="" Foreground="Black"  Margin="5" FontSize="25" FontFamily="Arial"/>
-                                               
-                                                <Button Grid.Row="11" Grid.Column="1" Name="save_petrol_entry_BTN" HorizontalAlignment="Right" Foreground="White" Margin="5" Padding="15,0,15,0" Background="#FF235885" FontSize="25">
+                                                <Label Grid.Row="10" Grid.Column="1" Name="crediterOldAmount_petrol_TB"  Foreground="Black" Margin="5" FontSize="15"  FontFamily="Arial" HorizontalAlignment="Right"/>
+
+                                                <Button Grid.Row="11" Grid.Column="1" Name="save_petrol_entry_BTN" HorizontalAlignment="Right" Foreground="White" Margin="5" Padding="15,0,15,0" Background="#FF235885" FontSize="25" Click="save_petrol_entry_BTN_Click">
                                                     Add
                                                 </Button>
 
