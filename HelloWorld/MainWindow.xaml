@@ -9,7 +9,7 @@
         mc:Ignorable="d"
         xmlns:vm="clr-namespace:HelloWorld"
         WindowStyle="SingleBorderWindow"
-        Title="Fuel Pump Daily" d:DesignWidth="1534.4" d:DesignHeight="842.8">
+        Title="Fuel Pump Daily" d:DesignWidth="1534.4" d:DesignHeight="840.8">
 
 
 
