@@ -24,6 +24,8 @@
 
 
     <Grid>
+
+       
         <Grid.ColumnDefinitions>
 
             <ColumnDefinition/>
@@ -109,9 +111,9 @@
                             <TabItem Header="Petrol Entry" Foreground="White" FontSize="40"   HorizontalAlignment="Left"  FontWeight="Bold" FontFamily="Sitka Display"
                            >
                                 <Grid  Background="Gray" >
+                                   
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="11*"/>
-                                        <ColumnDefinition Width="2*"/>
+                                        <ColumnDefinition Width="13*"/>
                                         <ColumnDefinition Width="10"/>
                                         <ColumnDefinition Width="13*"/>
                                     </Grid.ColumnDefinitions>
@@ -126,35 +128,49 @@
                                         <TextBlock Name="" Text=" Today : Oct 20, 2020" TextAlignment="Right"  FontSize="15"/>
                                         <TextBlock  Text="last Entry :  Oct 20, 2020" Foreground="Red"  TextAlignment="Right"  FontSize="10"/>
                                     </StackPanel>-->
-
-                                    <StackPanel Grid.Column="0" Grid.Row="1" Margin="20,0,20,0" VerticalAlignment="Bottom" Background="#FFBC6737" Orientation="Horizontal" Grid.ColumnSpan="4" >
-                                        <Grid>
+                                    
+                                    
+                                        <Grid Grid.Column="0"  Grid.Row="1" Grid.ColumnSpan="2"  Margin="20,0,20,0" VerticalAlignment="Bottom" Background="#FFBC6737">
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="1*"/>
                                                 <ColumnDefinition Width="1*"/>
-                                                <ColumnDefinition Width="1*"/>
+                                                                                              
                                             </Grid.ColumnDefinitions>
                                        
-                                        <TextBlock   Text="Petrol Dispencer" VerticalAlignment="Center" Background="#FFBC6737" HorizontalAlignment="Left" Width="350"  Margin="5" FontSize="20" Foreground="White"/>
-                                        <TextBlock Grid.Column="1" Name="petrol_Last_EntryDate_TB" Text="last Entry 8/12/2090" VerticalAlignment="Center" Background="#FFBC6737" HorizontalAlignment="Center" Width="350"  Margin="5" FontSize="20" Foreground="White"/>
+                                        <TextBlock Grid.Column="0"  Text="Petrol Dispencer" VerticalAlignment="Center" Background="#FFBC6737" HorizontalAlignment="Left"  Margin="5" FontSize="20" Foreground="White"/>
 
-                                        <DatePicker Grid.Column="2" Name="petrol_entry_datepicker" Width="220"  SelectedDateFormat="Long" DisplayDateEnd="{Binding Mode=OneWay, StringFormat='dd-MMM-yyyy',  Source={x:Static System:DateTime.Today}}" ToolTip="click to change date" HorizontalAlignment="Right" Foreground="Black" Background="White" Margin="5" FontSize="18" >
+                                        <DatePicker Grid.Column="1" Name="petrol_entry_datepicker"   SelectedDateFormat="Long" DisplayDateEnd="{Binding Mode=OneWay, StringFormat='dd-MMM-yyyy',  Source={x:Static System:DateTime.Today}}" ToolTip="click to change date" HorizontalAlignment="Right" Foreground="Black" Background="White" Margin="5" FontSize="18" >
                                             <DatePicker.Resources>
                                                 <Style TargetType="DatePickerTextBox">
                                                     <Setter Property="IsReadOnly" Value="True"/>
                                                 </Style>
                                             </DatePicker.Resources>
                                         </DatePicker>
+                                    </Grid>
 
-                                        </Grid>
-                                    </StackPanel>
+                                    <Grid Grid.Column="1"  Grid.Row="1" Grid.ColumnSpan="2"  Margin="20,0,20,0" VerticalAlignment="Bottom" Background="#FFBC6737">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="1*"/>
+                                            <ColumnDefinition Width="1*"/>
+
+                                        </Grid.ColumnDefinitions>
+
+                                        <TextBlock Grid.Column="0"  Text="Last Enty" VerticalAlignment="Center" Background="#FFBC6737" HorizontalAlignment="Left"  Margin="5" FontSize="20" Foreground="White"/>
+                                        <TextBlock Grid.Column="1"  Text="june 12, 2020" VerticalAlignment="Center" Background="#FFBC6737" HorizontalAlignment="Left"  Margin="5" FontSize="20" Foreground="White"/>
+
+
+                                    </Grid>
+
 
                                     <!--<StackPanel Grid.Column="3" Grid.Row="1" Margin="20,0,20,0" VerticalAlignment="Bottom" Background="#FF27E1EB" Orientation="Horizontal" >
                         <TextBlock  Text="Diesel Dispencer" VerticalAlignment="Center" Background="#FF27E1EB" HorizontalAlignment="Center" Width="350"  Margin="5" FontSize="20"/>
                         <DatePicker Name="deisel_entry_datepicker" Width="150" ToolTip="click to change date" DisplayDateEnd="{Binding Mode=OneWay, Source={x:Static System:DateTime.Today}}" HorizontalAlignment="Right" Background="Beige" Margin="5" FontSize="15" />
                     </StackPanel>-->
 
-                                    <Grid Grid.Column="0" Grid.Row="2" Margin="20,0,20,0" Background="AliceBlue" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                                    <Grid Grid.Column="0" Grid.Row="2" Background="#FFEBE1B3" Margin="20,0,20,0"  Grid.ColumnSpan="2" Grid.RowSpan="2">
+
+                                       
+
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="1*"/>
                                             <ColumnDefinition Width="1*"/>
@@ -199,7 +215,16 @@
                                         
                                     </Grid>
 
-                                    <Grid Grid.Column="3" Grid.Row="2" Margin="0,0,20,0" Background="AliceBlue" Grid.RowSpan="2">
+                                    <Grid Grid.Column="3" Grid.Row="2" Background="#FFEBE1B3" Margin="0,0,20,0" Grid.RowSpan="2">
+
+                                        <!--<Grid.Background>
+                                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                <GradientStop Color="#FF21CCDD" Offset="0" />
+                                                <GradientStop Color="#FF46DCD4" Offset="0.72" />
+                                                <GradientStop Color="#FF125A65" Offset="1" />
+                                            </LinearGradientBrush>
+                                        </Grid.Background>-->
+
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="1.2*"/>
                                             <ColumnDefinition Width="1.4*"/>

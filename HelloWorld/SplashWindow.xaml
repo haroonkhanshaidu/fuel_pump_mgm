@@ -1,0 +1,100 @@
+﻿<Window x:Class="HelloWorld.SplashWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="splash" Height="500" Width="800"
+        WindowStyle="None" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" ShowInTaskbar="False" Topmost="True" Loaded="Window_Loaded">
+    <Window.Resources>
+        <Storyboard x:Key="showStoryBoard">
+            <ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="txtLoading">
+                <EasingThicknessKeyFrame KeyTime="0:0:0" Value="0,0,0,0"/>
+                <EasingThicknessKeyFrame KeyTime="0:0:1" Value="0,0,0,70"/>
+            </ThicknessAnimationUsingKeyFrames>
+        </Storyboard>
+
+        <Storyboard x:Key="HideStoryBoard">
+            <ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="txtLoading">
+                <EasingThicknessKeyFrame KeyTime="0:0:0" Value="0,0,0,70"/>
+                <EasingThicknessKeyFrame KeyTime="0:0:1" Value="0,0,0,150"/>
+            </ThicknessAnimationUsingKeyFrames>
+        </Storyboard>
+    </Window.Resources>
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="#FF38829D" Offset="0" />
+                <GradientStop Color="Gray" Offset="1" />
+                <GradientStop Color="#FFB1B1B1" Offset="0.72" />
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Grid VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Height="150" Background="#00FFFFFF">
+            <Grid.OpacityMask>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#00000000" Offset="0.283"/>
+                    <GradientStop Color="#00000000" Offset="0.778"/>
+                    <GradientStop Color="White" Offset="0.491"/>
+                </LinearGradientBrush>
+            </Grid.OpacityMask>
+            <TextBlock x:Name="txtLoading" HorizontalAlignment="Center" TextAlignment="Left" FontSize="18" FontWeight="Normal"  Foreground="#FF052045"  Text="Beta 0.9"  TextWrapping="Wrap" VerticalAlignment="Bottom"   >
+                <TextBlock.Effect>
+                    <DropShadowEffect BlurRadius="6" Color="#FF797979" Direction="201" Opacity="0.68" ShadowDepth="3" />
+                </TextBlock.Effect>
+            </TextBlock>
+
+           </Grid>
+
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                
+            </Grid.ColumnDefinitions>
+
+
+            <Image Grid.Column="5" Grid.Row="1" Grid.RowSpan="1" HorizontalAlignment="Center" Grid.ColumnSpan="1" Width="80" Height="80" Opacity="0.5" Source="logo.PNG" />
+
+
+            <TextBlock Grid.Row="0" Grid.Column="4" Grid.ColumnSpan="2" FontSize="16" FontWeight="Bold" Foreground="White" HorizontalAlignment="Right"  Text="www.neptech.pk" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" >
+                <TextBlock.Effect>
+                    <DropShadowEffect BlurRadius="6" Color="#FF797979" Direction="201" Opacity="0.68" ShadowDepth="3" />
+                </TextBlock.Effect></TextBlock>
+
+            <TextBlock Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" Grid.ColumnSpan="5" TextAlignment="Center" HorizontalAlignment="Left"  TextWrapping="Wrap" Text="SHAH Petroleum" VerticalAlignment="Bottom" Foreground="#FF991313" FontWeight="Bold"  FontSize="50" >
+            <TextBlock.Effect>
+                <DropShadowEffect Color="#FF3E3E3E" Direction="201" Opacity="0.968" ShadowDepth="3" BlurRadius="6"/>
+            </TextBlock.Effect></TextBlock>
+
+            <TextBlock Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="5" TextAlignment="Center" HorizontalAlignment="Center"  TextWrapping="Wrap" Text="Fuel Management System" VerticalAlignment="Center" Foreground="White" FontWeight="Bold"  FontSize="20" >
+                <TextBlock.Effect>
+                    <DropShadowEffect Color="#FF3E3E3E" Direction="201" Opacity="0.968" ShadowDepth="3" BlurRadius="6"/>
+                </TextBlock.Effect></TextBlock>
+
+            <TextBlock Grid.Row="2" Grid.Column="3" FontSize="16" FontWeight="Bold" Foreground="White" HorizontalAlignment="Left"  Text="version 0.1" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Bottom" >
+            <TextBlock.Effect>
+                <DropShadowEffect BlurRadius="6" Color="#FF797979" Direction="201" Opacity="0.68" ShadowDepth="3" />
+            </TextBlock.Effect></TextBlock>
+            
+            <TextBlock Grid.Row="5" Grid.ColumnSpan="4" VerticalAlignment="Center" Grid.Column="0" FontSize="16"  Foreground="White" HorizontalAlignment="Left" Margin="20"  Text="Copyright © 2020 Neptech Solutions. All rights reserved" TextAlignment="Center" TextWrapping="Wrap"  >
+                <TextBlock.Effect>
+                    <DropShadowEffect BlurRadius="6" Color="#FF797979" Direction="201" Opacity="0.68" ShadowDepth="3" />
+                </TextBlock.Effect></TextBlock>
+            
+            <Image Grid.Column="0" Grid.Row="2" Grid.RowSpan="3" Grid.ColumnSpan="2" Width="200" Height="200"  Source="icon.PNG" />
+      
+
+        </Grid>
+    </Grid>
+</Window>
