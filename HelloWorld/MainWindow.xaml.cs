@@ -397,9 +397,11 @@ namespace HelloWorld
 
         private void crediterName_petrol_TB_KeyUp(object sender, KeyEventArgs e)
         {
+            crediterOldAmount_petrol_TB.Visibility = System.Windows.Visibility.Hidden;
+            crediterName_petrol_TB.Background = Brushes.Transparent;
             bool found = false;
             //var border = (resultStack.Parent as ScrollViewer).Parent as Border;
-            var data = GetData();
+            var data = Database.creditorGetData();
 
             string query = (sender as TextBox).Text;
 
@@ -438,16 +440,6 @@ namespace HelloWorld
 
         }
 
-        static public Dictionary<string,string> GetData()
-        {
-            Dictionary<string,string> data = new Dictionary<string, string>();
-
-            data.Add("Afzaal","10");
-            data.Add("Ahmad","10");
-            data.Add("Bilal","30");
-            return data;
-        }
-
         private void addItem(string text)
         {
             TextBlock block = new TextBlock();
@@ -464,12 +456,12 @@ namespace HelloWorld
             // Mouse events   
             block.MouseLeftButtonUp += (sender, e) =>
             {
-                var data = GetData();
-                resultStack.Children.Clear();
-                scrollView.Visibility = System.Windows.Visibility.Collapsed;
+                var data = Database.creditorGetData();
                 string creditorName = (sender as TextBlock).Text;
                 crediterName_petrol_TB.Text = creditorName;
-                crediterOldAmount_petrol_TB.Content = data[creditorName];
+                crediterOldAmount_petrol_TB.Content = "+"+data[creditorName];
+                crediterOldAmount_petrol_TB.Visibility = System.Windows.Visibility.Visible;
+                scrollView.Visibility = System.Windows.Visibility.Collapsed;
             };
 
             block.MouseEnter += (sender, e) =>
@@ -492,18 +484,46 @@ namespace HelloWorld
         {
             string name = crediterName_petrol_TB.Text;
             string amount = creditedAmount_petrol_TB.Text;
-            TextBlock block = new TextBlock();
 
-            // Add the text     
+            if (name.Length < 1)
+            {
+                crediterName_petrol_TB.Background = Brushes.Red;
+                return;
+            }
+            if (amount.Length < 1)
+            {
+                creditedAmount_petrol_TB.Background = Brushes.Red;
+                return;
+            }
+
+            //If old creditor then update else create
+            var data = Database.creditorGetData();
+            if (data.ContainsKey(name))
+            {
+                int totalCredit = int.Parse(amount)+ int.Parse(data[name]);
+                amount = totalCredit.ToString();
+                Database.creditorUpdate(name, amount);
+            }
+            else
+                Database.creditorinsert(name, amount);
+
+            //Add the name and amount to left sidebar
+            TextBlock block = new TextBlock(); 
             block.Text = name+"            "+amount;
             block.Foreground = Brushes.Black;
             block.FontSize = 15;
-
-            // A little style...   
             block.Margin = new Thickness(2, 3, 2, 3);
             credit_added_users.Children.Add(block);
+
+            //clear fields
             crediterName_petrol_TB.Text = "";
             creditedAmount_petrol_TB.Text = "";
+            crediterOldAmount_petrol_TB.Visibility = System.Windows.Visibility.Hidden;
+        }
+
+        private void creditedAmount_petrol_TB_KeyDown(object sender, KeyEventArgs e)
+        {
+            creditedAmount_petrol_TB.Background = Brushes.Transparent;
         }
     }
 }
