@@ -307,7 +307,7 @@
                                                <ScrollViewer Grid.Row="9" Grid.RowSpan="2" Grid.Column="1" Panel.ZIndex="2" VerticalScrollBarVisibility="Auto" Visibility="Collapsed" Name="scrollView"  Background="White">
                                                     <StackPanel Name="resultStack"></StackPanel>
                                                 </ScrollViewer>
-                                                <TextBox Grid.Row="10" Grid.Column="1" Name="creditedAmount_petrol_TB" PreviewTextInput="NumberValidationTextBox" Text=""  Foreground="Black"  Margin="5" FontSize="20" FontFamily="Arial" KeyDown="creditedAmount_petrol_TB_KeyDown"/>
+                                                <TextBox Grid.Row="10" Grid.Column="1" Name="creditedAmount_petrol_TB" PreviewTextInput="NumberValidationTextBox" Text=""  Foreground="Black"  Margin="5" FontSize="20" FontFamily="Arial"/>
                                                 <Label Grid.Row="10" Grid.Column="1" Name="crediterOldAmount_petrol_TB"  Foreground="Black" Margin="5" FontSize="15"  FontFamily="Arial" HorizontalAlignment="Right" Background="Red" Visibility="Hidden"/>
 
                                                 <Button Grid.Row="11" Grid.Column="1" Name="save_petrol_entry_BTN" HorizontalAlignment="Right" Foreground="White" Margin="5" Padding="15,0,15,0" Background="#FF235885" FontSize="25" Click="save_petrol_entry_BTN_Click">
@@ -719,15 +719,17 @@
                             <Label Content="Maintenance" Margin="0,0,0,4" Foreground="Black"/>
                             <Label Content="Others" Margin="0,0,0,4" Foreground="Black"/>
                             <Label Content="Mian Saib Withdraw" Margin="0,0,0,4" Foreground="Black"/>
+                            <Label Content="Total Expenses" Margin="0,0,0,4" Foreground="Black"/>
                         </StackPanel>
 
                         <StackPanel Grid.Column="1" Orientation="Vertical"  Margin="50,30,20,20">
-                            <TextBox Text="" Margin="0,20,0,10" Width="120"/>
-                            <TextBox Text="" Margin="0,0,0,10"  Width="120"/>
-                            <TextBox Text="" Margin="0,0,0,10"  Width="120"/>
-                            <TextBox Text="" Margin="0,0,0,10"  Width="120"/>
-                            <TextBox Text="" Margin="0,0,0,10"  Width="120"/>
-                            <Button Content="SAVE" Foreground="White"  Width="80" FontSize="15" Margin="0,50,0,0"  Background="#FF235885"/>
+                            <TextBox Name="staffSalaries_expense_TB" Text="" Margin="0,20,0,10" Width="120"/>
+                            <TextBox Name="electricity_expense_TB" Text="" Margin="0,0,0,10"  Width="120"/>
+                            <TextBox Name="maintenance_expense_TB" Text="" Margin="0,0,0,10"  Width="120"/>
+                            <TextBox Name="others_expense_TB" Text="" Margin="0,0,0,10"  Width="120"/>
+                            <TextBox Name="miansahid_expense_TB" Text="" Margin="0,0,0,10"  Width="120"/>
+                            <TextBox Name="total_expense_TB" Text="" Margin="0,0,0,10"  Width="120"/>
+                            <Button Name="save_button_expenses" Content="SAVE" Foreground="White"  Width="80" FontSize="15" Margin="0,50,0,0"  Background="#FF235885"/>
                         </StackPanel>
 
 
@@ -780,8 +782,8 @@
                         <StackPanel Grid.ColumnSpan="2" Orientation="Horizontal"  Margin="50,0,50,100" Background="#FF235885" VerticalAlignment="Bottom" >
 
                             <Label Content="Mian saib Deposit Amount PKR*" Margin="5,20,0,20" Foreground="White" FontSize="18"/>
-                            <TextBox Text="" Margin="20" Height="30" Width="120" />
-                            <Button Content="SAVE" Foreground="#FF235885"  Width="80" FontSize="15"  Background="White" Margin="10,30,5,30"/>
+                            <TextBox Name="owner_deposit_TB" Text="" Margin="20" Height="30" Width="120" />
+                            <Button Name="save_button_deposit" Content="SAVE" Foreground="#FF235885"  Width="80" FontSize="15"  Background="White" Margin="10,30,5,30"/>
                         </StackPanel>
 
 

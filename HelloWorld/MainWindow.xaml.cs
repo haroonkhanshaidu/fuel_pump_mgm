@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
@@ -16,10 +17,10 @@ namespace HelloWorld
         public MainWindow()
         {
             InitializeComponent();
-            new SplashWindow().ShowDialog();
-            set_initial_values_petrol("12/7/2020", "40", "23");
+            //new SplashWindow().ShowDialog();
+            set_initial_values_petrol("12/7/2020", "40", "23"); 
+            expensesEvents();
 
-            //Entry obj = new Entry(getTotalLiters_petrol());
 
         }
 
@@ -440,7 +441,7 @@ namespace HelloWorld
 
         }
 
-        private void addItem(string text)
+        public void addItem(string text)
         {
             TextBlock block = new TextBlock();
 
@@ -459,7 +460,7 @@ namespace HelloWorld
                 var data = Creditors.creditorGetData();
                 string creditorName = (sender as TextBlock).Text;
                 crediterName_petrol_TB.Text = creditorName;
-                crediterOldAmount_petrol_TB.Content = "+"+data[creditorName];
+                crediterOldAmount_petrol_TB.Content = "+" + data[creditorName];
                 crediterOldAmount_petrol_TB.Visibility = System.Windows.Visibility.Visible;
                 scrollView.Visibility = System.Windows.Visibility.Collapsed;
             };
@@ -479,9 +480,9 @@ namespace HelloWorld
             // Add to the panel   
             resultStack.Children.Add(block);
         }
-
         private void save_petrol_entry_BTN_Click(object sender, RoutedEventArgs e)
         {
+            creditedAmount_petrol_TB.KeyDown += Creditors.clearAmountBox;
             
             string name = crediterName_petrol_TB.Text;
             string amount = creditedAmount_petrol_TB.Text;
@@ -522,9 +523,26 @@ namespace HelloWorld
             crediterOldAmount_petrol_TB.Visibility = System.Windows.Visibility.Hidden;
         }
 
-        private void creditedAmount_petrol_TB_KeyDown(object sender, KeyEventArgs e)
+
+        private void expensesEvents()
         {
-            creditedAmount_petrol_TB.Background = Brushes.Transparent;
+            ArrayList expenseboxes = new ArrayList();
+            expenseboxes.Add(staffSalaries_expense_TB);
+            expenseboxes.Add(electricity_expense_TB);
+            expenseboxes.Add(maintenance_expense_TB);
+            expenseboxes.Add(others_expense_TB);
+            expenseboxes.Add(miansahid_expense_TB);
+            expenseboxes.Add(total_expense_TB);
+
+            staffSalaries_expense_TB.TextChanged += (sender, e) => Expenses.calculate(sender, e, expenseboxes);
+            electricity_expense_TB.TextChanged += (sender, e) => Expenses.calculate(sender, e, expenseboxes);
+            maintenance_expense_TB.TextChanged += (sender, e) => Expenses.calculate(sender, e, expenseboxes);
+            others_expense_TB.TextChanged += (sender, e) => Expenses.calculate(sender, e, expenseboxes);
+            miansahid_expense_TB.TextChanged += (sender, e) => Expenses.calculate(sender, e, expenseboxes);
+            save_button_expenses.Click+= (sender, e) => Expenses.saveExpenseData(sender, e, expenseboxes);
+            save_button_deposit.Click += (sender, e) => Expenses.ownerDeposit(sender, e, owner_deposit_TB);
+            owner_deposit_TB.TextChanged += Expenses.depositBoxClear;
         }
+
     }
 }

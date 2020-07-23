@@ -30,7 +30,6 @@ namespace HelloWorld
 
         static public void creditorinsert(string name, string amount)
         {
-            SqlCommand cmd;
             SqlDataAdapter adapter;
             string query;
             query = "insert into creditorData (creditorName,amount) values ('"+name+"','"+amount+"')";
@@ -64,12 +63,15 @@ namespace HelloWorld
             adapter.UpdateCommand = new SqlCommand(query, Connect());
             adapter.UpdateCommand.ExecuteNonQuery();
         }
-        static public void fun(object sender, EventArgs e)
+
+
+        static public void clearAmountBox(object sender, EventArgs e)
         {
 
             (sender as TextBox).Background = Brushes.Transparent;
-            MessageBox.Show("Rain");
+
         }
+
         public void database()
         {
 
