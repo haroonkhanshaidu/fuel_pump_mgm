@@ -5,10 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace HelloWorld
 {
-    class Database
+    class Creditors
     {
         static public SqlConnection Connect()
         {
@@ -62,7 +64,12 @@ namespace HelloWorld
             adapter.UpdateCommand = new SqlCommand(query, Connect());
             adapter.UpdateCommand.ExecuteNonQuery();
         }
+        static public void fun(object sender, EventArgs e)
+        {
 
+            (sender as TextBox).Background = Brushes.Transparent;
+            MessageBox.Show("Rain");
+        }
         public void database()
         {
 
