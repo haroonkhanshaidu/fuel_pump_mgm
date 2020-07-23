@@ -401,7 +401,7 @@ namespace HelloWorld
             crediterName_petrol_TB.Background = Brushes.Transparent;
             bool found = false;
             //var border = (resultStack.Parent as ScrollViewer).Parent as Border;
-            var data = Database.creditorGetData();
+            var data = Creditors.creditorGetData();
 
             string query = (sender as TextBox).Text;
 
@@ -456,7 +456,7 @@ namespace HelloWorld
             // Mouse events   
             block.MouseLeftButtonUp += (sender, e) =>
             {
-                var data = Database.creditorGetData();
+                var data = Creditors.creditorGetData();
                 string creditorName = (sender as TextBlock).Text;
                 crediterName_petrol_TB.Text = creditorName;
                 crediterOldAmount_petrol_TB.Content = "+"+data[creditorName];
@@ -482,6 +482,7 @@ namespace HelloWorld
 
         private void save_petrol_entry_BTN_Click(object sender, RoutedEventArgs e)
         {
+            
             string name = crediterName_petrol_TB.Text;
             string amount = creditedAmount_petrol_TB.Text;
 
@@ -497,15 +498,15 @@ namespace HelloWorld
             }
 
             //If old creditor then update else create
-            var data = Database.creditorGetData();
+            var data = Creditors.creditorGetData();
             if (data.ContainsKey(name))
             {
                 int totalCredit = int.Parse(amount)+ int.Parse(data[name]);
                 amount = totalCredit.ToString();
-                Database.creditorUpdate(name, amount);
+                Creditors.creditorUpdate(name, amount);
             }
             else
-                Database.creditorinsert(name, amount);
+                Creditors.creditorinsert(name, amount);
 
             //Add the name and amount to left sidebar
             TextBlock block = new TextBlock(); 
