@@ -55,6 +55,8 @@ namespace HelloWorld
             SqlDataAdapter adapter = new SqlDataAdapter();
             adapter.InsertCommand = new SqlCommand(query, Connect());
             adapter.InsertCommand.ExecuteNonQuery();
+            (textBoxes[0] as TextBox).Text = "";
+            (textBoxes[1] as TextBox).Text = "";
         }
 
 
@@ -85,6 +87,8 @@ namespace HelloWorld
             SqlDataAdapter adapter = new SqlDataAdapter();
             adapter.InsertCommand = new SqlCommand(query, Connect());
             adapter.InsertCommand.ExecuteNonQuery();
+            (textBoxes[0] as TextBox).Text = "";
+            (textBoxes[1] as TextBox).Text = "";
         }
 
         static public void BoxesBackgroundClear(object sender, EventArgs e, ArrayList textBoxes)
