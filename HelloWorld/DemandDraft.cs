@@ -72,7 +72,7 @@ namespace HelloWorld
             double dieselPriceCalculated = 0;
             double dieselPKR = double.Parse((textBoxes[0] as TextBox).Text);
             double dieselLTR = double.Parse((textBoxes[1] as TextBox).Text);
-            dieselPriceCalculated = dieselPKR / petrolLTR;
+            dieselPriceCalculated = dieselPKR / dieselLTR;
             dieselPriceCalculated = Math.Round(dieselPriceCalculated, 2, MidpointRounding.AwayFromZero);
             if (dieselPriceCalculated < 10)
             {
