@@ -72,7 +72,10 @@ namespace HelloWorld
             {
                 double value = 0;
                 if (textBox.Text.Length > 0)
+                {
                     value = double.Parse(textBox.Text);
+                    textBox.Text = "";
+                }
                 textboxesValues = textboxesValues + "'" + value + "',";
             }
             textboxesValues = textboxesValues.Remove(textboxesValues.Length - 1, 1);
@@ -92,7 +95,10 @@ namespace HelloWorld
         static public void ownerDeposit(object sender, EventArgs e, TextBox depositbox)
         {
             if (depositbox.Text.Length > 0)
+            {
                 ownerDepositWithdrawCalculator(depositbox, "deposit");
+                depositbox.Text = "";
+            }
             else
                 depositbox.Background = Brushes.Red;
         }
