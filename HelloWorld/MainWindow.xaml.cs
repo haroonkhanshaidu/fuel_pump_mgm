@@ -20,6 +20,7 @@ namespace HelloWorld
             //new SplashWindow().ShowDialog();
             set_initial_values_petrol("12/7/2020", "40", "23"); 
             expensesEvents();
+            demandDraftEvents();
 
 
         }
@@ -543,6 +544,27 @@ namespace HelloWorld
             save_button_deposit.Click += (sender, e) => Expenses.ownerDeposit(sender, e, owner_deposit_TB);
             owner_deposit_TB.TextChanged += Expenses.depositBoxClear;
         }
+
+        private void demandDraftEvents()
+        {
+            ArrayList petrollist = new ArrayList();
+            petrollist.Add(DD_petrolPKR_TB);
+            petrollist.Add(DD_petrolLTR_TB);
+
+            DD_petrolPKR_TB.TextChanged += (sender, e) => DemandDraft.BoxesBackgroundClear(sender, e, petrollist);
+            DD_petrolLTR_TB.TextChanged += (sender, e) => DemandDraft.BoxesBackgroundClear(sender, e, petrollist);
+            savebtn_DD_petrol.Click += (sender, e) => DemandDraft.petrolEntry(sender, e, petrollist);
+
+            ArrayList diesellist = new ArrayList();
+            diesellist.Add(DD_dieselPKR_TB);
+            diesellist.Add(DD_dieselLTR_TB);
+
+            DD_dieselPKR_TB.TextChanged += (sender, e) => DemandDraft.BoxesBackgroundClear(sender, e, diesellist);
+            DD_dieselLTR_TB.TextChanged += (sender, e) => DemandDraft.BoxesBackgroundClear(sender, e, diesellist);
+            savebtn_DD_diesel.Click += (sender, e) => DemandDraft.dieselEntry(sender, e, diesellist);
+
+        }
+
 
     }
 }

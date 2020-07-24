@@ -763,17 +763,19 @@
                         </StackPanel>
 
                         <StackPanel Grid.Column="1" Orientation="Vertical"  Margin="50,30,20,20">
-                            <TextBox Text="" Margin="0,20,0,10" Width="120"/>
-                            <TextBox Text="" Margin="0,0,0,10"  Width="120"/>
+                            <TextBox Name="DD_petrolPKR_TB" Text="" Margin="0,20,0,10" Width="120"/>
+                            <TextBox Name="DD_petrolLTR_TB" Text="" Margin="0,0,0,10"  Width="120"/>
+                            <Button Name="savebtn_DD_petrol" Content="SAVE" Foreground="White"  Width="80" FontSize="15"  Background="#FF235885"/>
+
 
                             <!--<Button Content="SAVE" Foreground="White" Width="80" FontSize="15"  Background="Blue"/>-->
                             <StackPanel Orientation="Vertical"  Margin="0,50,0,20">
-                                <TextBox Text="" Margin="0,20,0,10" Width="120"/>
-                                <TextBox Text="" Margin="0,0,0,10"  Width="120">
+                                <TextBox Name="DD_dieselPKR_TB" Text="" Margin="0,20,0,10" Width="120"/>
+                                <TextBox Name="DD_dieselLTR_TB" Text="" Margin="0,0,0,10"  Width="120">
 
                                 </TextBox>
 
-                                <Button Content="SAVE" Foreground="White"  Width="80" FontSize="15"  Background="#FF235885"/>
+                                <Button Name="savebtn_DD_diesel" Content="SAVE" Foreground="White"  Width="80" FontSize="15"  Background="#FF235885"/>
                             </StackPanel>
 
 
