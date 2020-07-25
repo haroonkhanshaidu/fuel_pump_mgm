@@ -9,7 +9,7 @@
         mc:Ignorable="d"
         xmlns:vm="clr-namespace:HelloWorld"
         WindowStyle="SingleBorderWindow"
-        Title="Fuel Pump Daily" d:DesignWidth="1534.4" d:DesignHeight="840.8">
+        Title="Fuel Pump Management" d:DesignWidth="1534.4" d:DesignHeight="840.8">
 
 
 
@@ -177,7 +177,7 @@
                                             <Label Grid.Row="2" Content="Meter Closing*"  HorizontalAlignment="Center" Foreground="#FFBC6737" FontSize="25"/>
                                    
                                             <Label Grid.Row="0" Grid.Column="2" VerticalAlignment="Bottom" Content="Nozzel 1" Margin="0,0,0,0"  FontSize="20" Foreground="#FF235885" HorizontalAlignment="Center"/>
-                                            <TextBox Grid.Row="1" Grid.Column="1" Name="meterOpening_petrol_N1_TB"  PreviewTextInput="NumberValidationTextBox" Text="" Margin="5" IsEnabled="False" FontSize="25" FontFamily="Arial"/>
+                                            <TextBox Grid.Row="1" Grid.Column="1" Name="meterOpening_petrol_N1_TB"  PreviewTextInput="NumberValidationTextBox" Text="700" Margin="5" IsEnabled="False" FontSize="25" FontFamily="Arial"/>
                                             <TextBox Grid.Row="2" Grid.Column="1" Name="meterClosing_petrol_N1_TB"  PreviewTextInput="NumberValidationTextBox" Text="" Margin="5"  FontSize="25" TextChanged="meterClosing_petrol_N1_TextChanged" FontFamily="Arial" LostFocus="meterClosing_petrol_N1_TB_LostFocus"/>
 
                                         <Label Grid.Row="5" Grid.Column="0" HorizontalAlignment="Center" Content="Meter Opening"  Foreground="Gray" FontSize="25" />
@@ -186,7 +186,7 @@
                                         <Label Grid.Row="9" Content="Testing (Ltr)*" HorizontalContentAlignment="Center" Foreground="#FFBC6737" FontSize="25"/>
 
                                         <Label Grid.Row="4" Grid.Column="2" VerticalAlignment="Bottom" Content="Nozzel 2"  FontSize="20" Foreground="#FF235885" HorizontalAlignment="Center"/>
-                                        <TextBox Grid.Row="5" Grid.Column="1"  Name="meterOpening_petrolN2_TB" PreviewTextInput="NumberValidationTextBox" Text="" Margin="5" IsEnabled="False"  FontSize="25" FontFamily="Arial" />
+                                        <TextBox Grid.Row="5" Grid.Column="1"  Name="meterOpening_petrolN2_TB" PreviewTextInput="NumberValidationTextBox" Text="200" Margin="5" IsEnabled="False"  FontSize="25" FontFamily="Arial" />
                                         <TextBox Grid.Row="6" Grid.Column="1" Name="meterClosing_petrolN2_TB" PreviewTextInput="NumberValidationTextBox" Text="" Margin="5" FontSize="25" FontFamily="Arial" TextChanged="meterClosing_petrolN2_TB_TextChanged" LostFocus="meterClosing_petrolN2_TB_LostFocus"/>
                                         <TextBox Grid.Row="8" Grid.Column="1" Name="rate_petrol_TB" PreviewTextInput="NumberValidationTextBox" Text="" Margin="5" FontSize="25" FontFamily="Arial" TextChanged="rate_petrol_TB_TextChanged"/>
                                         <TextBox Grid.Row="9" Grid.Column="1" Name="testing_petrol_TB" PreviewTextInput="NumberValidationTextBox" Text="" Margin="5"   FontSize="25" FontFamily="Arial" TextChanged="testing_petrol_TB_TextChanged" LostFocus="testing_petrol_TB_LostFocus"/>
@@ -230,7 +230,8 @@
                                                 <Label Grid.Row="2" Content="Today's sales Ltrs"  Foreground="Black" FontSize="22" HorizontalAlignment="Right" VerticalAlignment="Bottom" />
                                                 <Label Grid.Row="3" Content="Today's sales PKR"  Foreground="Black" FontSize="22" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
                                                 <Label Grid.Row="4" Content="Today's profit PKR"  Foreground="Black" FontSize="22" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
-                                                <Label Grid.Row="7" Content="Credit Account:" Foreground="DarkRed" FontSize="22" HorizontalAlignment="Right" VerticalAlignment="Bottom" />
+                                            <Rectangle Grid.Row="7" Grid.RowSpan="5" Grid.ColumnSpan="3" Fill="#FFD1C693" />
+                                            <Label Grid.Row="7" Content="Credit Account:" Foreground="DarkRed" FontSize="22" HorizontalAlignment="Right" VerticalAlignment="Bottom" />
                                                 <ScrollViewer Grid.Row="8" Grid.RowSpan="4" VerticalScrollBarVisibility="Auto" Name="creditAccountScrollViewer" >
                                                     <StackPanel Name="credit_added_users"></StackPanel>
                                                 </ScrollViewer>
@@ -262,16 +263,17 @@
                                                 
                                             
                                             
-                                                <TextBox Grid.Column="1"  Name="discount_amount_petrol_TB" PreviewTextInput="NumberValidationTextBox" Text="" Foreground="Gray" Margin="5" FontSize="25" FontFamily="Arial" TextChanged="discount_amount_petrol_TB_TextChanged"/>
+                                                <TextBox Grid.Column="1"  Name="discount_amount_petrol_TB" PreviewTextInput="NumberValidationTextBox" Text="" Foreground="Gray" Margin="5" FontSize="25" FontFamily="Arial" LostFocus="discount_amount_petrol_TB_LostFocus"/>
 
                                             <TextBox Grid.Row="2" Grid.Column="1" Name="total_sales_ltrs_petrol_TB" Text="" Margin="5" IsEnabled="False" FontSize="25" FontFamily="Arial" TextChanged="total_sales_ltrs_petrol_TB_TextChanged" />
-                                            <TextBox Grid.Row="3" Grid.Column="1" Name="total_sales_pkrs_petrol_TB" Text="" Margin="5" IsEnabled="False" FontSize="25" FontFamily="Arial"/>
+                                            <TextBox Grid.Row="3" Grid.Column="1" Name="total_sales_pkrs_petrol_TB" Text="" Margin="5" IsEnabled="False" FontSize="25" FontFamily="Arial" TextChanged="total_sales_pkrs_petrol_TB_TextChanged"/>
                                             <TextBox Grid.Row="4" Grid.Column="1" Name="today_profit_petrol_TB" Text="" Margin="5" IsEnabled="False" FontSize="25" FontFamily="Arial" />
 
                                             <Button Grid.Row="5" Grid.Column="1" Name="save_petrol_credit_entry_BTN" HorizontalAlignment="Right" Foreground="White" Margin="5" Padding="20,0,20,0" Background="#FFBC6737" FontSize="25" Click="save_petrol_credit_entry_BTN_Click">
                                                     Save
                                                 </Button>
-                                                <Label Grid.Row="7" Grid.Column="1" Content="NAME:" FontSize="17" Foreground="DarkRed"  HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
+                                            <Rectangle Grid.Row="7" Grid.RowSpan="5" Grid.ColumnSpan="3" Fill="#FFD1C693" />
+                                            <Label Grid.Row="7" Grid.Column="1" Content="NAME:" FontSize="17" Foreground="DarkRed" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
                                                 <Label Grid.Row="9" Grid.Column="1" Content="AMOUNT:" FontSize="17" Foreground="DarkRed"  HorizontalAlignment="Left" VerticalAlignment="Bottom" Name="amount_label" />
 
                                                 <TextBox Grid.Row="8" Grid.Column="1" Name="crediterName_petrol_TB" Text="" Foreground="Black" Margin="5" FontSize="15"  FontFamily="Arial" KeyUp="crediterName_petrol_TB_KeyUp"/>
@@ -372,7 +374,7 @@
 
                                     <Label Grid.Row="0" Grid.Column="2" VerticalAlignment="Bottom" Content="Nozzel 1" Margin="0,0,0,0"  FontSize="20" Foreground="#FF235885" HorizontalAlignment="Center"/>
                                     <TextBox Grid.Row="1" Grid.Column="1" Name="meterOpening_diesel_N1_TB"  PreviewTextInput="NumberValidationTextBox" Text="" Margin="5" IsEnabled="False" FontSize="25" FontFamily="Arial"/>
-                                    <TextBox Grid.Row="2" Grid.Column="1" Name="meterClosing_diesel_N1_TB"  PreviewTextInput="NumberValidationTextBox" Text="" Margin="5"  FontSize="25" TextChanged="meterClosing_petrol_N1_TextChanged" FontFamily="Arial" LostFocus="meterClosing_petrol_N1_TB_LostFocus"/>
+                                    <TextBox Grid.Row="2" Grid.Column="1" Name="meterClosing_diesel_N1_TB"  PreviewTextInput="NumberValidationTextBox" Text="" Margin="5"  FontSize="25" TextChanged="meterClosing_diesel_N1_TextChanged" FontFamily="Arial" LostFocus="meterClosing_diesel_N1_TB_LostFocus"/>
 
                                     <Label Grid.Row="5" Grid.Column="0" HorizontalAlignment="Center" Content="Meter Opening"  Foreground="Gray" FontSize="25" />
                                     <Label Grid.Row="6" Content="Meter Closing*" HorizontalContentAlignment="Center" Foreground="#FF235885" FontSize="25"/>
@@ -381,9 +383,9 @@
 
                                     <Label Grid.Row="4" Grid.Column="2" VerticalAlignment="Bottom" Content="Nozzel 2"  FontSize="20" Foreground="#FF235885" HorizontalAlignment="Center"/>
                                     <TextBox Grid.Row="5" Grid.Column="1"  Name="meterOpening_dieselN2_TB" PreviewTextInput="NumberValidationTextBox" Text="" Margin="5" IsEnabled="False"  FontSize="25" FontFamily="Arial" />
-                                    <TextBox Grid.Row="6" Grid.Column="1" Name="meterClosing_dieselN2_TB" PreviewTextInput="NumberValidationTextBox" Text="" Margin="5" FontSize="25" FontFamily="Arial" TextChanged="meterClosing_petrolN2_TB_TextChanged" LostFocus="meterClosing_petrolN2_TB_LostFocus"/>
-                                    <TextBox Grid.Row="8" Grid.Column="1" Name="rate_diesel_TB" PreviewTextInput="NumberValidationTextBox" Text="" Margin="5" FontSize="25" FontFamily="Arial" TextChanged="rate_petrol_TB_TextChanged"/>
-                                    <TextBox Grid.Row="9" Grid.Column="1" Name="testing_diesel_TB" PreviewTextInput="NumberValidationTextBox" Text="" Margin="5"   FontSize="25" FontFamily="Arial" TextChanged="testing_petrol_TB_TextChanged" LostFocus="testing_petrol_TB_LostFocus"/>
+                                    <TextBox Grid.Row="6" Grid.Column="1" Name="meterClosing_dieselN2_TB" PreviewTextInput="NumberValidationTextBox" Text="" Margin="5" FontSize="25" FontFamily="Arial" TextChanged="meterClosing_dieselN2_TB_TextChanged" LostFocus="meterClosing_dieselN2_TB_LostFocus"/>
+                                    <TextBox Grid.Row="8" Grid.Column="1" Name="rate_diesel_TB" PreviewTextInput="NumberValidationTextBox" Text="" Margin="5" FontSize="25" FontFamily="Arial" TextChanged="rate_diesel_TB_TextChanged"/>
+                                    <TextBox Grid.Row="9" Grid.Column="1" Name="testing_diesel_TB" PreviewTextInput="NumberValidationTextBox" Text="" Margin="5"   FontSize="25" FontFamily="Arial" TextChanged="testing_diesel_TB_TextChanged" LostFocus="testing_diesel_TB_LostFocus"/>
 
 
                                 </Grid>
@@ -432,6 +434,7 @@
                                             <Label Grid.Row="2" Content="Today's sales Ltrs"  Foreground="Black" FontSize="22" HorizontalAlignment="Right" VerticalAlignment="Bottom" />
                                             <Label Grid.Row="3" Content="Today's sales PKR"  Foreground="Black" FontSize="22" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
                                             <Label Grid.Row="4" Content="Today's profit PKR"  Foreground="Black" FontSize="22" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
+                                            <Rectangle Grid.Row="7" Grid.RowSpan="5" Grid.ColumnSpan="3" Fill="#FFD1C693" />
                                             <Label Grid.Row="7" Content="Credit Account:" Foreground="DarkRed" FontSize="22" HorizontalAlignment="Right" VerticalAlignment="Bottom" />
                                             <ScrollViewer Grid.Row="8" Grid.RowSpan="4" VerticalScrollBarVisibility="Auto" Name="creditAccountScrollViewer_diesel" >
                                                 <StackPanel Name="diesel_credit_added_users"></StackPanel>
@@ -464,26 +467,27 @@
 
 
 
-                                            <TextBox Grid.Column="1"  Name="discount_amount_diesel_TB" PreviewTextInput="NumberValidationTextBox" Text="" Foreground="Gray" Margin="5" FontSize="25" FontFamily="Arial" TextChanged="discount_amount_petrol_TB_TextChanged"/>
+                                            <TextBox Grid.Column="1"  Name="discount_amount_diesel_TB" PreviewTextInput="NumberValidationTextBox" Text="" Foreground="Gray" Margin="5" FontSize="25" FontFamily="Arial" LostFocus="discount_amount_diesel_TB_LostFocus"/>
 
-                                            <TextBox Grid.Row="2" Grid.Column="1" Name="total_sales_ltrs_diesel_TB" Text="" Margin="5" IsEnabled="False" FontSize="25" FontFamily="Arial" TextChanged="total_sales_ltrs_petrol_TB_TextChanged" />
-                                            <TextBox Grid.Row="3" Grid.Column="1" Name="total_sales_pkrs_diesel_TB" Text="" Margin="5" IsEnabled="False" FontSize="25" FontFamily="Arial"/>
+                                            <TextBox Grid.Row="2" Grid.Column="1" Name="total_sales_ltrs_diesel_TB" Text="" Margin="5" IsEnabled="False" FontSize="25" FontFamily="Arial" TextChanged="total_sales_ltrs_diesel_TB_TextChanged" />
+                                            <TextBox Grid.Row="3" Grid.Column="1" Name="total_sales_pkrs_diesel_TB" Text="" Margin="5" IsEnabled="False" FontSize="25" FontFamily="Arial" TextChanged="total_sales_pkrs_diesel_TB_TextChanged"/>
                                             <TextBox Grid.Row="4" Grid.Column="1" Name="today_profit_diesel_TB" Text="" Margin="5" IsEnabled="False" FontSize="25" FontFamily="Arial" />
 
-                                            <Button Grid.Row="5" Grid.Column="1" Name="save_diesel_credit_entry_BTN" HorizontalAlignment="Right" Foreground="White" Margin="5" Padding="20,0,20,0" Background="#FF235885" FontSize="25" Click="save_petrol_credit_entry_BTN_Click">
+                                            <Button Grid.Row="5" Grid.Column="1" Name="save_diesel_credit_entry_BTN" HorizontalAlignment="Right" Foreground="White" Margin="5" Padding="20,0,20,0" Background="#FF235885" FontSize="25" Click="save_diesel_credit_entry_BTN_Click">
                                                 Save
                                             </Button>
+                                            <Rectangle Grid.Row="7" Grid.RowSpan="5" Grid.ColumnSpan="3" Fill="#FFD1C693" />
                                             <Label Grid.Row="7" Grid.Column="1" Content="NAME:" FontSize="17" Foreground="DarkRed"  HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
                                             <Label Grid.Row="9" Grid.Column="1" Content="AMOUNT:" FontSize="17" Foreground="DarkRed"  HorizontalAlignment="Left" VerticalAlignment="Bottom" Name="amount_label_diesel" />
 
-                                            <TextBox Grid.Row="8" Grid.Column="1" Name="crediterName_diesel_TB" Text="" Foreground="Black" Margin="5" FontSize="15"  FontFamily="Arial" KeyUp="crediterName_petrol_TB_KeyUp"/>
+                                            <TextBox Grid.Row="8" Grid.Column="1" Name="crediterName_diesel_TB" Text="" Foreground="Black" Margin="5" FontSize="15"  FontFamily="Arial" KeyUp="crediterName_diesel_TB_KeyUp"/>
                                             <ScrollViewer Grid.Row="9" Grid.RowSpan="2" Grid.Column="1" Panel.ZIndex="2" VerticalScrollBarVisibility="Auto" Visibility="Collapsed" Name="scrollView_diesel"  Background="White">
                                                 <StackPanel Name="resultStack2"></StackPanel>
                                             </ScrollViewer>
-                                            <TextBox Grid.Row="10" Grid.Column="1" Name="creditedAmount_diesel_TB" PreviewTextInput="NumberValidationTextBox" Text=""  Foreground="Black"  Margin="5" FontSize="20" FontFamily="Arial" KeyDown="creditedAmount_petrol_TB_KeyDown"/>
+                                            <TextBox Grid.Row="10" Grid.Column="1" Name="creditedAmount_diesel_TB" PreviewTextInput="NumberValidationTextBox" Text=""  Foreground="Black"  Margin="5" FontSize="20" FontFamily="Arial" KeyDown="creditedAmount_diesel_TB_KeyDown"/>
                                             <Label Grid.Row="10" Grid.Column="1" Name="crediterOldAmount_diesel_TB"  Foreground="Black" Margin="5" FontSize="15"  FontFamily="Arial" HorizontalAlignment="Right" Background="Red" Visibility="Hidden"/>
 
-                                            <Button Grid.Row="11" Grid.Column="1" Name="save_diesel_entry_BTN" HorizontalAlignment="Right" Foreground="White" Margin="5" Padding="15,0,15,0" Background="#FF235885" FontSize="25" Click="save_petrol_entry_BTN_Click">
+                                            <Button Grid.Row="11" Grid.Column="1" Name="save_diesel_entry_BTN" HorizontalAlignment="Right" Foreground="White" Margin="5" Padding="15,0,15,0" Background="#FF235885" FontSize="25" Click="save_diesel_entry_BTN_Click">
                                                 Add
                                             </Button>
 

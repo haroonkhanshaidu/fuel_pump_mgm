@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading.Tasks; 
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -30,7 +30,6 @@ namespace HelloWorld
 
         static public void creditorinsert(string name, string amount)
         {
-            SqlCommand cmd;
             SqlDataAdapter adapter;
             string query;
             query = "insert into creditorData (creditorName,amount) values ('"+name+"','"+amount+"')";
