@@ -63,12 +63,15 @@ namespace HelloWorld
             adapter.UpdateCommand = new SqlCommand(query, Connect());
             adapter.UpdateCommand.ExecuteNonQuery();
         }
-        static public void fun(object sender, EventArgs e)
+
+
+        static public void clearAmountBox(object sender, EventArgs e)
         {
 
             (sender as TextBox).Background = Brushes.Transparent;
-            MessageBox.Show("Rain");
+
         }
+
         public void database()
         {
 

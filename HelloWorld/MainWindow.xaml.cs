@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
@@ -19,6 +20,9 @@ namespace HelloWorld
             //new SplashWindow().ShowDialog();
             set_initial_values_diesel("12/7/2020", "40", "23");
             set_initial_values_petrol("12/7/2020", "40", "23");
+            set_initial_values_petrol("12/7/2020", "40", "23"); 
+            expensesEvents();
+            demandDraftEvents();
 
             //Entry obj = new Entry(getTotalLiters_diesel());
 
@@ -517,7 +521,6 @@ namespace HelloWorld
             // Add to the panel   
             resultStack.Children.Add(block);
         }
-
         private void save_petrol_entry_BTN_Click(object sender, RoutedEventArgs e)
         {
 
@@ -560,9 +563,45 @@ namespace HelloWorld
             crediterOldAmount_petrol_TB.Visibility = System.Windows.Visibility.Hidden;
         }
 
-        private void creditedAmount_petrol_TB_KeyDown(object sender, KeyEventArgs e)
+
+        private void expensesEvents()
         {
-            creditedAmount_petrol_TB.Background = Brushes.Transparent;
+            ArrayList expenseboxes = new ArrayList();
+            expenseboxes.Add(staffSalaries_expense_TB);
+            expenseboxes.Add(electricity_expense_TB);
+            expenseboxes.Add(maintenance_expense_TB);
+            expenseboxes.Add(others_expense_TB);
+            expenseboxes.Add(miansahid_expense_TB);
+            expenseboxes.Add(total_expense_TB);
+
+            staffSalaries_expense_TB.TextChanged += (sender, e) => Expenses.calculate(sender, e, expenseboxes);
+            electricity_expense_TB.TextChanged += (sender, e) => Expenses.calculate(sender, e, expenseboxes);
+            maintenance_expense_TB.TextChanged += (sender, e) => Expenses.calculate(sender, e, expenseboxes);
+            others_expense_TB.TextChanged += (sender, e) => Expenses.calculate(sender, e, expenseboxes);
+            miansahid_expense_TB.TextChanged += (sender, e) => Expenses.calculate(sender, e, expenseboxes);
+            save_button_expenses.Click+= (sender, e) => Expenses.saveExpenseData(sender, e, expenseboxes);
+            save_button_deposit.Click += (sender, e) => Expenses.ownerDeposit(sender, e, owner_deposit_TB);
+            owner_deposit_TB.TextChanged += Expenses.depositBoxClear;
+        }
+
+        private void demandDraftEvents()
+        {
+            ArrayList petrollist = new ArrayList();
+            petrollist.Add(DD_petrolPKR_TB);
+            petrollist.Add(DD_petrolLTR_TB);
+
+            DD_petrolPKR_TB.TextChanged += (sender, e) => DemandDraft.BoxesBackgroundClear(sender, e, petrollist);
+            DD_petrolLTR_TB.TextChanged += (sender, e) => DemandDraft.BoxesBackgroundClear(sender, e, petrollist);
+            savebtn_DD_petrol.Click += (sender, e) => DemandDraft.petrolEntry(sender, e, petrollist);
+
+            ArrayList diesellist = new ArrayList();
+            diesellist.Add(DD_dieselPKR_TB);
+            diesellist.Add(DD_dieselLTR_TB);
+
+            DD_dieselPKR_TB.TextChanged += (sender, e) => DemandDraft.BoxesBackgroundClear(sender, e, diesellist);
+            DD_dieselLTR_TB.TextChanged += (sender, e) => DemandDraft.BoxesBackgroundClear(sender, e, diesellist);
+            savebtn_DD_diesel.Click += (sender, e) => DemandDraft.dieselEntry(sender, e, diesellist);
+
         }
     
         private void set_initial_values_diesel(String date, String N1_Opening, String N2_Opening)
