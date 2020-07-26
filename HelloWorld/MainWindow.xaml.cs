@@ -902,10 +902,10 @@ namespace HelloWorld
             {
                 int totalCredit = int.Parse(amount) + int.Parse(data[name]);
                 amount = totalCredit.ToString();
-                Creditors.creditorUpdate("creditorData", name, amount,epochdate);
+                Creditors.creditorUpdate("creditorData", name, amount, petrol_entry_datepicker);
             }
             else
-                Creditors.creditorinsert("creditorData",name, amount, epochdate);
+                Creditors.creditorinsert("creditorData",name, amount, petrol_entry_datepicker);
 
             //Add the name and amount to left sidebar
             TextBlock block = new TextBlock();
@@ -968,10 +968,10 @@ namespace HelloWorld
             {
                 int totalCredit = int.Parse(amount) + int.Parse(data[name]);
                 amount = totalCredit.ToString();
-                Creditors.creditorUpdate("creditorDataDiesel", name, amount, epochdate);
+                Creditors.creditorUpdate("creditorDataDiesel", name, amount, diesel_entry_datepicker);
             }
             else
-                Creditors.creditorinsert("creditorDataDiesel", name, amount, epochdate);
+                Creditors.creditorinsert("creditorDataDiesel", name, amount, diesel_entry_datepicker);
 
             //Add the name and amount to left sidebar
             TextBlock block = new TextBlock();

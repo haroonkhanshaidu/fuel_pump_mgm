@@ -14,7 +14,7 @@ namespace HelloWorld
     {
        
 
-        static public void creditorinsert(string table, string name, string amount, string date)
+        static public void creditorinsert(string table, string name, string amount, DatePicker datepicker)
         {
             DateTime dateTime = datepicker.SelectedDate.Value;
             string date = GlobalFunctions.epochTimeParam(dateTime);
@@ -33,7 +33,7 @@ namespace HelloWorld
             SqlCommand cmd;
             SqlDataReader reader;
            
-            cmd = new SqlCommand(query, GlobalFunctions.Connect());
+         
             string query = "Select * from " + table ;
             cmd = new SqlCommand(query, GlobalFunctions.Connect());
             reader = cmd.ExecuteReader();
@@ -47,7 +47,7 @@ namespace HelloWorld
 
      
 
-        static public void creditorUpdate(string table, string name,string amount,string date)
+        static public void creditorUpdate(string table, string name,string amount,DatePicker datepicker)
         {
 
             DateTime dateTime = datepicker.SelectedDate.Value;
