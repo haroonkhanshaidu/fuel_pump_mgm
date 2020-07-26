@@ -233,7 +233,7 @@
                                             <Rectangle Grid.Row="7" Grid.RowSpan="5" Grid.ColumnSpan="3" Fill="#FFD1C693" />
                                             <Label Grid.Row="7" Content="Credit Account:" Foreground="DarkRed" FontSize="22" HorizontalAlignment="Right" VerticalAlignment="Bottom" />
                                                 <ScrollViewer Grid.Row="8" Grid.RowSpan="4" VerticalScrollBarVisibility="Auto" Name="creditAccountScrollViewer" >
-                                                    <StackPanel Name="credit_added_users"></StackPanel>
+                                                    <StackPanel Name="credit_added_users_petrol"></StackPanel>
                                                 </ScrollViewer>
                                             </Grid>
                                         </DockPanel>
@@ -277,8 +277,8 @@
                                                 <Label Grid.Row="9" Grid.Column="1" Content="AMOUNT:" FontSize="17" Foreground="DarkRed"  HorizontalAlignment="Left" VerticalAlignment="Bottom" Name="amount_label" />
 
                                                 <TextBox Grid.Row="8" Grid.Column="1" Name="crediterName_petrol_TB" Text="" Foreground="Black" Margin="5" FontSize="15"  FontFamily="Arial" KeyUp="crediterName_petrol_TB_KeyUp"/>
-                                               <ScrollViewer Grid.Row="9" Grid.RowSpan="2" Grid.Column="1" Panel.ZIndex="2" VerticalScrollBarVisibility="Auto" Visibility="Collapsed" Name="scrollView"  Background="White">
-                                                    <StackPanel Name="resultStack"></StackPanel>
+                                               <ScrollViewer Grid.Row="9" Grid.RowSpan="2" Grid.Column="1" Panel.ZIndex="2" VerticalScrollBarVisibility="Auto" Visibility="Collapsed" Name="scrollView_petrol"  Background="White">
+                                                    <StackPanel Name="resultStack_petrol"></StackPanel>
                                                 </ScrollViewer>
                                                 <TextBox Grid.Row="10" Grid.Column="1" Name="creditedAmount_petrol_TB" PreviewTextInput="NumberValidationTextBox" Text=""  Foreground="Black"  Margin="5" FontSize="20" FontFamily="Arial" />
                                                 <Label Grid.Row="10" Grid.Column="1" Name="crediterOldAmount_petrol_TB"  Foreground="Black" Margin="5" FontSize="15"  FontFamily="Arial" HorizontalAlignment="Right" Background="Red" Visibility="Hidden"/>
@@ -437,7 +437,7 @@
                                             <Rectangle Grid.Row="7" Grid.RowSpan="5" Grid.ColumnSpan="3" Fill="#FFD1C693" />
                                             <Label Grid.Row="7" Content="Credit Account:" Foreground="DarkRed" FontSize="22" HorizontalAlignment="Right" VerticalAlignment="Bottom" />
                                             <ScrollViewer Grid.Row="8" Grid.RowSpan="4" VerticalScrollBarVisibility="Auto" Name="creditAccountScrollViewer_diesel" >
-                                                <StackPanel Name="diesel_credit_added_users"></StackPanel>
+                                                <StackPanel Name="credit_added_users_diesel"></StackPanel>
                                             </ScrollViewer>
                                         </Grid>
                                     </DockPanel>
@@ -473,7 +473,7 @@
                                             <TextBox Grid.Row="3" Grid.Column="1" Name="total_sales_pkrs_diesel_TB" Text="" Margin="5" IsEnabled="False" FontSize="25" FontFamily="Arial" TextChanged="total_sales_pkrs_diesel_TB_TextChanged"/>
                                             <TextBox Grid.Row="4" Grid.Column="1" Name="today_profit_diesel_TB" Text="" Margin="5" IsEnabled="False" FontSize="25" FontFamily="Arial" />
 
-                                            <Button Grid.Row="5" Grid.Column="1" Name="save_diesel_entry_BTN" HorizontalAlignment="Right" Foreground="White" Margin="5" Padding="20,0,20,0" Background="#FF235885" FontSize="25" Click="save_diesel_credit_entry_BTN_Click">
+                                            <Button Grid.Row="5" Grid.Column="1" Name="save_diesel_entry_BTN" HorizontalAlignment="Right" Foreground="White" Margin="5" Padding="20,0,20,0" Background="#FF235885" FontSize="25" Click="save_diesel_entry_BTN_Click">
                                                 Save
                                             </Button>
                                             <Rectangle Grid.Row="7" Grid.RowSpan="5" Grid.ColumnSpan="3" Fill="#FFD1C693" />
@@ -482,12 +482,12 @@
 
                                             <TextBox Grid.Row="8" Grid.Column="1" Name="crediterName_diesel_TB" Text="" Foreground="Black" Margin="5" FontSize="15"  FontFamily="Arial" KeyUp="crediterName_diesel_TB_KeyUp"/>
                                             <ScrollViewer Grid.Row="9" Grid.RowSpan="2" Grid.Column="1" Panel.ZIndex="2" VerticalScrollBarVisibility="Auto" Visibility="Collapsed" Name="scrollView_diesel"  Background="White">
-                                                <StackPanel Name="resultStack2"></StackPanel>
+                                                <StackPanel Name="resultStack_diesel"></StackPanel>
                                             </ScrollViewer>
                                             <TextBox Grid.Row="10" Grid.Column="1" Name="creditedAmount_diesel_TB" PreviewTextInput="NumberValidationTextBox" Text=""  Foreground="Black"  Margin="5" FontSize="20" FontFamily="Arial" KeyDown="creditedAmount_diesel_TB_KeyDown"/>
                                             <Label Grid.Row="10" Grid.Column="1" Name="crediterOldAmount_diesel_TB"  Foreground="Black" Margin="5" FontSize="15"  FontFamily="Arial" HorizontalAlignment="Right" Background="Red" Visibility="Hidden"/>
 
-                                            <Button Grid.Row="11" Grid.Column="1" Name="save_diesel_credit_entry_BTN" HorizontalAlignment="Right" Foreground="White" Margin="5" Padding="15,0,15,0" Background="#FF235885" FontSize="25" Click="save_diesel_entry_BTN_Click">
+                                            <Button Grid.Row="11" Grid.Column="1" Name="save_diesel_credit_entry_BTN" HorizontalAlignment="Right" Foreground="White" Margin="5" Padding="15,0,15,0" Background="#FF235885" FontSize="25" Click="save_diesel_credit_entry_BTN_Click">
                                                 Add
                                             </Button>
 
@@ -532,22 +532,35 @@
                         <TextBlock  Text="Diesel in Tank 2387 Ltrs" Foreground="DarkBlue"  TextAlignment="Right"  FontSize="15"/>
                     </StackPanel>-->
 
-                    <StackPanel Grid.Column="0" Grid.Row="1" Background="#FF235885" Margin="20,0,20,0" VerticalAlignment="Bottom" Orientation="Horizontal">
-                        <TextBlock  Text="Expenses" Background="#FF235885" HorizontalAlignment="Center" Foreground="White" Width="350"  Margin="5" FontSize="20"/>
-                        <TextBlock  Text="Date:" Background="#FF235885" Foreground="White" HorizontalAlignment="Center" Width="50"  Margin="5" FontSize="20"/>
-                        <DatePicker Name="expense_datepicker"   SelectedDateFormat="Long" DisplayDateEnd="{Binding Mode=OneWay, StringFormat='dd-MMM-yyyy',  Source={x:Static System:DateTime.Today}}" ToolTip="click to change date" HorizontalAlignment="Right" Foreground="Black" Background="White" Margin="5" FontSize="18" >
+                    <Grid Grid.Row="1" Grid.Column="0" Margin="20,20,20,0" Background="#FF235885">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="3*"/>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="3*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Text="Expenses" Background="#FF235885" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Foreground="White" Margin="5" FontSize="20"/>
+                        <TextBlock Grid.Column="1" Text="Date:" Background="#FF235885" VerticalAlignment="Bottom" Foreground="White" HorizontalAlignment="Stretch"  Margin="5" FontSize="20"/>
+                        <DatePicker Grid.Column="2" Name="expense_datepicker" VerticalAlignment="Bottom"  SelectedDateFormat="Long" DisplayDateEnd="{Binding Mode=OneWay, StringFormat='dd-MMM-yyyy',  Source={x:Static System:DateTime.Today}}" ToolTip="click to change date" HorizontalAlignment="Left" Foreground="Black" Background="White" Margin="5" FontSize="18" >
                             <DatePicker.Resources>
                                 <Style TargetType="DatePickerTextBox">
                                     <Setter Property="IsReadOnly" Value="True"/>
                                 </Style>
                             </DatePicker.Resources>
                         </DatePicker>
-                    </StackPanel>
+                    </Grid>
 
-                    <StackPanel Grid.Column="2" Grid.Row="1" Margin="20,0,20,0" VerticalAlignment="Bottom" Background="#FF235885" Orientation="Horizontal">
-                        <TextBlock  Text="Fuel" Background="#FF235885" Foreground="White" HorizontalAlignment="Left" Width="350"  Margin="5" FontSize="20"/>
-                        <TextBlock  Text="Date:" Background="#FF235885" Foreground="White" HorizontalAlignment="Center" Width="50"  Margin="5" FontSize="20"/>
-                        <DatePicker Name="fuel_datepicker"   SelectedDateFormat="Long" DisplayDateEnd="{Binding Mode=OneWay, StringFormat='dd-MMM-yyyy',  Source={x:Static System:DateTime.Today}}" ToolTip="click to change date" HorizontalAlignment="Right" Foreground="Black" Background="White" Margin="5" FontSize="18" >
+
+
+                    <Grid Grid.Row="1" Grid.Column="2" Margin="20,20,20,0" Background="#FF235885">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="3*"/>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="3*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock  Text="Fuel" Background="#FF235885" Foreground="White" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="350"  Margin="5" FontSize="20"/>
+                        <TextBlock Grid.Column="1" Text="Date:" Background="#FF235885" Foreground="White" VerticalAlignment="Bottom" HorizontalAlignment="Center" Width="50"  Margin="5" FontSize="20"/>
+                        <DatePicker Grid.Column="2" Name="fuel_datepicker"   SelectedDateFormat="Long" DisplayDateEnd="{Binding Mode=OneWay, StringFormat='dd-MMM-yyyy',  Source={x:Static System:DateTime.Today}}"  ToolTip="click to change date" VerticalAlignment="Bottom" HorizontalAlignment="Left" Foreground="Black" Background="White" Margin="5" FontSize="18" >
                             <DatePicker.Resources>
                                 <Style TargetType="DatePickerTextBox">
                                     <Setter Property="IsReadOnly" Value="True"/>
@@ -555,9 +568,11 @@
                             </DatePicker.Resources>
                         </DatePicker>
 
+                    </Grid>
 
-                
-                    </StackPanel>
+
+
+                 
 
 
 
@@ -596,63 +611,67 @@
                         <TextBox Name="others_expense_TB" Grid.Row="4" Grid.Column="1" PreviewTextInput="NumberValidationTextBox" Text="" Margin="10"/>
                         <TextBox Name="miansahid_expense_TB" Grid.Row="5" Grid.Column="1" PreviewTextInput="NumberValidationTextBox" Text=""  Margin="10"/>
                         <TextBox Name="total_expense_TB" Grid.Row="6" Grid.Column="1" PreviewTextInput="NumberValidationTextBox" Text=""  Margin="10"/>
-                        <Button Name="save_button_expenses" Grid.Row="7" Grid.Column="1" PreviewTextInput="NumberValidationTextBox" Content="SAVE" Foreground="White" HorizontalAlignment="Right"  FontSize="15" Background="#FF235885" Width="80" Margin="30,10,30,10"/>
-
-
-
+                        <Button Name="save_button_expenses" Grid.Row="7" Grid.Column="1" PreviewTextInput="NumberValidationTextBox" Content="SAVE" Foreground="White" FontSize="15" Background="#FF235885" Margin="70,10,10,10"/>
 
                     </Grid>
 
 
                     <Grid Grid.Column="2" Grid.Row="2" Margin="20,0,20,0" Background="AliceBlue">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="3*"/>
                             <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="3*"/>
                         </Grid.ColumnDefinitions>
-                        <Label Grid.ColumnSpan="2" Margin="10" Content="Petrol" Foreground="#FFBC6737"/>
 
-                        <StackPanel Orientation="Vertical" Margin="50,20,20,20">
-                            <Label Content="Demand Draft (PKR)" Margin="0,20,0,0" Foreground="#FFBC6737" />
-                            <Label Content="Demand Draft (Ltr)" Margin="0,0,0,4" Foreground="#FFBC6737"/>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="1*"/>
+                        </Grid.RowDefinitions>
+                        
+                        <Label Content="Petrol" Margin="10,0,0,0" Foreground="#FFBC6737"/>
+                        <Label Grid.Row="1" Content="Demand Draft (PKR)" Margin="50,0,0,0" Foreground="#FFBC6737" />
+                        <Label Grid.Row="2" Content="Demand Draft (Ltr)" Margin="50,0,0,0" Foreground="#FFBC6737"/>
+                        <Label Grid.Row="5" Margin="10,0,0,0" Content="Diesel" Foreground="#FF235885"/>
+                        <Label Grid.Row="6" Content="Demand Draft (PKR)" Margin="50,0,0,0" Foreground="#FF235885" />
+                        <Label Grid.Row="7" Content="Demand Draft (Ltr)" Margin="50,0,0,4" Foreground="#FF235885"/>
+
+                  
+
+                        
+                            <TextBox Grid.Row="1" Grid.Column="2" Name="DD_petrolPKR_TB" PreviewTextInput="NumberValidationTextBox" Text="" Margin="50,5,50,5" />
+                        <TextBox Grid.Row="2" Grid.Column="2" Name="DD_petrolLTR_TB" PreviewTextInput="NumberValidationTextBox" Text="" Margin="50,5,50,5"  />
+                        <Button Grid.Row="3" Grid.Column="2" Name="savebtn_DD_petrol" Content="SAVE" Foreground="White" Margin="100,10,50,0" FontSize="15"  Background="#FF235885"/>
+
+                        <TextBox Grid.Row="5" Grid.Column="2" Name="DD_dieselPKR_TB" PreviewTextInput="NumberValidationTextBox" Text="" Margin="50,5,50,5" />
+                        <TextBox Grid.Row="6" Grid.Column="2" Name="DD_dieselLTR_TB" PreviewTextInput="NumberValidationTextBox" Text="" Margin="50,5,50,5" />
+
+                        <Button Grid.Row="7" Grid.Column="2" Name="savebtn_DD_diesel" Content="SAVE" Foreground="White"  Margin="100,10,50,0" FontSize="15"  Background="#FF235885"/>
+
+                        <Grid Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="3" Grid.RowSpan="3" Background="#FF235885">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="5*"/>
+                                <ColumnDefinition Width="3*"/>
+                                <ColumnDefinition Width="3*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Label Grid.Column="0" Content="Mian saib Deposit Amount PKR*" Margin="5,20,0,20" Foreground="White" FontSize="18"/>
+                            <TextBox Grid.Column="1" Name="owner_deposit_TB" PreviewTextInput="NumberValidationTextBox" Background="White" Height="40" Text="" Margin="20" />
+                            <Button Grid.Column="2" Name="save_button_deposit"  Content="SAVE" Foreground="#FF235885" FontSize="15" Height="40"  Background="White" Margin="10,0,30,0"/>
 
 
 
-                            <StackPanel Orientation="Vertical" Margin="0,20,20,20">
-
-                                <Label Grid.ColumnSpan="2" Margin="-40,40,0,0" Content="Diesel" Foreground="#FF235885"/>
-                                <Label Content="Demand Draft (PKR)" Margin="0,0,0,0" Foreground="#FF235885" />
-                                <Label Content="Demand Draft (Ltr)" Margin="0,0,0,4" Foreground="#FF235885"/>
-
-                            </StackPanel>
-
-
-                        </StackPanel>
-
-                        <StackPanel Grid.Column="1" Orientation="Vertical"  Margin="50,30,20,20">
-                            <TextBox Name="DD_petrolPKR_TB" PreviewTextInput="NumberValidationTextBox" Text="" Margin="0,20,0,10" Width="120"/>
-                            <TextBox Name="DD_petrolLTR_TB" PreviewTextInput="NumberValidationTextBox" Text="" Margin="0,0,0,10"  Width="120"/>
-                            <Button Name="savebtn_DD_petrol" Content="SAVE" Foreground="White"  Width="80" FontSize="15"  Background="#FF235885"/>
-
-
-                            <!--<Button Content="SAVE" Foreground="White" Width="80" FontSize="15"  Background="Blue"/>-->
-                            <StackPanel Orientation="Vertical"  Margin="0,50,0,20">
-                                <TextBox Name="DD_dieselPKR_TB" PreviewTextInput="NumberValidationTextBox" Text="" Margin="0,20,0,10" Width="120"/>
-                                <TextBox Name="DD_dieselLTR_TB" PreviewTextInput="NumberValidationTextBox" Text="" Margin="0,0,0,10"  Width="120">
-
-                                </TextBox>
-
-                                <Button Name="savebtn_DD_diesel" Content="SAVE" Foreground="White"  Width="80" FontSize="15"  Background="#FF235885"/>
-                            </StackPanel>
-
-
-                        </StackPanel>
-
-                        <StackPanel Grid.ColumnSpan="2" Orientation="Horizontal"  Margin="50,0,50,100" Background="#FF235885" VerticalAlignment="Bottom" >
-
-                            <Label Content="Mian saib Deposit Amount PKR*" Margin="5,20,0,20" Foreground="White" FontSize="18"/>
-                            <TextBox Name="owner_deposit_TB" PreviewTextInput="NumberValidationTextBox" Text="" Margin="20" Height="30" Width="120" />
-                            <Button Name="save_button_deposit" Content="SAVE" Foreground="#FF235885"  Width="80" FontSize="15"  Background="White" Margin="10,30,5,30"/>
-                        </StackPanel>
+                        </Grid>
 
 
                     </Grid>

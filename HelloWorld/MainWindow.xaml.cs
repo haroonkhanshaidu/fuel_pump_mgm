@@ -792,12 +792,199 @@ namespace HelloWorld
             return -1;
         }
 
+        private void crediterName_petrol_TB_KeyUp(object sender, KeyEventArgs e)
+        {
+            crediterOldAmount_petrol_TB.Visibility = System.Windows.Visibility.Hidden;
+            crediterName_petrol_TB.Background = Brushes.Transparent;
+            bool found = false;
+            //var border = (resultStack.Parent as ScrollViewer).Parent as Border;
+            var data = Creditors.creditorGetData("creditorData");
+
+            string query = (sender as TextBox).Text;
+
+            if (query.Length == 0)
+            {
+                // Clear   
+                resultStack_petrol.Children.Clear();
+                scrollView_petrol.Visibility = System.Windows.Visibility.Collapsed;
+            }
+            else
+            {
+
+                scrollView_petrol.Visibility = System.Windows.Visibility.Visible;
+            }
+
+            // Clear the list   
+            resultStack_petrol.Children.Clear();
+
+            // Add the result   
+            foreach (var obj in data)
+            {
+                if (obj.Key.ToLower().StartsWith(query.ToLower()))
+                {
+                    // The word starts with this... Autocomplete must work   
+                    addItem_petrol(obj.Key);
+                    found = true;
+                }
+            }
+
+            if (!found)
+            {
+                resultStack_petrol.Children.Clear();
+                scrollView_petrol.Visibility = System.Windows.Visibility.Collapsed;
+                //resultStack.Children.Add(new TextBlock() { Text = "No results found.", FontSize = 15, Background = Brushes.White, Foreground = Brushes.Black }) ;
+            }
+
+        }
+
+        private void addItem_petrol(string text)
+        {
+            TextBlock block = new TextBlock();
+
+            // Add the text   
+            block.Text = text;
+            block.Foreground = Brushes.Black;
+            block.FontSize = 15;
+
+            // A little style...   
+            block.Margin = new Thickness(2, 3, 2, 3);
+            block.Cursor = Cursors.Hand;
+
+            // Mouse events   
+            block.MouseLeftButtonUp += (sender, e) =>
+            {
+                var data = Creditors.creditorGetData("creditorData");
+                string creditorName = (sender as TextBlock).Text;
+                crediterName_petrol_TB.Text = creditorName;
+                crediterOldAmount_petrol_TB.Content = "+" + data[creditorName];
+                crediterOldAmount_petrol_TB.Visibility = System.Windows.Visibility.Visible;
+                scrollView_petrol.Visibility = System.Windows.Visibility.Collapsed;
+            };
+
+            block.MouseEnter += (sender, e) =>
+            {
+                TextBlock b = sender as TextBlock;
+                b.Background = Brushes.PeachPuff;
+            };
+
+            block.MouseLeave += (sender, e) =>
+            {
+                TextBlock b = sender as TextBlock;
+                b.Background = Brushes.Transparent;
+            };
+
+            // Add to the panel   
+            resultStack_petrol.Children.Add(block);
+        }
+
+        private void save_petrol_credit_entry_BTN_Click(object sender, RoutedEventArgs e)
+        {
+
+            string name = crediterName_petrol_TB.Text;
+            string amount = creditedAmount_petrol_TB.Text;
+            DateTime dateTime = petrol_entry_datepicker.SelectedDate.Value;
+            string epochdate = GlobalFunctions.epochTimeParam(dateTime);
+
+            if (name.Length < 1)
+            {
+                crediterName_petrol_TB.Background = Brushes.Red;
+                return;
+            }
+            if (amount.Length < 1)
+            {
+                creditedAmount_petrol_TB.Background = Brushes.Blue;
+                return;
+            }
+
+            //If old creditor then update else create
+            var data = Creditors.creditorGetData("creditorData");
+            if (data.ContainsKey(name))
+            {
+                int totalCredit = int.Parse(amount) + int.Parse(data[name]);
+                amount = totalCredit.ToString();
+                Creditors.creditorUpdate("creditorData", name, amount,epochdate);
+            }
+            else
+                Creditors.creditorinsert("creditorData",name, amount, epochdate);
+
+            //Add the name and amount to left sidebar
+            TextBlock block = new TextBlock();
+            block.Text = name + "            " + amount;
+            block.Foreground = Brushes.Black;
+            block.FontSize = 15;
+            block.Margin = new Thickness(2, 3, 2, 3);
+            credit_added_users_petrol.Children.Add(block);
+
+            //clear fields
+            crediterName_petrol_TB.Text = "";
+            creditedAmount_petrol_TB.Text = "";
+            crediterOldAmount_petrol_TB.Visibility = System.Windows.Visibility.Hidden;
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         private void save_diesel_credit_entry_BTN_Click(object sender, RoutedEventArgs e)
         {
-            if (getReadingN1_diesel() > -1 && getReadingN2_diesel() > -1 && rate_diesel_TB.Text.Length > 0 && getTotalLiters_diesel() >= getTesting_diesel())
+            string name = crediterName_diesel_TB.Text;
+            string amount = creditedAmount_diesel_TB.Text;
+            DateTime dateTime = diesel_entry_datepicker.SelectedDate.Value;
+            string epochdate = GlobalFunctions.epochTimeParam(dateTime);
+
+            if (name.Length < 1)
             {
-                MessageBox.Show("saved");
+                crediterName_diesel_TB.Background = Brushes.Red;
+                return;
             }
+            if (amount.Length < 1)
+            {
+                creditedAmount_diesel_TB.Background = Brushes.Blue;
+                return;
+            }
+
+            //If old creditor then update else create
+            var data = Creditors.creditorGetData("creditorDataDiesel");
+            if (data.ContainsKey(name))
+            {
+                int totalCredit = int.Parse(amount) + int.Parse(data[name]);
+                amount = totalCredit.ToString();
+                Creditors.creditorUpdate("creditorDataDiesel", name, amount, epochdate);
+            }
+            else
+                Creditors.creditorinsert("creditorDataDiesel", name, amount, epochdate);
+
+            //Add the name and amount to left sidebar
+            TextBlock block = new TextBlock();
+            block.Text = name + "            " + amount;
+            block.Foreground = Brushes.Black;
+            block.FontSize = 15;
+            block.Margin = new Thickness(2, 3, 2, 3);
+            credit_added_users_diesel.Children.Add(block);
+
+            //clear fields
+            crediterName_diesel_TB.Text = "";
+            creditedAmount_diesel_TB.Text = "";
+            crediterOldAmount_diesel_TB.Visibility = System.Windows.Visibility.Hidden;
         }
 
         private void crediterName_diesel_TB_KeyUp(object sender, KeyEventArgs e)
@@ -806,24 +993,24 @@ namespace HelloWorld
             crediterName_diesel_TB.Background = Brushes.Transparent;
             bool found = false;
             //var border = (resultStack.Parent as ScrollViewer).Parent as Border;
-            var data = Creditors.creditorGetData();
+            var data = Creditors.creditorGetData("creditorDataDiesel");
 
             string query = (sender as TextBox).Text;
 
             if (query.Length == 0)
             {
                 // Clear   
-                resultStack.Children.Clear();
-                scrollView.Visibility = System.Windows.Visibility.Collapsed;
+                resultStack_diesel.Children.Clear();
+                scrollView_diesel.Visibility = System.Windows.Visibility.Collapsed;
             }
             else
             {
 
-                scrollView.Visibility = System.Windows.Visibility.Visible;
+                scrollView_diesel.Visibility = System.Windows.Visibility.Visible;
             }
 
             // Clear the list   
-            resultStack.Children.Clear();
+            resultStack_diesel.Children.Clear();
 
             // Add the result   
             foreach (var obj in data)
@@ -838,8 +1025,8 @@ namespace HelloWorld
 
             if (!found)
             {
-                resultStack.Children.Clear();
-                scrollView.Visibility = System.Windows.Visibility.Collapsed;
+                resultStack_diesel.Children.Clear();
+                scrollView_diesel.Visibility = System.Windows.Visibility.Collapsed;
                 //resultStack.Children.Add(new TextBlock() { Text = "No results found.", FontSize = 15, Background = Brushes.White, Foreground = Brushes.Black }) ;
             }
 
@@ -861,12 +1048,12 @@ namespace HelloWorld
             // Mouse events   
             block.MouseLeftButtonUp += (sender, e) =>
             {
-                var data = Creditors.creditorGetData();
+                var data = Creditors.creditorGetData("creditorDataDiesel");
                 string creditorName = (sender as TextBlock).Text;
                 crediterName_diesel_TB.Text = creditorName;
                 crediterOldAmount_diesel_TB.Content = "+" + data[creditorName];
                 crediterOldAmount_diesel_TB.Visibility = System.Windows.Visibility.Visible;
-                scrollView.Visibility = System.Windows.Visibility.Collapsed;
+                scrollView_diesel.Visibility = System.Windows.Visibility.Collapsed;
             };
 
             block.MouseEnter += (sender, e) =>
@@ -882,11 +1069,12 @@ namespace HelloWorld
             };
 
             // Add to the panel   
-            resultStack.Children.Add(block);
+            resultStack_diesel.Children.Add(block);
         }
 
         private void save_diesel_entry_BTN_Click(object sender, RoutedEventArgs e)
         {
+
         }
 
         private void creditedAmount_diesel_TB_KeyDown(object sender, KeyEventArgs e)
@@ -925,19 +1113,19 @@ namespace HelloWorld
 
         private double getDiscountAmount_diesel()
         {
-            if(discount_amount_petrol_TB.Text.Length > 0)
+            if (discount_amount_diesel_TB.Text.Length > 0)
             {
-                return double.Parse(discount_amount_petrol_TB.Text);
+                return double.Parse(discount_amount_diesel_TB.Text);
             }
             return 0;
-        } 
+        }
 
         private void total_sales_pkrs_diesel_TB_TextChanged(object sender, TextChangedEventArgs e)
         {
             TextBox textbox = sender as TextBox;
-            if(textbox.Text.Length > 0)
+            if (textbox.Text.Length > 0)
             {
-               if(getDiscountAmount_diesel() < getTotalPKRs_diesel())
+                if (getDiscountAmount_diesel() < getTotalPKRs_diesel())
                 {
                     discount_amount_diesel_TB.Background = Brushes.White;
                 }
@@ -949,134 +1137,20 @@ namespace HelloWorld
             }
         }
 
-        private void crediterName_petrol_TB_KeyUp(object sender, KeyEventArgs e)
-        {
-            crediterOldAmount_petrol_TB.Visibility = System.Windows.Visibility.Hidden;
-            crediterName_petrol_TB.Background = Brushes.Transparent;
-            bool found = false;
-            //var border = (resultStack.Parent as ScrollViewer).Parent as Border;
-            var data = Creditors.creditorGetData();
 
-            string query = (sender as TextBox).Text;
 
-            if (query.Length == 0)
-            {
-                // Clear   
-                resultStack.Children.Clear();
-                scrollView.Visibility = System.Windows.Visibility.Collapsed;
-            }
-            else
-            {
 
-                scrollView.Visibility = System.Windows.Visibility.Visible;
-            }
 
-            // Clear the list   
-            resultStack.Children.Clear();
 
-            // Add the result   
-            foreach (var obj in data)
-            {
-                if (obj.Key.ToLower().StartsWith(query.ToLower()))
-                {
-                    // The word starts with this... Autocomplete must work   
-                    addItem_petrol(obj.Key);
-                    found = true;
-                }
-            }
 
-            if (!found)
-            {
-                resultStack.Children.Clear();
-                scrollView.Visibility = System.Windows.Visibility.Collapsed;
-                //resultStack.Children.Add(new TextBlock() { Text = "No results found.", FontSize = 15, Background = Brushes.White, Foreground = Brushes.Black }) ;
-            }
 
-        }
 
-        private void addItem_petrol(string text)
-        {
-            TextBlock block = new TextBlock();
 
-            // Add the text   
-            block.Text = text;
-            block.Foreground = Brushes.Black;
-            block.FontSize = 15;
 
-            // A little style...   
-            block.Margin = new Thickness(2, 3, 2, 3);
-            block.Cursor = Cursors.Hand;
 
-            // Mouse events   
-            block.MouseLeftButtonUp += (sender, e) =>
-            {
-                var data = Creditors.creditorGetData();
-                string creditorName = (sender as TextBlock).Text;
-                crediterName_petrol_TB.Text = creditorName;
-                crediterOldAmount_petrol_TB.Content = "+" + data[creditorName];
-                crediterOldAmount_petrol_TB.Visibility = System.Windows.Visibility.Visible;
-                scrollView.Visibility = System.Windows.Visibility.Collapsed;
-            };
 
-            block.MouseEnter += (sender, e) =>
-            {
-                TextBlock b = sender as TextBlock;
-                b.Background = Brushes.PeachPuff;
-            };
 
-            block.MouseLeave += (sender, e) =>
-            {
-                TextBlock b = sender as TextBlock;
-                b.Background = Brushes.Transparent;
-            };
 
-            // Add to the panel   
-            resultStack.Children.Add(block);
-        }
-
-        private void save_petrol_credit_entry_BTN_Click(object sender, RoutedEventArgs e)
-        {
-
-            string name = crediterName_petrol_TB.Text;
-            string amount = creditedAmount_petrol_TB.Text;
-            DateTime dateTime = petrol_entry_datepicker.SelectedDate.Value;
-            string epochdate = GlobalFunctions.epochTimeParam(dateTime);
-
-            if (name.Length < 1)
-            {
-                crediterName_petrol_TB.Background = Brushes.Red;
-                return;
-            }
-            if (amount.Length < 1)
-            {
-                creditedAmount_petrol_TB.Background = Brushes.Blue;
-                return;
-            }
-
-            //If old creditor then update else create
-            var data = Creditors.creditorGetData();
-            if (data.ContainsKey(name))
-            {
-                int totalCredit = int.Parse(amount) + int.Parse(data[name]);
-                amount = totalCredit.ToString();
-                Creditors.creditorUpdate(name, amount,epochdate);
-            }
-            else
-                Creditors.creditorinsert(name, amount, epochdate);
-
-            //Add the name and amount to left sidebar
-            TextBlock block = new TextBlock();
-            block.Text = name + "            " + amount;
-            block.Foreground = Brushes.Black;
-            block.FontSize = 15;
-            block.Margin = new Thickness(2, 3, 2, 3);
-            credit_added_users.Children.Add(block);
-
-            //clear fields
-            crediterName_petrol_TB.Text = "";
-            creditedAmount_petrol_TB.Text = "";
-            crediterOldAmount_petrol_TB.Visibility = System.Windows.Visibility.Hidden;
-        }
 
         private void expensesEvents()
         {

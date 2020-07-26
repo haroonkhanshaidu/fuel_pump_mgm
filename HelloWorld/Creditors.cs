@@ -27,22 +27,23 @@ namespace HelloWorld
 
         }
 
-        static public void creditorinsert(string name, string amount, string date)
+        static public void creditorinsert(string table, string name, string amount, string date)
         {
             SqlDataAdapter adapter;
             string query;
-            query = "insert into creditorData (creditorName,amount,date) values ('"+name+"','"+amount+"','"+date+"')";
+            query = "insert into "+table+" (creditorName,amount,date) values ('"+name+"','"+amount+"','"+date+"')";
             adapter = new SqlDataAdapter();
             adapter.InsertCommand = new SqlCommand(query, Connect());
             adapter.InsertCommand.ExecuteNonQuery();
         }
 
-        static public Dictionary<string,string> creditorGetData()
+     
+        static public Dictionary<string,string> creditorGetData(string table)
         {
             Dictionary<string, string> d = new Dictionary<string, string>();
             SqlCommand cmd;
             SqlDataReader reader;
-            string query = "Select * from creditorData";
+            string query = "Select * from " + table ;
             cmd = new SqlCommand(query, Connect());
             reader = cmd.ExecuteReader();
             while (reader.Read())
@@ -53,11 +54,13 @@ namespace HelloWorld
 
         }
 
-        static public void creditorUpdate(string name,string amount,string date)
+     
+
+        static public void creditorUpdate(string table, string name,string amount,string date)
         {
 
             SqlDataAdapter adapter = new SqlDataAdapter();
-            string query = "Update creditorData set amount = '"+amount+"', date = '"+date+"' where creditorName = '"+name+"'";
+            string query = "Update "+table+" set amount = '"+amount+"', date = '"+date+"' where creditorName = '"+name+"'";
             adapter = new SqlDataAdapter();
             adapter.UpdateCommand = new SqlCommand(query, Connect());
             adapter.UpdateCommand.ExecuteNonQuery();
