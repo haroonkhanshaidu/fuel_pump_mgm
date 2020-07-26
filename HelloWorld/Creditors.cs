@@ -27,11 +27,11 @@ namespace HelloWorld
 
         }
 
-        static public void creditorinsert(string name, string amount)
+        static public void creditorinsert(string name, string amount, string date)
         {
             SqlDataAdapter adapter;
             string query;
-            query = "insert into creditorData (creditorName,amount) values ('"+name+"','"+amount+"')";
+            query = "insert into creditorData (creditorName,amount,date) values ('"+name+"','"+amount+"','"+date+"')";
             adapter = new SqlDataAdapter();
             adapter.InsertCommand = new SqlCommand(query, Connect());
             adapter.InsertCommand.ExecuteNonQuery();
@@ -53,11 +53,11 @@ namespace HelloWorld
 
         }
 
-        static public void creditorUpdate(string name,string amount)
+        static public void creditorUpdate(string name,string amount,string date)
         {
 
             SqlDataAdapter adapter = new SqlDataAdapter();
-            string query = "Update creditorData set amount = '"+amount+"' where creditorName = '"+name+"'";
+            string query = "Update creditorData set amount = '"+amount+"', date = '"+date+"' where creditorName = '"+name+"'";
             adapter = new SqlDataAdapter();
             adapter.UpdateCommand = new SqlCommand(query, Connect());
             adapter.UpdateCommand.ExecuteNonQuery();
