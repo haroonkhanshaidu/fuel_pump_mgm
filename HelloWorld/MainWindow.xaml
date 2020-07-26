@@ -281,7 +281,7 @@
                                                     <StackPanel Name="resultStack_petrol"></StackPanel>
                                                 </ScrollViewer>
                                                 <TextBox Grid.Row="10" Grid.Column="1" Name="creditedAmount_petrol_TB" PreviewTextInput="NumberValidationTextBox" Text=""  Foreground="Black"  Margin="5" FontSize="20" FontFamily="Arial" />
-                                                <Label Grid.Row="10" Grid.Column="1" Name="crediterOldAmount_petrol_TB"  Foreground="Black" Margin="5" FontSize="15"  FontFamily="Arial" HorizontalAlignment="Right" Background="Red" Visibility="Hidden"/>
+                                            <Label Grid.Row="10" Grid.Column="1" Content="234" Name="crediterOldAmount_petrol_TB"  Foreground="Black" Margin="5" FontSize="15"  FontFamily="Arial" HorizontalAlignment="Right" Background="Orange" Visibility="Hidden" />
 
                                             <Button Grid.Row="11" Grid.Column="1" Name="save_petrol_credit_entry_BTN" HorizontalAlignment="Right" Foreground="White" Margin="5" Padding="15,0,15,0" Background="#FFBC6737" FontSize="25" Click="save_petrol_credit_entry_BTN_Click">
                                                     Add

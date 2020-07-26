@@ -1154,6 +1154,7 @@ namespace HelloWorld
 
         private void expensesEvents()
         {
+
             ArrayList expenseboxes = new ArrayList();
             expenseboxes.Add(staffSalaries_expense_TB);
             expenseboxes.Add(electricity_expense_TB);
@@ -1167,20 +1168,21 @@ namespace HelloWorld
             maintenance_expense_TB.TextChanged += (sender, e) => Expenses.calculate(sender, e, expenseboxes);
             others_expense_TB.TextChanged += (sender, e) => Expenses.calculate(sender, e, expenseboxes);
             miansahid_expense_TB.TextChanged += (sender, e) => Expenses.calculate(sender, e, expenseboxes);
-            save_button_expenses.Click += (sender, e) => Expenses.saveExpenseData(sender, e, expenseboxes);
-            save_button_deposit.Click += (sender, e) => Expenses.ownerDeposit(sender, e, owner_deposit_TB);
+            save_button_expenses.Click += (sender, e) => Expenses.saveExpenseData(sender, e, expenseboxes,expense_datepicker);
+            save_button_deposit.Click += (sender, e) => Expenses.ownerDeposit(sender, e, owner_deposit_TB, expense_datepicker);
             owner_deposit_TB.TextChanged += Expenses.depositBoxClear;
         }
 
         private void demandDraftEvents()
         {
+
             ArrayList petrollist = new ArrayList();
             petrollist.Add(DD_petrolPKR_TB);
             petrollist.Add(DD_petrolLTR_TB);
 
             DD_petrolPKR_TB.TextChanged += (sender, e) => DemandDraft.BoxesBackgroundClear(sender, e, petrollist);
             DD_petrolLTR_TB.TextChanged += (sender, e) => DemandDraft.BoxesBackgroundClear(sender, e, petrollist);
-            savebtn_DD_petrol.Click += (sender, e) => DemandDraft.petrolEntry(sender, e, petrollist);
+            savebtn_DD_petrol.Click += (sender, e) => DemandDraft.petrolEntry(sender, e, petrollist, fuel_datepicker);
 
             ArrayList diesellist = new ArrayList();
             diesellist.Add(DD_dieselPKR_TB);
@@ -1188,7 +1190,7 @@ namespace HelloWorld
 
             DD_dieselPKR_TB.TextChanged += (sender, e) => DemandDraft.BoxesBackgroundClear(sender, e, diesellist);
             DD_dieselLTR_TB.TextChanged += (sender, e) => DemandDraft.BoxesBackgroundClear(sender, e, diesellist);
-            savebtn_DD_diesel.Click += (sender, e) => DemandDraft.dieselEntry(sender, e, diesellist);
+            savebtn_DD_diesel.Click += (sender, e) => DemandDraft.dieselEntry(sender, e, diesellist, fuel_datepicker);
 
         }
 

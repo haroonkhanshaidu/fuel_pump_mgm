@@ -14,20 +14,7 @@ namespace HelloWorld
 {
     class Expenses
     {
-        static public SqlConnection Connect()
-        {
-            try
-            {
-                SqlConnection thisConnection = new SqlConnection(@"Data Source=DESKTOP-792H4GJ\SQLEXPRESS;Initial Catalog=FuelPumpDB;Integrated Security=True"); thisConnection.Open();
-                return thisConnection;
-            }
-            catch
-            {
-                MessageBox.Show("Database Connection Error");
-                return null;
-            }
-
-        }
+       
 
         static public void calculate(object sender, EventArgs e, ArrayList list)
         {
@@ -51,9 +38,11 @@ namespace HelloWorld
 
 
 
-        static public void saveExpenseData(object sender, EventArgs e, ArrayList list)
+        static public void saveExpenseData(object sender, EventArgs e, ArrayList list,DatePicker datepicker)
         {
-            
+
+            DateTime dateTime = datepicker.SelectedDate.Value;
+            string date = GlobalFunctions.epochTimeParam(dateTime);
 
             if ((list[list.Count - 1] as TextBox).Text.Length < 1 || (list[list.Count - 1] as TextBox).Text == "0")
             {
@@ -72,36 +61,41 @@ namespace HelloWorld
                 if (textBox.Text.Length > 0)
                 {
                     value = double.Parse(textBox.Text);
-                    textBox.Text = "";
                 }
                 textboxesValues = textboxesValues + "'" + value + "',";
             }
-            textboxesValues = textboxesValues.Remove(textboxesValues.Length - 1, 1);
-            query = "insert into expenses (salareis,electricity,maintenance,other,mianSahib,total) values (" + textboxesValues + ")";
+            query = "insert into expenses (salareis,electricity,maintenance,other,mianSahib,total,date) values (" + textboxesValues + ""+date+")";
             SqlDataAdapter adapter = new SqlDataAdapter();
-            adapter.InsertCommand = new SqlCommand(query, Connect());
+            adapter.InsertCommand = new SqlCommand(query, GlobalFunctions.Connect());
             adapter.InsertCommand.ExecuteNonQuery();
 
             TextBox withdrawBox = (list[list.Count - 2] as TextBox);
             if (withdrawBox.Text.Length > 0)
             {
-                ownerDepositWithdrawCalculator(withdrawBox, "withdraw");
+                ownerDepositWithdrawCalculator(withdrawBox, "withdraw",date);
+            }
+
+            foreach (TextBox textBox in list)
+            {
+                 textBox.Text="";
             }
         }
 
 
-        static public void ownerDeposit(object sender, EventArgs e, TextBox depositbox)
+        static public void ownerDeposit(object sender, EventArgs e, TextBox depositbox, DatePicker datepicker)
         {
+            DateTime dateTime = datepicker.SelectedDate.Value;
+            string date = GlobalFunctions.epochTimeParam(dateTime);
             if (depositbox.Text.Length > 0)
             {
-                ownerDepositWithdrawCalculator(depositbox, "deposit");
+                ownerDepositWithdrawCalculator(depositbox, "deposit",date);
                 depositbox.Text = "";
             }
             else
                 depositbox.Background = Brushes.Red;
         }
 
-        static private void ownerDepositWithdrawCalculator(TextBox textBox, string status)
+        static private void ownerDepositWithdrawCalculator(TextBox textBox, string status, string date)
         {
 
             double total = 0;
@@ -111,7 +105,7 @@ namespace HelloWorld
             SqlCommand cmd;
             SqlDataReader reader;
             string query = "Select (total) from ownerAmount";
-            cmd = new SqlCommand(query, Connect());
+            cmd = new SqlCommand(query, GlobalFunctions.Connect());
             reader = cmd.ExecuteReader();
             while (reader.Read())
             {
@@ -125,9 +119,9 @@ namespace HelloWorld
                 withdraw = double.Parse(textBox.Text);
 
             total = (total + deposit) - withdraw;
-            query = "insert into ownerAmount (depost,withdrawal,total) values ('" + deposit + "','" + withdraw + "','" + total + "')";
+            query = "insert into ownerAmount (depost,withdrawal,total,date) values ('" + deposit + "','" + withdraw + "','" + total + "','" + date + "')";
             SqlDataAdapter adapter = new SqlDataAdapter();
-            adapter.InsertCommand = new SqlCommand(query, Connect());
+            adapter.InsertCommand = new SqlCommand(query, GlobalFunctions.Connect());
             adapter.InsertCommand.ExecuteNonQuery();
 
         }

@@ -12,28 +12,17 @@ namespace HelloWorld
 {
     class Creditors
     {
-        static public SqlConnection Connect()
-        {
-            try
-            {
-                SqlConnection thisConnection = new SqlConnection(@"Data Source=DESKTOP-792H4GJ\SQLEXPRESS;Initial Catalog=FuelPumpDB;Integrated Security=True"); thisConnection.Open();
-                return thisConnection;
-            }
-            catch
-            {
-                MessageBox.Show("Database Connection Error");
-                return null;
-            }
-
-        }
+       
 
         static public void creditorinsert(string table, string name, string amount, string date)
         {
+            DateTime dateTime = datepicker.SelectedDate.Value;
+            string date = GlobalFunctions.epochTimeParam(dateTime);
             SqlDataAdapter adapter;
             string query;
             query = "insert into "+table+" (creditorName,amount,date) values ('"+name+"','"+amount+"','"+date+"')";
             adapter = new SqlDataAdapter();
-            adapter.InsertCommand = new SqlCommand(query, Connect());
+            adapter.InsertCommand = new SqlCommand(query, GlobalFunctions.Connect());
             adapter.InsertCommand.ExecuteNonQuery();
         }
 
@@ -43,8 +32,10 @@ namespace HelloWorld
             Dictionary<string, string> d = new Dictionary<string, string>();
             SqlCommand cmd;
             SqlDataReader reader;
+           
+            cmd = new SqlCommand(query, GlobalFunctions.Connect());
             string query = "Select * from " + table ;
-            cmd = new SqlCommand(query, Connect());
+            cmd = new SqlCommand(query, GlobalFunctions.Connect());
             reader = cmd.ExecuteReader();
             while (reader.Read())
             {
@@ -59,10 +50,12 @@ namespace HelloWorld
         static public void creditorUpdate(string table, string name,string amount,string date)
         {
 
+            DateTime dateTime = datepicker.SelectedDate.Value;
+            string date = GlobalFunctions.epochTimeParam(dateTime);
             SqlDataAdapter adapter = new SqlDataAdapter();
             string query = "Update "+table+" set amount = '"+amount+"', date = '"+date+"' where creditorName = '"+name+"'";
             adapter = new SqlDataAdapter();
-            adapter.UpdateCommand = new SqlCommand(query, Connect());
+            adapter.UpdateCommand = new SqlCommand(query, GlobalFunctions.Connect());
             adapter.UpdateCommand.ExecuteNonQuery();
         }
 
