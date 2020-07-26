@@ -233,7 +233,7 @@
                                             <Rectangle Grid.Row="7" Grid.RowSpan="5" Grid.ColumnSpan="3" Fill="#FFD1C693" />
                                             <Label Grid.Row="7" Content="Credit Account:" Foreground="DarkRed" FontSize="22" HorizontalAlignment="Right" VerticalAlignment="Bottom" />
                                                 <ScrollViewer Grid.Row="8" Grid.RowSpan="4" VerticalScrollBarVisibility="Auto" Name="creditAccountScrollViewer" >
-                                                    <StackPanel Name="credit_added_users_petrol"></StackPanel>
+                                                    <StackPanel Margin="20,0,0,0" Name="credit_added_users_petrol"></StackPanel>
                                                 </ScrollViewer>
                                             </Grid>
                                         </DockPanel>
@@ -437,7 +437,7 @@
                                             <Rectangle Grid.Row="7" Grid.RowSpan="5" Grid.ColumnSpan="3" Fill="#FFD1C693" />
                                             <Label Grid.Row="7" Content="Credit Account:" Foreground="DarkRed" FontSize="22" HorizontalAlignment="Right" VerticalAlignment="Bottom" />
                                             <ScrollViewer Grid.Row="8" Grid.RowSpan="4" VerticalScrollBarVisibility="Auto" Name="creditAccountScrollViewer_diesel" >
-                                                <StackPanel Name="credit_added_users_diesel"></StackPanel>
+                                                <StackPanel Margin="20,0,0,0" Name="credit_added_users_diesel"></StackPanel>
                                             </ScrollViewer>
                                         </Grid>
                                     </DockPanel>
@@ -485,7 +485,7 @@
                                                 <StackPanel Name="resultStack_diesel"></StackPanel>
                                             </ScrollViewer>
                                             <TextBox Grid.Row="10" Grid.Column="1" Name="creditedAmount_diesel_TB" PreviewTextInput="NumberValidationTextBox" Text=""  Foreground="Black"  Margin="5" FontSize="20" FontFamily="Arial" KeyDown="creditedAmount_diesel_TB_KeyDown"/>
-                                            <Label Grid.Row="10" Grid.Column="1" Name="crediterOldAmount_diesel_TB"  Foreground="Black" Margin="5" FontSize="15"  FontFamily="Arial" HorizontalAlignment="Right" Background="Red" Visibility="Hidden"/>
+                                            <Label Grid.Row="10" Grid.Column="1" Name="crediterOldAmount_diesel_TB"  Foreground="Black" Margin="5" FontSize="15"  FontFamily="Arial" HorizontalAlignment="Right" Background="Orange" Visibility="Hidden"/>
 
                                             <Button Grid.Row="11" Grid.Column="1" Name="save_diesel_credit_entry_BTN" HorizontalAlignment="Right" Foreground="White" Margin="5" Padding="15,0,15,0" Background="#FF235885" FontSize="25" Click="save_diesel_credit_entry_BTN_Click">
                                                 Add
@@ -541,7 +541,7 @@
 
                         <TextBlock Text="Expenses" Background="#FF235885" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Foreground="White" Margin="5" FontSize="20"/>
                         <TextBlock Grid.Column="1" Text="Date:" Background="#FF235885" VerticalAlignment="Bottom" Foreground="White" HorizontalAlignment="Stretch"  Margin="5" FontSize="20"/>
-                        <DatePicker Grid.Column="2" Name="expense_datepicker" VerticalAlignment="Bottom"  SelectedDateFormat="Long" DisplayDateEnd="{Binding Mode=OneWay, StringFormat='dd-MMM-yyyy',  Source={x:Static System:DateTime.Today}}" ToolTip="click to change date" HorizontalAlignment="Left" Foreground="Black" Background="White" Margin="5" FontSize="18" >
+                        <DatePicker Grid.Column="2" Name="expense_datepicker" VerticalAlignment="Bottom"  SelectedDateFormat="Long" DisplayDateEnd="{Binding Mode=OneWay, StringFormat='dd-MMM-yyyy',  Source={x:Static System:DateTime.Today}}" ToolTip="click to change date" HorizontalAlignment="Left" Foreground="Black" Background="White" FontSize="15" >
                             <DatePicker.Resources>
                                 <Style TargetType="DatePickerTextBox">
                                     <Setter Property="IsReadOnly" Value="True"/>
@@ -560,7 +560,7 @@
                         </Grid.ColumnDefinitions>
                         <TextBlock  Text="Fuel" Background="#FF235885" Foreground="White" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="350"  Margin="5" FontSize="20"/>
                         <TextBlock Grid.Column="1" Text="Date:" Background="#FF235885" Foreground="White" VerticalAlignment="Bottom" HorizontalAlignment="Center" Width="50"  Margin="5" FontSize="20"/>
-                        <DatePicker Grid.Column="2" Name="fuel_datepicker"   SelectedDateFormat="Long" DisplayDateEnd="{Binding Mode=OneWay, StringFormat='dd-MMM-yyyy',  Source={x:Static System:DateTime.Today}}"  ToolTip="click to change date" VerticalAlignment="Bottom" HorizontalAlignment="Left" Foreground="Black" Background="White" Margin="5" FontSize="18" >
+                        <DatePicker Grid.Column="2" Name="fuel_datepicker"   SelectedDateFormat="Long" DisplayDateEnd="{Binding Mode=OneWay, StringFormat='dd-MMM-yyyy',  Source={x:Static System:DateTime.Today}}"  ToolTip="click to change date" VerticalAlignment="Bottom" HorizontalAlignment="Left" Foreground="Black" Background="White" FontSize="15" >
                             <DatePicker.Resources>
                                 <Style TargetType="DatePickerTextBox">
                                     <Setter Property="IsReadOnly" Value="True"/>

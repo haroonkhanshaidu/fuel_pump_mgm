@@ -33,6 +33,7 @@ namespace HelloWorld
             SqlCommand cmd;
             SqlDataReader reader;
            
+         
             string query = "Select * from " + table ;
             cmd = new SqlCommand(query, GlobalFunctions.Connect());
             reader = cmd.ExecuteReader();
@@ -46,7 +47,7 @@ namespace HelloWorld
 
      
 
-        static public void creditorUpdate(string table, string name,string amount, DatePicker datepicker)
+        static public void creditorUpdate(string table, string name,string amount,DatePicker datepicker)
         {
 
             DateTime dateTime = datepicker.SelectedDate.Value;
