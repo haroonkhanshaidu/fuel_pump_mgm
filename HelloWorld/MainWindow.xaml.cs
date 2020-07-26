@@ -822,7 +822,7 @@ namespace HelloWorld
             {
                 if (obj.Key.ToLower().StartsWith(query.ToLower()))
                 {
-                    // The word starts with this... Autocomplete must work   
+                    // The word starts with this... Autocomplete must wo
                     addItem_petrol(obj.Key);
                     found = true;
                 }
