@@ -1038,7 +1038,7 @@ namespace HelloWorld
         }
         private void save_petrol_credit_entry_BTN_Click(object sender, RoutedEventArgs e)
         {
-
+            creditedAmount_petrol_TB.TextChanged += Creditors.clearAmountBox;
             string name = crediterName_petrol_TB.Text;
             string amount = creditedAmount_petrol_TB.Text;
             DateTime dateTime = petrol_entry_datepicker.SelectedDate.Value;
@@ -1051,7 +1051,7 @@ namespace HelloWorld
             }
             if (amount.Length < 1)
             {
-                creditedAmount_petrol_TB.Background = Brushes.Blue;
+                creditedAmount_petrol_TB.Background = Brushes.Red;
                 return;
             }
 

@@ -14,20 +14,7 @@ namespace HelloWorld
 {
     class Expenses
     {
-        static public SqlConnection Connect()
-        {
-            try
-            {
-                SqlConnection thisConnection = new SqlConnection(@"Data Source=DESKTOP-792H4GJ\SQLEXPRESS;Initial Catalog=FuelPumpDB;Integrated Security=True"); thisConnection.Open();
-                return thisConnection;
-            }
-            catch
-            {
-                MessageBox.Show("Database Connection Error");
-                return null;
-            }
-
-        }
+       
 
         static public void calculate(object sender, EventArgs e, ArrayList list)
         {
@@ -79,7 +66,7 @@ namespace HelloWorld
             textboxesValues = textboxesValues.Remove(textboxesValues.Length - 1, 1);
             query = "insert into expenses (salareis,electricity,maintenance,other,mianSahib,total) values (" + textboxesValues + ")";
             SqlDataAdapter adapter = new SqlDataAdapter();
-            adapter.InsertCommand = new SqlCommand(query, Connect());
+            adapter.InsertCommand = new SqlCommand(query, GlobalFunctions.Connect());
             adapter.InsertCommand.ExecuteNonQuery();
 
             TextBox withdrawBox = (list[list.Count - 2] as TextBox);
@@ -111,7 +98,7 @@ namespace HelloWorld
             SqlCommand cmd;
             SqlDataReader reader;
             string query = "Select (total) from ownerAmount";
-            cmd = new SqlCommand(query, Connect());
+            cmd = new SqlCommand(query, GlobalFunctions.Connect());
             reader = cmd.ExecuteReader();
             while (reader.Read())
             {
@@ -127,7 +114,7 @@ namespace HelloWorld
             total = (total + deposit) - withdraw;
             query = "insert into ownerAmount (depost,withdrawal,total) values ('" + deposit + "','" + withdraw + "','" + total + "')";
             SqlDataAdapter adapter = new SqlDataAdapter();
-            adapter.InsertCommand = new SqlCommand(query, Connect());
+            adapter.InsertCommand = new SqlCommand(query, GlobalFunctions.Connect());
             adapter.InsertCommand.ExecuteNonQuery();
 
         }

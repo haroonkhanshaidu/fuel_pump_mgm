@@ -12,21 +12,7 @@ namespace HelloWorld
 {
     class Creditors
     {
-        static public SqlConnection Connect()
-        {
-            try
-            {
-                SqlConnection thisConnection = new SqlConnection(@"Data Source=(local);Initial Catalog=FuelPumpDB;Integrated Security=True");
-                thisConnection.Open();
-                return thisConnection;
-            }
-            catch
-            {
-                MessageBox.Show("Database Connection Error");
-                return null;
-            }
-
-        }
+       
 
         static public void creditorinsert(string name, string amount, string date)
         {
@@ -34,7 +20,7 @@ namespace HelloWorld
             string query;
             query = "insert into creditorData (creditorName,amount,date) values ('"+name+"','"+amount+"','"+date+"')";
             adapter = new SqlDataAdapter();
-            adapter.InsertCommand = new SqlCommand(query, Connect());
+            adapter.InsertCommand = new SqlCommand(query, GlobalFunctions.Connect());
             adapter.InsertCommand.ExecuteNonQuery();
         }
 
@@ -44,7 +30,7 @@ namespace HelloWorld
             SqlCommand cmd;
             SqlDataReader reader;
             string query = "Select * from creditorData";
-            cmd = new SqlCommand(query, Connect());
+            cmd = new SqlCommand(query, GlobalFunctions.Connect());
             reader = cmd.ExecuteReader();
             while (reader.Read())
             {
@@ -60,7 +46,7 @@ namespace HelloWorld
             SqlDataAdapter adapter = new SqlDataAdapter();
             string query = "Update creditorData set amount = '"+amount+"', date = '"+date+"' where creditorName = '"+name+"'";
             adapter = new SqlDataAdapter();
-            adapter.UpdateCommand = new SqlCommand(query, Connect());
+            adapter.UpdateCommand = new SqlCommand(query, GlobalFunctions.Connect());
             adapter.UpdateCommand.ExecuteNonQuery();
         }
 

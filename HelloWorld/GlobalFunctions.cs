@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,6 +10,22 @@ namespace HelloWorld
 {
     class GlobalFunctions
     {
+
+        static public SqlConnection Connect()
+        {
+            try
+            {
+                SqlConnection thisConnection = new SqlConnection(@"Data Source=DESKTOP-792H4GJ\SQLEXPRESS;Initial Catalog=FuelPumpDB;Integrated Security=True"); thisConnection.Open();
+                return thisConnection;
+            }
+            catch
+            {
+                MessageBox.Show("Database Connection Error");
+                return null;
+            }
+
+        }
+
         static public string epochTime()
         {
             DateTime todayDateTime = DateTime.Now;

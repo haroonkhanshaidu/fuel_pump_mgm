@@ -13,21 +13,7 @@ namespace HelloWorld
 {
     class DemandDraft
     {
-        static public SqlConnection Connect()
-        {
-            try
-            {
-                SqlConnection thisConnection = new SqlConnection(@"Data Source=(local);Initial Catalog=FuelPumpDB;Integrated Security=SSPI");
-                thisConnection.Open();
-                return thisConnection;
-            }
-            catch
-            {
-                MessageBox.Show("Database Connection Error");
-                return null;
-            }
-
-        }
+       
         static public void petrolEntry(object sender, EventArgs e, ArrayList textBoxes)
         {
             foreach (TextBox textBox in textBoxes)
@@ -53,7 +39,7 @@ namespace HelloWorld
 
             string query = "insert into ddPetrol (petrolPKR,petrolLTR,petrolPrice) values ('" + petrolPKR + "','" + petrolLTR + "','" + petrolPriceCalculated + "')";
             SqlDataAdapter adapter = new SqlDataAdapter();
-            adapter.InsertCommand = new SqlCommand(query, Connect());
+            adapter.InsertCommand = new SqlCommand(query, GlobalFunctions.Connect());
             adapter.InsertCommand.ExecuteNonQuery();
             (textBoxes[0] as TextBox).Text = "";
             (textBoxes[1] as TextBox).Text = "";
@@ -85,7 +71,7 @@ namespace HelloWorld
 
             string query = "insert into ddDiesel (dieselPKR,dieselLTR,dieselPrice) values ('" + dieselPKR + "','" + dieselLTR + "','" + dieselPriceCalculated + "')";
             SqlDataAdapter adapter = new SqlDataAdapter();
-            adapter.InsertCommand = new SqlCommand(query, Connect());
+            adapter.InsertCommand = new SqlCommand(query, GlobalFunctions.Connect());
             adapter.InsertCommand.ExecuteNonQuery();
             (textBoxes[0] as TextBox).Text = "";
             (textBoxes[1] as TextBox).Text = "";
