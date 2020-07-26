@@ -887,45 +887,6 @@ namespace HelloWorld
 
         private void save_diesel_entry_BTN_Click(object sender, RoutedEventArgs e)
         {
-            string name = crediterName_diesel_TB.Text;
-            string amount = creditedAmount_diesel_TB.Text;
-            DateTime date = petrol_entry_datepicker.SelectedDate.Value;
-
-
-            if (name.Length < 1)
-            {
-                crediterName_diesel_TB.Background = Brushes.Red;
-                return;
-            }
-            if (amount.Length < 1)
-            {
-                creditedAmount_diesel_TB.Background = Brushes.Blue;
-                return;
-            }
-
-            //If old creditor then update else create
-            var data = Creditors.creditorGetData();
-            if (data.ContainsKey(name))
-            {
-                int totalCredit = int.Parse(amount) + int.Parse(data[name]);
-                amount = totalCredit.ToString();
-                Creditors.creditorUpdate(name, amount);
-            }
-            else
-                Creditors.creditorinsert(name, amount);
-
-            //Add the name and amount to left sidebar
-            TextBlock block = new TextBlock();
-            block.Text = name + "            " + amount;
-            block.Foreground = Brushes.Black;
-            block.FontSize = 15;
-            block.Margin = new Thickness(2, 3, 2, 3);
-            credit_added_users.Children.Add(block);
-
-            //clear fields
-            crediterName_diesel_TB.Text = "";
-            creditedAmount_diesel_TB.Text = "";
-            crediterOldAmount_diesel_TB.Visibility = System.Windows.Visibility.Hidden;
         }
 
         private void creditedAmount_diesel_TB_KeyDown(object sender, KeyEventArgs e)
@@ -1080,6 +1041,8 @@ namespace HelloWorld
 
             string name = crediterName_petrol_TB.Text;
             string amount = creditedAmount_petrol_TB.Text;
+            DateTime dateTime = petrol_entry_datepicker.SelectedDate.Value;
+            string epochdate = GlobalFunctions.epochTimeParam(dateTime);
 
             if (name.Length < 1)
             {
@@ -1098,10 +1061,10 @@ namespace HelloWorld
             {
                 int totalCredit = int.Parse(amount) + int.Parse(data[name]);
                 amount = totalCredit.ToString();
-                Creditors.creditorUpdate(name, amount);
+                Creditors.creditorUpdate(name, amount,epochdate);
             }
             else
-                Creditors.creditorinsert(name, amount);
+                Creditors.creditorinsert(name, amount, epochdate);
 
             //Add the name and amount to left sidebar
             TextBlock block = new TextBlock();

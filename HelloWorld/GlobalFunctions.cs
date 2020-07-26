@@ -9,18 +9,23 @@ namespace HelloWorld
 {
     class GlobalFunctions
     {
-        static public long epochTime()
+        static public string epochTime()
         {
-            TimeSpan t = DateTime.Today.AddDays(0) - new DateTime(1970, 1, 1);
+            DateTime todayDateTime = DateTime.Now;
+            string todayDateString = todayDateTime.ToString("MM/dd/yyyy");
+            DateTime todayDate = Convert.ToDateTime(todayDateString);
+            TimeSpan t = todayDate - new DateTime(1970, 1, 1);
             long secondsSinceEpoch = (long)t.TotalSeconds;
-            return secondsSinceEpoch;
+            return secondsSinceEpoch.ToString();
         }
 
-        static public long epochTimeParam(DateTime currentTime)
+        static public string epochTimeParam(DateTime currentTime)
         {
-            TimeSpan t = currentTime - new DateTime(1970, 1, 1);
+            string todayDateString = currentTime.ToString("MM/dd/yyyy");
+            DateTime todayDate = Convert.ToDateTime(todayDateString);
+            TimeSpan t = todayDate - new DateTime(1970, 1, 1);
             long secondsSinceEpoch = (long)t.TotalSeconds;
-            return secondsSinceEpoch;
+            return secondsSinceEpoch.ToString();
         }
 
         static public String epochToDateTime(long epochtime)
