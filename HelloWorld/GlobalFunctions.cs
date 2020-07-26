@@ -25,7 +25,7 @@ namespace HelloWorld
 
         static public String epochToDateTime(long epochtime)
         {
-            DateTimeOffset dateTimeOffset = DateTimeOffset.FromUnixTimeSeconds(epochTime());
+            DateTimeOffset dateTimeOffset = DateTimeOffset.FromUnixTimeSeconds(epochtime);
             DateTime tt = dateTimeOffset.Date;
             return tt.ToString("dd/MM/yyyy");
         }

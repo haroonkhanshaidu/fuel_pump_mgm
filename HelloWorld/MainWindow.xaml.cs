@@ -1029,6 +1029,8 @@ namespace HelloWorld
         {
             string name = crediterName_diesel_TB.Text;
             string amount = creditedAmount_diesel_TB.Text;
+            DateTime date = petrol_entry_datepicker.SelectedDate.Value;
+
 
             if (name.Length < 1)
             {
