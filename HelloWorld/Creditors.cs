@@ -14,8 +14,10 @@ namespace HelloWorld
     {
        
 
-        static public void creditorinsert(string name, string amount, string date)
+        static public void creditorinsert(string name, string amount, DatePicker datepicker)
         {
+            DateTime dateTime = datepicker.SelectedDate.Value;
+            string date = GlobalFunctions.epochTimeParam(dateTime);
             SqlDataAdapter adapter;
             string query;
             query = "insert into creditorData (creditorName,amount,date) values ('"+name+"','"+amount+"','"+date+"')";
@@ -40,9 +42,11 @@ namespace HelloWorld
 
         }
 
-        static public void creditorUpdate(string name,string amount,string date)
+        static public void creditorUpdate(string name,string amount, DatePicker datepicker)
         {
 
+            DateTime dateTime = datepicker.SelectedDate.Value;
+            string date = GlobalFunctions.epochTimeParam(dateTime);
             SqlDataAdapter adapter = new SqlDataAdapter();
             string query = "Update creditorData set amount = '"+amount+"', date = '"+date+"' where creditorName = '"+name+"'";
             adapter = new SqlDataAdapter();

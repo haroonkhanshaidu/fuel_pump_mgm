@@ -14,8 +14,11 @@ namespace HelloWorld
     class DemandDraft
     {
        
-        static public void petrolEntry(object sender, EventArgs e, ArrayList textBoxes)
+        static public void petrolEntry(object sender, EventArgs e, ArrayList textBoxes, DatePicker datepicker)
         {
+
+            DateTime dateTime = datepicker.SelectedDate.Value;
+            string date = GlobalFunctions.epochTimeParam(dateTime);
             foreach (TextBox textBox in textBoxes)
             {
                 if (textBox.Text.Length < 1||textBox.Text=="0")
@@ -37,7 +40,7 @@ namespace HelloWorld
                 return;
             }
 
-            string query = "insert into ddPetrol (petrolPKR,petrolLTR,petrolPrice) values ('" + petrolPKR + "','" + petrolLTR + "','" + petrolPriceCalculated + "')";
+            string query = "insert into ddPetrol (petrolPKR,petrolLTR,petrolPrice,date) values ('" + petrolPKR + "','" + petrolLTR + "','" + petrolPriceCalculated + "','" + date + "')";
             SqlDataAdapter adapter = new SqlDataAdapter();
             adapter.InsertCommand = new SqlCommand(query, GlobalFunctions.Connect());
             adapter.InsertCommand.ExecuteNonQuery();
@@ -46,8 +49,10 @@ namespace HelloWorld
         }
 
 
-        static public void dieselEntry(object sender, EventArgs e, ArrayList textBoxes)
+        static public void dieselEntry(object sender, EventArgs e, ArrayList textBoxes, DatePicker datepicker)
         {
+            DateTime dateTime = datepicker.SelectedDate.Value;
+            string date = GlobalFunctions.epochTimeParam(dateTime);
             foreach (TextBox textBox in textBoxes)
             {
                 if (textBox.Text.Length < 1 || textBox.Text == "0")
@@ -69,7 +74,7 @@ namespace HelloWorld
                 return;
             }
 
-            string query = "insert into ddDiesel (dieselPKR,dieselLTR,dieselPrice) values ('" + dieselPKR + "','" + dieselLTR + "','" + dieselPriceCalculated + "')";
+            string query = "insert into ddDiesel (dieselPKR,dieselLTR,dieselPrice,date) values ('" + dieselPKR + "','" + dieselLTR + "','" + dieselPriceCalculated + "','" + date + "')";
             SqlDataAdapter adapter = new SqlDataAdapter();
             adapter.InsertCommand = new SqlCommand(query, GlobalFunctions.Connect());
             adapter.InsertCommand.ExecuteNonQuery();

@@ -15,7 +15,7 @@ namespace HelloWorld
         {
             try
             {
-                SqlConnection thisConnection = new SqlConnection(@"Data Source=DESKTOP-792H4GJ\SQLEXPRESS;Initial Catalog=FuelPumpDB;Integrated Security=True"); thisConnection.Open();
+                SqlConnection thisConnection = new SqlConnection(@"Data Source=(local);Initial Catalog=FuelPumpDB;Integrated Security=True"); thisConnection.Open();
                 return thisConnection;
             }
             catch
