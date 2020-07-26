@@ -519,9 +519,10 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="0.1*"/>
                         <RowDefinition Height="1*"/>
                         <RowDefinition Height="10*"/>
+                        <RowDefinition Height="1*"/>
                     </Grid.RowDefinitions>
 
 
@@ -534,13 +535,28 @@
                     <StackPanel Grid.Column="0" Grid.Row="1" Background="#FF235885" Margin="20,0,20,0" VerticalAlignment="Bottom" Orientation="Horizontal">
                         <TextBlock  Text="Expenses" Background="#FF235885" HorizontalAlignment="Center" Foreground="White" Width="350"  Margin="5" FontSize="20"/>
                         <TextBlock  Text="Date:" Background="#FF235885" Foreground="White" HorizontalAlignment="Center" Width="50"  Margin="5" FontSize="20"/>
-                        <DatePicker Name="expense_datepicker" DisplayDateEnd="{Binding Mode=OneWay, Source={x:Static System:DateTime.Today}}" ToolTip="click to change date" Width="150" HorizontalAlignment="Right" Background="White" Margin="5" FontSize="15" />
+                        <DatePicker Name="expense_datepicker"   SelectedDateFormat="Long" DisplayDateEnd="{Binding Mode=OneWay, StringFormat='dd-MMM-yyyy',  Source={x:Static System:DateTime.Today}}" ToolTip="click to change date" HorizontalAlignment="Right" Foreground="Black" Background="White" Margin="5" FontSize="18" >
+                            <DatePicker.Resources>
+                                <Style TargetType="DatePickerTextBox">
+                                    <Setter Property="IsReadOnly" Value="True"/>
+                                </Style>
+                            </DatePicker.Resources>
+                        </DatePicker>
                     </StackPanel>
 
                     <StackPanel Grid.Column="2" Grid.Row="1" Margin="20,0,20,0" VerticalAlignment="Bottom" Background="#FF235885" Orientation="Horizontal">
                         <TextBlock  Text="Fuel" Background="#FF235885" Foreground="White" HorizontalAlignment="Left" Width="350"  Margin="5" FontSize="20"/>
                         <TextBlock  Text="Date:" Background="#FF235885" Foreground="White" HorizontalAlignment="Center" Width="50"  Margin="5" FontSize="20"/>
-                        <DatePicker Name="fuel_datepicker" DisplayDateEnd="{Binding Mode=OneWay, Source={x:Static System:DateTime.Today}}" ToolTip="click to change date" Width="150" HorizontalAlignment="Right" Background="White" Margin="5" FontSize="15" />
+                        <DatePicker Name="fuel_datepicker"   SelectedDateFormat="Long" DisplayDateEnd="{Binding Mode=OneWay, StringFormat='dd-MMM-yyyy',  Source={x:Static System:DateTime.Today}}" ToolTip="click to change date" HorizontalAlignment="Right" Foreground="Black" Background="White" Margin="5" FontSize="18" >
+                            <DatePicker.Resources>
+                                <Style TargetType="DatePickerTextBox">
+                                    <Setter Property="IsReadOnly" Value="True"/>
+                                </Style>
+                            </DatePicker.Resources>
+                        </DatePicker>
+
+
+                
                     </StackPanel>
 
 
@@ -566,21 +582,21 @@
       
                         </Grid.RowDefinitions>
 
-                        <Label Content="Staff Salaries" HorizontalAlignment="Center" Foreground="Black" />
-                        <Label Content="Electricity Bill" Grid.Row="1" HorizontalAlignment="Center" Foreground="Black"/>
-                        <Label Content="Maintenance" Grid.Row="2" HorizontalAlignment="Center" Foreground="Black"/>
-                        <Label Content="Others" Grid.Row="3" HorizontalAlignment="Center" Foreground="Black"/>
-                        <Label Content="Mian Saib Withdraw" Grid.Row="4" HorizontalAlignment="Center" Foreground="Black"/>
-                        <Label Content="Total Expenses" Grid.Row="5" HorizontalAlignment="Center" Foreground="Black"/>
+                        <Label Content="Staff Salaries" Grid.Row="1" HorizontalAlignment="Center" Foreground="Black" />
+                        <Label Content="Electricity Bill" Grid.Row="2" HorizontalAlignment="Center" Foreground="Black"/>
+                        <Label Content="Maintenance" Grid.Row="3" HorizontalAlignment="Center" Foreground="Black"/>
+                        <Label Content="Others" Grid.Row="4" HorizontalAlignment="Center" Foreground="Black"/>
+                        <Label Content="Mian Saib Withdraw" Grid.Row="5" HorizontalAlignment="Center" Foreground="Black"/>
+                        <Label Content="Total Expenses" Grid.Row="6" HorizontalAlignment="Center" Foreground="Black"/>
 
 
-                        <TextBox Name="staffSalaries_expense_TB" Grid.Row="0" Grid.Column="1" PreviewTextInput="NumberValidationTextBox" Text="" Margin="10" FontSize="25" />
-                        <TextBox Name="electricity_expense_TB" Grid.Row="1" Grid.Column="1" PreviewTextInput="NumberValidationTextBox" Text=""  Margin="10"/>
-                        <TextBox Name="maintenance_expense_TB" Grid.Row="2" Grid.Column="1" PreviewTextInput="NumberValidationTextBox" Text="" Margin="10"/>
-                        <TextBox Name="others_expense_TB" Grid.Row="3" Grid.Column="1" PreviewTextInput="NumberValidationTextBox" Text="" Margin="10"/>
-                        <TextBox Name="miansahid_expense_TB" Grid.Row="4" Grid.Column="1" PreviewTextInput="NumberValidationTextBox" Text=""  Margin="10"/>
-                        <TextBox Name="total_expense_TB" Grid.Row="5" Grid.Column="1" PreviewTextInput="NumberValidationTextBox" Text="" />
-                        <Button Name="save_button_expenses" Grid.Row="6" Grid.Column="1" PreviewTextInput="NumberValidationTextBox" Content="SAVE" Foreground="White"   FontSize="15" Background="#FF235885"/>
+                        <TextBox Name="staffSalaries_expense_TB" Grid.Row="1" Grid.Column="1" PreviewTextInput="NumberValidationTextBox" Text="" Margin="10" FontSize="25" />
+                        <TextBox Name="electricity_expense_TB" Grid.Row="2" Grid.Column="1" PreviewTextInput="NumberValidationTextBox" Text=""  Margin="10"/>
+                        <TextBox Name="maintenance_expense_TB" Grid.Row="3" Grid.Column="1" PreviewTextInput="NumberValidationTextBox" Text="" Margin="10"/>
+                        <TextBox Name="others_expense_TB" Grid.Row="4" Grid.Column="1" PreviewTextInput="NumberValidationTextBox" Text="" Margin="10"/>
+                        <TextBox Name="miansahid_expense_TB" Grid.Row="5" Grid.Column="1" PreviewTextInput="NumberValidationTextBox" Text=""  Margin="10"/>
+                        <TextBox Name="total_expense_TB" Grid.Row="6" Grid.Column="1" PreviewTextInput="NumberValidationTextBox" Text=""  Margin="10"/>
+                        <Button Name="save_button_expenses" Grid.Row="7" Grid.Column="1" PreviewTextInput="NumberValidationTextBox" Content="SAVE" Foreground="White" HorizontalAlignment="Right"  FontSize="15" Background="#FF235885" Width="80" Margin="30,10,30,10"/>
 
 
 
@@ -603,9 +619,9 @@
 
                             <StackPanel Orientation="Vertical" Margin="0,20,20,20">
 
-                                <Label Grid.ColumnSpan="2" Margin="-40,40,0,0" Content="Diesel" Foreground="#FF0071FF"/>
-                                <Label Content="Demand Draft (PKR)" Margin="0,0,0,0" Foreground="#FF0071FF" />
-                                <Label Content="Demand Draft (Ltr)" Margin="0,0,0,4" Foreground="#FF0071FF"/>
+                                <Label Grid.ColumnSpan="2" Margin="-40,40,0,0" Content="Diesel" Foreground="#FF235885"/>
+                                <Label Content="Demand Draft (PKR)" Margin="0,0,0,0" Foreground="#FF235885" />
+                                <Label Content="Demand Draft (Ltr)" Margin="0,0,0,4" Foreground="#FF235885"/>
 
                             </StackPanel>
 
@@ -790,9 +806,9 @@
                                     <Label Grid.Row="1" Grid.Column="3" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10">Date To:</Label>
                                     <DatePicker Grid.Row="1" Grid.Column="3"  ToolTip="modify date to view records" Margin="10" HorizontalAlignment="Right" FontSize="14" Width="120" ></DatePicker>
 
-                                    <Image Grid.Row="1" Margin="5" ToolTip="Print" HorizontalAlignment="Right" Grid.Column="4" Source="print_icon.png"></Image>
+                                    <Image Grid.Row="1" Margin="5" ToolTip="Print" HorizontalAlignment="Right" Grid.Column="4" Source="images/print_icon.png"></Image>
 
-                                    <Image Grid.Row="2" Grid.ColumnSpan="5" Source="icon2.png" Stretch="Fill" >
+                                    <Image Grid.Row="2" Grid.ColumnSpan="5" Source="images/sales.png" Stretch="Fill" >
 
                                     </Image>
 
@@ -825,9 +841,9 @@
                                     <Label Grid.Row="1" Grid.Column="3" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10">Date To:</Label>
                                     <DatePicker Grid.Row="1" Grid.Column="3"  ToolTip="modify date to view records" Margin="10" HorizontalAlignment="Right" FontSize="14" Width="120" ></DatePicker>
 
-                                    <Image Grid.Row="1" Margin="5" ToolTip="Print" HorizontalAlignment="Right" Grid.Column="4" Source="print_icon.png"></Image>
+                                    <Image Grid.Row="1" Margin="5" ToolTip="Print" HorizontalAlignment="Right" Grid.Column="4" Source="images/print_icon.png"></Image>
 
-                                    <Image Grid.Row="2" Grid.ColumnSpan="5" Source="Blog_how_to_do_a_weekly_sales_report_graph_3.png" Stretch="Fill" >
+                                    <Image Grid.Row="2" Grid.ColumnSpan="5" Source="images/Blog_how_to_do_a_weekly_sales_report_graph_3.png" Stretch="Fill" >
 
                                     </Image>
 
@@ -859,9 +875,9 @@
                                     <Label Grid.Row="1" Grid.Column="3" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10">Date To:</Label>
                                     <DatePicker Grid.Row="1" Grid.Column="3"  ToolTip="modify date to view records" Margin="10" HorizontalAlignment="Right" FontSize="14" Width="120" ></DatePicker>
 
-                                    <Image Grid.Row="1" Margin="5" ToolTip="Print" HorizontalAlignment="Right" Grid.Column="4" Source="print_icon.png"></Image>
+                                    <Image Grid.Row="1" Margin="5" ToolTip="Print" HorizontalAlignment="Right" Grid.Column="4" Source="images/print_icon.png"></Image>
 
-                                    <Image Grid.Row="2" Grid.ColumnSpan="5" Source="Blog_how_to_do_a_weekly_sales_report_graph_3.png" Stretch="Fill" >
+                                    <Image Grid.Row="2" Grid.ColumnSpan="5" Source="images/oilstorage.png" Stretch="Fill" >
 
                                     </Image>
 
@@ -894,9 +910,9 @@
                                     <Label Grid.Row="1" Grid.Column="3" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10">Date To:</Label>
                                     <DatePicker Grid.Row="1" Grid.Column="3"  ToolTip="modify date to view records" Margin="10" HorizontalAlignment="Right" FontSize="14" Width="120" ></DatePicker>
 
-                                    <Image Grid.Row="1" Margin="5" ToolTip="Print" HorizontalAlignment="Right" Grid.Column="4" Source="print_icon.png"></Image>
+                                    <Image Grid.Row="1" Margin="5" ToolTip="Print" HorizontalAlignment="Right" Grid.Column="4" Source="images/print_icon.png"></Image>
 
-                                    <Image Grid.Row="2" Grid.ColumnSpan="5" Source="Blog_how_to_do_a_weekly_sales_report_graph_3.png" Stretch="Fill" >
+                                    <Image Grid.Row="2" Grid.ColumnSpan="5" Source="images/Blog_how_to_do_a_weekly_sales_report_graph_3.png" Stretch="Fill" >
 
                                     </Image>
 

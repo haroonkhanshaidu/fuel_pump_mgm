@@ -13,10 +13,13 @@ namespace HelloWorld
     public partial class MainWindow : Window
     {
 
+        Boolean validPetrolData = true;
+
+        Boolean validDieselData = true;
         public MainWindow()
         {
             InitializeComponent();
-            // new SplashWindow().ShowDialog();
+            //new SplashWindow().ShowDialog();
             set_initial_values_diesel("12/7/2020", "40", "23");
             set_initial_values_petrol("12/7/2020", "40", "23");
             set_initial_values_petrol("12/7/2020", "40", "23");
@@ -25,7 +28,6 @@ namespace HelloWorld
             //Entry obj = new Entry(getTotalLiters_diesel());
 
         }
-
 
         private void set_initial_values_petrol(String date, String N1_Opening, String N2_Opening)
         {
@@ -86,8 +88,8 @@ namespace HelloWorld
                             {
                                 total_sales_ltrs_petrol_TB.Text = "0";
                                 testing_petrol_TB.Background = Brushes.Red;
+                                validPetrolData = false;
                                 testing_petrol_TB.ToolTip = "Testing must be less than total sales" + getTotalLiters_petrol();
-
                             }
                         }
                         upDateTotalPrice_petrol();
@@ -112,6 +114,7 @@ namespace HelloWorld
                         {
                             total_sales_ltrs_petrol_TB.Text = "0";
                             testing_petrol_TB.Background = Brushes.Red;
+                            validPetrolData = false;
                             testing_petrol_TB.ToolTip = "Testing must be less than total sales" + getTotalLiters_petrol();
 
                         }
@@ -153,6 +156,7 @@ namespace HelloWorld
                             {
                                 total_sales_ltrs_petrol_TB.Text = "0";
                                 testing_petrol_TB.Background = Brushes.Red;
+                                validPetrolData = false;
                                 testing_petrol_TB.ToolTip = "Testing must be less than total sales" + getTotalLiters_petrol();
 
                             }
@@ -181,6 +185,7 @@ namespace HelloWorld
                         {
                             total_sales_ltrs_petrol_TB.Text = "0";
                             testing_petrol_TB.Background = Brushes.Red;
+                            validPetrolData = false;
                             testing_petrol_TB.ToolTip = "Testing must be less than total sales" + getTotalLiters_petrol();
 
                         }
@@ -243,6 +248,7 @@ namespace HelloWorld
             {
                 TextBox textbox = sender as TextBox;
                 textbox.Background = Brushes.Red;
+                validPetrolData = false;
                 textbox.ToolTip = "Meter closing can not be less then Meter opening";
 
             }
@@ -254,6 +260,7 @@ namespace HelloWorld
             {
                 TextBox textbox = sender as TextBox;
                 textbox.Background = Brushes.Red;
+                validPetrolData = false;
                 textbox.ToolTip = "Meter closing can not be less then Meter opening";
 
             }
@@ -268,6 +275,7 @@ namespace HelloWorld
                 if (getTotalLiters_petrol() < double.Parse(textbox.Text))
                 {
                     textbox.Background = Brushes.Red;
+                    validPetrolData = false;
                     textbox.ToolTip = "Testing must be less than total sales";
 
                 }
@@ -283,7 +291,7 @@ namespace HelloWorld
 
         private void rate_petrol_TB_TextChanged(object sender, TextChangedEventArgs e)
         {
-            upDateTotalPrice_petrol();
+              upDateTotalPrice_petrol();
         }
 
         private void upDateTotalPrice_petrol()
@@ -294,6 +302,9 @@ namespace HelloWorld
                 double rate = double.Parse(rate_petrol_TB.Text);
                 double totalPkr = totalLiters * rate;
                 total_sales_pkrs_petrol_TB.Text = totalPkr.ToString();
+            }if(rate_petrol_TB.Text.Length < 1)
+            {
+                total_sales_pkrs_petrol_TB.Text = "";
             }
         }
 
@@ -376,6 +387,11 @@ namespace HelloWorld
 
         private void save_petrol_entry_BTN_Click(object sender, RoutedEventArgs e)
         {
+
+            if(validPetrolData && getTotalPKRs_petrol() > 0)
+            {
+                MessageBox.Show("saved");
+            }
             if (getReadingN1_petrol() > -1 && getReadingN2_petrol() > -1 && rate_petrol_TB.Text.Length > 0 && getTotalLiters_petrol() >= getTesting_petrol())
             {
                 MessageBox.Show("saved");
@@ -403,6 +419,7 @@ namespace HelloWorld
                     else
                     {
                         textbox.Background = Brushes.Red;
+                        validPetrolData = false;
                         textbox.ToolTip = "discount can not be more then total pkr";
                     }
 
@@ -431,177 +448,13 @@ namespace HelloWorld
                 else
                 {
                     discount_amount_petrol_TB.Background = Brushes.Red;
+                    validPetrolData = false;
+                    
                 }
             }
         }
 
-        private void crediterName_petrol_TB_KeyUp(object sender, KeyEventArgs e)
-        {
-            crediterOldAmount_petrol_TB.Visibility = System.Windows.Visibility.Hidden;
-            crediterName_petrol_TB.Background = Brushes.Transparent;
-            bool found = false;
-            //var border = (resultStack.Parent as ScrollViewer).Parent as Border;
-            var data = Creditors.creditorGetData();
-
-            string query = (sender as TextBox).Text;
-
-            if (query.Length == 0)
-            {
-                // Clear   
-                resultStack.Children.Clear();
-                scrollView.Visibility = System.Windows.Visibility.Collapsed;
-            }
-            else
-            {
-
-                scrollView.Visibility = System.Windows.Visibility.Visible;
-            }
-
-            // Clear the list   
-            resultStack.Children.Clear();
-
-            // Add the result   
-            foreach (var obj in data)
-            {
-                if (obj.Key.ToLower().StartsWith(query.ToLower()))
-                {
-                    // The word starts with this... Autocomplete must work   
-                    addItem_petrol(obj.Key);
-                    found = true;
-                }
-            }
-
-            if (!found)
-            {
-                resultStack.Children.Clear();
-                scrollView.Visibility = System.Windows.Visibility.Collapsed;
-                //resultStack.Children.Add(new TextBlock() { Text = "No results found.", FontSize = 15, Background = Brushes.White, Foreground = Brushes.Black }) ;
-            }
-
-        }
-
-        private void addItem_petrol(string text)
-        {
-            TextBlock block = new TextBlock();
-
-            // Add the text   
-            block.Text = text;
-            block.Foreground = Brushes.Black;
-            block.FontSize = 15;
-
-            // A little style...   
-            block.Margin = new Thickness(2, 3, 2, 3);
-            block.Cursor = Cursors.Hand;
-
-            // Mouse events   
-            block.MouseLeftButtonUp += (sender, e) =>
-            {
-                var data = Creditors.creditorGetData();
-                string creditorName = (sender as TextBlock).Text;
-                crediterName_petrol_TB.Text = creditorName;
-                crediterOldAmount_petrol_TB.Content = "+" + data[creditorName];
-                crediterOldAmount_petrol_TB.Visibility = System.Windows.Visibility.Visible;
-                scrollView.Visibility = System.Windows.Visibility.Collapsed;
-            };
-
-            block.MouseEnter += (sender, e) =>
-            {
-                TextBlock b = sender as TextBlock;
-                b.Background = Brushes.PeachPuff;
-            };
-
-            block.MouseLeave += (sender, e) =>
-            {
-                TextBlock b = sender as TextBlock;
-                b.Background = Brushes.Transparent;
-            };
-
-            // Add to the panel   
-            resultStack.Children.Add(block);
-        }
-        private void save_petrol_credit_entry_BTN_Click(object sender, RoutedEventArgs e)
-        {
-
-            string name = crediterName_petrol_TB.Text;
-            string amount = creditedAmount_petrol_TB.Text;
-
-            if (name.Length < 1)
-            {
-                crediterName_petrol_TB.Background = Brushes.Red;
-                return;
-            }
-            if (amount.Length < 1)
-            {
-                creditedAmount_petrol_TB.Background = Brushes.Blue;
-                return;
-            }
-
-            //If old creditor then update else create
-            var data = Creditors.creditorGetData();
-            if (data.ContainsKey(name))
-            {
-                int totalCredit = int.Parse(amount) + int.Parse(data[name]);
-                amount = totalCredit.ToString();
-                Creditors.creditorUpdate(name, amount);
-            }
-            else
-                Creditors.creditorinsert(name, amount);
-
-            //Add the name and amount to left sidebar
-            TextBlock block = new TextBlock();
-            block.Text = name + "            " + amount;
-            block.Foreground = Brushes.Black;
-            block.FontSize = 15;
-            block.Margin = new Thickness(2, 3, 2, 3);
-            credit_added_users.Children.Add(block);
-
-            //clear fields
-            crediterName_petrol_TB.Text = "";
-            creditedAmount_petrol_TB.Text = "";
-            crediterOldAmount_petrol_TB.Visibility = System.Windows.Visibility.Hidden;
-        }
-
-
-        private void expensesEvents()
-        {
-            ArrayList expenseboxes = new ArrayList();
-            expenseboxes.Add(staffSalaries_expense_TB);
-            expenseboxes.Add(electricity_expense_TB);
-            expenseboxes.Add(maintenance_expense_TB);
-            expenseboxes.Add(others_expense_TB);
-            expenseboxes.Add(miansahid_expense_TB);
-            expenseboxes.Add(total_expense_TB);
-
-            staffSalaries_expense_TB.TextChanged += (sender, e) => Expenses.calculate(sender, e, expenseboxes);
-            electricity_expense_TB.TextChanged += (sender, e) => Expenses.calculate(sender, e, expenseboxes);
-            maintenance_expense_TB.TextChanged += (sender, e) => Expenses.calculate(sender, e, expenseboxes);
-            others_expense_TB.TextChanged += (sender, e) => Expenses.calculate(sender, e, expenseboxes);
-            miansahid_expense_TB.TextChanged += (sender, e) => Expenses.calculate(sender, e, expenseboxes);
-            save_button_expenses.Click += (sender, e) => Expenses.saveExpenseData(sender, e, expenseboxes);
-            save_button_deposit.Click += (sender, e) => Expenses.ownerDeposit(sender, e, owner_deposit_TB);
-            owner_deposit_TB.TextChanged += Expenses.depositBoxClear;
-        }
-
-        private void demandDraftEvents()
-        {
-            ArrayList petrollist = new ArrayList();
-            petrollist.Add(DD_petrolPKR_TB);
-            petrollist.Add(DD_petrolLTR_TB);
-
-            DD_petrolPKR_TB.TextChanged += (sender, e) => DemandDraft.BoxesBackgroundClear(sender, e, petrollist);
-            DD_petrolLTR_TB.TextChanged += (sender, e) => DemandDraft.BoxesBackgroundClear(sender, e, petrollist);
-            savebtn_DD_petrol.Click += (sender, e) => DemandDraft.petrolEntry(sender, e, petrollist);
-
-            ArrayList diesellist = new ArrayList();
-            diesellist.Add(DD_dieselPKR_TB);
-            diesellist.Add(DD_dieselLTR_TB);
-
-            DD_dieselPKR_TB.TextChanged += (sender, e) => DemandDraft.BoxesBackgroundClear(sender, e, diesellist);
-            DD_dieselLTR_TB.TextChanged += (sender, e) => DemandDraft.BoxesBackgroundClear(sender, e, diesellist);
-            savebtn_DD_diesel.Click += (sender, e) => DemandDraft.dieselEntry(sender, e, diesellist);
-
-        }
-
+    
         private void set_initial_values_diesel(String date, String N1_Opening, String N2_Opening)
         {
             //diesel_Last_EntryDate_TB.Text = "Last Entry " + date;
@@ -644,6 +497,7 @@ namespace HelloWorld
                             {
                                 total_sales_ltrs_diesel_TB.Text = "0";
                                 testing_diesel_TB.Background = Brushes.Red;
+                                validDieselData = false;
                                 testing_diesel_TB.ToolTip = "Testing must be less than total sales" + getTotalLiters_diesel();
 
                             }
@@ -670,6 +524,7 @@ namespace HelloWorld
                         {
                             total_sales_ltrs_diesel_TB.Text = "0";
                             testing_diesel_TB.Background = Brushes.Red;
+                            validDieselData = false;
                             testing_diesel_TB.ToolTip = "Testing must be less than total sales" + getTotalLiters_diesel();
 
                         }
@@ -711,6 +566,7 @@ namespace HelloWorld
                             {
                                 total_sales_ltrs_diesel_TB.Text = "0";
                                 testing_diesel_TB.Background = Brushes.Red;
+                                validDieselData = false;
                                 testing_diesel_TB.ToolTip = "Testing must be less than total sales" + getTotalLiters_diesel();
 
                             }
@@ -739,6 +595,7 @@ namespace HelloWorld
                         {
                             total_sales_ltrs_diesel_TB.Text = "0";
                             testing_diesel_TB.Background = Brushes.Red;
+                            validDieselData = false;
                             testing_diesel_TB.ToolTip = "Testing must be less than total sales" + getTotalLiters_diesel();
 
                         }
@@ -801,6 +658,7 @@ namespace HelloWorld
             {
                 TextBox textbox = sender as TextBox;
                 textbox.Background = Brushes.Red;
+                validDieselData = false;
                 textbox.ToolTip = "Meter closing can not be less then Meter opening";
 
             }
@@ -812,6 +670,7 @@ namespace HelloWorld
             {
                 TextBox textbox = sender as TextBox;
                 textbox.Background = Brushes.Red;
+                validDieselData = false;
                 textbox.ToolTip = "Meter closing can not be less then Meter opening";
 
             }
@@ -826,6 +685,7 @@ namespace HelloWorld
                 if (getTotalLiters_diesel() < double.Parse(textbox.Text))
                 {
                     textbox.Background = Brushes.Red;
+                    validDieselData = false;
                     textbox.ToolTip = "Testing must be less than total sales";
 
                 }
@@ -1094,6 +954,7 @@ namespace HelloWorld
                     else
                     {
                         textbox.Background = Brushes.Red;
+                        validDieselData = false;
                         textbox.ToolTip = "discount can not be more then total pkr";
                     }
 
@@ -1103,27 +964,198 @@ namespace HelloWorld
 
         private double getDiscountAmount_diesel()
         {
-            if (discount_amount_petrol_TB.Text.Length > 0)
+            if(discount_amount_petrol_TB.Text.Length > 0)
             {
                 return double.Parse(discount_amount_petrol_TB.Text);
             }
             return 0;
-        }
+        } 
 
         private void total_sales_pkrs_diesel_TB_TextChanged(object sender, TextChangedEventArgs e)
         {
             TextBox textbox = sender as TextBox;
-            if (textbox.Text.Length > 0)
+            if(textbox.Text.Length > 0)
             {
-                if (getDiscountAmount_diesel() < getTotalPKRs_diesel())
+               if(getDiscountAmount_diesel() < getTotalPKRs_diesel())
                 {
                     discount_amount_diesel_TB.Background = Brushes.White;
                 }
                 else
                 {
                     discount_amount_diesel_TB.Background = Brushes.Red;
+                    validDieselData = false;
                 }
             }
+        }
+
+
+
+
+        private void crediterName_petrol_TB_KeyUp(object sender, KeyEventArgs e)
+        {
+            crediterOldAmount_petrol_TB.Visibility = System.Windows.Visibility.Hidden;
+            crediterName_petrol_TB.Background = Brushes.Transparent;
+            bool found = false;
+            //var border = (resultStack.Parent as ScrollViewer).Parent as Border;
+            var data = Creditors.creditorGetData();
+
+            string query = (sender as TextBox).Text;
+
+            if (query.Length == 0)
+            {
+                // Clear   
+                resultStack.Children.Clear();
+                scrollView.Visibility = System.Windows.Visibility.Collapsed;
+            }
+            else
+            {
+
+                scrollView.Visibility = System.Windows.Visibility.Visible;
+            }
+
+            // Clear the list   
+            resultStack.Children.Clear();
+
+            // Add the result   
+            foreach (var obj in data)
+            {
+                if (obj.Key.ToLower().StartsWith(query.ToLower()))
+                {
+                    // The word starts with this... Autocomplete must work   
+                    addItem_petrol(obj.Key);
+                    found = true;
+                }
+            }
+
+            if (!found)
+            {
+                resultStack.Children.Clear();
+                scrollView.Visibility = System.Windows.Visibility.Collapsed;
+                //resultStack.Children.Add(new TextBlock() { Text = "No results found.", FontSize = 15, Background = Brushes.White, Foreground = Brushes.Black }) ;
+            }
+
+        }
+
+        private void addItem_petrol(string text)
+        {
+            TextBlock block = new TextBlock();
+
+            // Add the text   
+            block.Text = text;
+            block.Foreground = Brushes.Black;
+            block.FontSize = 15;
+
+            // A little style...   
+            block.Margin = new Thickness(2, 3, 2, 3);
+            block.Cursor = Cursors.Hand;
+
+            // Mouse events   
+            block.MouseLeftButtonUp += (sender, e) =>
+            {
+                var data = Creditors.creditorGetData();
+                string creditorName = (sender as TextBlock).Text;
+                crediterName_petrol_TB.Text = creditorName;
+                crediterOldAmount_petrol_TB.Content = "+" + data[creditorName];
+                crediterOldAmount_petrol_TB.Visibility = System.Windows.Visibility.Visible;
+                scrollView.Visibility = System.Windows.Visibility.Collapsed;
+            };
+
+            block.MouseEnter += (sender, e) =>
+            {
+                TextBlock b = sender as TextBlock;
+                b.Background = Brushes.PeachPuff;
+            };
+
+            block.MouseLeave += (sender, e) =>
+            {
+                TextBlock b = sender as TextBlock;
+                b.Background = Brushes.Transparent;
+            };
+
+            // Add to the panel   
+            resultStack.Children.Add(block);
+        }
+        private void save_petrol_credit_entry_BTN_Click(object sender, RoutedEventArgs e)
+        {
+
+            string name = crediterName_petrol_TB.Text;
+            string amount = creditedAmount_petrol_TB.Text;
+
+            if (name.Length < 1)
+            {
+                crediterName_petrol_TB.Background = Brushes.Red;
+                return;
+            }
+            if (amount.Length < 1)
+            {
+                creditedAmount_petrol_TB.Background = Brushes.Blue;
+                return;
+            }
+
+            //If old creditor then update else create
+            var data = Creditors.creditorGetData();
+            if (data.ContainsKey(name))
+            {
+                int totalCredit = int.Parse(amount) + int.Parse(data[name]);
+                amount = totalCredit.ToString();
+                Creditors.creditorUpdate(name, amount);
+            }
+            else
+                Creditors.creditorinsert(name, amount);
+
+            //Add the name and amount to left sidebar
+            TextBlock block = new TextBlock();
+            block.Text = name + "            " + amount;
+            block.Foreground = Brushes.Black;
+            block.FontSize = 15;
+            block.Margin = new Thickness(2, 3, 2, 3);
+            credit_added_users.Children.Add(block);
+
+            //clear fields
+            crediterName_petrol_TB.Text = "";
+            creditedAmount_petrol_TB.Text = "";
+            crediterOldAmount_petrol_TB.Visibility = System.Windows.Visibility.Hidden;
+        }
+
+
+        private void expensesEvents()
+        {
+            ArrayList expenseboxes = new ArrayList();
+            expenseboxes.Add(staffSalaries_expense_TB);
+            expenseboxes.Add(electricity_expense_TB);
+            expenseboxes.Add(maintenance_expense_TB);
+            expenseboxes.Add(others_expense_TB);
+            expenseboxes.Add(miansahid_expense_TB);
+            expenseboxes.Add(total_expense_TB);
+
+            staffSalaries_expense_TB.TextChanged += (sender, e) => Expenses.calculate(sender, e, expenseboxes);
+            electricity_expense_TB.TextChanged += (sender, e) => Expenses.calculate(sender, e, expenseboxes);
+            maintenance_expense_TB.TextChanged += (sender, e) => Expenses.calculate(sender, e, expenseboxes);
+            others_expense_TB.TextChanged += (sender, e) => Expenses.calculate(sender, e, expenseboxes);
+            miansahid_expense_TB.TextChanged += (sender, e) => Expenses.calculate(sender, e, expenseboxes);
+            save_button_expenses.Click += (sender, e) => Expenses.saveExpenseData(sender, e, expenseboxes);
+            save_button_deposit.Click += (sender, e) => Expenses.ownerDeposit(sender, e, owner_deposit_TB);
+            owner_deposit_TB.TextChanged += Expenses.depositBoxClear;
+        }
+
+        private void demandDraftEvents()
+        {
+            ArrayList petrollist = new ArrayList();
+            petrollist.Add(DD_petrolPKR_TB);
+            petrollist.Add(DD_petrolLTR_TB);
+
+            DD_petrolPKR_TB.TextChanged += (sender, e) => DemandDraft.BoxesBackgroundClear(sender, e, petrollist);
+            DD_petrolLTR_TB.TextChanged += (sender, e) => DemandDraft.BoxesBackgroundClear(sender, e, petrollist);
+            savebtn_DD_petrol.Click += (sender, e) => DemandDraft.petrolEntry(sender, e, petrollist);
+
+            ArrayList diesellist = new ArrayList();
+            diesellist.Add(DD_dieselPKR_TB);
+            diesellist.Add(DD_dieselLTR_TB);
+
+            DD_dieselPKR_TB.TextChanged += (sender, e) => DemandDraft.BoxesBackgroundClear(sender, e, diesellist);
+            DD_dieselLTR_TB.TextChanged += (sender, e) => DemandDraft.BoxesBackgroundClear(sender, e, diesellist);
+            savebtn_DD_diesel.Click += (sender, e) => DemandDraft.dieselEntry(sender, e, diesellist);
+
         }
 
     }

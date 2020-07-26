@@ -64,7 +64,7 @@
             </Grid.ColumnDefinitions>
 
 
-            <Image Grid.Column="5" Grid.Row="1" Grid.RowSpan="1" HorizontalAlignment="Center" Grid.ColumnSpan="1" Width="80" Height="80" Opacity="0.5" Source="logo.PNG" />
+            <Image Grid.Column="5" Grid.Row="1" Grid.RowSpan="1" HorizontalAlignment="Center" Grid.ColumnSpan="1" Width="80" Height="80" Opacity="0.5" Source="images/logo.PNG" />
 
 
             <TextBlock Grid.Row="0" Grid.Column="4" Grid.ColumnSpan="2" FontSize="16" FontWeight="Bold" Foreground="White" HorizontalAlignment="Right"  Text="www.neptech.pk" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" >
@@ -92,7 +92,7 @@
                     <DropShadowEffect BlurRadius="6" Color="#FF797979" Direction="201" Opacity="0.68" ShadowDepth="3" />
                 </TextBlock.Effect></TextBlock>
             
-            <Image Grid.Column="0" Grid.Row="2" Grid.RowSpan="3" Grid.ColumnSpan="2" Width="200" Height="200"  Source="icon.PNG" />
+            <Image Grid.Column="0" Grid.Row="2" Grid.RowSpan="3" Grid.ColumnSpan="2" Width="200" Height="200"  Source="images/icon.PNG" />
       
 
         </Grid>
