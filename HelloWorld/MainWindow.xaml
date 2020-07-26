@@ -790,9 +790,9 @@
                                     <Label Grid.Row="1" Grid.Column="3" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10">Date To:</Label>
                                     <DatePicker Grid.Row="1" Grid.Column="3"  ToolTip="modify date to view records" Margin="10" HorizontalAlignment="Right" FontSize="14" Width="120" ></DatePicker>
 
-                                    <Image Grid.Row="1" Margin="5" ToolTip="Print" HorizontalAlignment="Right" Grid.Column="4" Source="print_icon.png"></Image>
+                                    <Image Grid.Row="1" Margin="5" ToolTip="Print" HorizontalAlignment="Right" Grid.Column="4" Source="images/print_icon.png"></Image>
 
-                                    <Image Grid.Row="2" Grid.ColumnSpan="5" Source="Blog_how_to_do_a_weekly_sales_report_graph_3.png" Stretch="Fill" >
+                                    <Image Grid.Row="2" Grid.ColumnSpan="5" Source="images/Blog_how_to_do_a_weekly_sales_report_graph_3.png" Stretch="Fill" >
 
                                     </Image>
 
@@ -825,9 +825,9 @@
                                     <Label Grid.Row="1" Grid.Column="3" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10">Date To:</Label>
                                     <DatePicker Grid.Row="1" Grid.Column="3"  ToolTip="modify date to view records" Margin="10" HorizontalAlignment="Right" FontSize="14" Width="120" ></DatePicker>
 
-                                    <Image Grid.Row="1" Margin="5" ToolTip="Print" HorizontalAlignment="Right" Grid.Column="4" Source="print_icon.png"></Image>
+                                    <Image Grid.Row="1" Margin="5" ToolTip="Print" HorizontalAlignment="Right" Grid.Column="4" Source="images\print_icon.png"></Image>
 
-                                    <Image Grid.Row="2" Grid.ColumnSpan="5" Source="Blog_how_to_do_a_weekly_sales_report_graph_3.png" Stretch="Fill" >
+                                    <Image Grid.Row="2" Grid.ColumnSpan="5" Source="images\Blog_how_to_do_a_weekly_sales_report_graph_3.png" Stretch="Fill" >
 
                                     </Image>
 
@@ -861,7 +861,7 @@
 
                                     <Image Grid.Row="1" Margin="5" ToolTip="Print" HorizontalAlignment="Right" Grid.Column="4" Source="print_icon.png"></Image>
 
-                                    <Image Grid.Row="2" Grid.ColumnSpan="5" Source="Blog_how_to_do_a_weekly_sales_report_graph_3.png" Stretch="Fill" >
+                                    <Image Grid.Row="2" Grid.ColumnSpan="5" Source="images\Blog_how_to_do_a_weekly_sales_report_graph_3.png" Stretch="Fill" >
 
                                     </Image>
 
@@ -896,7 +896,7 @@
 
                                     <Image Grid.Row="1" Margin="5" ToolTip="Print" HorizontalAlignment="Right" Grid.Column="4" Source="print_icon.png"></Image>
 
-                                    <Image Grid.Row="2" Grid.ColumnSpan="5" Source="Blog_how_to_do_a_weekly_sales_report_graph_3.png" Stretch="Fill" >
+                                    <Image Grid.Row="2" Grid.ColumnSpan="5" Source="images\Blog_how_to_do_a_weekly_sales_report_graph_3.png" Stretch="Fill" >
 
                                     </Image>
 

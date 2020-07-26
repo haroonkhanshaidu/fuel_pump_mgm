@@ -17,7 +17,7 @@ namespace HelloWorld
         public MainWindow()
         {
             InitializeComponent();
-            //new SplashWindow().ShowDialog();
+            new SplashWindow().ShowDialog();
             set_initial_values_diesel("12/7/2020", "40", "23");
             set_initial_values_petrol("12/7/2020", "40", "23");
             set_initial_values_petrol("12/7/2020", "40", "23"); 
