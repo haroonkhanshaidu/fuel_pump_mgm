@@ -123,31 +123,11 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="bc-barometer-ss.jpg" />
+    <Resource Include="images\oilstorage.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Blog_how_to_do_a_weekly_sales_report_graph_3.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="print_icon.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="date.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="images.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="sales.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="oil storage.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Model\" />
-    <Folder Include="ViewModel\" />
-    <Folder Include="View\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
       <Visible>False</Visible>
@@ -161,10 +141,16 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="icon.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="logo.png" />
+    <Resource Include="images\bc-barometer-ss.jpg" />
+    <Resource Include="images\Blog_how_to_do_a_weekly_sales_report_graph_3.png" />
+    <Resource Include="images\date.png" />
+    <Resource Include="images\icon.png" />
+    <Resource Include="images\images.png" />
+    <Resource Include="images\logo.png" />
+    <Resource Include="images\print_icon.png" />
+    <Content Include="images\sales.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
