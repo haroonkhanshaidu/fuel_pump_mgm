@@ -269,7 +269,7 @@
                                             <TextBox Grid.Row="3" Grid.Column="1" Name="total_sales_pkrs_petrol_TB" Text="" Margin="5" IsEnabled="False" FontSize="25" FontFamily="Arial" TextChanged="total_sales_pkrs_petrol_TB_TextChanged"/>
                                             <TextBox Grid.Row="4" Grid.Column="1" Name="today_profit_petrol_TB" Text="" Margin="5" IsEnabled="False" FontSize="25" FontFamily="Arial" />
 
-                                            <Button Grid.Row="5" Grid.Column="1" Name="save_petrol_credit_entry_BTN" HorizontalAlignment="Right" Foreground="White" Margin="5" Padding="20,0,20,0" Background="#FFBC6737" FontSize="25" Click="save_petrol_entry_BTN_Click">
+                                            <Button Grid.Row="5" Grid.Column="1" Name="save_petrol_entry_BTN" HorizontalAlignment="Right" Foreground="White" Margin="5" Padding="20,0,20,0" Background="#FFBC6737" FontSize="25" Click="save_petrol_entry_BTN_Click">
                                                     Save
                                                 </Button>
                                             <Rectangle Grid.Row="7" Grid.RowSpan="5" Grid.ColumnSpan="3" Fill="#FFD1C693" />
@@ -283,7 +283,7 @@
                                                 <TextBox Grid.Row="10" Grid.Column="1" Name="creditedAmount_petrol_TB" PreviewTextInput="NumberValidationTextBox" Text=""  Foreground="Black"  Margin="5" FontSize="20" FontFamily="Arial" />
                                             <Label Grid.Row="10" Grid.Column="1" Content="234" Name="crediterOldAmount_petrol_TB"  Foreground="Black" Margin="5" FontSize="15"  FontFamily="Arial" HorizontalAlignment="Right" Background="Orange" Visibility="Hidden" />
 
-                                            <Button Grid.Row="11" Grid.Column="1" Name="save_petrol_entry_BTN" HorizontalAlignment="Right" Foreground="White" Margin="5" Padding="15,0,15,0" Background="#FFBC6737" FontSize="25" Click="save_petrol_credit_entry_BTN_Click">
+                                            <Button Grid.Row="11" Grid.Column="1" Name="save_petrol_credit_entry_BTN" HorizontalAlignment="Right" Foreground="White" Margin="5" Padding="15,0,15,0" Background="#FFBC6737" FontSize="25" Click="save_petrol_credit_entry_BTN_Click">
                                                     Add
                                                 </Button>
 
@@ -473,7 +473,7 @@
                                             <TextBox Grid.Row="3" Grid.Column="1" Name="total_sales_pkrs_diesel_TB" Text="" Margin="5" IsEnabled="False" FontSize="25" FontFamily="Arial" TextChanged="total_sales_pkrs_diesel_TB_TextChanged"/>
                                             <TextBox Grid.Row="4" Grid.Column="1" Name="today_profit_diesel_TB" Text="" Margin="5" IsEnabled="False" FontSize="25" FontFamily="Arial" />
 
-                                            <Button Grid.Row="5" Grid.Column="1" Name="save_diesel_credit_entry_BTN" HorizontalAlignment="Right" Foreground="White" Margin="5" Padding="20,0,20,0" Background="#FF235885" FontSize="25" Click="save_diesel_credit_entry_BTN_Click">
+                                            <Button Grid.Row="5" Grid.Column="1" Name="save_diesel_entry_BTN" HorizontalAlignment="Right" Foreground="White" Margin="5" Padding="20,0,20,0" Background="#FF235885" FontSize="25" Click="save_diesel_credit_entry_BTN_Click">
                                                 Save
                                             </Button>
                                             <Rectangle Grid.Row="7" Grid.RowSpan="5" Grid.ColumnSpan="3" Fill="#FFD1C693" />
@@ -487,7 +487,7 @@
                                             <TextBox Grid.Row="10" Grid.Column="1" Name="creditedAmount_diesel_TB" PreviewTextInput="NumberValidationTextBox" Text=""  Foreground="Black"  Margin="5" FontSize="20" FontFamily="Arial" KeyDown="creditedAmount_diesel_TB_KeyDown"/>
                                             <Label Grid.Row="10" Grid.Column="1" Name="crediterOldAmount_diesel_TB"  Foreground="Black" Margin="5" FontSize="15"  FontFamily="Arial" HorizontalAlignment="Right" Background="Red" Visibility="Hidden"/>
 
-                                            <Button Grid.Row="11" Grid.Column="1" Name="save_diesel_entry_BTN" HorizontalAlignment="Right" Foreground="White" Margin="5" Padding="15,0,15,0" Background="#FF235885" FontSize="25" Click="save_diesel_entry_BTN_Click">
+                                            <Button Grid.Row="11" Grid.Column="1" Name="save_diesel_credit_entry_BTN" HorizontalAlignment="Right" Foreground="White" Margin="5" Padding="15,0,15,0" Background="#FF235885" FontSize="25" Click="save_diesel_entry_BTN_Click">
                                                 Add
                                             </Button>
 
