@@ -280,7 +280,7 @@
                                                <ScrollViewer Grid.Row="9" Grid.RowSpan="2" Grid.Column="1" Panel.ZIndex="2" VerticalScrollBarVisibility="Auto" Visibility="Collapsed" Name="scrollView"  Background="White">
                                                     <StackPanel Name="resultStack"></StackPanel>
                                                 </ScrollViewer>
-                                                <TextBox Grid.Row="10" Grid.Column="1" Name="creditedAmount_petrol_TB" PreviewTextInput="NumberValidationTextBox" Text=""  Foreground="Black"  Margin="5" FontSize="20" FontFamily="Arial" KeyDown="creditedAmount_petrol_TB_KeyDown"/>
+                                                <TextBox Grid.Row="10" Grid.Column="1" Name="creditedAmount_petrol_TB" PreviewTextInput="NumberValidationTextBox" Text=""  Foreground="Black"  Margin="5" FontSize="20" FontFamily="Arial" />
                                                 <Label Grid.Row="10" Grid.Column="1" Name="crediterOldAmount_petrol_TB"  Foreground="Black" Margin="5" FontSize="15"  FontFamily="Arial" HorizontalAlignment="Right" Background="Red" Visibility="Hidden"/>
 
                                                 <Button Grid.Row="11" Grid.Column="1" Name="save_petrol_entry_BTN" HorizontalAlignment="Right" Foreground="White" Margin="5" Padding="15,0,15,0" Background="#FFBC6737" FontSize="25" Click="save_petrol_entry_BTN_Click">
@@ -509,9 +509,7 @@
             </TabItem>
 
 
-
-
-            <TabItem Header="Expense Tab" FontSize="22" FontFamily="Yu Gothic UI Semibold" FontWeight="Bold" Width="200" Height="40"
+  <TabItem Header="Expense Tab" FontSize="22" FontFamily="Yu Gothic UI Semibold" FontWeight="Bold" Width="200" Height="40"
                    
                          Margin="2" >
                 <Grid  Background="Gray">
@@ -536,51 +534,53 @@
                     <StackPanel Grid.Column="0" Grid.Row="1" Background="#FF235885" Margin="20,0,20,0" VerticalAlignment="Bottom" Orientation="Horizontal">
                         <TextBlock  Text="Expenses" Background="#FF235885" HorizontalAlignment="Center" Foreground="White" Width="350"  Margin="5" FontSize="20"/>
                         <TextBlock  Text="Date:" Background="#FF235885" Foreground="White" HorizontalAlignment="Center" Width="50"  Margin="5" FontSize="20"/>
-                        <DatePicker Name="expense_datepicker"  SelectedDateFormat="Long" DisplayDateEnd="{Binding Mode=OneWay, StringFormat='dd-MMM-yyyy',  Source={x:Static System:DateTime.Today}}" ToolTip="click to change date" HorizontalAlignment="Right" Foreground="Black" Background="White" Margin="5" FontSize="18" >
-                        <DatePicker.Resources>
-                            <Style TargetType="DatePickerTextBox">
-                                <Setter Property="IsReadOnly" Value="True"/>
-                            </Style>
-                        </DatePicker.Resources>
-                        </DatePicker>
+                        <DatePicker Name="expense_datepicker" DisplayDateEnd="{Binding Mode=OneWay, Source={x:Static System:DateTime.Today}}" ToolTip="click to change date" Width="150" HorizontalAlignment="Right" Background="White" Margin="5" FontSize="15" />
                     </StackPanel>
 
                     <StackPanel Grid.Column="2" Grid.Row="1" Margin="20,0,20,0" VerticalAlignment="Bottom" Background="#FF235885" Orientation="Horizontal">
                         <TextBlock  Text="Fuel" Background="#FF235885" Foreground="White" HorizontalAlignment="Left" Width="350"  Margin="5" FontSize="20"/>
                         <TextBlock  Text="Date:" Background="#FF235885" Foreground="White" HorizontalAlignment="Center" Width="50"  Margin="5" FontSize="20"/>
-                        <DatePicker Name="fuel_datepicker"  SelectedDateFormat="Long" DisplayDateEnd="{Binding Mode=OneWay, StringFormat='dd-MMM-yyyy',  Source={x:Static System:DateTime.Today}}" ToolTip="click to change date" HorizontalAlignment="Right" Foreground="Black" Background="White" Margin="5" FontSize="18" >
-                        <DatePicker.Resources>
-                            <Style TargetType="DatePickerTextBox">
-                                <Setter Property="IsReadOnly" Value="True"/>
-                            </Style>
-                        </DatePicker.Resources>
-                        </DatePicker>
+                        <DatePicker Name="fuel_datepicker" DisplayDateEnd="{Binding Mode=OneWay, Source={x:Static System:DateTime.Today}}" ToolTip="click to change date" Width="150" HorizontalAlignment="Right" Background="White" Margin="5" FontSize="15" />
                     </StackPanel>
 
 
 
                     <Grid Grid.Column="0" Grid.Row="2" Margin="20,0,20,0" Background="AliceBlue">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="1.5*"/>
+                            <ColumnDefinition Width="1*"/>
                         </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="2*"/>
+                            <RowDefinition Height="2*"/>
+                            <RowDefinition Height="2*"/>
+                            <RowDefinition Height="2*"/>
+                            <RowDefinition Height="2*"/>
+                            <RowDefinition Height="2*"/>
+                            <RowDefinition Height="2*"/>
+                            <RowDefinition Height="2*"/>
+                            <RowDefinition Height="2*"/>
+                            <RowDefinition Height="2*"/>
+                            <RowDefinition Height="2*"/>
+      
+                        </Grid.RowDefinitions>
 
-                        <StackPanel Orientation="Vertical" Margin="50,20,20,20">
-                            <Label Content="Staff Salaries" Margin="0,20,0,0" Foreground="Black" />
-                            <Label Content="Electricity Bill" Margin="0,0,0,4" Foreground="Black"/>
-                            <Label Content="Maintenance" Margin="0,0,0,4" Foreground="Black"/>
-                            <Label Content="Others" Margin="0,0,0,4" Foreground="Black"/>
-                            <Label Content="Mian Saib Withdraw" Margin="0,0,0,4" Foreground="Black"/>
-                        </StackPanel>
+                        <Label Content="Staff Salaries" HorizontalAlignment="Center" Foreground="Black" />
+                        <Label Content="Electricity Bill" Grid.Row="1" HorizontalAlignment="Center" Foreground="Black"/>
+                        <Label Content="Maintenance" Grid.Row="2" HorizontalAlignment="Center" Foreground="Black"/>
+                        <Label Content="Others" Grid.Row="3" HorizontalAlignment="Center" Foreground="Black"/>
+                        <Label Content="Mian Saib Withdraw" Grid.Row="4" HorizontalAlignment="Center" Foreground="Black"/>
+                        <Label Content="Total Expenses" Grid.Row="5" HorizontalAlignment="Center" Foreground="Black"/>
 
-                        <StackPanel Grid.Column="1" Orientation="Vertical"  Margin="50,30,20,20">
-                            <TextBox Text="" Margin="0,20,0,10" Width="120" Name="staffSallaries_TB"  PreviewTextInput="NumberValidationTextBox" />
-                            <TextBox Text="" Margin="0,0,0,10"  Width="120" Name="electricityBill_TB"  PreviewTextInput="NumberValidationTextBox"/>
-                            <TextBox Text="" Margin="0,0,0,10"  Width="120" Name="maintenance_TB"  PreviewTextInput="NumberValidationTextBox"/>
-                            <TextBox Text="" Margin="0,0,0,10"  Width="120" Name="others_TB"  PreviewTextInput="NumberValidationTextBox"/>
-                            <TextBox Text="" Margin="0,0,0,10"  Width="120" Name="ownerWithdraw_TB"  PreviewTextInput="NumberValidationTextBox"/>
-                            <Button Content="SAVE" Foreground="White"  Width="80" FontSize="15" Margin="0,50,0,0"  Background="#FF235885"/>
-                        </StackPanel>
+
+                        <TextBox Name="staffSalaries_expense_TB" Grid.Row="0" Grid.Column="1" PreviewTextInput="NumberValidationTextBox" Text="" Margin="10" FontSize="25" />
+                        <TextBox Name="electricity_expense_TB" Grid.Row="1" Grid.Column="1" PreviewTextInput="NumberValidationTextBox" Text=""  Margin="10"/>
+                        <TextBox Name="maintenance_expense_TB" Grid.Row="2" Grid.Column="1" PreviewTextInput="NumberValidationTextBox" Text="" Margin="10"/>
+                        <TextBox Name="others_expense_TB" Grid.Row="3" Grid.Column="1" PreviewTextInput="NumberValidationTextBox" Text="" Margin="10"/>
+                        <TextBox Name="miansahid_expense_TB" Grid.Row="4" Grid.Column="1" PreviewTextInput="NumberValidationTextBox" Text=""  Margin="10"/>
+                        <TextBox Name="total_expense_TB" Grid.Row="5" Grid.Column="1" PreviewTextInput="NumberValidationTextBox" Text="" Margin="10"/>
+                        <Button Name="save_button_expenses" Grid.Row="6" Grid.Column="1" PreviewTextInput="NumberValidationTextBox" Content="SAVE" Foreground="White" Margin="10"  FontSize="15" Background="#FF235885"/>
 
 
 
@@ -613,17 +613,19 @@
                         </StackPanel>
 
                         <StackPanel Grid.Column="1" Orientation="Vertical"  Margin="50,30,20,20">
-                            <TextBox Text="" Margin="0,20,0,10" Width="120" Name="DD_pkr_petrol_TB"  PreviewTextInput="NumberValidationTextBox" />
-                            <TextBox Text="" Margin="0,0,0,10"  Width="120" Name="DD_liters_petrol_TB"  PreviewTextInput="NumberValidationTextBox" />
+                            <TextBox Name="DD_petrolPKR_TB" PreviewTextInput="NumberValidationTextBox" Text="" Margin="0,20,0,10" Width="120"/>
+                            <TextBox Name="DD_petrolLTR_TB" PreviewTextInput="NumberValidationTextBox" Text="" Margin="0,0,0,10"  Width="120"/>
+                            <Button Name="savebtn_DD_petrol" Content="SAVE" Foreground="White"  Width="80" FontSize="15"  Background="#FF235885"/>
+
 
                             <!--<Button Content="SAVE" Foreground="White" Width="80" FontSize="15"  Background="Blue"/>-->
                             <StackPanel Orientation="Vertical"  Margin="0,50,0,20">
-                                <TextBox Text="" Margin="0,20,0,10" Width="120" Name="DD_pkr_deisel_TB"  PreviewTextInput="NumberValidationTextBox"/>
-                                <TextBox Text="" Margin="0,0,0,10"  Width="120" Name="DD_liters_deisel_TB"  PreviewTextInput="NumberValidationTextBox">
+                                <TextBox Name="DD_dieselPKR_TB" PreviewTextInput="NumberValidationTextBox" Text="" Margin="0,20,0,10" Width="120"/>
+                                <TextBox Name="DD_dieselLTR_TB" PreviewTextInput="NumberValidationTextBox" Text="" Margin="0,0,0,10"  Width="120">
 
                                 </TextBox>
 
-                                <Button Content="SAVE" Foreground="White"  Width="80" FontSize="15"  Background="#FF235885"/>
+                                <Button Name="savebtn_DD_diesel" Content="SAVE" Foreground="White"  Width="80" FontSize="15"  Background="#FF235885"/>
                             </StackPanel>
 
 
@@ -632,8 +634,8 @@
                         <StackPanel Grid.ColumnSpan="2" Orientation="Horizontal"  Margin="50,0,50,100" Background="#FF235885" VerticalAlignment="Bottom" >
 
                             <Label Content="Mian saib Deposit Amount PKR*" Margin="5,20,0,20" Foreground="White" FontSize="18"/>
-                            <TextBox Text="" Margin="20" Height="30" Width="120" Name="owner_deposit_amount_TB"  PreviewTextInput="NumberValidationTextBox"/>
-                            <Button Content="SAVE" Foreground="#FF235885"  Width="80" FontSize="15"  Background="White" Margin="10,30,5,30"/>
+                            <TextBox Name="owner_deposit_TB" PreviewTextInput="NumberValidationTextBox" Text="" Margin="20" Height="30" Width="120" />
+                            <Button Name="save_button_deposit" Content="SAVE" Foreground="#FF235885"  Width="80" FontSize="15"  Background="White" Margin="10,30,5,30"/>
                         </StackPanel>
 
 
@@ -642,7 +644,6 @@
                 </Grid>
 
             </TabItem>
-
 
 
 

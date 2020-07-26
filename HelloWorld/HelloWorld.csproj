@@ -71,7 +71,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="DemandDraft.cs" />
+    <Compile Include="diesel.cs" />
     <Compile Include="Expenses.cs" />
+    <Compile Include="petrol.cs" />
     <Compile Include="SplashWindow.xaml.cs">
       <DependentUpon>SplashWindow.xaml</DependentUpon>
     </Compile>
