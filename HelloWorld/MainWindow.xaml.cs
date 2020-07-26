@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -13,17 +12,16 @@ namespace HelloWorld
     /// </summary>
     public partial class MainWindow : Window
     {
-     
+
         public MainWindow()
         {
             InitializeComponent();
-            new SplashWindow().ShowDialog();
+            // new SplashWindow().ShowDialog();
             set_initial_values_diesel("12/7/2020", "40", "23");
             set_initial_values_petrol("12/7/2020", "40", "23");
-            set_initial_values_petrol("12/7/2020", "40", "23"); 
+            set_initial_values_petrol("12/7/2020", "40", "23");
             expensesEvents();
             demandDraftEvents();
-
             //Entry obj = new Entry(getTotalLiters_diesel());
 
         }
@@ -579,7 +577,7 @@ namespace HelloWorld
             maintenance_expense_TB.TextChanged += (sender, e) => Expenses.calculate(sender, e, expenseboxes);
             others_expense_TB.TextChanged += (sender, e) => Expenses.calculate(sender, e, expenseboxes);
             miansahid_expense_TB.TextChanged += (sender, e) => Expenses.calculate(sender, e, expenseboxes);
-            save_button_expenses.Click+= (sender, e) => Expenses.saveExpenseData(sender, e, expenseboxes);
+            save_button_expenses.Click += (sender, e) => Expenses.saveExpenseData(sender, e, expenseboxes);
             save_button_deposit.Click += (sender, e) => Expenses.ownerDeposit(sender, e, owner_deposit_TB);
             owner_deposit_TB.TextChanged += Expenses.depositBoxClear;
         }
@@ -603,7 +601,7 @@ namespace HelloWorld
             savebtn_DD_diesel.Click += (sender, e) => DemandDraft.dieselEntry(sender, e, diesellist);
 
         }
-    
+
         private void set_initial_values_diesel(String date, String N1_Opening, String N2_Opening)
         {
             //diesel_Last_EntryDate_TB.Text = "Last Entry " + date;
@@ -1006,7 +1004,7 @@ namespace HelloWorld
                 var data = Creditors.creditorGetData();
                 string creditorName = (sender as TextBlock).Text;
                 crediterName_diesel_TB.Text = creditorName;
-                crediterOldAmount_diesel_TB.Content = "+"+data[creditorName];
+                crediterOldAmount_diesel_TB.Content = "+" + data[creditorName];
                 crediterOldAmount_diesel_TB.Visibility = System.Windows.Visibility.Visible;
                 scrollView.Visibility = System.Windows.Visibility.Collapsed;
             };
@@ -1029,7 +1027,6 @@ namespace HelloWorld
 
         private void save_diesel_entry_BTN_Click(object sender, RoutedEventArgs e)
         {
-            
             string name = crediterName_diesel_TB.Text;
             string amount = creditedAmount_diesel_TB.Text;
 
@@ -1048,7 +1045,7 @@ namespace HelloWorld
             var data = Creditors.creditorGetData();
             if (data.ContainsKey(name))
             {
-                int totalCredit = int.Parse(amount)+ int.Parse(data[name]);
+                int totalCredit = int.Parse(amount) + int.Parse(data[name]);
                 amount = totalCredit.ToString();
                 Creditors.creditorUpdate(name, amount);
             }
@@ -1056,8 +1053,8 @@ namespace HelloWorld
                 Creditors.creditorinsert(name, amount);
 
             //Add the name and amount to left sidebar
-            TextBlock block = new TextBlock(); 
-            block.Text = name+"            "+amount;
+            TextBlock block = new TextBlock();
+            block.Text = name + "            " + amount;
             block.Foreground = Brushes.Black;
             block.FontSize = 15;
             block.Margin = new Thickness(2, 3, 2, 3);
@@ -1104,19 +1101,19 @@ namespace HelloWorld
 
         private double getDiscountAmount_diesel()
         {
-            if(discount_amount_petrol_TB.Text.Length > 0)
+            if (discount_amount_petrol_TB.Text.Length > 0)
             {
                 return double.Parse(discount_amount_petrol_TB.Text);
             }
             return 0;
-        } 
+        }
 
         private void total_sales_pkrs_diesel_TB_TextChanged(object sender, TextChangedEventArgs e)
         {
             TextBox textbox = sender as TextBox;
-            if(textbox.Text.Length > 0)
+            if (textbox.Text.Length > 0)
             {
-               if(getDiscountAmount_diesel() < getTotalPKRs_diesel())
+                if (getDiscountAmount_diesel() < getTotalPKRs_diesel())
                 {
                     discount_amount_diesel_TB.Background = Brushes.White;
                 }

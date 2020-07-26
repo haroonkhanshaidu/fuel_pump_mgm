@@ -73,6 +73,7 @@
     <Compile Include="DemandDraft.cs" />
     <Compile Include="diesel.cs" />
     <Compile Include="Expenses.cs" />
+    <Compile Include="GlobalFunctions.cs" />
     <Compile Include="petrol.cs" />
     <Compile Include="SplashWindow.xaml.cs">
       <DependentUpon>SplashWindow.xaml</DependentUpon>
@@ -143,11 +144,7 @@
   <ItemGroup>
     <Resource Include="oil storage.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Model\" />
-    <Folder Include="ViewModel\" />
-    <Folder Include="View\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
       <Visible>False</Visible>
@@ -165,6 +162,17 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\bc-barometer-ss.jpg" />
+    <Resource Include="images\Blog_how_to_do_a_weekly_sales_report_graph_3.png" />
+    <Resource Include="images\date.png" />
+    <Resource Include="images\icon.png" />
+    <Resource Include="images\images.png" />
+    <Resource Include="images\logo.png" />
+    <Resource Include="images\oil storage.png" />
+    <Resource Include="images\print_icon.png" />
+    <Resource Include="images\sales.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
