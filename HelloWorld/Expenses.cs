@@ -60,7 +60,6 @@ namespace HelloWorld
                 foreach (TextBox textbox in list)
                 {
                     textbox.Background = Brushes.Red;
-
                 }
                 return;
             }

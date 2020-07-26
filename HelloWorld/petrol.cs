@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -10,6 +11,7 @@ namespace HelloWorld
 {
     class petrol
     {
+       
         static public SqlConnection Connect()
         {
 
@@ -23,6 +25,11 @@ namespace HelloWorld
                 MessageBox.Show("Database Connection Error");
                 return null;
             }
+
+        }
+
+        public void Validate(object sender, EventArgs e, ArrayList list)
+        {
 
         }
 

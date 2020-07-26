@@ -376,7 +376,7 @@ namespace HelloWorld
             return -1;
         }
 
-        private void save_petrol_credit_entry_BTN_Click(object sender, RoutedEventArgs e)
+        private void save_petrol_entry_BTN_Click(object sender, RoutedEventArgs e)
         {
             if (getReadingN1_petrol() > -1 && getReadingN2_petrol() > -1 && rate_petrol_TB.Text.Length > 0 && getTotalLiters_petrol() >= getTesting_petrol())
             {
@@ -521,7 +521,7 @@ namespace HelloWorld
             // Add to the panel   
             resultStack.Children.Add(block);
         }
-        private void save_petrol_entry_BTN_Click(object sender, RoutedEventArgs e)
+        private void save_petrol_credit_entry_BTN_Click(object sender, RoutedEventArgs e)
         {
 
             string name = crediterName_petrol_TB.Text;
