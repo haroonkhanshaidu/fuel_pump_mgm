@@ -910,7 +910,7 @@ namespace HelloWorld
             //Add the name and amount to left sidebar
             TextBlock block = new TextBlock();
             block.Text = name + "            " + amount;
-            block.Foreground = Brushes.Black;
+            block.Foreground = Brushes.DarkBlue;
             block.FontSize = 15;
             block.Margin = new Thickness(2, 3, 2, 3);
             credit_added_users_petrol.Children.Add(block);
@@ -976,7 +976,7 @@ namespace HelloWorld
             //Add the name and amount to left sidebar
             TextBlock block = new TextBlock();
             block.Text = name + "            " + amount;
-            block.Foreground = Brushes.Black;
+            block.Foreground = Brushes.DarkBlue;
             block.FontSize = 15;
             block.Margin = new Thickness(2, 3, 2, 3);
             credit_added_users_diesel.Children.Add(block);
