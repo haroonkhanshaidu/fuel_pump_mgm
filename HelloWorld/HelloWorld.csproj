@@ -73,6 +73,7 @@
     <Compile Include="DemandDraft.cs" />
     <Compile Include="diesel.cs" />
     <Compile Include="Expenses.cs" />
+    <Compile Include="GlobalFunctions.cs" />
     <Compile Include="petrol.cs" />
     <Compile Include="SplashWindow.xaml.cs">
       <DependentUpon>SplashWindow.xaml</DependentUpon>

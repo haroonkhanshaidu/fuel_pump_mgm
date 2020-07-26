@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -23,10 +22,9 @@ namespace HelloWorld
             //new SplashWindow().ShowDialog();
             set_initial_values_diesel("12/7/2020", "40", "23");
             set_initial_values_petrol("12/7/2020", "40", "23");
-            set_initial_values_petrol("12/7/2020", "40", "23"); 
+            set_initial_values_petrol("12/7/2020", "40", "23");
             expensesEvents();
             demandDraftEvents();
-
             //Entry obj = new Entry(getTotalLiters_diesel());
 
         }
@@ -866,7 +864,7 @@ namespace HelloWorld
                 var data = Creditors.creditorGetData();
                 string creditorName = (sender as TextBlock).Text;
                 crediterName_diesel_TB.Text = creditorName;
-                crediterOldAmount_diesel_TB.Content = "+"+data[creditorName];
+                crediterOldAmount_diesel_TB.Content = "+" + data[creditorName];
                 crediterOldAmount_diesel_TB.Visibility = System.Windows.Visibility.Visible;
                 scrollView.Visibility = System.Windows.Visibility.Collapsed;
             };
@@ -889,7 +887,6 @@ namespace HelloWorld
 
         private void save_diesel_entry_BTN_Click(object sender, RoutedEventArgs e)
         {
-            
             string name = crediterName_diesel_TB.Text;
             string amount = creditedAmount_diesel_TB.Text;
 
@@ -908,7 +905,7 @@ namespace HelloWorld
             var data = Creditors.creditorGetData();
             if (data.ContainsKey(name))
             {
-                int totalCredit = int.Parse(amount)+ int.Parse(data[name]);
+                int totalCredit = int.Parse(amount) + int.Parse(data[name]);
                 amount = totalCredit.ToString();
                 Creditors.creditorUpdate(name, amount);
             }
@@ -916,8 +913,8 @@ namespace HelloWorld
                 Creditors.creditorinsert(name, amount);
 
             //Add the name and amount to left sidebar
-            TextBlock block = new TextBlock(); 
-            block.Text = name+"            "+amount;
+            TextBlock block = new TextBlock();
+            block.Text = name + "            " + amount;
             block.Foreground = Brushes.Black;
             block.FontSize = 15;
             block.Margin = new Thickness(2, 3, 2, 3);
