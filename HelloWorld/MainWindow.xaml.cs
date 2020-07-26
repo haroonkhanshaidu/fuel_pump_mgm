@@ -988,9 +988,6 @@ namespace HelloWorld
             }
         }
 
-
-
-
         private void crediterName_petrol_TB_KeyUp(object sender, KeyEventArgs e)
         {
             crediterOldAmount_petrol_TB.Visibility = System.Windows.Visibility.Hidden;
@@ -1075,6 +1072,7 @@ namespace HelloWorld
             // Add to the panel   
             resultStack.Children.Add(block);
         }
+
         private void save_petrol_credit_entry_BTN_Click(object sender, RoutedEventArgs e)
         {
 
@@ -1116,7 +1114,6 @@ namespace HelloWorld
             creditedAmount_petrol_TB.Text = "";
             crediterOldAmount_petrol_TB.Visibility = System.Windows.Visibility.Hidden;
         }
-
 
         private void expensesEvents()
         {
