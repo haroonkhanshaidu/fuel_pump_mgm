@@ -1061,7 +1061,7 @@ namespace HelloWorld
             //Add the name and amount to left sidebar
             TextBlock block = new TextBlock();
             block.Text = name + "            " + amount;
-            block.Foreground = Brushes.Black;
+            block.Foreground = Brushes.DarkBlue;
             block.FontSize = 15;
             block.Margin = new Thickness(2, 3, 2, 3);
             credit_added_users_diesel.Children.Add(block);
@@ -1322,20 +1322,24 @@ namespace HelloWorld
         {
 
             ArrayList petrollist = new ArrayList();
+            petrollist.Add(DD_petrolRF_TB);
             petrollist.Add(DD_petrolPKR_TB);
             petrollist.Add(DD_petrolLTR_TB);
 
+            DD_petrolRF_TB.TextChanged += (sender, e) => DemandDraft.BoxesBackgroundClear(sender, e, petrollist);
             DD_petrolPKR_TB.TextChanged += (sender, e) => DemandDraft.BoxesBackgroundClear(sender, e, petrollist);
             DD_petrolLTR_TB.TextChanged += (sender, e) => DemandDraft.BoxesBackgroundClear(sender, e, petrollist);
-            savebtn_DD_petrol.Click += (sender, e) => DemandDraft.petrolEntry(sender, e, petrollist, fuel_datepicker);
+            savebtn_DD_petrol.Click += (sender, e) => DemandDraft.FuelDemandDraftEntry(sender, e, petrollist, fuel_datepicker, "ddPetrol");
 
             ArrayList diesellist = new ArrayList();
+            diesellist.Add(DD_dieselRF_TB);
             diesellist.Add(DD_dieselPKR_TB);
             diesellist.Add(DD_dieselLTR_TB);
 
             DD_dieselPKR_TB.TextChanged += (sender, e) => DemandDraft.BoxesBackgroundClear(sender, e, diesellist);
             DD_dieselLTR_TB.TextChanged += (sender, e) => DemandDraft.BoxesBackgroundClear(sender, e, diesellist);
-            savebtn_DD_diesel.Click += (sender, e) => DemandDraft.dieselEntry(sender, e, diesellist, fuel_datepicker);
+            DD_dieselRF_TB.TextChanged += (sender, e) => DemandDraft.BoxesBackgroundClear(sender, e, diesellist);
+            savebtn_DD_diesel.Click += (sender, e) => DemandDraft.FuelDemandDraftEntry(sender, e, diesellist, fuel_datepicker, "ddDiesel");
 
         }
 
