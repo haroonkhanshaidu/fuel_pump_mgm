@@ -141,7 +141,7 @@
                                     </Grid.ColumnDefinitions>
 
                                     <TextBlock Grid.Column="0"  Text="Last Enty" VerticalAlignment="Center" Background="#FFBC6737" HorizontalAlignment="Left"  Margin="5" FontSize="20" Foreground="White"/>
-                                    <TextBlock Grid.Column="1"  Text="june 12, 2020" VerticalAlignment="Center" Background="#FFBC6737" HorizontalAlignment="Left"  Margin="5" FontSize="20" Foreground="White"/>
+                                    <TextBlock Grid.Column="1" Name="lastEntryPetrol"  Text="june 12, 2020" VerticalAlignment="Center" Background="#FFBC6737" HorizontalAlignment="Left"  Margin="5" FontSize="20" Foreground="White"/>
 
 
                                 </Grid>
@@ -229,7 +229,6 @@
 
                                                 <Label Grid.Row="2" Content="Today's sales Ltrs"  Foreground="Black" FontSize="22" HorizontalAlignment="Right" VerticalAlignment="Bottom" />
                                                 <Label Grid.Row="3" Content="Today's sales PKR"  Foreground="Black" FontSize="22" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
-                                                <Label Grid.Row="4" Content="Today's profit PKR"  Foreground="Black" FontSize="22" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
                                             <Rectangle Grid.Row="7" Grid.RowSpan="5" Grid.ColumnSpan="3" Fill="#FFD1C693" />
                                             <Label Grid.Row="7" Content="Credit Account:" Foreground="DarkRed" FontSize="22" HorizontalAlignment="Right" VerticalAlignment="Bottom" />
                                                 <ScrollViewer Grid.Row="8" Grid.RowSpan="4" VerticalScrollBarVisibility="Auto" Name="creditAccountScrollViewer" >
@@ -263,13 +262,12 @@
                                                 
                                             
                                             
-                                                <TextBox Grid.Column="1"  Name="discount_amount_petrol_TB" PreviewTextInput="NumberValidationTextBox" Text="" Foreground="Gray" Margin="5" FontSize="25" FontFamily="Arial" LostFocus="discount_amount_petrol_TB_LostFocus"/>
+                                                <TextBox Grid.Column="1"  Name="discount_amount_petrol_TB" PreviewTextInput="NumberValidationTextBox" Text="0" Foreground="Gray" Margin="5" FontSize="25" FontFamily="Arial" LostFocus="discount_amount_petrol_TB_LostFocus"/>
 
                                             <TextBox Grid.Row="2" Grid.Column="1" Name="total_sales_ltrs_petrol_TB" Text="" Margin="5" IsEnabled="False" FontSize="25" FontFamily="Arial" TextChanged="total_sales_ltrs_petrol_TB_TextChanged" />
                                             <TextBox Grid.Row="3" Grid.Column="1" Name="total_sales_pkrs_petrol_TB" Text="" Margin="5" IsEnabled="False" FontSize="25" FontFamily="Arial" TextChanged="total_sales_pkrs_petrol_TB_TextChanged"/>
-                                            <TextBox Grid.Row="4" Grid.Column="1" Name="today_profit_petrol_TB" Text="" Margin="5" IsEnabled="False" FontSize="25" FontFamily="Arial" />
 
-                                            <Button Grid.Row="5" Grid.Column="1" Name="save_petrol_entry_BTN" HorizontalAlignment="Right" Foreground="White" Margin="5" Padding="20,0,20,0" Background="#FFBC6737" FontSize="25" Click="save_petrol_entry_BTN_Click">
+                                            <Button Grid.Row="4" Grid.Column="1" Name="save_petrol_entry_BTN" HorizontalAlignment="Right" Foreground="White" Margin="5" Padding="20,0,20,0" Background="#FFBC6737" FontSize="25" Click="save_petrol_entry_BTN_Click">
                                                     Save
                                                 </Button>
                                             <Rectangle Grid.Row="7" Grid.RowSpan="5" Grid.ColumnSpan="3" Fill="#FFD1C693" />
@@ -337,7 +335,7 @@
                                     </Grid.ColumnDefinitions>
 
                                     <TextBlock Grid.Column="0"  Text="Last Enty" VerticalAlignment="Center" Background="#FF235885" HorizontalAlignment="Left"  Margin="5" FontSize="20" Foreground="White"/>
-                                    <TextBlock Grid.Column="1"  Text="june 12, 2020" VerticalAlignment="Center" Background="#FF235885" HorizontalAlignment="Left"  Margin="5" FontSize="20" Foreground="White"/>
+                                    <TextBlock Grid.Column="1" Name="lastEntryDiesel"  Text="june 12, 2020" VerticalAlignment="Center" Background="#FF235885" HorizontalAlignment="Left"  Margin="5" FontSize="20" Foreground="White"/>
 
 
                                 </Grid>
@@ -467,7 +465,7 @@
 
 
 
-                                            <TextBox Grid.Column="1"  Name="discount_amount_diesel_TB" PreviewTextInput="NumberValidationTextBox" Text="" Foreground="Gray" Margin="5" FontSize="25" FontFamily="Arial" LostFocus="discount_amount_diesel_TB_LostFocus"/>
+                                            <TextBox Grid.Column="1"  Name="discount_amount_diesel_TB" PreviewTextInput="NumberValidationTextBox" Text="0" Foreground="Gray" Margin="5" FontSize="25" FontFamily="Arial" LostFocus="discount_amount_diesel_TB_LostFocus"/>
 
                                             <TextBox Grid.Row="2" Grid.Column="1" Name="total_sales_ltrs_diesel_TB" Text="" Margin="5" IsEnabled="False" FontSize="25" FontFamily="Arial" TextChanged="total_sales_ltrs_diesel_TB_TextChanged" />
                                             <TextBox Grid.Row="3" Grid.Column="1" Name="total_sales_pkrs_diesel_TB" Text="" Margin="5" IsEnabled="False" FontSize="25" FontFamily="Arial" TextChanged="total_sales_pkrs_diesel_TB_TextChanged"/>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -16,30 +17,37 @@ namespace HelloWorld
         Boolean validPetrolData = true;
 
         Boolean validDieselData = true;
+
         public MainWindow()
         {
             InitializeComponent();
             //new SplashWindow().ShowDialog();
-            set_initial_values_diesel("12/7/2020", "40", "23");
-            set_initial_values_petrol("12/7/2020", "40", "23");
-            set_initial_values_petrol("12/7/2020", "40", "23");
+            set_initial_values_diesel();
+            set_initial_values_petrol();
             expensesEvents();
             demandDraftEvents();
+            
+            testing_diesel_TB.Text = "0";
+
             //Entry obj = new Entry(getTotalLiters_diesel());
 
         }
 
-        private void set_initial_values_petrol(String date, String N1_Opening, String N2_Opening)
+        private void set_initial_values_petrol()
         {
             //petrol_Last_EntryDate_TB.Text = "Last Entry " + date;
-            meterOpening_petrol_N1_TB.Text = N1_Opening;
-            meterOpening_petrolN2_TB.Text = N2_Opening;
+            meterOpening_petrol_N1_TB.Text = Entry.getLastEntry("petrol","closing1");
+            meterOpening_petrolN2_TB.Text = Entry.getLastEntry("petrol", "closing2");
+            
+            lastEntryPetrol.Text = GlobalFunctions.epochToDateTime(long.Parse(Entry.getLastEntry("petrol", "date")));
 
             petrol_entry_datepicker.SelectedDate = DateTime.Today.AddDays(0);
             diesel_entry_datepicker.SelectedDate = DateTime.Today.AddDays(0);
             expense_datepicker.SelectedDate = DateTime.Today.AddDays(0);
             fuel_datepicker.SelectedDate = DateTime.Today.AddDays(0);
             expense_datepicker.DisplayDateEnd = DateTime.Today.AddDays(0);
+
+            testing_petrol_TB.Text = "0";
         }
 
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
@@ -82,7 +90,7 @@ namespace HelloWorld
                                 testing_petrol_TB.ToolTip = "Enter testing Liters";
                                 total = total - getTesting_petrol();
                                 total_sales_ltrs_petrol_TB.Text = total.ToString();
-
+                                validPetrolData = true;
                             }
                             else
                             {
@@ -106,6 +114,7 @@ namespace HelloWorld
                         {
                             total_sales_ltrs_petrol_TB.Text = (getReadingN2_petrol() - testltrs).ToString();
                             testing_petrol_TB.Background = Brushes.White;
+                            validPetrolData = true;
                             testing_petrol_TB.ToolTip = "Enter testing Liters";
                             total_sales_ltrs_petrol_TB.Text = getReadingN2_petrol().ToString();
 
@@ -147,6 +156,7 @@ namespace HelloWorld
                             if (total >= getTesting_petrol())
                             {
                                 testing_petrol_TB.Background = Brushes.White;
+                                validPetrolData = true;
                                 testing_petrol_TB.ToolTip = "Enter testing Liters";
                                 total = total - getTesting_petrol();
                                 total_sales_ltrs_petrol_TB.Text = total.ToString();
@@ -177,6 +187,7 @@ namespace HelloWorld
                         {
                             total_sales_ltrs_petrol_TB.Text = (getReadingN1_petrol() - testltrs).ToString();
                             testing_petrol_TB.Background = Brushes.White;
+                            validPetrolData = true;
                             testing_petrol_TB.ToolTip = "Enter testing Liters";
                             total_sales_ltrs_petrol_TB.Text = getReadingN1_petrol().ToString();
 
@@ -204,17 +215,17 @@ namespace HelloWorld
             TextBox textbox = sender as TextBox;
             textbox.Background = Brushes.White;
 
-            if (textbox.Text.Length > 0)
+            if (textbox.Text.Length > 0 )
             {
                 if (getTotalLiters_petrol() > -1)
                 {
                     double testing = double.Parse(textbox.Text);
-                    double total = getTotalLiters_petrol();
-                    double totalupdate = total - testing;
+                    double totalupdate = getTotalLiters_petrol() - testing;
                     if (totalupdate > -1)
                     {
                         total_sales_ltrs_petrol_TB.Text = totalupdate.ToString();
                         (sender as TextBox).Background = Brushes.White;
+                        validPetrolData = true;
 
                     }
                     else
@@ -233,13 +244,27 @@ namespace HelloWorld
 
         private void total_sales_ltrs_petrol_TB_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (getTotalLiters_petrol() > -1 && rate_petrol_TB.Text.Length > 0)
+            
+            if (getTotalLiters_petrol() > 0 && rate_petrol_TB.Text.Length > 0)
             {
+               
                 double total = getTotalLiters_petrol();
+                if(testing_petrol_TB.Text.Length > 0)
+                total = total - double.Parse(testing_petrol_TB.Text);
                 double rate = double.Parse(rate_petrol_TB.Text);
-                total_sales_pkrs_petrol_TB.Text = (total * rate).ToString();
+             
+                if(total > 0)
+                {
+                    total_sales_pkrs_petrol_TB.Text = (total * rate).ToString();
+
+                }
+                else
+                {
+                    total_sales_pkrs_petrol_TB.Text = "0";
+                }
 
             }
+       
         }
 
         private void meterClosing_petrol_N1_TB_LostFocus(object sender, RoutedEventArgs e)
@@ -282,6 +307,7 @@ namespace HelloWorld
                 else
                 {
                     textbox.Background = Brushes.White;
+                    validPetrolData = true;
                     textbox.ToolTip = "Enter Testing Liters";
 
                 }
@@ -360,14 +386,6 @@ namespace HelloWorld
             return 0;
         }
 
-        private double getTotalNetProfit_petrol()
-        {
-            if (today_profit_petrol_TB.Text.Length > 0)
-            {
-                return double.Parse(today_profit_petrol_TB.Text);
-            }
-            return 0;
-        }
 
         private String getSelectedDate_petrol()
         {
@@ -385,19 +403,6 @@ namespace HelloWorld
             return -1;
         }
 
-        private void save_petrol_entry_BTN_Click(object sender, RoutedEventArgs e)
-        {
-
-            if(validPetrolData && getTotalPKRs_petrol() > 0)
-            {
-                MessageBox.Show("saved");
-            }
-            if (getReadingN1_petrol() > -1 && getReadingN2_petrol() > -1 && rate_petrol_TB.Text.Length > 0 && getTotalLiters_petrol() >= getTesting_petrol())
-            {
-                MessageBox.Show("saved");
-            }
-        }
-
         private void discount_amount_petrol_TB_LostFocus(object sender, RoutedEventArgs e)
         {
             TextBox textbox = sender as TextBox;
@@ -411,10 +416,11 @@ namespace HelloWorld
                     if (getTotalPKRs_petrol() > 0)
                         total = getTotalPKRs_petrol() - discount;
 
-                    if (total > 0)
+                    if (total >= 0)
                     {
                         total_sales_pkrs_petrol_TB.Text = total.ToString();
                         textbox.Background = Brushes.White;
+                        validPetrolData = true;
                     }
                     else
                     {
@@ -441,9 +447,18 @@ namespace HelloWorld
             TextBox textbox = sender as TextBox;
             if (textbox.Text.Length > 0)
             {
-                if (getDiscountAmount_petrol() < getTotalPKRs_petrol())
+                
+                if (getDiscountAmount_petrol() <= getTotalPKRs_petrol())
                 {
                     discount_amount_petrol_TB.Background = Brushes.White;
+                    if (meterClosing_petrolN2_TB.Background == Brushes.White && meterClosing_petrol_N1_TB.Background == Brushes.White)
+                    {
+                        validPetrolData = true;
+                    }
+                    else
+                    {
+                        validPetrolData = false;
+                    }
                 }
                 else
                 {
@@ -454,343 +469,6 @@ namespace HelloWorld
             }
         }
 
-    
-        private void set_initial_values_diesel(String date, String N1_Opening, String N2_Opening)
-        {
-            //diesel_Last_EntryDate_TB.Text = "Last Entry " + date;
-            meterOpening_diesel_N1_TB.Text = N1_Opening;
-            meterOpening_dieselN2_TB.Text = N2_Opening;
-
-            diesel_entry_datepicker.SelectedDate = DateTime.Today.AddDays(0);
-            diesel_entry_datepicker.SelectedDate = DateTime.Today.AddDays(0);
-            expense_datepicker.SelectedDate = DateTime.Today.AddDays(0);
-            fuel_datepicker.SelectedDate = DateTime.Today.AddDays(0);
-            expense_datepicker.DisplayDateEnd = DateTime.Today.AddDays(0);
-        }
-
-        private void meterClosing_diesel_N1_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            TextBox textbox = sender as TextBox;
-            textbox.Background = Brushes.White;
-            textbox.ToolTip = "Enter nuzzel 1 reading";
-            double total = getTotalLiters_diesel();
-
-            if (textbox.Text.Length > 0)
-            {
-                if (double.Parse(meterClosing_diesel_N1_TB.Text) > double.Parse(meterOpening_diesel_N1_TB.Text))
-                {
-
-                    if (getReadingN1_diesel() > -1)
-                    {
-
-                        if (getTesting_diesel() >= 0)
-                        {
-                            if (total >= getTesting_diesel())
-                            {
-                                testing_diesel_TB.Background = Brushes.White;
-                                testing_diesel_TB.ToolTip = "Enter testing Liters";
-                                total = total - getTesting_diesel();
-                                total_sales_ltrs_diesel_TB.Text = total.ToString();
-
-                            }
-                            else
-                            {
-                                total_sales_ltrs_diesel_TB.Text = "0";
-                                testing_diesel_TB.Background = Brushes.Red;
-                                validDieselData = false;
-                                testing_diesel_TB.ToolTip = "Testing must be less than total sales" + getTotalLiters_diesel();
-
-                            }
-                        }
-                        upDateTotalPrice_diesel();
-                    }
-                    total_sales_ltrs_diesel_TB.Text = total.ToString();
-                }
-                else
-                {
-                    if (getTesting_diesel() >= 0)
-                    {
-                        double testltrs = getTesting_diesel();
-
-                        if (testltrs < getReadingN2_diesel())
-                        {
-                            total_sales_ltrs_diesel_TB.Text = (getReadingN2_diesel() - testltrs).ToString();
-                            testing_diesel_TB.Background = Brushes.White;
-                            testing_diesel_TB.ToolTip = "Enter testing Liters";
-                            total_sales_ltrs_diesel_TB.Text = getReadingN2_diesel().ToString();
-
-                        }
-                        else
-                        {
-                            total_sales_ltrs_diesel_TB.Text = "0";
-                            testing_diesel_TB.Background = Brushes.Red;
-                            validDieselData = false;
-                            testing_diesel_TB.ToolTip = "Testing must be less than total sales" + getTotalLiters_diesel();
-
-                        }
-                    }
-                    else
-                    {
-                        total_sales_ltrs_diesel_TB.Text = total.ToString();
-                    }
-                }
-            }
-
-        }
-
-        private void meterClosing_dieselN2_TB_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            TextBox textbox = sender as TextBox;
-            textbox.Background = Brushes.White;
-            textbox.ToolTip = "Enter nuzzel 2 reading";
-            double total = getTotalLiters_diesel();
-            if (textbox.Text.Length > 0)
-            {
-                if (double.Parse(meterClosing_dieselN2_TB.Text) > double.Parse(meterOpening_dieselN2_TB.Text))
-                {
-
-                    if (getReadingN2_diesel() > -1)
-                    {
-
-                        if (getTesting_diesel() >= 0)
-                        {
-                            if (total >= getTesting_diesel())
-                            {
-                                testing_diesel_TB.Background = Brushes.White;
-                                testing_diesel_TB.ToolTip = "Enter testing Liters";
-                                total = total - getTesting_diesel();
-                                total_sales_ltrs_diesel_TB.Text = total.ToString();
-
-                            }
-                            else
-                            {
-                                total_sales_ltrs_diesel_TB.Text = "0";
-                                testing_diesel_TB.Background = Brushes.Red;
-                                validDieselData = false;
-                                testing_diesel_TB.ToolTip = "Testing must be less than total sales" + getTotalLiters_diesel();
-
-                            }
-
-                        }
-
-                        upDateTotalPrice_diesel();
-                    }
-                    total_sales_ltrs_diesel_TB.Text = total.ToString();
-                }
-                else
-                {
-                    if (getTesting_diesel() >= 0)
-                    {
-                        double testltrs = getTesting_diesel();
-
-                        if (testltrs < getReadingN1_diesel())
-                        {
-                            total_sales_ltrs_diesel_TB.Text = (getReadingN1_diesel() - testltrs).ToString();
-                            testing_diesel_TB.Background = Brushes.White;
-                            testing_diesel_TB.ToolTip = "Enter testing Liters";
-                            total_sales_ltrs_diesel_TB.Text = getReadingN1_diesel().ToString();
-
-                        }
-                        else
-                        {
-                            total_sales_ltrs_diesel_TB.Text = "0";
-                            testing_diesel_TB.Background = Brushes.Red;
-                            validDieselData = false;
-                            testing_diesel_TB.ToolTip = "Testing must be less than total sales" + getTotalLiters_diesel();
-
-                        }
-                    }
-                    else
-                    {
-                        total_sales_ltrs_diesel_TB.Text = total.ToString();
-                    }
-
-                }
-            }
-        }
-
-        private void testing_diesel_TB_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            TextBox textbox = sender as TextBox;
-            textbox.Background = Brushes.White;
-
-            if (textbox.Text.Length > 0)
-            {
-                if (getTotalLiters_diesel() > -1)
-                {
-                    double testing = double.Parse(textbox.Text);
-                    double total = getTotalLiters_diesel();
-                    double totalupdate = total - testing;
-                    if (totalupdate > -1)
-                    {
-                        total_sales_ltrs_diesel_TB.Text = totalupdate.ToString();
-                        (sender as TextBox).Background = Brushes.White;
-
-                    }
-                    else
-                    {
-                        total_sales_ltrs_diesel_TB.Text = "0";
-                    }
-                }
-            }
-            else
-            {
-                double total = getTotalLiters_diesel();
-                total_sales_ltrs_diesel_TB.Text = total.ToString();
-                textbox.Text = "";
-            }
-        }
-
-        private void total_sales_ltrs_diesel_TB_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            if (getTotalLiters_diesel() > -1 && rate_diesel_TB.Text.Length > 0)
-            {
-                double total = getTotalLiters_diesel();
-                double rate = double.Parse(rate_diesel_TB.Text);
-                total_sales_pkrs_diesel_TB.Text = (total * rate).ToString();
-
-            }
-        }
-
-        private void meterClosing_diesel_N1_TB_LostFocus(object sender, RoutedEventArgs e)
-        {
-            if (getReadingN1_diesel() < 0)
-            {
-                TextBox textbox = sender as TextBox;
-                textbox.Background = Brushes.Red;
-                validDieselData = false;
-                textbox.ToolTip = "Meter closing can not be less then Meter opening";
-
-            }
-        }
-
-        private void meterClosing_dieselN2_TB_LostFocus(object sender, RoutedEventArgs e)
-        {
-            if (getReadingN2_diesel() < 0)
-            {
-                TextBox textbox = sender as TextBox;
-                textbox.Background = Brushes.Red;
-                validDieselData = false;
-                textbox.ToolTip = "Meter closing can not be less then Meter opening";
-
-            }
-        }
-
-        private void testing_diesel_TB_LostFocus(object sender, RoutedEventArgs e)
-        {
-
-            TextBox textbox = sender as TextBox;
-            if (textbox.Text.Length > 0)
-            {
-                if (getTotalLiters_diesel() < double.Parse(textbox.Text))
-                {
-                    textbox.Background = Brushes.Red;
-                    validDieselData = false;
-                    textbox.ToolTip = "Testing must be less than total sales";
-
-                }
-                else
-                {
-                    textbox.Background = Brushes.White;
-                    textbox.ToolTip = "Enter Testing Liters";
-
-                }
-            }
-
-        }
-
-        private void rate_diesel_TB_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            upDateTotalPrice_diesel();
-        }
-
-        private void upDateTotalPrice_diesel()
-        {
-            if (total_sales_ltrs_diesel_TB.Text.Length > 0 && rate_diesel_TB.Text.Length > 0)
-            {
-                double totalLiters = double.Parse(total_sales_ltrs_diesel_TB.Text);
-                double rate = double.Parse(rate_diesel_TB.Text);
-                double totalPkr = totalLiters * rate;
-                total_sales_pkrs_diesel_TB.Text = totalPkr.ToString();
-            }
-        }
-
-        private double getReadingN1_diesel()
-        {
-            if (meterClosing_diesel_N1_TB.Text.Length > 0)
-            {
-                double opening = double.Parse(meterOpening_diesel_N1_TB.Text);
-                double closing = double.Parse(meterClosing_diesel_N1_TB.Text);
-                double nuzzel1Reading = closing - opening;
-                return nuzzel1Reading;
-            }
-            return -1;
-
-        }
-
-        private double getReadingN2_diesel()
-        {
-
-            if (meterClosing_dieselN2_TB.Text.Length > 0)
-            {
-                double opening = double.Parse(meterOpening_dieselN2_TB.Text);
-                double closing = double.Parse(meterClosing_dieselN2_TB.Text);
-                double nuzzel2Reading = closing - opening;
-                return nuzzel2Reading;
-
-            }
-            return -1;
-
-        }
-
-        private double getTotalLiters_diesel()
-        {
-            double total = 0;
-            if (getReadingN1_diesel() > -1)
-            {
-                total = getReadingN1_diesel();
-            }
-            if (getReadingN2_diesel() > -1)
-            {
-                total += getReadingN2_diesel();
-            }
-            return total;
-
-        }
-
-        private double getTotalPKRs_diesel()
-        {
-            if (total_sales_pkrs_diesel_TB.Text.Length > 0)
-            {
-                return double.Parse(total_sales_pkrs_diesel_TB.Text);
-            }
-            return 0;
-        }
-
-        private double getTotalNetProfit_diesel()
-        {
-            if (today_profit_diesel_TB.Text.Length > 0)
-            {
-                return double.Parse(today_profit_diesel_TB.Text);
-            }
-            return 0;
-        }
-
-        private String getSelectedDate_diesel()
-        {
-
-            String dateTime = diesel_entry_datepicker.SelectedDate.Value.Date.ToShortDateString();
-            return dateTime;
-        }
-
-        private double getTesting_diesel()
-        {
-            if (testing_diesel_TB.Text.Length > 0)
-            {
-                return double.Parse(testing_diesel_TB.Text);
-            }
-            return -1;
-        }
 
         private void crediterName_petrol_TB_KeyUp(object sender, KeyEventArgs e)
         {
@@ -905,7 +583,7 @@ namespace HelloWorld
                 Creditors.creditorUpdate("creditorData", name, amount, petrol_entry_datepicker);
             }
             else
-                Creditors.creditorinsert("creditorData",name, amount, petrol_entry_datepicker);
+                Creditors.creditorinsert("creditorData", name, amount, petrol_entry_datepicker);
 
             //Add the name and amount to left sidebar
             TextBlock block = new TextBlock();
@@ -919,6 +597,59 @@ namespace HelloWorld
             crediterName_petrol_TB.Text = "";
             creditedAmount_petrol_TB.Text = "";
             crediterOldAmount_petrol_TB.Visibility = System.Windows.Visibility.Hidden;
+        }
+
+        private void save_petrol_entry_BTN_Click(object sender, RoutedEventArgs e)
+        {
+            DateTime date = petrol_entry_datepicker.SelectedDate.Value;
+
+            if (validPetrolData)
+            {
+                if(getTotalPKRs_petrol() > 0)
+                {
+                    Dictionary<string, double> dict = new Dictionary<string, double>();
+
+                    dict.Add("n1opening",double.Parse(meterOpening_petrol_N1_TB.Text));
+                    dict.Add("n1closing",double.Parse(meterClosing_petrol_N1_TB.Text));
+                    dict.Add("n2opening",double.Parse(meterOpening_petrolN2_TB.Text));
+                    dict.Add("n2closing",double.Parse(meterClosing_petrolN2_TB.Text));
+                    dict.Add("rate",double.Parse(rate_petrol_TB.Text));
+                    dict.Add("testing" ,double.Parse(testing_petrol_TB.Text));
+                    dict.Add("discount", double.Parse(discount_amount_petrol_TB.Text));
+                    dict.Add("totalLtrs", double.Parse(total_sales_ltrs_petrol_TB.Text));
+                    dict.Add("totalPkrs", double.Parse(total_sales_pkrs_petrol_TB.Text));
+
+                    if(Entry.InsertEntry(sender, e,"petrol", dict,petrol_entry_datepicker) == 1)
+                    {
+                        meterOpening_petrol_N1_TB.Text = meterClosing_petrol_N1_TB.Text;
+                        meterOpening_petrolN2_TB.Text = meterClosing_petrolN2_TB.Text;
+                        meterClosing_petrol_N1_TB.Text = "";
+                        meterClosing_petrolN2_TB.Text = "";
+                        testing_petrol_TB.Text = "0";
+                        discount_amount_petrol_TB.Text = "0";
+                        total_sales_ltrs_petrol_TB.Text = "";
+                        total_sales_pkrs_petrol_TB.Text = "";
+                        rate_petrol_TB.Text = "";
+
+                                                
+                        lastEntryPetrol.Text = date.ToString("dd/MM/yyyy");
+
+                        MessageBox.Show("Entry saved for "+ date);
+                    }
+                    else
+                    {
+                        MessageBox.Show(" Entry for " + date + " is already available in database   \n if you want to edit an existing record on " + date + " goto gridview");
+                        return;
+                    }
+                    
+                }
+                else if(getTotalPKRs_petrol() == 0 && rate_petrol_TB.Text.Length > 0 )
+                {
+                    MessageBox.Show("note that only testing was performed no sales ware made");
+                }
+                
+            }
+
         }
 
 
@@ -937,12 +668,366 @@ namespace HelloWorld
 
 
 
+        private void set_initial_values_diesel()
+        {
+            //diesel_Last_EntryDate_TB.Text = "Last Entry " + date;
+            meterOpening_diesel_N1_TB.Text = Entry.getLastEntry("diesel", "closing1");
+            meterOpening_dieselN2_TB.Text = Entry.getLastEntry("diesel", "closing2");
+            lastEntryDiesel.Text = GlobalFunctions.epochToDateTime(long.Parse(Entry.getLastEntry("petrol", "date")));
 
+            diesel_entry_datepicker.SelectedDate = DateTime.Today.AddDays(0);
+            diesel_entry_datepicker.SelectedDate = DateTime.Today.AddDays(0);
+            expense_datepicker.SelectedDate = DateTime.Today.AddDays(0);
+            fuel_datepicker.SelectedDate = DateTime.Today.AddDays(0);
+            expense_datepicker.DisplayDateEnd = DateTime.Today.AddDays(0);
 
+            testing_diesel_TB.Text = "0";
+        }
 
+        private void meterClosing_diesel_N1_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            TextBox textbox = sender as TextBox;
+            textbox.Background = Brushes.White;
+            textbox.ToolTip = "Enter nuzzel 1 reading";
+            double total = getTotalLiters_diesel();
 
+            if (textbox.Text.Length > 0)
+            {
+                if (double.Parse(meterClosing_diesel_N1_TB.Text) > double.Parse(meterOpening_diesel_N1_TB.Text))
+                {
 
+                    if (getReadingN1_diesel() > -1)
+                    {
 
+                        if (getTesting_diesel() >= 0)
+                        {
+                            if (total >= getTesting_diesel())
+                            {
+                                testing_diesel_TB.Background = Brushes.White;
+                                validDieselData = true;
+                                testing_diesel_TB.ToolTip = "Enter testing Liters";
+                                total = total - getTesting_diesel();
+                                total_sales_ltrs_diesel_TB.Text = total.ToString();
+
+                            }
+                            else
+                            {
+                                total_sales_ltrs_diesel_TB.Text = "0";
+                                testing_diesel_TB.Background = Brushes.Red;
+                                validDieselData = false;
+                                testing_diesel_TB.ToolTip = "Testing must be less than total sales" + getTotalLiters_diesel();
+
+                            }
+                        }
+                        upDateTotalPrice_diesel();
+                    }
+                    total_sales_ltrs_diesel_TB.Text = total.ToString();
+                }
+                else
+                {
+                    if (getTesting_diesel() >= 0)
+                    {
+                        double testltrs = getTesting_diesel();
+
+                        if (testltrs < getReadingN2_diesel())
+                        {
+                            total_sales_ltrs_diesel_TB.Text = (getReadingN2_diesel() - testltrs).ToString();
+                            testing_diesel_TB.Background = Brushes.White;
+                            validDieselData = true;
+                            testing_diesel_TB.ToolTip = "Enter testing Liters";
+                            total_sales_ltrs_diesel_TB.Text = getReadingN2_diesel().ToString();
+
+                        }
+                        else
+                        {
+                            total_sales_ltrs_diesel_TB.Text = "0";
+                            testing_diesel_TB.Background = Brushes.Red;
+                            validDieselData = false;
+                            testing_diesel_TB.ToolTip = "Testing must be less than total sales" + getTotalLiters_diesel();
+
+                        }
+                    }
+                    else
+                    {
+                        total_sales_ltrs_diesel_TB.Text = total.ToString();
+                    }
+                }
+            }
+
+        }
+
+        private void meterClosing_dieselN2_TB_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            TextBox textbox = sender as TextBox;
+            textbox.Background = Brushes.White;
+            textbox.ToolTip = "Enter nuzzel 2 reading";
+            double total = getTotalLiters_diesel();
+            if (textbox.Text.Length > 0)
+            {
+                if (double.Parse(meterClosing_dieselN2_TB.Text) > double.Parse(meterOpening_dieselN2_TB.Text))
+                {
+
+                    if (getReadingN2_diesel() > -1)
+                    {
+
+                        if (getTesting_diesel() >= 0)
+                        {
+                            if (total >= getTesting_diesel())
+                            {
+                                testing_diesel_TB.Background = Brushes.White;
+                                validDieselData = true;
+                                testing_diesel_TB.ToolTip = "Enter testing Liters";
+                                total = total - getTesting_diesel();
+                                total_sales_ltrs_diesel_TB.Text = total.ToString();
+
+                            }
+                            else
+                            {
+                                total_sales_ltrs_diesel_TB.Text = "0";
+                                testing_diesel_TB.Background = Brushes.Red;
+                                validDieselData = false;
+                                testing_diesel_TB.ToolTip = "Testing must be less than total sales" + getTotalLiters_diesel();
+
+                            }
+
+                        }
+
+                        upDateTotalPrice_diesel();
+                    }
+                    total_sales_ltrs_diesel_TB.Text = total.ToString();
+                }
+                else
+                {
+                    if (getTesting_diesel() >= 0)
+                    {
+                        double testltrs = getTesting_diesel();
+
+                        if (testltrs < getReadingN1_diesel())
+                        {
+                            total_sales_ltrs_diesel_TB.Text = (getReadingN1_diesel() - testltrs).ToString();
+                            testing_diesel_TB.Background = Brushes.White;
+                            validDieselData = true;
+                            testing_diesel_TB.ToolTip = "Enter testing Liters";
+                            total_sales_ltrs_diesel_TB.Text = getReadingN1_diesel().ToString();
+
+                        }
+                        else
+                        {
+                            total_sales_ltrs_diesel_TB.Text = "0";
+                            testing_diesel_TB.Background = Brushes.Red;
+                            validDieselData = false;
+                            testing_diesel_TB.ToolTip = "Testing must be less than total sales" + getTotalLiters_diesel();
+
+                        }
+                    }
+                    else
+                    {
+                        total_sales_ltrs_diesel_TB.Text = total.ToString();
+                    }
+
+                }
+            }
+        }
+
+        private void testing_diesel_TB_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            TextBox textbox = sender as TextBox;
+            textbox.Background = Brushes.White;
+
+            if (textbox.Text.Length > 0)
+            {
+                if (getTotalLiters_diesel() > -1)
+                {
+                    double testing = double.Parse(textbox.Text);
+                    double total = getTotalLiters_diesel();
+                    double totalupdate = total - testing;
+                    if (totalupdate > -1)
+                    {
+                        total_sales_ltrs_diesel_TB.Text = totalupdate.ToString();
+                        (sender as TextBox).Background = Brushes.White;
+                        validDieselData = true;
+
+                    }
+                    else
+                    {
+                        total_sales_ltrs_diesel_TB.Text = "0";
+                    }
+                }
+            }
+            else
+            {
+                double total = getTotalLiters_diesel();
+                total_sales_ltrs_diesel_TB.Text = total.ToString();
+                textbox.Text = "";
+            }
+        }
+
+        private void total_sales_ltrs_diesel_TB_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (getTotalLiters_diesel() > 0 && rate_diesel_TB.Text.Length > 0)
+            {
+                double total = getTotalLiters_diesel();
+                if (testing_diesel_TB.Text.Length > 0)
+                total = total - double.Parse(testing_diesel_TB.Text);
+                double rate = double.Parse(rate_diesel_TB.Text);
+
+                if (total > 0)
+                {
+                    total_sales_pkrs_diesel_TB.Text = (total * rate).ToString();
+
+                }
+                else
+                {
+                    total_sales_pkrs_diesel_TB.Text = "0";
+                }
+            }
+        }
+
+        private void meterClosing_diesel_N1_TB_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (getReadingN1_diesel() < 0)
+            {
+                TextBox textbox = sender as TextBox;
+                textbox.Background = Brushes.Red;
+                validDieselData = false;
+                textbox.ToolTip = "Meter closing can not be less then Meter opening";
+
+            }
+        }
+
+        private void meterClosing_dieselN2_TB_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (getReadingN2_diesel() < 0)
+            {
+                TextBox textbox = sender as TextBox;
+                textbox.Background = Brushes.Red;
+                validDieselData = false;
+                textbox.ToolTip = "Meter closing can not be less then Meter opening";
+
+            }
+        }
+
+        private void testing_diesel_TB_LostFocus(object sender, RoutedEventArgs e)
+        {
+
+            TextBox textbox = sender as TextBox;
+            if (textbox.Text.Length > 0)
+            {
+                if (getTotalLiters_diesel() < double.Parse(textbox.Text))
+                {
+                    textbox.Background = Brushes.Red;
+                    validDieselData = false;
+                    textbox.ToolTip = "Testing must be less than total sales";
+
+                }
+                else
+                {
+                    textbox.Background = Brushes.White;
+                    validDieselData = true;
+                    textbox.ToolTip = "Enter Testing Liters";
+
+                }
+            }
+
+        }
+
+        private void rate_diesel_TB_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            upDateTotalPrice_diesel();
+        }
+
+        private void upDateTotalPrice_diesel()
+        {
+            if (total_sales_ltrs_diesel_TB.Text.Length > 0 && rate_diesel_TB.Text.Length > 0)
+            {
+                double totalLiters = double.Parse(total_sales_ltrs_diesel_TB.Text);
+                double rate = double.Parse(rate_diesel_TB.Text);
+                double totalPkr = totalLiters * rate;
+                total_sales_pkrs_diesel_TB.Text = totalPkr.ToString();
+            }
+            if (rate_diesel_TB.Text.Length < 1)
+            {
+                total_sales_pkrs_diesel_TB.Text = "";
+            }
+
+        }
+
+        private double getReadingN1_diesel()
+        {
+            if (meterClosing_diesel_N1_TB.Text.Length > 0)
+            {
+                double opening = double.Parse(meterOpening_diesel_N1_TB.Text);
+                double closing = double.Parse(meterClosing_diesel_N1_TB.Text);
+                double nuzzel1Reading = closing - opening;
+                return nuzzel1Reading;
+            }
+            return -1;
+
+        }
+
+        private double getReadingN2_diesel()
+        {
+
+            if (meterClosing_dieselN2_TB.Text.Length > 0)
+            {
+                double opening = double.Parse(meterOpening_dieselN2_TB.Text);
+                double closing = double.Parse(meterClosing_dieselN2_TB.Text);
+                double nuzzel2Reading = closing - opening;
+                return nuzzel2Reading;
+
+            }
+            return -1;
+
+        }
+
+        private double getTotalLiters_diesel()
+        {
+            double total = 0;
+            if (getReadingN1_diesel() > -1)
+            {
+                total = getReadingN1_diesel();
+            }
+            if (getReadingN2_diesel() > -1)
+            {
+                total += getReadingN2_diesel();
+            }
+            return total;
+
+        }
+
+        private double getTotalPKRs_diesel()
+        {
+            if (total_sales_pkrs_diesel_TB.Text.Length > 0)
+            {
+                return double.Parse(total_sales_pkrs_diesel_TB.Text);
+            }
+            return 0;
+        }
+
+        private double getTotalNetProfit_diesel()
+        {
+            if (today_profit_diesel_TB.Text.Length > 0)
+            {
+                return double.Parse(today_profit_diesel_TB.Text);
+            }
+            return 0;
+        }
+
+        private String getSelectedDate_diesel()
+        {
+
+            String dateTime = diesel_entry_datepicker.SelectedDate.Value.Date.ToShortDateString();
+            return dateTime;
+        }
+
+        private double getTesting_diesel()
+        {
+            if (testing_diesel_TB.Text.Length > 0)
+            {
+                return double.Parse(testing_diesel_TB.Text);
+            }
+            return -1;
+        }
 
         private void save_diesel_credit_entry_BTN_Click(object sender, RoutedEventArgs e)
         {
@@ -1072,11 +1157,6 @@ namespace HelloWorld
             resultStack_diesel.Children.Add(block);
         }
 
-        private void save_diesel_entry_BTN_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void creditedAmount_diesel_TB_KeyDown(object sender, KeyEventArgs e)
         {
             creditedAmount_diesel_TB.Background = Brushes.Transparent;
@@ -1095,10 +1175,11 @@ namespace HelloWorld
                     if (getTotalPKRs_diesel() > 0)
                         total = getTotalPKRs_diesel() - discount;
 
-                    if (total > 0)
+                    if (total >= 0)
                     {
                         total_sales_pkrs_diesel_TB.Text = total.ToString();
                         textbox.Background = Brushes.White;
+                        validDieselData = true;
                     }
                     else
                     {
@@ -1125,9 +1206,17 @@ namespace HelloWorld
             TextBox textbox = sender as TextBox;
             if (textbox.Text.Length > 0)
             {
-                if (getDiscountAmount_diesel() < getTotalPKRs_diesel())
+                if (getDiscountAmount_diesel() <= getTotalPKRs_diesel())
                 {
                     discount_amount_diesel_TB.Background = Brushes.White;
+                    if (meterClosing_dieselN2_TB.Background == Brushes.White && meterClosing_diesel_N1_TB.Background == Brushes.White)
+                    {
+                        validDieselData = true;
+                    }
+                    else
+                    {
+                        validDieselData = false;
+                    }
                 }
                 else
                 {
@@ -1135,6 +1224,62 @@ namespace HelloWorld
                     validDieselData = false;
                 }
             }
+        }
+
+        private void save_diesel_entry_BTN_Click(object sender, RoutedEventArgs e)
+        {
+
+
+            DateTime date = diesel_entry_datepicker.SelectedDate.Value;
+
+            if (validDieselData)
+            {
+                if (getTotalPKRs_diesel() > 0)
+                {
+                    Dictionary<string, double> dict = new Dictionary<string, double>();
+
+                    dict.Add("n1opening", double.Parse(meterOpening_diesel_N1_TB.Text));
+                    dict.Add("n1closing", double.Parse(meterClosing_diesel_N1_TB.Text));
+                    dict.Add("n2opening", double.Parse(meterOpening_dieselN2_TB.Text));
+                    dict.Add("n2closing", double.Parse(meterClosing_dieselN2_TB.Text));
+                    dict.Add("rate", double.Parse(rate_diesel_TB.Text));
+                    dict.Add("testing", double.Parse(meterClosing_diesel_N1_TB.Text));
+                    dict.Add("discount", double.Parse(discount_amount_diesel_TB.Text));
+                    dict.Add("totalLtrs", double.Parse(total_sales_ltrs_diesel_TB.Text));
+                    dict.Add("totalPkrs", double.Parse(total_sales_pkrs_diesel_TB.Text));
+
+                    if (Entry.InsertEntry(sender, e, "diesel", dict, diesel_entry_datepicker) == 1)
+                    {
+                        meterOpening_diesel_N1_TB.Text = meterClosing_diesel_N1_TB.Text;
+                        meterOpening_dieselN2_TB.Text = meterClosing_dieselN2_TB.Text;
+               
+                        meterClosing_dieselN2_TB.Text = "";
+                        meterClosing_diesel_N1_TB.Text = "";
+                        testing_diesel_TB.Text = "0";
+                        discount_amount_diesel_TB.Text = "0";
+                        total_sales_ltrs_diesel_TB.Text = "";
+                        total_sales_pkrs_diesel_TB.Text = "";
+                        rate_diesel_TB.Text = "";
+
+
+                        lastEntryDiesel.Text = date.ToString("dd/MM/yyyy");
+
+                        MessageBox.Show("Entry saved for " + date);
+                    }
+                    else
+                    {
+                        MessageBox.Show(" Entry for " + date + " is already available in database   \n if you want to edit an existing record on " + date + " goto gridview");
+                        return;
+                    }
+
+                }
+                else if (getTotalPKRs_diesel() == 0 && rate_diesel_TB.Text.Length > 0)
+                {
+                    MessageBox.Show("note that only testing was performed no sales ware made");
+                }
+
+            }
+
         }
 
 
