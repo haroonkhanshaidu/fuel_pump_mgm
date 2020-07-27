@@ -1177,9 +1177,11 @@ namespace HelloWorld
         {
 
             ArrayList petrollist = new ArrayList();
+            petrollist.Add(DD_petrolRF_TB);
             petrollist.Add(DD_petrolPKR_TB);
             petrollist.Add(DD_petrolLTR_TB);
 
+            DD_petrolRF_TB.TextChanged += (sender, e) => DemandDraft.BoxesBackgroundClear(sender, e, petrollist);
             DD_petrolPKR_TB.TextChanged += (sender, e) => DemandDraft.BoxesBackgroundClear(sender, e, petrollist);
             DD_petrolLTR_TB.TextChanged += (sender, e) => DemandDraft.BoxesBackgroundClear(sender, e, petrollist);
             savebtn_DD_petrol.Click += (sender, e) => DemandDraft.petrolEntry(sender, e, petrollist, fuel_datepicker);

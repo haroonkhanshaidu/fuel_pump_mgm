@@ -27,25 +27,26 @@ namespace HelloWorld
                     return;
                 }
             }
-
+            string PetrolRef = (textBoxes[0] as TextBox).Text;
             double petrolPriceCalculated = 0;
-            double petrolPKR = double.Parse((textBoxes[0] as TextBox).Text);
-            double petrolLTR = double.Parse((textBoxes[1] as TextBox).Text);
+            double petrolPKR = double.Parse((textBoxes[1] as TextBox).Text);
+            double petrolLTR = double.Parse((textBoxes[2] as TextBox).Text);
             petrolPriceCalculated = petrolPKR / petrolLTR;
             petrolPriceCalculated = Math.Round(petrolPriceCalculated, 2, MidpointRounding.AwayFromZero);
-            if (petrolPriceCalculated < 10)
+            if (petrolPriceCalculated < 40)
             {
-                (textBoxes[0] as TextBox).Background=Brushes.Red;
                 (textBoxes[1] as TextBox).Background=Brushes.Red;
+                (textBoxes[2] as TextBox).Background=Brushes.Red;
                 return;
             }
 
-            string query = "insert into ddPetrol (petrolPKR,petrolLTR,petrolPrice,date) values ('" + petrolPKR + "','" + petrolLTR + "','" + petrolPriceCalculated + "','" + date + "')";
+            string query = "insert into ddPetrol (petrolRef,petrolPKR,petrolLTR,petrolPrice,date) values ('" + PetrolRef + "','" + petrolPKR + "','" + petrolLTR + "','" + petrolPriceCalculated + "','" + date + "')";
             SqlDataAdapter adapter = new SqlDataAdapter();
             adapter.InsertCommand = new SqlCommand(query, GlobalFunctions.Connect());
             adapter.InsertCommand.ExecuteNonQuery();
             (textBoxes[0] as TextBox).Text = "";
             (textBoxes[1] as TextBox).Text = "";
+            (textBoxes[2] as TextBox).Text = "";
         }
 
 
