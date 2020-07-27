@@ -1184,15 +1184,17 @@ namespace HelloWorld
             DD_petrolRF_TB.TextChanged += (sender, e) => DemandDraft.BoxesBackgroundClear(sender, e, petrollist);
             DD_petrolPKR_TB.TextChanged += (sender, e) => DemandDraft.BoxesBackgroundClear(sender, e, petrollist);
             DD_petrolLTR_TB.TextChanged += (sender, e) => DemandDraft.BoxesBackgroundClear(sender, e, petrollist);
-            savebtn_DD_petrol.Click += (sender, e) => DemandDraft.petrolEntry(sender, e, petrollist, fuel_datepicker);
+            savebtn_DD_petrol.Click += (sender, e) => DemandDraft.FuelDemandDraftEntry(sender, e, petrollist, fuel_datepicker, "ddPetrol");
 
             ArrayList diesellist = new ArrayList();
+            diesellist.Add(DD_dieselRF_TB);
             diesellist.Add(DD_dieselPKR_TB);
             diesellist.Add(DD_dieselLTR_TB);
 
             DD_dieselPKR_TB.TextChanged += (sender, e) => DemandDraft.BoxesBackgroundClear(sender, e, diesellist);
             DD_dieselLTR_TB.TextChanged += (sender, e) => DemandDraft.BoxesBackgroundClear(sender, e, diesellist);
-            savebtn_DD_diesel.Click += (sender, e) => DemandDraft.dieselEntry(sender, e, diesellist, fuel_datepicker);
+            DD_dieselRF_TB.TextChanged += (sender, e) => DemandDraft.BoxesBackgroundClear(sender, e, diesellist);
+            savebtn_DD_diesel.Click += (sender, e) => DemandDraft.FuelDemandDraftEntry(sender, e, diesellist, fuel_datepicker, "ddDiesel");
 
         }
 
