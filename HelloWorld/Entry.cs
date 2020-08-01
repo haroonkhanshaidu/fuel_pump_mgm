@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Collections;
 using System.Windows.Controls;
 using System.Data.SqlClient;
+using System.Data.SQLite;
 
 namespace HelloWorld
 {
@@ -25,49 +26,59 @@ namespace HelloWorld
             {
                 return -1;
             }
-           
 
-            string query = "insert into "+table+" (opening1,closing1,opening2,closing2,rate,testing,discount,totalPKR,totalLTR,date) " +
+
+            SQLiteCommand sqlite_cmd;
+            sqlite_cmd = GlobalFunctions.Connect().CreateCommand();
+            sqlite_cmd.CommandText = "insert into " + table + " (opening1,closing1,opening2,closing2,rate,testing,discount,totalPKR,totalLTR,date) " +
                 "values ('" + dict["n1opening"] + "','" + dict["n1closing"] + "','" + dict["n2opening"] + "','" + dict["n2closing"] + "'," +
                 "'" + dict["rate"] + "','" + dict["testing"] + "','" + dict["discount"] + "','" + dict["totalPkrs"] + "','" + dict["totalLtrs"] + "','" + date + "')";
-            SqlDataAdapter adapter = new SqlDataAdapter();
-            adapter.InsertCommand = new SqlCommand(query, GlobalFunctions.Connect());
 
-            return adapter.InsertCommand.ExecuteNonQuery();
             
+
+           
+            return sqlite_cmd.ExecuteNonQuery();
+
         }
 
         static public string getLastEntry(string table,string column)
         {
             
-            SqlCommand cmd;
-            SqlDataReader reader;
-            string date="";
+            string date="28378687445";
 
-            string query = "SELECT TOP 1 "+ column +" FROM "+ table+" ORDER BY ID DESC";
-            cmd = new SqlCommand(query, GlobalFunctions.Connect());
-            reader = cmd.ExecuteReader();
+
+            SQLiteDataReader reader;
+            SQLiteCommand sqlite_cmd;
+            sqlite_cmd = GlobalFunctions.Connect().CreateCommand();
+            sqlite_cmd.CommandText = "SELECT " + column + " FROM " + table + " ORDER BY id DESC limit 1";
+
+            reader = sqlite_cmd.ExecuteReader();
             while (reader.Read())
             {
+
                 date = reader.GetValue(0).ToString();
             }
+
             return date;
         }
 
         static public Boolean dateFound(string date,string table)
         {
-            String searchQuery = "select date from " + table + " where date =" + date;
-            SqlCommand cmd;
-            SqlDataReader reader;
 
 
-            cmd = new SqlCommand(searchQuery, GlobalFunctions.Connect());
-            reader = cmd.ExecuteReader();
+            SQLiteDataReader reader;
+            SQLiteCommand sqlite_cmd;
+            sqlite_cmd = GlobalFunctions.Connect().CreateCommand();
+            sqlite_cmd.CommandText = "select date from " + table + " where date =" + date;
+
+            reader = sqlite_cmd.ExecuteReader();
             if (reader.HasRows)
             {
                 return true;
             }
             return false;
+
+            
         }
 
     }

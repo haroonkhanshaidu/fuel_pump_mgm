@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Data.SQLite;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -64,10 +65,13 @@ namespace HelloWorld
                 }
                 textboxesValues = textboxesValues + "'" + value + "',";
             }
-            query = "insert into expenses (salareis,electricity,maintenance,other,mianSahib,total,date) values (" + textboxesValues + ""+date+")";
-            SqlDataAdapter adapter = new SqlDataAdapter();
-            adapter.InsertCommand = new SqlCommand(query, GlobalFunctions.Connect());
-            adapter.InsertCommand.ExecuteNonQuery();
+
+
+            SQLiteCommand sqlite_cmd;
+            sqlite_cmd = GlobalFunctions.Connect().CreateCommand();
+            sqlite_cmd.CommandText = "insert into expenses (salareis,electricity,maintenance,other,mianSahib,total,date) values (" + textboxesValues + "" + date + ")";
+            sqlite_cmd.ExecuteNonQuery();
+
 
             TextBox withdrawBox = (list[list.Count - 2] as TextBox);
             if (withdrawBox.Text.Length > 0)
@@ -102,14 +106,16 @@ namespace HelloWorld
             double deposit = 0;
             double withdraw = 0;
 
-            SqlCommand cmd;
-            SqlDataReader reader;
-            string query = "Select (total) from ownerAmount";
-            cmd = new SqlCommand(query, GlobalFunctions.Connect());
-            reader = cmd.ExecuteReader();
+
+            SQLiteDataReader reader;
+            SQLiteCommand sqlite_cmd;
+            sqlite_cmd = GlobalFunctions.Connect().CreateCommand();
+            sqlite_cmd.CommandText = "Select (total) from ownerAmount";
+
+            reader = sqlite_cmd.ExecuteReader();
             while (reader.Read())
             {
-                total = double.Parse( reader.GetValue(0).ToString());
+                total = double.Parse(reader.GetValue(0).ToString());
             }
 
 
@@ -119,10 +125,11 @@ namespace HelloWorld
                 withdraw = double.Parse(textBox.Text);
 
             total = (total + deposit) - withdraw;
-            query = "insert into ownerAmount (depost,withdrawal,total,date) values ('" + deposit + "','" + withdraw + "','" + total + "','" + date + "')";
-            SqlDataAdapter adapter = new SqlDataAdapter();
-            adapter.InsertCommand = new SqlCommand(query, GlobalFunctions.Connect());
-            adapter.InsertCommand.ExecuteNonQuery();
+
+            sqlite_cmd = GlobalFunctions.Connect().CreateCommand();
+            sqlite_cmd.CommandText = "insert into ownerAmount (depost,withdrawal,total,date) values ('" + deposit + "','" + withdraw + "','" + total + "','" + date + "')";
+            sqlite_cmd.ExecuteNonQuery();
+
 
         }
 

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Data.SQLite;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -40,10 +41,12 @@ namespace HelloWorld
                 return;
             }
 
-            string query = "insert into "+table+" (Reference,TotalPKR,LTRUsable,TotalLTR,PerLTRPrice,date) values ('" + Reference + "','" + totalPKR + "','" + totalLTR + "','" + totalLTR + "','" + priceCalculated+ "','" + date + "')";
-            SqlDataAdapter adapter = new SqlDataAdapter();
-            adapter.InsertCommand = new SqlCommand(query, GlobalFunctions.Connect());
-            adapter.InsertCommand.ExecuteNonQuery();
+
+            SQLiteCommand sqlite_cmd;
+            sqlite_cmd = GlobalFunctions.Connect().CreateCommand();
+            sqlite_cmd.CommandText = "insert into " + table + " (Reference,TotalPKR,LTRUsable,TotalLTR,PerLTRPrice,date) values ('" + Reference + "','" + totalPKR + "','" + totalLTR + "','" + totalLTR + "','" + priceCalculated + "','" + date + "')";
+            sqlite_cmd.ExecuteNonQuery();
+
             (textBoxes[0] as TextBox).Text = "";
             (textBoxes[1] as TextBox).Text = "";
             (textBoxes[2] as TextBox).Text = "";

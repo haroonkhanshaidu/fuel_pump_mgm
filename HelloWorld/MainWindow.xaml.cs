@@ -5,6 +5,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Data.SQLite;
 
 namespace HelloWorld
 {
@@ -17,6 +18,79 @@ namespace HelloWorld
         Boolean validPetrolData = true;
 
         Boolean validDieselData = true;
+
+
+        static SQLiteConnection CreateConnection()
+        {
+
+            SQLiteConnection sqlite_conn;
+            // Create a new database connection:
+            sqlite_conn = new SQLiteConnection("Data Source= database.db; Version = 3;");
+           // Open the connection:
+         try
+            {
+                sqlite_conn.Open();
+                MessageBox.Show("Conn");
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return sqlite_conn;
+        }
+
+        static void CreateTable(SQLiteConnection conn)
+        {
+            MessageBox.Show("Create");
+
+            SQLiteCommand sqlite_cmd;
+            string Createsql = "CREATE TABLE SampleTable (Col1 VARCHAR(20), Col2 INT)";
+           string Createsql1 = "CREATE TABLE SampleTable1 (Col1 VARCHAR(20), Col2 INT)";
+           sqlite_cmd = conn.CreateCommand();
+            sqlite_cmd.CommandText = Createsql;
+            sqlite_cmd.ExecuteNonQuery();
+            sqlite_cmd.CommandText = Createsql1;
+            sqlite_cmd.ExecuteNonQuery();
+
+        }
+
+        static void InsertData(SQLiteConnection conn)
+        {
+            MessageBox.Show("Insert");
+            SQLiteCommand sqlite_cmd;
+            sqlite_cmd = conn.CreateCommand();
+            sqlite_cmd.CommandText = "INSERT INTO SampleTable (Col1, Col2) VALUES('Test Text ', 1); ";
+           sqlite_cmd.ExecuteNonQuery();
+            sqlite_cmd.CommandText = "INSERT INTO SampleTable (Col1, Col2) VALUES('Test1 Text1 ', 2); ";
+           sqlite_cmd.ExecuteNonQuery();
+            sqlite_cmd.CommandText = "INSERT INTO SampleTable (Col1, Col2) VALUES('Test2 Text2 ', 3); ";
+           sqlite_cmd.ExecuteNonQuery();
+            sqlite_cmd.CommandText = "INSERT INTO SampleTable1 (Col1, Col2) VALUES('Test3 Text3 ', 3); ";           
+           sqlite_cmd.ExecuteNonQuery();
+
+        }
+
+        static void ReadData(SQLiteConnection conn)
+        {
+
+            MessageBox.Show("Read");
+            SQLiteDataReader sqlite_datareader;
+            SQLiteCommand sqlite_cmd;
+            sqlite_cmd = conn.CreateCommand();
+            sqlite_cmd.CommandText = "SELECT * FROM creditorData";
+
+            sqlite_datareader = sqlite_cmd.ExecuteReader();
+            while (sqlite_datareader.Read())
+            {
+                string myreader = sqlite_datareader.GetString(0);
+                 myreader = myreader+ sqlite_datareader.GetString(1);
+                 myreader = myreader+sqlite_datareader.GetString(2);
+                MessageBox.Show(myreader);
+            }
+            conn.Close();
+        }
+
+
 
         public MainWindow()
         {
@@ -33,12 +107,13 @@ namespace HelloWorld
 
         }
 
+
         private void set_initial_values_petrol()
         {
             //petrol_Last_EntryDate_TB.Text = "Last Entry " + date;
             meterOpening_petrol_N1_TB.Text = Entry.getLastEntry("petrol","closing1");
             meterOpening_petrolN2_TB.Text = Entry.getLastEntry("petrol", "closing2");
-            
+
             lastEntryPetrol.Text = GlobalFunctions.epochToDateTime(long.Parse(Entry.getLastEntry("petrol", "date")));
 
             petrol_entry_datepicker.SelectedDate = DateTime.Today.AddDays(0);
@@ -619,7 +694,7 @@ namespace HelloWorld
                     dict.Add("totalLtrs", double.Parse(total_sales_ltrs_petrol_TB.Text));
                     dict.Add("totalPkrs", double.Parse(total_sales_pkrs_petrol_TB.Text));
 
-                    if(Entry.InsertEntry(sender, e,"petrol", dict,petrol_entry_datepicker) == 1)
+                    if (Entry.InsertEntry(sender, e, "petrol", dict, petrol_entry_datepicker) == 1)
                     {
                         meterOpening_petrol_N1_TB.Text = meterClosing_petrol_N1_TB.Text;
                         meterOpening_petrolN2_TB.Text = meterClosing_petrolN2_TB.Text;
@@ -631,17 +706,17 @@ namespace HelloWorld
                         total_sales_pkrs_petrol_TB.Text = "";
                         rate_petrol_TB.Text = "";
 
-                                                
+
                         lastEntryPetrol.Text = date.ToString("dd/MM/yyyy");
 
-                        MessageBox.Show("Entry saved for "+ date);
+                        MessageBox.Show("Entry saved for " + date);
                     }
                     else
                     {
                         MessageBox.Show(" Entry for " + date + " is already available in database   \n if you want to edit an existing record on " + date + " goto gridview");
                         return;
                     }
-                    
+
                 }
                 else if(getTotalPKRs_petrol() == 0 && rate_petrol_TB.Text.Length > 0 )
                 {
@@ -673,7 +748,7 @@ namespace HelloWorld
             //diesel_Last_EntryDate_TB.Text = "Last Entry " + date;
             meterOpening_diesel_N1_TB.Text = Entry.getLastEntry("diesel", "closing1");
             meterOpening_dieselN2_TB.Text = Entry.getLastEntry("diesel", "closing2");
-            lastEntryDiesel.Text = GlobalFunctions.epochToDateTime(long.Parse(Entry.getLastEntry("petrol", "date")));
+            //lastEntryDiesel.Text = GlobalFunctions.epochToDateTime(long.Parse(Entry.getLastEntry("petrol", "date")));
 
             diesel_entry_datepicker.SelectedDate = DateTime.Today.AddDays(0);
             diesel_entry_datepicker.SelectedDate = DateTime.Today.AddDays(0);
@@ -1252,7 +1327,7 @@ namespace HelloWorld
                     {
                         meterOpening_diesel_N1_TB.Text = meterClosing_diesel_N1_TB.Text;
                         meterOpening_dieselN2_TB.Text = meterClosing_dieselN2_TB.Text;
-               
+
                         meterClosing_dieselN2_TB.Text = "";
                         meterClosing_diesel_N1_TB.Text = "";
                         testing_diesel_TB.Text = "0";

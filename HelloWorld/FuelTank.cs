@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Data.SQLite;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,21 +17,24 @@ namespace HelloWorld
             double fuelInTank = 0;
             string fuelRef = "";
 
-            SqlCommand cmd;
-            SqlDataReader reader;
-            string query = "Select Reference, LTRUsable from "+ table +"";
-            cmd = new SqlCommand(query, GlobalFunctions.Connect());
-            reader = cmd.ExecuteReader();
+
+            SQLiteDataReader reader;
+            SQLiteCommand sqlite_cmd;
+            sqlite_cmd = GlobalFunctions.Connect().CreateCommand();
+            sqlite_cmd.CommandText = "Select Reference, LTRUsable from " + table + "";
+
+            reader = sqlite_cmd.ExecuteReader();
             while (reader.Read())
             {
                 double usableFuel = double.Parse(reader.GetValue(1).ToString());
-                if(usableFuel>0)
+                if (usableFuel > 0)
                 {
                     fuelRef = reader.GetValue(0).ToString();
                     fuelInTank = double.Parse(reader.GetValue(1).ToString());
                     break;
-                } 
+                }
             }
+
             if (fuelInTank < 0)
             {
                 MessageBox.Show("Not enough fuel in Tank");
@@ -55,11 +59,13 @@ namespace HelloWorld
         static public void fuelTankUpdate(string fuelRef,double fuelInTank,string table)
         {
 
-            SqlDataAdapter adapter = new SqlDataAdapter();
-            string query = "Update "+ table + " set LTRUsable = '" + fuelInTank + "' where Reference = '" + fuelRef + "'";
-            adapter = new SqlDataAdapter();
-            adapter.UpdateCommand = new SqlCommand(query, GlobalFunctions.Connect());
-            adapter.UpdateCommand.ExecuteNonQuery();
+            SQLiteCommand sqlite_cmd;
+            sqlite_cmd = GlobalFunctions.Connect().CreateCommand();
+            sqlite_cmd.CommandText = "Update " + table + " set LTRUsable = '" + fuelInTank + "' where Reference = '" + fuelRef + "'";
+            sqlite_cmd.ExecuteNonQuery();
+
+
+           
         }
 
     }
