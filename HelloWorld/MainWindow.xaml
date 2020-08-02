@@ -60,7 +60,7 @@
 
 
             <TabItem
-              Header="Entry Tab" Width="200" Height="40" FontSize="22" FontWeight="Bold" FontFamily="Yu Gothic UI Semibold"
+              Header="Entries" Width="200" Height="40" FontSize="22" FontWeight="Bold" FontFamily="Yu Gothic UI Semibold"
                          Margin="2" IsSelected="True">
 
      
@@ -431,7 +431,6 @@
 
                                             <Label Grid.Row="2" Content="Today's sales Ltrs"  Foreground="Black" FontSize="22" HorizontalAlignment="Right" VerticalAlignment="Bottom" />
                                             <Label Grid.Row="3" Content="Today's sales PKR"  Foreground="Black" FontSize="22" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
-                                            <Label Grid.Row="4" Content="Today's profit PKR"  Foreground="Black" FontSize="22" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
                                             <Rectangle Grid.Row="7" Grid.RowSpan="5" Grid.ColumnSpan="3" Fill="#FFD1C693" />
                                             <Label Grid.Row="7" Content="Credit Account:" Foreground="DarkRed" FontSize="22" HorizontalAlignment="Right" VerticalAlignment="Bottom" />
                                             <ScrollViewer Grid.Row="8" Grid.RowSpan="4" VerticalScrollBarVisibility="Auto" Name="creditAccountScrollViewer_diesel" >
@@ -469,9 +468,8 @@
 
                                             <TextBox Grid.Row="2" Grid.Column="1" Name="total_sales_ltrs_diesel_TB" Text="" Margin="5" IsEnabled="False" FontSize="25" FontFamily="Arial" TextChanged="total_sales_ltrs_diesel_TB_TextChanged" />
                                             <TextBox Grid.Row="3" Grid.Column="1" Name="total_sales_pkrs_diesel_TB" Text="" Margin="5" IsEnabled="False" FontSize="25" FontFamily="Arial" TextChanged="total_sales_pkrs_diesel_TB_TextChanged"/>
-                                            <TextBox Grid.Row="4" Grid.Column="1" Name="today_profit_diesel_TB" Text="" Margin="5" IsEnabled="False" FontSize="25" FontFamily="Arial" />
 
-                                            <Button Grid.Row="5" Grid.Column="1" Name="save_diesel_entry_BTN" HorizontalAlignment="Right" Foreground="White" Margin="5" Padding="20,0,20,0" Background="#FF235885" FontSize="25" Click="save_diesel_entry_BTN_Click">
+                                            <Button Grid.Row="4" Grid.Column="1" Name="save_diesel_entry_BTN" HorizontalAlignment="Right" Foreground="White" Margin="5" Padding="20,0,20,0" Background="#FF235885" FontSize="25" Click="save_diesel_entry_BTN_Click">
                                                 Save
                                             </Button>
                                             <Rectangle Grid.Row="7" Grid.RowSpan="5" Grid.ColumnSpan="3" Fill="#FFD1C693" />
@@ -507,7 +505,7 @@
             </TabItem>
 
 
-  <TabItem Header="Expense Tab" FontSize="22" FontFamily="Yu Gothic UI Semibold" FontWeight="Bold" Width="200" Height="40"
+  <TabItem Header="Expense and Fuel" FontSize="22" FontFamily="Yu Gothic UI Semibold" FontWeight="Bold" Width="200" Height="40"
                    
                          Margin="2" >
                 <Grid  Background="Gray">
@@ -684,7 +682,7 @@
 
 
 
-            <TabItem Header="Analytics Tab" Width="200" Height="40" FontFamily="Yu Gothic UI Semibold" FontSize="22" FontWeight="Bold"
+            <TabItem Header="Data Overview" Width="200" Height="40" FontFamily="Yu Gothic UI Semibold" FontSize="22" FontWeight="Bold"
                          Margin="2" >
 
                 <Grid >

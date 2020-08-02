@@ -10,11 +10,13 @@ namespace HelloWorld
 {
     class FuelTank
     {
-        static public void FuelDeduction(double fuelLtr,string table)
+        static public Boolean FuelDeduction(double fuelLtr,string table)
         {
             double fuelToDeduct = fuelLtr;
             double fuelInTank = 0;
             string fuelRef = "";
+
+
 
             SqlCommand cmd;
             SqlDataReader reader;
@@ -31,9 +33,9 @@ namespace HelloWorld
                     break;
                 } 
             }
-            if (fuelInTank < 0)
+            if (fuelInTank < fuelToDeduct)
             {
-                MessageBox.Show("Not enough fuel in Tank");
+                   return false;
             }
             if (fuelInTank >= fuelToDeduct)
             {
@@ -49,10 +51,12 @@ namespace HelloWorld
                 FuelDeduction(difference,table);
             }
 
+            return true;
+
 
         }
 
-        static public void fuelTankUpdate(string fuelRef,double fuelInTank,string table)
+        static private void fuelTankUpdate(string fuelRef,double fuelInTank,string table)
         {
 
             SqlDataAdapter adapter = new SqlDataAdapter();
@@ -61,6 +65,9 @@ namespace HelloWorld
             adapter.UpdateCommand = new SqlCommand(query, GlobalFunctions.Connect());
             adapter.UpdateCommand.ExecuteNonQuery();
         }
+
+
+       
 
     }
 }

@@ -619,29 +619,43 @@ namespace HelloWorld
                     dict.Add("totalLtrs", double.Parse(total_sales_ltrs_petrol_TB.Text));
                     dict.Add("totalPkrs", double.Parse(total_sales_pkrs_petrol_TB.Text));
 
-                    if(Entry.InsertEntry(sender, e,"petrol", dict,petrol_entry_datepicker) == 1)
+                    if (!Entry.dateFound(petrol_entry_datepicker, "petrol"))
                     {
-                        meterOpening_petrol_N1_TB.Text = meterClosing_petrol_N1_TB.Text;
-                        meterOpening_petrolN2_TB.Text = meterClosing_petrolN2_TB.Text;
-                        meterClosing_petrol_N1_TB.Text = "";
-                        meterClosing_petrolN2_TB.Text = "";
-                        testing_petrol_TB.Text = "0";
-                        discount_amount_petrol_TB.Text = "0";
-                        total_sales_ltrs_petrol_TB.Text = "";
-                        total_sales_pkrs_petrol_TB.Text = "";
-                        rate_petrol_TB.Text = "";
+                        if (FuelTank.FuelDeduction(dict["totalLtrs"], "ddPetrol"))
+                        {
+                            if (Entry.InsertEntry(sender, e, "petrol", dict, petrol_entry_datepicker) == 1)
+                            {
+                                meterOpening_petrol_N1_TB.Text = meterClosing_petrol_N1_TB.Text;
+                                meterOpening_petrolN2_TB.Text = meterClosing_petrolN2_TB.Text;
+                                meterClosing_petrol_N1_TB.Text = "";
+                                meterClosing_petrolN2_TB.Text = "";
+                                testing_petrol_TB.Text = "0";
+                                discount_amount_petrol_TB.Text = "0";
+                                total_sales_ltrs_petrol_TB.Text = "";
+                                total_sales_pkrs_petrol_TB.Text = "";
+                                rate_petrol_TB.Text = "";
 
-                                                
-                        lastEntryPetrol.Text = date.ToString("dd/MM/yyyy");
 
-                        MessageBox.Show("Entry saved for "+ date);
+                                lastEntryPetrol.Text = date.ToString("dd/MM/yyyy");
+
+                                MessageBox.Show("Entry saved for " + date);
+                            }
+                            else
+                            {
+                                MessageBox.Show("Error  try again" );
+                            }
+                            
+                        }else
+                        {
+                            MessageBox.Show("Not enough fuel in Tank \nmust be invalid entry value");
+                        }
                     }
                     else
                     {
                         MessageBox.Show(" Entry for " + date + " is already available in database   \n if you want to edit an existing record on " + date + " goto gridview");
                         return;
                     }
-                    
+
                 }
                 else if(getTotalPKRs_petrol() == 0 && rate_petrol_TB.Text.Length > 0 )
                 {
@@ -1004,14 +1018,6 @@ namespace HelloWorld
             return 0;
         }
 
-        private double getTotalNetProfit_diesel()
-        {
-            if (today_profit_diesel_TB.Text.Length > 0)
-            {
-                return double.Parse(today_profit_diesel_TB.Text);
-            }
-            return 0;
-        }
 
         private String getSelectedDate_diesel()
         {
@@ -1248,23 +1254,38 @@ namespace HelloWorld
                     dict.Add("totalLtrs", double.Parse(total_sales_ltrs_diesel_TB.Text));
                     dict.Add("totalPkrs", double.Parse(total_sales_pkrs_diesel_TB.Text));
 
-                    if (Entry.InsertEntry(sender, e, "diesel", dict, diesel_entry_datepicker) == 1)
+                    if (!Entry.dateFound(diesel_entry_datepicker, "diesel"))
                     {
-                        meterOpening_diesel_N1_TB.Text = meterClosing_diesel_N1_TB.Text;
-                        meterOpening_dieselN2_TB.Text = meterClosing_dieselN2_TB.Text;
-               
-                        meterClosing_dieselN2_TB.Text = "";
-                        meterClosing_diesel_N1_TB.Text = "";
-                        testing_diesel_TB.Text = "0";
-                        discount_amount_diesel_TB.Text = "0";
-                        total_sales_ltrs_diesel_TB.Text = "";
-                        total_sales_pkrs_diesel_TB.Text = "";
-                        rate_diesel_TB.Text = "";
+                        if (FuelTank.FuelDeduction(dict["totalLtrs"], "ddDiesel"))
+                        {
+                            if (Entry.InsertEntry(sender, e, "diesel", dict, diesel_entry_datepicker) == 1)
+                            {
+                              meterOpening_diesel_N1_TB.Text = meterClosing_diesel_N1_TB.Text;
+                              meterOpening_dieselN2_TB.Text = meterClosing_dieselN2_TB.Text;
+                             
+                              meterClosing_dieselN2_TB.Text = "";
+                              meterClosing_diesel_N1_TB.Text = "";
+                              testing_diesel_TB.Text = "0";
+                              discount_amount_diesel_TB.Text = "0";
+                              total_sales_ltrs_diesel_TB.Text = "";
+                              total_sales_pkrs_diesel_TB.Text = "";
+                              rate_diesel_TB.Text = "";
 
 
-                        lastEntryDiesel.Text = date.ToString("dd/MM/yyyy");
+                              lastEntryDiesel.Text = date.ToString("dd/MM/yyyy");
 
-                        MessageBox.Show("Entry saved for " + date);
+                                MessageBox.Show("Entry saved for " + date);
+                            }
+                            else
+                            {
+                                MessageBox.Show("Error  try again");
+                            }
+
+                        }
+                        else
+                        {
+                            MessageBox.Show("Not enough fuel in Tank \nmust be invalid entry value");
+                        }
                     }
                     else
                     {

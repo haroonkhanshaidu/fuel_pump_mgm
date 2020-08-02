@@ -21,12 +21,7 @@ namespace HelloWorld
         {
             DateTime dateTime = datePicker.SelectedDate.Value;
             string date = GlobalFunctions.epochTimeParam(dateTime);
-            if (dateFound(date,table))
-            {
-                return -1;
-            }
            
-
             string query = "insert into "+table+" (opening1,closing1,opening2,closing2,rate,testing,discount,totalPKR,totalLTR,date) " +
                 "values ('" + dict["n1opening"] + "','" + dict["n1closing"] + "','" + dict["n2opening"] + "','" + dict["n2closing"] + "'," +
                 "'" + dict["rate"] + "','" + dict["testing"] + "','" + dict["discount"] + "','" + dict["totalPkrs"] + "','" + dict["totalLtrs"] + "','" + date + "')";
@@ -54,8 +49,13 @@ namespace HelloWorld
             return date;
         }
 
-        static public Boolean dateFound(string date,string table)
+        static public Boolean dateFound(DatePicker datePicker, string table)
         {
+
+            DateTime dateTime = datePicker.SelectedDate.Value;
+            string date = GlobalFunctions.epochTimeParam(dateTime);
+            
+
             String searchQuery = "select date from " + table + " where date =" + date;
             SqlCommand cmd;
             SqlDataReader reader;
