@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Data.SQLite;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,21 +12,22 @@ namespace HelloWorld
     class GlobalFunctions
     {
 
-        static public SqlConnection Connect()
+        static public SQLiteConnection Connect()
         {
+            SQLiteConnection sqlite_conn;
+            // Create a new database connection:
+            sqlite_conn = new SQLiteConnection("Data Source= database.db; Version = 3;");
+            // Open the connection:
             try
             {
-                SqlConnection thisConnection = new SqlConnection(@"Data Source=DESKTOP-792H4GJ\SQLEXPRESS;Initial Catalog=FuelPumpDB;Integrated Security=True");
-
-
-                thisConnection.Open();
-                return thisConnection;
+                sqlite_conn.Open();
             }
-            catch
+            catch (Exception ex)
             {
-                MessageBox.Show("Database Connection Error");
-                return null;
+
+                MessageBox.Show("There was an error connecting to Database");
             }
+            return sqlite_conn;
 
         }
 

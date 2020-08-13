@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Data.SQLite;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks; 
@@ -20,27 +21,31 @@ namespace HelloWorld
             string date = GlobalFunctions.epochTimeParam(dateTime);
             SqlDataAdapter adapter;
             string query;
-            query = "insert into "+table+" (creditorName,amount,date) values ('"+name+"','"+amount+"','"+date+"')";
-            adapter = new SqlDataAdapter();
-            adapter.InsertCommand = new SqlCommand(query, GlobalFunctions.Connect());
-            adapter.InsertCommand.ExecuteNonQuery();
+
+            SQLiteCommand sqlite_cmd;
+            sqlite_cmd = GlobalFunctions.Connect().CreateCommand();
+            sqlite_cmd.CommandText = "insert into " + table + " (creditorName,amount,date) values ('" + name + "','" + amount + "','" + date + "')";
+            sqlite_cmd.ExecuteNonQuery();
         }
 
      
         static public Dictionary<string,string> creditorGetData(string table)
         {
             Dictionary<string, string> d = new Dictionary<string, string>();
-            SqlCommand cmd;
-            SqlDataReader reader;
            
-         
-            string query = "Select * from " + table ;
-            cmd = new SqlCommand(query, GlobalFunctions.Connect());
-            reader = cmd.ExecuteReader();
+            SQLiteDataReader reader;
+            SQLiteCommand sqlite_cmd;
+            sqlite_cmd = GlobalFunctions.Connect().CreateCommand();
+            sqlite_cmd.CommandText = "SELECT * FROM "+table;
+
+            reader = sqlite_cmd.ExecuteReader();
             while (reader.Read())
             {
+
                 d.Add(reader.GetValue(1).ToString(), reader.GetValue(2).ToString());
             }
+
+            
             return d;
 
         }
@@ -52,11 +57,13 @@ namespace HelloWorld
 
             DateTime dateTime = datepicker.SelectedDate.Value;
             string date = GlobalFunctions.epochTimeParam(dateTime);
-            SqlDataAdapter adapter = new SqlDataAdapter();
-            string query = "Update "+table+" set amount = '"+amount+"', date = '"+date+"' where creditorName = '"+name+"'";
-            adapter = new SqlDataAdapter();
-            adapter.UpdateCommand = new SqlCommand(query, GlobalFunctions.Connect());
-            adapter.UpdateCommand.ExecuteNonQuery();
+
+
+            SQLiteCommand sqlite_cmd;
+            sqlite_cmd = GlobalFunctions.Connect().CreateCommand();
+            sqlite_cmd.CommandText= "Update " + table + " set amount = '" + amount + "', date = '" + date + "' where creditorName = '" + name + "'";
+            sqlite_cmd.ExecuteNonQuery();
+
         }
 
 
@@ -67,50 +74,6 @@ namespace HelloWorld
 
         }
 
-        public void database()
-        {
-
-
-            try
-            {
-                ////SqlConnection thisConnection = new SqlConnection(@"Server=(local);Database=Test;Trusted_Connection=Yes;");
-                SqlConnection thisConnection = new SqlConnection(@"Data Source=(local);Initial Catalog=Test;Integrated Security=SSPI");
-                thisConnection.Open();
-
-                SqlDataAdapter adapter;
-                string query;
-                query = "insert into [Test].[dbo].[test] (Name,id) values ('Nam','id')";
-                adapter = new SqlDataAdapter();
-                adapter.InsertCommand = new SqlCommand(query, thisConnection);
-                //adapter.InsertCommand.ExecuteNonQuery();
-
-                query = "Update [Test].[dbo].[test] set Name = 'Waqar A' where id = '1'";
-                adapter = new SqlDataAdapter();
-                adapter.UpdateCommand = new SqlCommand(query, thisConnection);
-                adapter.UpdateCommand.ExecuteNonQuery();
-
-                query = "Delete [Test].[dbo].[test] where id = '1'";
-                adapter = new SqlDataAdapter();
-                adapter.UpdateCommand = new SqlCommand(query, thisConnection);
-                adapter.UpdateCommand.ExecuteNonQuery();
-
-
-                SqlCommand cmd;
-                SqlDataReader reader;
-                query = "Select * from dbo.test";
-                cmd = new SqlCommand(query, thisConnection);
-                reader = cmd.ExecuteReader();
-                while (reader.Read())
-                {
-                    MessageBox.Show(reader.GetValue(0).ToString() + " " + reader.GetValue(1).ToString());
-                }
-
-            }
-            catch
-            {
-                MessageBox.Show("db error");
-            }
-        }
-
+       
     }
 }
