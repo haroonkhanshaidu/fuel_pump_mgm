@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -22,23 +25,27 @@ namespace HelloWorld
         {
             InitializeComponent();
             //new SplashWindow().ShowDialog();
+            //new Dashboard1().ShowDialog();
+
             set_initial_values_diesel();
             set_initial_values_petrol();
             expensesEvents();
             demandDraftEvents();
-            
+
             testing_diesel_TB.Text = "0";
 
             //Entry obj = new Entry(getTotalLiters_diesel());
+
+            dataGrid.ItemsSource = Employee.GetEmployees();
 
         }
 
         private void set_initial_values_petrol()
         {
             //petrol_Last_EntryDate_TB.Text = "Last Entry " + date;
-            meterOpening_petrol_N1_TB.Text = Entry.getLastEntry("petrol","closing1");
+            meterOpening_petrol_N1_TB.Text = Entry.getLastEntry("petrol", "closing1");
             meterOpening_petrolN2_TB.Text = Entry.getLastEntry("petrol", "closing2");
-            
+
             lastEntryPetrol.Text = GlobalFunctions.epochToDateTime(long.Parse(Entry.getLastEntry("petrol", "date")));
 
             petrol_entry_datepicker.SelectedDate = DateTime.Today.AddDays(0);
@@ -215,7 +222,7 @@ namespace HelloWorld
             TextBox textbox = sender as TextBox;
             textbox.Background = Brushes.White;
 
-            if (textbox.Text.Length > 0 )
+            if (textbox.Text.Length > 0)
             {
                 if (getTotalLiters_petrol() > -1)
                 {
@@ -244,16 +251,16 @@ namespace HelloWorld
 
         private void total_sales_ltrs_petrol_TB_TextChanged(object sender, TextChangedEventArgs e)
         {
-            
+
             if (getTotalLiters_petrol() > 0 && rate_petrol_TB.Text.Length > 0)
             {
-               
+
                 double total = getTotalLiters_petrol();
-                if(testing_petrol_TB.Text.Length > 0)
-                total = total - double.Parse(testing_petrol_TB.Text);
+                if (testing_petrol_TB.Text.Length > 0)
+                    total = total - double.Parse(testing_petrol_TB.Text);
                 double rate = double.Parse(rate_petrol_TB.Text);
-             
-                if(total > 0)
+
+                if (total > 0)
                 {
                     total_sales_pkrs_petrol_TB.Text = (total * rate).ToString();
 
@@ -264,7 +271,7 @@ namespace HelloWorld
                 }
 
             }
-       
+
         }
 
         private void meterClosing_petrol_N1_TB_LostFocus(object sender, RoutedEventArgs e)
@@ -317,7 +324,7 @@ namespace HelloWorld
 
         private void rate_petrol_TB_TextChanged(object sender, TextChangedEventArgs e)
         {
-              upDateTotalPrice_petrol();
+            upDateTotalPrice_petrol();
         }
 
         private void upDateTotalPrice_petrol()
@@ -328,7 +335,7 @@ namespace HelloWorld
                 double rate = double.Parse(rate_petrol_TB.Text);
                 double totalPkr = totalLiters * rate;
                 total_sales_pkrs_petrol_TB.Text = totalPkr.ToString();
-            }if(rate_petrol_TB.Text.Length < 1)
+            } if (rate_petrol_TB.Text.Length < 1)
             {
                 total_sales_pkrs_petrol_TB.Text = "";
             }
@@ -447,7 +454,7 @@ namespace HelloWorld
             TextBox textbox = sender as TextBox;
             if (textbox.Text.Length > 0)
             {
-                
+
                 if (getDiscountAmount_petrol() <= getTotalPKRs_petrol())
                 {
                     discount_amount_petrol_TB.Background = Brushes.White;
@@ -464,7 +471,7 @@ namespace HelloWorld
                 {
                     discount_amount_petrol_TB.Background = Brushes.Red;
                     validPetrolData = false;
-                    
+
                 }
             }
         }
@@ -605,16 +612,16 @@ namespace HelloWorld
 
             if (validPetrolData)
             {
-                if(getTotalPKRs_petrol() > 0)
+                if (getTotalPKRs_petrol() > 0)
                 {
                     Dictionary<string, double> dict = new Dictionary<string, double>();
 
-                    dict.Add("n1opening",double.Parse(meterOpening_petrol_N1_TB.Text));
-                    dict.Add("n1closing",double.Parse(meterClosing_petrol_N1_TB.Text));
-                    dict.Add("n2opening",double.Parse(meterOpening_petrolN2_TB.Text));
-                    dict.Add("n2closing",double.Parse(meterClosing_petrolN2_TB.Text));
-                    dict.Add("rate",double.Parse(rate_petrol_TB.Text));
-                    dict.Add("testing" ,double.Parse(testing_petrol_TB.Text));
+                    dict.Add("n1opening", double.Parse(meterOpening_petrol_N1_TB.Text));
+                    dict.Add("n1closing", double.Parse(meterClosing_petrol_N1_TB.Text));
+                    dict.Add("n2opening", double.Parse(meterOpening_petrolN2_TB.Text));
+                    dict.Add("n2closing", double.Parse(meterClosing_petrolN2_TB.Text));
+                    dict.Add("rate", double.Parse(rate_petrol_TB.Text));
+                    dict.Add("testing", double.Parse(testing_petrol_TB.Text));
                     dict.Add("discount", double.Parse(discount_amount_petrol_TB.Text));
                     dict.Add("totalLtrs", double.Parse(total_sales_ltrs_petrol_TB.Text));
                     dict.Add("totalPkrs", double.Parse(total_sales_pkrs_petrol_TB.Text));
@@ -642,10 +649,10 @@ namespace HelloWorld
                             }
                             else
                             {
-                                MessageBox.Show("Error  try again" );
+                                MessageBox.Show("Error  try again");
                             }
-                            
-                        }else
+
+                        } else
                         {
                             MessageBox.Show("Not enough fuel in Tank \nmust be invalid entry value");
                         }
@@ -657,11 +664,11 @@ namespace HelloWorld
                     }
 
                 }
-                else if(getTotalPKRs_petrol() == 0 && rate_petrol_TB.Text.Length > 0 )
+                else if (getTotalPKRs_petrol() == 0 && rate_petrol_TB.Text.Length > 0)
                 {
                     MessageBox.Show("note that only testing was performed no sales ware made");
                 }
-                
+
             }
 
         }
@@ -882,7 +889,7 @@ namespace HelloWorld
             {
                 double total = getTotalLiters_diesel();
                 if (testing_diesel_TB.Text.Length > 0)
-                total = total - double.Parse(testing_diesel_TB.Text);
+                    total = total - double.Parse(testing_diesel_TB.Text);
                 double rate = double.Parse(rate_diesel_TB.Text);
 
                 if (total > 0)
@@ -1260,19 +1267,19 @@ namespace HelloWorld
                         {
                             if (Entry.InsertEntry(sender, e, "diesel", dict, diesel_entry_datepicker) == 1)
                             {
-                              meterOpening_diesel_N1_TB.Text = meterClosing_diesel_N1_TB.Text;
-                              meterOpening_dieselN2_TB.Text = meterClosing_dieselN2_TB.Text;
-                             
-                              meterClosing_dieselN2_TB.Text = "";
-                              meterClosing_diesel_N1_TB.Text = "";
-                              testing_diesel_TB.Text = "0";
-                              discount_amount_diesel_TB.Text = "0";
-                              total_sales_ltrs_diesel_TB.Text = "";
-                              total_sales_pkrs_diesel_TB.Text = "";
-                              rate_diesel_TB.Text = "";
+                                meterOpening_diesel_N1_TB.Text = meterClosing_diesel_N1_TB.Text;
+                                meterOpening_dieselN2_TB.Text = meterClosing_dieselN2_TB.Text;
+
+                                meterClosing_dieselN2_TB.Text = "";
+                                meterClosing_diesel_N1_TB.Text = "";
+                                testing_diesel_TB.Text = "0";
+                                discount_amount_diesel_TB.Text = "0";
+                                total_sales_ltrs_diesel_TB.Text = "";
+                                total_sales_pkrs_diesel_TB.Text = "";
+                                rate_diesel_TB.Text = "";
 
 
-                              lastEntryDiesel.Text = date.ToString("dd/MM/yyyy");
+                                lastEntryDiesel.Text = date.ToString("dd/MM/yyyy");
 
                                 MessageBox.Show("Entry saved for " + date);
                             }
@@ -1334,7 +1341,7 @@ namespace HelloWorld
             maintenance_expense_TB.TextChanged += (sender, e) => Expenses.calculate(sender, e, expenseboxes);
             others_expense_TB.TextChanged += (sender, e) => Expenses.calculate(sender, e, expenseboxes);
             miansahid_expense_TB.TextChanged += (sender, e) => Expenses.calculate(sender, e, expenseboxes);
-            save_button_expenses.Click += (sender, e) => Expenses.saveExpenseData(sender, e, expenseboxes,expense_datepicker);
+            save_button_expenses.Click += (sender, e) => Expenses.saveExpenseData(sender, e, expenseboxes, expense_datepicker);
             save_button_deposit.Click += (sender, e) => Expenses.ownerDeposit(sender, e, owner_deposit_TB, expense_datepicker);
             owner_deposit_TB.TextChanged += Expenses.depositBoxClear;
         }
@@ -1365,4 +1372,132 @@ namespace HelloWorld
         }
 
     }
+
+   
+
+    public enum Party
+    {
+        Indepentent,
+        Federalist,
+        DemocratRepublican,
+    }
+
+    public class Employee : INotifyPropertyChanged
+    {
+        private string name;
+
+        public string Name
+        {
+            get { return name; }
+            set
+            {
+                name = value;
+                RaiseProperChanged();
+            }
+        }
+
+        private string title;
+
+        public string Title
+        {
+            get { return title; }
+            set
+            {
+                title = value;
+                RaiseProperChanged();
+            }
+        }
+
+        private bool wasReElected;
+
+        public bool WasReElected
+        {
+            get { return wasReElected; }
+            set
+            {
+                wasReElected = value;
+                RaiseProperChanged();
+            }
+        }
+
+        private Party affiliation;
+
+        public Party Affiliation
+        {
+            get { return affiliation; }
+            set
+            {
+                affiliation = value;
+                RaiseProperChanged();
+            }
+        }
+
+        public static ObservableCollection<Employee> GetEmployees()
+        {
+            var employees = new ObservableCollection<Employee>();
+
+            employees.Add(new Employee()
+            {
+                Name = "Ali",
+                Title = "Minister",
+                WasReElected = true,
+                Affiliation = Party.Indepentent
+            });
+
+            employees.Add(new Employee()
+            {
+                Name = "Ahmed",
+                Title = "CM",
+                WasReElected = false,
+                Affiliation = Party.Federalist
+            });
+
+            employees.Add(new Employee()
+            {
+                Name = "Amjad",
+                Title = "PM",
+                WasReElected = true,
+                Affiliation = Party.DemocratRepublican
+            });
+
+            employees.Add(new Employee()
+            {
+                Name = "Waqas",
+                Title = "Minister",
+                WasReElected = false,
+                Affiliation = Party.Indepentent
+            });
+
+            employees.Add(new Employee()
+            {
+                Name = "Bilal",
+                Title = "Minister",
+                WasReElected = true,
+                Affiliation = Party.Federalist
+            });
+
+            employees.Add(new Employee()
+            {
+                Name = "Waqar",
+                Title = "Minister",
+                WasReElected = false,
+                Affiliation = Party.DemocratRepublican
+            });
+
+            return employees;
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void RaiseProperChanged([CallerMemberName] string caller = "")
+        {
+
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(caller));
+            }
+        }
+    } 
+
+
 }

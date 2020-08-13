@@ -4,32 +4,138 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:System="clr-namespace:System;assembly=mscorlib"
+        
         xmlns:local="clr-namespace:HelloWorld"
         WindowState="Maximized"
         mc:Ignorable="d"
+         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
+        xmlns:MetroChart="clr-namespace:De.TorstenMandelkow.MetroChart;assembly=De.TorstenMandelkow.MetroChart"
+ 
         xmlns:vm="clr-namespace:HelloWorld"
         WindowStyle="SingleBorderWindow"
         Title="Fuel Pump Management" d:DesignWidth="1534.4" d:DesignHeight="840.8">
 
+    
+    <Window.Resources>
 
 
-    <!--<Window.Resources>
-        <vm:MainWindow x:Key="viewModel"
-    InfoMessageTitle="Please Wait While
-      Loading Application..."
-    StatusMessage="Sample of Business 
-      Application Screens" />
-    </Window.Resources>-->
+        <ObjectDataProvider x:Key = "myEnum" MethodName = "GetValues" 
+         ObjectType = "{x:Type System:Enum}">
 
+              </ObjectDataProvider>
+
+        <!--<ResourceDictionary
+                       
+            <Style TargetType="{x:Type Button}">
+                <Setter Property="Background" Value="#373737" />
+                <Setter Property="Foreground" Value="White" />
+                <Setter Property="FontSize" Value="15" />
+                <Setter Property="SnapsToDevicePixels" Value="True" />
+
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Border CornerRadius="4" Background="{TemplateBinding Background}">
+                                <Grid>
+
+                                    <Path x:Name="PathIcon" Width="15" Height="25" Stretch="Fill" Fill="#4C87B3" HorizontalAlignment="Left" Margin="17,0,0,0" Data="F1 M 0.468732,4.66838L 3.03345,7.95443L 7.28127,0.420569" />
+                                    <ContentPresenter x:Name="MyContentPresenter" Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" />
+                                </Grid>
+
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="White" />
+                                    <Setter Property="Foreground" Value="White" />
+                                    <Setter TargetName="PathIcon" Property="Fill" Value="white" />
+                                </Trigger>
+
+                                <Trigger Property="IsPressed" Value="True">
+                                    <Setter Property="Background" Value="White" />
+                                    <Setter Property="Foreground" Value="White" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <Style TargetType="DataGrid">
+                --><!-- Make the border and grid lines a little less imposing --><!--
+                <Setter Property="BorderBrush" Value="#DDDDDD" />
+                <Setter Property="HorizontalGridLinesBrush" Value="#DDDDDD" />
+                <Setter Property="VerticalGridLinesBrush" Value="#DDDDDD" />
+
+                <Setter Property="RowStyle">
+                    <Setter.Value>
+                        <Style TargetType="DataGridRow">
+                            <Style.Triggers>
+                                --><!-- Highlight a grid row as the mouse passes over --><!--
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="LightCyan" />
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="CellStyle">
+                    <Setter.Value>
+                        <Style TargetType="DataGridCell">
+                            <Style.Triggers>
+                                --><!-- Highlight selected rows --><!--
+                                <Trigger Property="IsSelected" Value="True">
+                                    <Setter Property="Background" Value="#ff66ccff" />
+                                    <Setter Property="BorderBrush" Value="Transparent" />
+                                    <Setter Property="Foreground" Value="Black" />
+                                </Trigger>
+                                <Trigger Property="IsFocused" Value="True">
+                                    <Setter Property="Background" Value="#ff66ccff" />
+                                    <Setter Property="BorderBrush" Value="Black" />
+                                    <Setter Property="BorderThickness" Value="1"/>
+                                    <Setter Property="Foreground" Value="Black" />
+                                </Trigger>
+                            </Style.Triggers>
+                            --><!-- Add some padding around the contents of a cell --><!--
+                            <Setter Property="Padding" Value="4,3,4,3" />
+                            <Setter Property="BorderBrush" Value="Transparent"/>
+                            <Setter Property="BorderThickness" Value="1"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="DataGridCell">
+                                        <Border Padding="{TemplateBinding Padding}" 
+                                            BorderBrush="{TemplateBinding BorderBrush}"
+                                            BorderThickness="{TemplateBinding BorderThickness}"
+                                            Background="{TemplateBinding Background}">
+                                            <ContentPresenter />
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter Property="FocusVisualStyle">
+                                <Setter.Value>
+                                    <Style TargetType="Control">
+                                        <Setter Property="BorderBrush" Value="Transparent" />
+                                    </Style>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </ResourceDictionary>-->
+        
+    </Window.Resources>
+
+    
 
 
     <Grid>
 
-       
         <Grid.ColumnDefinitions>
-
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
+    
         <TabControl Margin="10,10,9.667,9.667" BorderThickness="0" Background="White" Grid.ColumnSpan="4">
             <TabControl.Resources>
                 <Style TargetType="TabItem">
@@ -77,6 +183,7 @@
                                         <Setter.Value>
                                             <ControlTemplate TargetType="TabItem">
                                                 <Grid Name="Panel">
+                                                    
                                                     <ContentPresenter x:Name="ContentSite"
                                         VerticalAlignment="Center"
                                         HorizontalAlignment="Center"
@@ -99,7 +206,7 @@
                             </TabControl.Resources>
 
 
-                            <TabItem Header="Petrol Entry" Foreground="White" FontSize="40"   HorizontalAlignment="Left"  FontWeight="Bold" FontFamily="Sitka Display"
+                     <TabItem Header="Petrol Entry" Foreground="White" FontSize="40"   HorizontalAlignment="Left"  FontWeight="Bold" FontFamily="Sitka Display"
                            >
                                 <Grid  Background="Gray" >
                                    
@@ -114,17 +221,25 @@
                                         <RowDefinition Height="4*"/>
                                         <RowDefinition Height="4*"/>
                                     </Grid.RowDefinitions>
-                               
-                                        <Grid Grid.Column="0"  Grid.Row="1" Grid.ColumnSpan="2"  Margin="20,0,20,0" VerticalAlignment="Bottom" Background="#FFBC6737">
+
+                                <Rectangle Grid.Column="0"  Grid.Row="1" Grid.ColumnSpan="2"  Margin="20,10,20,-10" Fill="#FFBC6737" RadiusY="10" RadiusX="10" >
+
+                                    <Rectangle.Effect>
+                                        <DropShadowEffect BlurRadius="20" Color="Black" RenderingBias="Quality" ShadowDepth="10"/>
+                                    </Rectangle.Effect>
+
+                                </Rectangle>
+
+                                <Grid Grid.Column="0"  Grid.Row="1" Grid.ColumnSpan="2"  Margin="20,0,20,0" VerticalAlignment="Bottom" Background="#FFBC6737">
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="1*"/>
                                                 <ColumnDefinition Width="1*"/>
                                                                                               
                                             </Grid.ColumnDefinitions>
-                                       
-                                        <TextBlock Grid.Column="0"  Text="Petrol Dispencer" VerticalAlignment="Center" Background="#FFBC6737" HorizontalAlignment="Left"  Margin="5" FontSize="20" Foreground="White"/>
+                     
+                                    <TextBlock Grid.Column="0"  Text="Petrol Dispencer" VerticalAlignment="Center" Background="#FFBC6737" HorizontalAlignment="Left"  Margin="5" FontSize="20" Foreground="White"/>
 
-                                        <DatePicker Grid.Column="1" Name="petrol_entry_datepicker"   SelectedDateFormat="Long" DisplayDateEnd="{Binding Mode=OneWay, StringFormat='dd-MMM-yyyy',  Source={x:Static System:DateTime.Today}}" ToolTip="click to change date" HorizontalAlignment="Right" Foreground="Black" Background="White" Margin="5" FontSize="18" >
+                                        <DatePicker Grid.Column="1" Name="petrol_entry_datepicker" VerticalAlignment="Center"  SelectedDateFormat="Long" DisplayDateEnd="{Binding Mode=OneWay, StringFormat='dd-MMM-yyyy',  Source={x:Static System:DateTime.Today}}" ToolTip="click to change date" HorizontalAlignment="Right" Foreground="Black" Background="White" Margin="5" FontSize="18" >
                                             <DatePicker.Resources>
                                                 <Style TargetType="DatePickerTextBox">
                                                     <Setter Property="IsReadOnly" Value="True"/>
@@ -133,24 +248,40 @@
                                         </DatePicker>
                                     </Grid>
 
+                                <Rectangle Grid.Column="1"  Grid.Row="1" Grid.ColumnSpan="2"  Margin="10,10,20,-10" Fill="#FFBC6737" RadiusY="10" RadiusX="10" >
+
+                                    <Rectangle.Effect>
+                                        <DropShadowEffect BlurRadius="20" Color="Black" RenderingBias="Quality" ShadowDepth="10"/>
+                                    </Rectangle.Effect>
+
+                                </Rectangle>
+
                                 <Grid Grid.Column="1"  Grid.Row="1" Grid.ColumnSpan="2"  Margin="10,0,20,0" VerticalAlignment="Bottom" Background="#FFBC6737">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="1*"/>
                                         <ColumnDefinition Width="1*"/>
 
                                     </Grid.ColumnDefinitions>
-
+                       
                                     <TextBlock Grid.Column="0"  Text="Last Enty" VerticalAlignment="Center" Background="#FFBC6737" HorizontalAlignment="Left"  Margin="5" FontSize="20" Foreground="White"/>
                                     <TextBlock Grid.Column="1" Name="lastEntryPetrol"  Text="june 12, 2020" VerticalAlignment="Center" Background="#FFBC6737" HorizontalAlignment="Left"  Margin="5" FontSize="20" Foreground="White"/>
 
 
                                 </Grid>
 
-                                <Grid Grid.Column="0" Grid.Row="2" Background="AliceBlue" Margin="20,0,20,0"  Grid.ColumnSpan="2" Grid.RowSpan="2">
 
-                                       
+                                <Rectangle  Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Grid.RowSpan="2"  Margin="20,0,20,0" Fill="AliceBlue" RadiusY="10" RadiusX="10" >
 
-                                        <Grid.ColumnDefinitions>
+                                    <Rectangle.Effect>
+                                        <DropShadowEffect BlurRadius="20" Color="Black" RenderingBias="Quality" ShadowDepth="10"/>
+                                    </Rectangle.Effect>
+
+                                </Rectangle>
+                                    
+                                <Grid Grid.Column="0" Grid.Row="2" Background="AliceBlue" Margin="25,5,25,5"  Grid.ColumnSpan="2" Grid.RowSpan="2">
+
+                               
+                                    <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="1*"/>
                                             <ColumnDefinition Width="1*"/>
                                             <ColumnDefinition Width="0.5*"/>
@@ -173,7 +304,9 @@
                                             <RowDefinition Height="1*"/>
                                         </Grid.RowDefinitions>
 
-                                            <Label Grid.Row="1" Content="Meter Opening"  HorizontalAlignment="Center" Foreground="Gray" FontSize="25" />
+                     
+
+                                    <Label Grid.Row="1" Content="Meter Opening"  HorizontalAlignment="Center" Foreground="Gray" FontSize="25" />
                                             <Label Grid.Row="2" Content="Meter Closing*"  HorizontalAlignment="Center" Foreground="#FFBC6737" FontSize="25"/>
                                    
                                             <Label Grid.Row="0" Grid.Column="2" VerticalAlignment="Bottom" Content="Nozzel 1" Margin="0,0,0,0"  FontSize="20" Foreground="#FF235885" HorizontalAlignment="Center"/>
@@ -194,14 +327,24 @@
                                         
                                     </Grid>
 
-                                <Grid Grid.Column="3" Grid.Row="2" Background="#FFEBE1B3" Margin="0,0,20,0" Grid.RowSpan="2">
+
+                                <Rectangle Grid.Column="3" Grid.Row="2" Grid.RowSpan="2" Margin="0,0,20,0" Fill="#FFEBE1B3" RadiusY="10" RadiusX="10" >
+
+                                    <Rectangle.Effect>
+                                        <DropShadowEffect BlurRadius="20" Color="Black" RenderingBias="Quality" ShadowDepth="10"/>
+                                    </Rectangle.Effect>
+
+                                </Rectangle>
+                                    
+                                <Grid Grid.Column="3" Grid.Row="2" Background="#FFEBE1B3" Margin="5,5,25,5" Grid.RowSpan="2">
 
                                     <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="1.2*"/>
                                             <ColumnDefinition Width="1.4*"/>
                                         </Grid.ColumnDefinitions>
+                       
 
-                                        <DockPanel  Margin="30,30,0,20">
+                                    <DockPanel  Margin="30,30,0,20">
 
                                             <Grid >
                                                 <Grid.ColumnDefinitions>
@@ -229,7 +372,11 @@
 
                                                 <Label Grid.Row="2" Content="Today's sales Ltrs"  Foreground="Black" FontSize="22" HorizontalAlignment="Right" VerticalAlignment="Bottom" />
                                                 <Label Grid.Row="3" Content="Today's sales PKR"  Foreground="Black" FontSize="22" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
-                                            <Rectangle Grid.Row="7" Grid.RowSpan="5" Grid.ColumnSpan="3" Fill="#FFD1C693" />
+                                            <Rectangle Grid.Row="7" Grid.RowSpan="5" Grid.ColumnSpan="3" Fill="#FFD1C693" RadiusY="10" RadiusX="10">
+                                                <Rectangle.Effect>
+                                                    <DropShadowEffect BlurRadius="20" Color="#FFDEDEDE" RenderingBias="Quality" ShadowDepth="0"/>
+                                                </Rectangle.Effect>
+                                            </Rectangle>
                                             <Label Grid.Row="7" Content="Credit Account:" Foreground="DarkRed" FontSize="22" HorizontalAlignment="Right" VerticalAlignment="Bottom" />
                                                 <ScrollViewer Grid.Row="8" Grid.RowSpan="4" VerticalScrollBarVisibility="Auto" Name="creditAccountScrollViewer" >
                                                     <StackPanel Margin="20,0,0,0" Name="credit_added_users_petrol"></StackPanel>
@@ -267,10 +414,18 @@
                                             <TextBox Grid.Row="2" Grid.Column="1" Name="total_sales_ltrs_petrol_TB" Text="" Margin="5" IsEnabled="False" FontSize="25" FontFamily="Arial" TextChanged="total_sales_ltrs_petrol_TB_TextChanged" />
                                             <TextBox Grid.Row="3" Grid.Column="1" Name="total_sales_pkrs_petrol_TB" Text="" Margin="5" IsEnabled="False" FontSize="25" FontFamily="Arial" TextChanged="total_sales_pkrs_petrol_TB_TextChanged"/>
 
-                                            <Button Grid.Row="4" Grid.Column="1" Name="save_petrol_entry_BTN" HorizontalAlignment="Right" Foreground="White" Margin="5" Padding="20,0,20,0" Background="#FFBC6737" FontSize="25" Click="save_petrol_entry_BTN_Click">
-                                                    Save
-                                                </Button>
-                                            <Rectangle Grid.Row="7" Grid.RowSpan="5" Grid.ColumnSpan="3" Fill="#FFD1C693" />
+                                            <Button Grid.Row="4"  Grid.Column="1" Content="       Save   " Name="save_petrol_entry_BTN" HorizontalAlignment="Right" Foreground="White" Margin="5" Padding="20,0,20,0" Background="#FFBC6737" FontSize="25" Click="save_petrol_entry_BTN_Click">
+
+                                                <Button.Effect>
+                                                    <DropShadowEffect BlurRadius="15" Color="Black" RenderingBias="Quality" ShadowDepth="10"/>
+                                                </Button.Effect>
+                                            </Button>
+                                            
+                                            <Rectangle Grid.Row="7" Grid.RowSpan="5" Grid.ColumnSpan="3" Fill="#FFD1C693" RadiusY="10" RadiusX="10" >
+                                                <Rectangle.Effect>
+                                                    <DropShadowEffect BlurRadius="20" Color="#FFDEDEDE" RenderingBias="Quality" ShadowDepth="0"/>
+                                                </Rectangle.Effect>
+                                            </Rectangle>
                                             <Label Grid.Row="7" Grid.Column="1" Content="NAME:" FontSize="17" Foreground="DarkRed" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
                                                 <Label Grid.Row="9" Grid.Column="1" Content="AMOUNT:" FontSize="17" Foreground="DarkRed"  HorizontalAlignment="Left" VerticalAlignment="Bottom" Name="amount_label" />
 
@@ -281,8 +436,11 @@
                                                 <TextBox Grid.Row="10" Grid.Column="1" Name="creditedAmount_petrol_TB" PreviewTextInput="NumberValidationTextBox" Text=""  Foreground="Black"  Margin="5" FontSize="20" FontFamily="Arial" />
                                             <Label Grid.Row="10" Grid.Column="1" Content="234" Name="crediterOldAmount_petrol_TB"  Foreground="Black" Margin="5" FontSize="15"  FontFamily="Arial" HorizontalAlignment="Right" Background="Orange" Visibility="Hidden" />
 
-                                            <Button Grid.Row="11" Grid.Column="1" Name="save_petrol_credit_entry_BTN" HorizontalAlignment="Right" Foreground="White" Margin="5" Padding="15,0,15,0" Background="#FFBC6737" FontSize="25" Click="save_petrol_credit_entry_BTN_Click">
-                                                    Add
+                                            <Button Grid.Row="11" Grid.Column="1" Content="        Add   " Name="save_petrol_credit_entry_BTN" HorizontalAlignment="Right" Foreground="White" Margin="5" Padding="15,0,15,0" Background="#FFBC6737" FontSize="25" Click="save_petrol_credit_entry_BTN_Click">
+                                                    
+                                                <Button.Effect>
+                                                    <DropShadowEffect BlurRadius="15" Color="Black" RenderingBias="Quality" ShadowDepth="10"/>
+                                                </Button.Effect>
                                                 </Button>
 
                                             </Grid>
@@ -292,6 +450,8 @@
                                 </Grid>
 
                             </TabItem>
+                            
+                            
 
                         <TabItem Header="Diesel Entry" Foreground="White" FontSize="40"   HorizontalAlignment="Left"  FontWeight="Bold" FontFamily="Sitka Display"
                            >
@@ -309,12 +469,22 @@
                                     <RowDefinition Height="4*"/>
                                 </Grid.RowDefinitions>
 
+
+                                <Rectangle Grid.Column="0"  Grid.Row="1" Grid.ColumnSpan="2"   Margin="20,10,20,-10" Fill="#FF235885" RadiusY="10" RadiusX="10" >
+
+                                    <Rectangle.Effect>
+                                        <DropShadowEffect BlurRadius="20" Color="Black" RenderingBias="Quality" ShadowDepth="10"/>
+                                    </Rectangle.Effect>
+
+                                </Rectangle>
+                                
                                 <Grid Grid.Column="0"  Grid.Row="1" Grid.ColumnSpan="2"  Margin="20,0,20,0" VerticalAlignment="Bottom" Background="#FF235885">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="1*"/>
                                         <ColumnDefinition Width="1*"/>
 
                                     </Grid.ColumnDefinitions>
+                      
 
                                     <TextBlock Grid.Column="0"  Text="Diesel Dispencer" VerticalAlignment="Center" Background="#FF235885" HorizontalAlignment="Left"  Margin="5" FontSize="20" Foreground="White"/>
 
@@ -327,12 +497,22 @@
                                     </DatePicker>
                                 </Grid>
 
+
+                                <Rectangle Grid.Column="1"  Grid.Row="1" Grid.ColumnSpan="2"    Margin="10,10,20,-10" Fill="#FF235885" RadiusY="10" RadiusX="10" >
+
+                                    <Rectangle.Effect>
+                                        <DropShadowEffect BlurRadius="20" Color="Black" RenderingBias="Quality" ShadowDepth="10"/>
+                                    </Rectangle.Effect>
+
+                                </Rectangle>
+
                                 <Grid Grid.Column="1"  Grid.Row="1" Grid.ColumnSpan="2"  Margin="10,0,20,0" VerticalAlignment="Bottom" Background="#FF235885">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="1*"/>
                                         <ColumnDefinition Width="1*"/>
 
                                     </Grid.ColumnDefinitions>
+                           
 
                                     <TextBlock Grid.Column="0"  Text="Last Enty" VerticalAlignment="Center" Background="#FF235885" HorizontalAlignment="Left"  Margin="5" FontSize="20" Foreground="White"/>
                                     <TextBlock Grid.Column="1" Name="lastEntryDiesel"  Text="june 12, 2020" VerticalAlignment="Center" Background="#FF235885" HorizontalAlignment="Left"  Margin="5" FontSize="20" Foreground="White"/>
@@ -340,7 +520,16 @@
 
                                 </Grid>
 
-                                <Grid Grid.Column="0" Grid.Row="2" Background="AliceBlue" Margin="20,0,20,0"  Grid.ColumnSpan="2" Grid.RowSpan="2">
+
+                                <Rectangle  Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Grid.RowSpan="2"   Margin="20,0,20,0" Fill="AliceBlue" RadiusY="10" RadiusX="10" >
+
+                                    <Rectangle.Effect>
+                                        <DropShadowEffect BlurRadius="20" Color="Black" RenderingBias="Quality" ShadowDepth="10"/>
+                                    </Rectangle.Effect>
+
+                                </Rectangle>
+
+                                <Grid Grid.Column="0" Grid.Row="2" Background="AliceBlue" Margin="25,5,25,5"  Grid.ColumnSpan="2" Grid.RowSpan="2">
 
 
 
@@ -367,6 +556,7 @@
                                         <RowDefinition Height="1*"/>
                                     </Grid.RowDefinitions>
 
+                      
                                     <Label Grid.Row="1" Content="Meter Opening"  HorizontalAlignment="Center" Foreground="Gray" FontSize="25" />
                                     <Label Grid.Row="2" Content="Meter Closing*"  HorizontalAlignment="Center" Foreground="#FF235885" FontSize="25"/>
 
@@ -388,7 +578,16 @@
 
                                 </Grid>
 
-                                <Grid Grid.Column="3" Grid.Row="2" Background="#FFEBE1B3" Margin="0,0,20,0" Grid.RowSpan="2">
+
+                                <Rectangle   Grid.Column="3" Grid.Row="2" Grid.RowSpan="2"   Margin="0,0,20,0" Fill="#FFEBE1B3" RadiusY="10" RadiusX="10" >
+
+                                    <Rectangle.Effect>
+                                        <DropShadowEffect BlurRadius="20" Color="Black" RenderingBias="Quality" ShadowDepth="10"/>
+                                    </Rectangle.Effect>
+
+                                </Rectangle>
+
+                                <Grid Grid.Column="3" Grid.Row="2" Background="#FFEBE1B3" Margin="5,5,25,5" Grid.RowSpan="2">
 
                                     <!--<Grid.Background>
                                             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -431,7 +630,12 @@
 
                                             <Label Grid.Row="2" Content="Today's sales Ltrs"  Foreground="Black" FontSize="22" HorizontalAlignment="Right" VerticalAlignment="Bottom" />
                                             <Label Grid.Row="3" Content="Today's sales PKR"  Foreground="Black" FontSize="22" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
-                                            <Rectangle Grid.Row="7" Grid.RowSpan="5" Grid.ColumnSpan="3" Fill="#FFD1C693" />
+                                            <Rectangle Grid.Row="7" Grid.RowSpan="5" Grid.ColumnSpan="3" Fill="#FFD1C693"  RadiusY="10" RadiusX="10"  >
+                                            <Rectangle.Effect>
+                                                <DropShadowEffect BlurRadius="20" Color="#FFDEDEDE" RenderingBias="Quality" ShadowDepth="0"/>
+                                            </Rectangle.Effect>
+                                            </Rectangle>
+                         
                                             <Label Grid.Row="7" Content="Credit Account:" Foreground="DarkRed" FontSize="22" HorizontalAlignment="Right" VerticalAlignment="Bottom" />
                                             <ScrollViewer Grid.Row="8" Grid.RowSpan="4" VerticalScrollBarVisibility="Auto" Name="creditAccountScrollViewer_diesel" >
                                                 <StackPanel Margin="20,0,0,0" Name="credit_added_users_diesel"></StackPanel>
@@ -469,10 +673,16 @@
                                             <TextBox Grid.Row="2" Grid.Column="1" Name="total_sales_ltrs_diesel_TB" Text="" Margin="5" IsEnabled="False" FontSize="25" FontFamily="Arial" TextChanged="total_sales_ltrs_diesel_TB_TextChanged" />
                                             <TextBox Grid.Row="3" Grid.Column="1" Name="total_sales_pkrs_diesel_TB" Text="" Margin="5" IsEnabled="False" FontSize="25" FontFamily="Arial" TextChanged="total_sales_pkrs_diesel_TB_TextChanged"/>
 
-                                            <Button Grid.Row="4" Grid.Column="1" Name="save_diesel_entry_BTN" HorizontalAlignment="Right" Foreground="White" Margin="5" Padding="20,0,20,0" Background="#FF235885" FontSize="25" Click="save_diesel_entry_BTN_Click">
-                                                Save
+                                            <Button Grid.Row="4" Grid.Column="1" Content="       Save   " Name="save_diesel_entry_BTN" HorizontalAlignment="Right" Foreground="White" Margin="5" Padding="20,0,20,0" Background="#FF235885" FontSize="25" Click="save_diesel_entry_BTN_Click">
+                                                <Button.Effect>
+                                                    <DropShadowEffect BlurRadius="15" Color="Black" RenderingBias="Quality" ShadowDepth="10"/>
+                                                </Button.Effect>
                                             </Button>
-                                            <Rectangle Grid.Row="7" Grid.RowSpan="5" Grid.ColumnSpan="3" Fill="#FFD1C693" />
+                                            <Rectangle Grid.Row="7" Grid.RowSpan="5" Grid.ColumnSpan="3" Fill="#FFD1C693"  RadiusY="10" RadiusX="10" >
+                                                <Rectangle.Effect>
+                                                    <DropShadowEffect BlurRadius="20" Color="#FFDEDEDE" RenderingBias="Quality" ShadowDepth="0"/>
+                                                </Rectangle.Effect>
+                                            </Rectangle>
                                             <Label Grid.Row="7" Grid.Column="1" Content="NAME:" FontSize="17" Foreground="DarkRed"  HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
                                             <Label Grid.Row="9" Grid.Column="1" Content="AMOUNT:" FontSize="17" Foreground="DarkRed"  HorizontalAlignment="Left" VerticalAlignment="Bottom" Name="amount_label_diesel" />
 
@@ -483,8 +693,10 @@
                                             <TextBox Grid.Row="10" Grid.Column="1" Name="creditedAmount_diesel_TB" PreviewTextInput="NumberValidationTextBox" Text=""  Foreground="Black"  Margin="5" FontSize="20" FontFamily="Arial" KeyDown="creditedAmount_diesel_TB_KeyDown"/>
                                             <Label Grid.Row="10" Grid.Column="1" Name="crediterOldAmount_diesel_TB"  Foreground="Black" Margin="5" FontSize="15"  FontFamily="Arial" HorizontalAlignment="Right" Background="Orange" Visibility="Hidden"/>
 
-                                            <Button Grid.Row="11" Grid.Column="1" Name="save_diesel_credit_entry_BTN" HorizontalAlignment="Right" Foreground="White" Margin="5" Padding="15,0,15,0" Background="#FF235885" FontSize="25" Click="save_diesel_credit_entry_BTN_Click">
-                                                Add
+                                            <Button Grid.Row="11" Grid.Column="1" Content="        Add   " Name="save_diesel_credit_entry_BTN" HorizontalAlignment="Right" Foreground="White" Margin="5" Padding="15,0,15,0" Background="#FF235885" FontSize="25" Click="save_diesel_credit_entry_BTN_Click">
+                                                <Button.Effect>
+                                                    <DropShadowEffect BlurRadius="15" Color="Black" RenderingBias="Quality" ShadowDepth="10"/>
+                                                </Button.Effect>
                                             </Button>
 
                                         </Grid>
@@ -505,15 +717,19 @@
             </TabItem>
 
 
-  <TabItem Header="Expense and Fuel" FontSize="22" FontFamily="Yu Gothic UI Semibold" FontWeight="Bold" Width="200" Height="40"
+               <TabItem Header="Expense" FontSize="22" FontFamily="Yu Gothic UI Semibold" FontWeight="Bold" Width="200" Height="40"
                    
                          Margin="2" >
+      
+      
                 <Grid  Background="Gray">
+
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="10"/>
-                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="3*"/>
+                        <ColumnDefinition Width="10*"/>
+                        <ColumnDefinition Width="3*"/>
                     </Grid.ColumnDefinitions>
+                    
                     <Grid.RowDefinitions>
                         <RowDefinition Height="0.1*"/>
                         <RowDefinition Height="1*"/>
@@ -522,22 +738,24 @@
                     </Grid.RowDefinitions>
 
 
+                    <Rectangle Grid.Column="1" Grid.Row="1"   Margin="20,10,20,-10" Fill="#FF235885" RadiusY="10" RadiusX="10" >
 
-                    <!--<StackPanel Grid.Column="2"  Margin="0,0,20,0">
-                        <TextBlock  Text="Petrol in Tank 9438 Ltrs" Foreground="Blue"  TextAlignment="Right"  FontSize="15"/>
-                        <TextBlock  Text="Diesel in Tank 2387 Ltrs" Foreground="DarkBlue"  TextAlignment="Right"  FontSize="15"/>
-                    </StackPanel>-->
+                        <Rectangle.Effect>
+                            <DropShadowEffect BlurRadius="20" Color="Black" RenderingBias="Quality" ShadowDepth="10"/>
+                        </Rectangle.Effect>
 
-                    <Grid Grid.Row="1" Grid.Column="0" Margin="20,20,20,0" Background="#FF235885">
+                    </Rectangle>
+                    
+                    <Grid Grid.Row="1" Grid.Column="1" Margin="20,20,20,0" Background="#FF235885">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="3*"/>
                             <ColumnDefinition Width="1*"/>
                             <ColumnDefinition Width="3*"/>
                         </Grid.ColumnDefinitions>
 
-                        <TextBlock Text="Expenses" Background="#FF235885" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Foreground="White" Margin="5" FontSize="20"/>
-                        <TextBlock Grid.Column="1" Text="Date:" Background="#FF235885" VerticalAlignment="Bottom" Foreground="White" HorizontalAlignment="Stretch"  Margin="5" FontSize="20"/>
-                        <DatePicker Grid.Column="2" Name="expense_datepicker" VerticalAlignment="Bottom"  SelectedDateFormat="Long" DisplayDateEnd="{Binding Mode=OneWay, StringFormat='dd-MMM-yyyy',  Source={x:Static System:DateTime.Today}}" ToolTip="click to change date" HorizontalAlignment="Left" Foreground="Black" Background="White" FontSize="15" >
+                        <TextBlock Text="Expenses" Background="#FF235885" VerticalAlignment="Center" HorizontalAlignment="Stretch" Foreground="White" Margin="5" FontSize="20"/>
+                        <TextBlock Grid.Column="1" Text="Date:" Background="#FF235885" VerticalAlignment="Center" Foreground="White" HorizontalAlignment="Stretch"  Margin="5" FontSize="20"/>
+                        <DatePicker Grid.Column="2" Name="expense_datepicker" VerticalAlignment="Center"  SelectedDateFormat="Long" DisplayDateEnd="{Binding Mode=OneWay, StringFormat='dd-MMM-yyyy',  Source={x:Static System:DateTime.Today}}" ToolTip="click to change date" HorizontalAlignment="Left" Foreground="Black" Background="White" FontSize="15" >
                             <DatePicker.Resources>
                                 <Style TargetType="DatePickerTextBox">
                                     <Setter Property="IsReadOnly" Value="True"/>
@@ -547,6 +765,13 @@
                     </Grid>
 
 
+                    <!--<Rectangle Grid.Column="2" Grid.Row="1"   Margin="20,10,20,-10" Fill="#FF235885" RadiusY="10" RadiusX="10" >
+
+                        <Rectangle.Effect>
+                            <DropShadowEffect BlurRadius="20" Color="Black" RenderingBias="Quality" ShadowDepth="10"/>
+                        </Rectangle.Effect>
+
+                    </Rectangle>
 
                     <Grid Grid.Row="1" Grid.Column="2" Margin="20,20,20,0" Background="#FF235885">
                         <Grid.ColumnDefinitions>
@@ -554,9 +779,9 @@
                             <ColumnDefinition Width="1*"/>
                             <ColumnDefinition Width="3*"/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock  Text="Fuel" Background="#FF235885" Foreground="White" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="350"  Margin="5" FontSize="20"/>
-                        <TextBlock Grid.Column="1" Text="Date:" Background="#FF235885" Foreground="White" VerticalAlignment="Bottom" HorizontalAlignment="Center" Width="50"  Margin="5" FontSize="20"/>
-                        <DatePicker Grid.Column="2" Name="fuel_datepicker"   SelectedDateFormat="Long" DisplayDateEnd="{Binding Mode=OneWay, StringFormat='dd-MMM-yyyy',  Source={x:Static System:DateTime.Today}}"  ToolTip="click to change date" VerticalAlignment="Bottom" HorizontalAlignment="Left" Foreground="Black" Background="White" FontSize="15" >
+                        <TextBlock  Text="Fuel" Background="#FF235885" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Left" Width="350"  Margin="5" FontSize="20"/>
+                        <TextBlock Grid.Column="1" Text="Date:" Background="#FF235885" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" Width="50"  Margin="5" FontSize="20"/>
+                        <DatePicker Grid.Column="2" Name="fuel_datepicker"   SelectedDateFormat="Long" DisplayDateEnd="{Binding Mode=OneWay, StringFormat='dd-MMM-yyyy',  Source={x:Static System:DateTime.Today}}"  ToolTip="click to change date" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="Black" Background="White" FontSize="15" >
                             <DatePicker.Resources>
                                 <Style TargetType="DatePickerTextBox">
                                     <Setter Property="IsReadOnly" Value="True"/>
@@ -564,20 +789,29 @@
                             </DatePicker.Resources>
                         </DatePicker>
 
-                    </Grid>
+                    </Grid>-->
 
 
 
-                 
 
 
+                    <Rectangle Grid.Column="1" Grid.Row="2"   Margin="20,0,20,0" Fill="AliceBlue" RadiusY="10" RadiusX="10" >
 
-                    <Grid Grid.Column="0" Grid.Row="2" Margin="20,0,20,0" Background="AliceBlue">
+                        <Rectangle.Effect>
+                            <DropShadowEffect BlurRadius="20" Color="Black" RenderingBias="Quality" ShadowDepth="10"/>
+                        </Rectangle.Effect>
+
+                    </Rectangle>
+
+
+                    <Grid Grid.Column="1" Grid.Row="2" Margin="30,0,30,0" Background="AliceBlue" >
+
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="2*"/>
                             <ColumnDefinition Width="1.5*"/>
                             <ColumnDefinition Width="1*"/>
                         </Grid.ColumnDefinitions>
+                        
                         <Grid.RowDefinitions>
                             <RowDefinition Height="2*"/>
                             <RowDefinition Height="2*"/>
@@ -590,8 +824,9 @@
                             <RowDefinition Height="2*"/>
                             <RowDefinition Height="2*"/>
                             <RowDefinition Height="2*"/>
-      
                         </Grid.RowDefinitions>
+
+                      
 
                         <Label Content="Staff Salaries" Grid.Row="1" HorizontalAlignment="Center" Foreground="Black" />
                         <Label Content="Electricity Bill" Grid.Row="2" HorizontalAlignment="Center" Foreground="Black"/>
@@ -607,12 +842,24 @@
                         <TextBox Name="others_expense_TB" Grid.Row="4" Grid.Column="1" PreviewTextInput="NumberValidationTextBox" Text="" Margin="10"/>
                         <TextBox Name="miansahid_expense_TB" Grid.Row="5" Grid.Column="1" PreviewTextInput="NumberValidationTextBox" Text=""  Margin="10"/>
                         <TextBox Name="total_expense_TB" Grid.Row="6" Grid.Column="1" PreviewTextInput="NumberValidationTextBox" Text=""  Margin="10"/>
-                        <Button Name="save_button_expenses" Grid.Row="7" Grid.Column="1" PreviewTextInput="NumberValidationTextBox" Content="SAVE" Foreground="White" FontSize="15" Background="#FF235885" Margin="70,10,10,10"/>
+                        <Button Name="save_button_expenses" Grid.Row="7" Grid.Column="1" Content="Save" PreviewTextInput="NumberValidationTextBox" Foreground="White" FontSize="15" Background="#FF235885" Margin="100,10,10,10">
+                            <Button.Effect>
+                                <DropShadowEffect BlurRadius="15" Color="Black" RenderingBias="Quality" ShadowDepth="10"/>
+                            </Button.Effect>
+                        </Button>
 
                     </Grid>
 
+                    <!--<Rectangle Grid.Column="2" Grid.Row="2"   Margin="20,0,20,0" Fill="AliceBlue" RadiusY="10" RadiusX="10" >
 
-                    <Grid Grid.Column="2" Grid.Row="2" Margin="20,0,20,0" Background="AliceBlue">
+                        <Rectangle.Effect>
+                            <DropShadowEffect BlurRadius="20" Color="Black" RenderingBias="Quality" ShadowDepth="10"/>
+                        </Rectangle.Effect>
+
+                    </Rectangle>
+
+
+                    <Grid Grid.Column="2" Grid.Row="2" Margin="30,0,30,0" Background="AliceBlue">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="3*"/>
                             <ColumnDefinition Width="*"/>
@@ -658,7 +905,16 @@
 
                         <Button Grid.Row="9" Grid.Column="2" Name="savebtn_DD_diesel" Content="SAVE" Foreground="White"  Margin="100,10,50,0" FontSize="15"  Background="#FF235885"/>
 
-                        <Grid Grid.Row="11" Grid.Column="0" Grid.ColumnSpan="3" Grid.RowSpan="3" Background="#FF235885">
+
+                        <Rectangle Grid.Row="11" Grid.Column="0" Grid.ColumnSpan="3" Grid.RowSpan="3"  Fill="#FF235885" RadiusY="10" RadiusX="10" >
+
+                            <Rectangle.Effect>
+                                <DropShadowEffect BlurRadius="20" Color="Black" RenderingBias="Quality" ShadowDepth="10"/>
+                            </Rectangle.Effect>
+
+                        </Rectangle>
+                        
+                        <Grid Grid.Row="11" Grid.Column="0" Grid.ColumnSpan="3" Grid.RowSpan="3" Margin="5" Background="#FF235885">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="5*"/>
                                 <ColumnDefinition Width="3*"/>
@@ -674,7 +930,161 @@
                         </Grid>
 
 
+                    </Grid>-->
+
+                </Grid>
+
+            </TabItem>
+
+
+            <TabItem Header="Fuel" FontSize="22" FontFamily="Yu Gothic UI Semibold" FontWeight="Bold" Width="200" Height="50"
+                   
+                         Margin="2" >
+
+                <Grid  Background="Gray">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="3*"/>
+                        <ColumnDefinition Width="10*"/>
+                        <ColumnDefinition Width="3*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="10*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+
+
+
+                    <Rectangle Grid.Column="1" Grid.Row="1"  Margin="20,10,20,-10"  Fill="#FF235885" RadiusY="10" RadiusX="10" >
+
+                        <Rectangle.Effect>
+                            <DropShadowEffect BlurRadius="20" Color="Black" RenderingBias="Quality" ShadowDepth="10"/>
+                        </Rectangle.Effect>
+
+                    </Rectangle>
+
+                    <Grid Grid.Row="1" Grid.Column="1"  Margin="20,20,20,0" Background="#FF235885" >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="3*"/>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="3*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock  Text="Fuel" Background="#FF235885" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Left" Width="350"  Margin="5" FontSize="20"/>
+                        <TextBlock Grid.Column="1" Text="Date:" Background="#FF235885" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" Width="50"  Margin="5" FontSize="20"/>
+                        <DatePicker Grid.Column="2" Name="fuel_datepicker"   SelectedDateFormat="Long" DisplayDateEnd="{Binding Mode=OneWay, StringFormat='dd-MMM-yyyy',  Source={x:Static System:DateTime.Today}}"  ToolTip="click to change date" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="Black" Background="White" FontSize="15" >
+                            <DatePicker.Resources>
+                                <Style TargetType="DatePickerTextBox">
+                                    <Setter Property="IsReadOnly" Value="True"/>
+                                </Style>
+                            </DatePicker.Resources>
+                        </DatePicker>
+
                     </Grid>
+
+
+
+
+
+
+
+                    <Rectangle Grid.Column="1" Grid.Row="2"  Margin="20,0,20,0"  Fill="AliceBlue" RadiusY="10" RadiusX="10" >
+
+                        <Rectangle.Effect>
+                            <DropShadowEffect BlurRadius="20" Color="Black" RenderingBias="Quality" ShadowDepth="10"/>
+                        </Rectangle.Effect>
+
+                    </Rectangle>
+
+
+                    <Grid Grid.Column="1" Grid.Row="2" Margin="30,0,30,0" Background="AliceBlue">
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="3*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="3*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="1*"/>
+                                <RowDefinition Height="1*"/>
+                                <RowDefinition Height="1*"/>
+                                <RowDefinition Height="1*"/>
+                                <RowDefinition Height="1*"/>
+                                <RowDefinition Height="1*"/>
+                                <RowDefinition Height="1*"/>
+                                <RowDefinition Height="1*"/>
+                                <RowDefinition Height="1*"/>
+                                <RowDefinition Height="1*"/>
+                                <RowDefinition Height="1*"/>
+                                <RowDefinition Height="1*"/>
+                                <RowDefinition Height="1*"/>
+                                <RowDefinition Height="1*"/>
+                            </Grid.RowDefinitions>
+
+                            <Label Content="Petrol" Margin="10,0,0,0" Foreground="#FFBC6737"/>
+                            <Label Grid.Row="1" Content="Demand Draft (Ref)" Margin="50,0,0,0" Foreground="#FFBC6737" />
+                            <Label Grid.Row="2" Content="Demand Draft (PKR)" Margin="50,0,0,0" Foreground="#FFBC6737"/>
+                            <Label Grid.Row="3" Content="Demand Draft (Ltr)" Margin="50,0,0,0" Foreground="#FFBC6737"/>
+                            <Label Grid.Row="5" Margin="10,0,0,0" Content="Diesel" Foreground="#FF235885"/>
+                            <Label Grid.Row="6" Content="Demand Draft (Ref)" Margin="50,0,0,0" Foreground="#FFBC6737" />
+                            <Label Grid.Row="7" Content="Demand Draft (PKR)" Margin="50,0,0,0" Foreground="#FF235885" />
+                            <Label Grid.Row="8" Content="Demand Draft (Ltr)" Margin="50,0,0,4" Foreground="#FF235885"/>
+
+
+
+
+                            <TextBox Grid.Row="1" Grid.Column="2" Name="DD_petrolRF_TB" PreviewTextInput="NumberValidationTextBox" Text="" Margin="50,5,50,5" />
+                            <TextBox Grid.Row="2" Grid.Column="2" Name="DD_petrolPKR_TB" PreviewTextInput="NumberValidationTextBox" Text="" Margin="50,5,50,5"  />
+                            <TextBox Grid.Row="3" Grid.Column="2" Name="DD_petrolLTR_TB" PreviewTextInput="NumberValidationTextBox" Text="" Margin="50,5,50,5"  />
+                        <Button Grid.Row="4" Grid.Column="2" Content="Save" Name="savebtn_DD_petrol" Foreground="White" Margin="120,5,50,0" FontSize="15"  Background="#FF235885">
+                            <Button.Effect>
+                                <DropShadowEffect BlurRadius="15" Color="Black" RenderingBias="Quality" ShadowDepth="10"/>
+                            </Button.Effect>
+                        </Button>
+                            <TextBox Grid.Row="6" Grid.Column="2" Name="DD_dieselRF_TB" PreviewTextInput="NumberValidationTextBox" Text="" Margin="50,5,50,5" />
+                            <TextBox Grid.Row="7" Grid.Column="2" Name="DD_dieselPKR_TB" PreviewTextInput="NumberValidationTextBox" Text="" Margin="50,5,50,5" />
+                            <TextBox Grid.Row="8" Grid.Column="2" Name="DD_dieselLTR_TB" PreviewTextInput="NumberValidationTextBox" Text="" Margin="50,5,50,5" />
+
+                        <Button Grid.Row="9" Grid.Column="2" Name="savebtn_DD_diesel" Content="Save" Foreground="White"  Margin="120,5,50,0" FontSize="15"  Background="#FF235885">
+                            <Button.Effect>
+                                <DropShadowEffect BlurRadius="15" Color="Black" RenderingBias="Quality" ShadowDepth="10"/>
+                            </Button.Effect>
+                        </Button>
+
+
+                            <Rectangle Grid.Row="11" Grid.Column="0" Grid.ColumnSpan="3" Grid.RowSpan="3"  Fill="#FF235885" RadiusY="10" RadiusX="10" >
+
+                                <Rectangle.Effect>
+                                    <DropShadowEffect BlurRadius="20" Color="Black" RenderingBias="Quality" ShadowDepth="10"/>
+                                </Rectangle.Effect>
+
+                            </Rectangle>
+
+                            <Grid Grid.Row="11" Grid.Column="0" Grid.ColumnSpan="3" Grid.RowSpan="3" Margin="5" Background="#FF235885">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="5*"/>
+                                    <ColumnDefinition Width="3*"/>
+                                    <ColumnDefinition Width="3*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Label Grid.Column="0" Content="Mian saib Deposit Amount PKR*" Margin="5,20,0,20" Foreground="White" FontSize="18"/>
+                                <TextBox Grid.Column="1" Name="owner_deposit_TB" PreviewTextInput="NumberValidationTextBox" Background="White" Foreground="White" Height="40" Text="" Margin="20" />
+                            <Button Grid.Column="2" Name="save_button_deposit"  Content="Save" Foreground="#FF235885" FontSize="15" Height="40"  Background="White" Margin="10,0,30,0">
+                                <Button.Effect>
+                                    <DropShadowEffect BlurRadius="15" Color="Black" RenderingBias="Quality" ShadowDepth="10"/>
+                                </Button.Effect>
+                            </Button>
+
+
+
+                            </Grid>
+
+
+                        </Grid>
+
 
                 </Grid>
 
@@ -684,8 +1094,10 @@
 
             <TabItem Header="Data Overview" Width="200" Height="40" FontFamily="Yu Gothic UI Semibold" FontSize="22" FontWeight="Bold"
                          Margin="2" >
+               
 
                 <Grid >
+               
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
 
@@ -695,11 +1107,11 @@
 
 
                     </Grid.RowDefinitions>
-
-
+              
 
                     <Grid Grid.RowSpan="3" Background="gray" >
 
+                
 
                         <TabControl TabStripPlacement="Left"  HorizontalAlignment="Stretch" Margin="10" BorderThickness="0" Background="Beige" >
                             <TabControl.Resources>
@@ -728,10 +1140,12 @@
                                 </Style>
                             </TabControl.Resources>
 
+                            <TabItem Header="OverView" Foreground="White"  FontSize="30"  Name="entry"  HorizontalAlignment="Left" FontFamily="Yu Gothic UI Semibold" FontWeight="Bold">
 
-                            <TabItem Header="OverView" Foreground="White"  FontSize="30"  Name="entry"  HorizontalAlignment="Left" FontFamily="Yu Gothic UI Semibold" FontWeight="Bold"
-                               >
-                                <Grid Margin="0,-50,0,0"   Background="AliceBlue">
+                                                                
+                                <Grid Margin="0,-50,0,0"   Background="Black">
+
+                                
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="0*"/>
                                         <RowDefinition Height="0.5*"/>
@@ -747,23 +1161,42 @@
                                         <ColumnDefinition Width="5*"/>
                                     </Grid.ColumnDefinitions>
 
-                                    <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"  Margin="15,0,15,15" Orientation="Vertical" >
-
+                      
+                                        <Rectangle Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"  Margin="15,25,15,15" Fill="White" RadiusY="10" RadiusX="10" >
+                                            <Rectangle.Effect>
+                                                <DropShadowEffect BlurRadius="20" Color="White" RenderingBias="Quality" ShadowDepth="5"/>
+                                            </Rectangle.Effect>
+                                       
+                                        </Rectangle>
+                                        
+                                    <StackPanel  Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Vertical" >
+                                        
+                                    <materialDesign:PackIcon Kind="Calendar" Foreground="Gray" Width="10" Height="10" VerticalAlignment="Center" Margin="5 0"/>
+                                        
                                         <Label FontSize="50" HorizontalAlignment="Center" Foreground="#FF235885" FontStyle="Oblique"   >Sales</Label>
                                         <Label Foreground="#FFBC6737"  FontSize="45" Margin="50,0,0,-10">94859.00</Label>
                                         <Label Foreground="#FFBC6737" HorizontalAlignment="Center" FontSize="15" Margin="0,-10,0,-10">Liters Petrol sold</Label>
                                         <Label Foreground="#FF4682B4" FontSize="45" Margin="50,0,0,-10" >90383.00</Label>
                                         <Label Foreground="#FF4682B4" HorizontalAlignment="Center" FontSize="15" Margin="0,-10,0,-10">Liters Diesel sold</Label>
-
                                         <Label Foreground="#FFBC6737"  FontSize="25" Margin="50,0,0,-10">94859.00</Label>
                                         <Label Foreground="#FFBC6737" HorizontalAlignment="Center" FontSize="15" Margin="-210,-15,0,-10">PKR</Label>
                                         <Label Foreground="#FF4682B4" FontSize="25" Margin="50,-5,0,0" >90383.00</Label>
                                         <Label Foreground="#FF4682B4" HorizontalAlignment="Center" FontSize="15" Margin="-210,-15,0,-10">PKR</Label>
+
                                     </StackPanel>
 
 
 
+                                    <Rectangle Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2"  Margin="15,25,15,15" Fill="White" RadiusY="10" RadiusX="10" >
+                                        <Rectangle.Effect>
+                                            <DropShadowEffect BlurRadius="20" Color="White" RenderingBias="Quality" ShadowDepth="5"/>
+                                        </Rectangle.Effect>
+
+                                    </Rectangle>
+                                    
                                     <StackPanel Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2"  Margin="15,0,15,15" Orientation="Vertical" HorizontalAlignment="Center">
+
+                                        <materialDesign:PackIcon Kind="Calendar" Foreground="Gray" Width="10" Height="10" VerticalAlignment="Center" Margin="5 0"/>
 
                                         <!--<Image Source="sales.png" Width="200" Height="200" />-->
                                         <Label FontSize="50" HorizontalAlignment="Center" Foreground="#FF235885" FontStyle="Oblique" >Fuel Tank</Label>
@@ -774,9 +1207,16 @@
                                     </StackPanel>
 
 
+                                    <Rectangle Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2"  Margin="15,25,15,15" Fill="Black" RadiusY="10" RadiusX="10" >
+                                        <Rectangle.Effect>
+                                            <DropShadowEffect BlurRadius="20" Color="#FFDEDEDE" RenderingBias="Quality" ShadowDepth="1"/>
+                                        </Rectangle.Effect>
 
+                                    </Rectangle>
 
                                     <StackPanel Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2"  Margin="15,0,15,15" Orientation="Vertical" HorizontalAlignment="Center">
+
+                                        <materialDesign:PackIcon Kind="Calendar" Foreground="Gray" Width="10" Height="10" VerticalAlignment="Center" Margin="5 0"/>
 
                                         <!--<Image Source="sales.png" Width="200" Height="200" />-->
                                         <Label FontSize="50" HorizontalAlignment="Center" Foreground="#FF235885" FontStyle="Oblique" >Profit/Loss (Rate)</Label>
@@ -786,7 +1226,17 @@
                                         <Label Foreground="#FF4682B4" HorizontalAlignment="Right" FontSize="15" Margin="10,-20,0,-10">From Diesel</Label>
                                     </StackPanel>
 
+
+                                    <Rectangle Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="2"  Margin="15,25,15,15" Fill="Black" RadiusY="10" RadiusX="10" >
+                                        <Rectangle.Effect>
+                                            <DropShadowEffect BlurRadius="20" Color="#FFDEDEDE" RenderingBias="Quality" ShadowDepth="1"/>
+                                        </Rectangle.Effect>
+
+                                    </Rectangle>
+                                    
                                     <StackPanel  Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="2"  Margin="15,0,15,15" Orientation="Vertical" HorizontalAlignment="Center">
+
+                                        <materialDesign:PackIcon Kind="Calendar" Foreground="Gray" Width="10" Height="10" VerticalAlignment="Center" Margin="5 0"/>
 
                                         <Label FontSize="50" HorizontalAlignment="Center" Foreground="#FF235885" FontStyle="Oblique" >Total Profit</Label>
                                         <Label Foreground="#FFBC6737"  FontSize="75" Margin="10,0,0,-10">39485.00</Label>
@@ -827,9 +1277,22 @@
 
                                     <Image Grid.Row="1" Margin="5" ToolTip="Print" HorizontalAlignment="Right" Grid.Column="4" Source="images/print_icon.png"></Image>
 
-                                    <Image Grid.Row="2" Grid.ColumnSpan="5" Source="images/sales.png" Stretch="Fill" >
 
-                                    </Image>
+                                    <Grid Grid.Row="2" Grid.ColumnSpan="5">
+                                        <DataGrid Name = "dataGrid" AlternatingRowBackground = "LightBlue"  
+         AlternationCount = "2" AutoGenerateColumns = "False">
+
+                                            <DataGrid.Columns>
+                                                <DataGridTextColumn Header = "Name" Binding = "{Binding Name}" />
+                                                <DataGridTextColumn Header = "Title" Binding = "{Binding Title}" />
+                                                <DataGridCheckBoxColumn Header = "ReElected?" Binding = "{Binding WasReElected}"/>
+                                                <DataGridComboBoxColumn Header = "Party" SelectedItemBinding = "{Binding Affiliation}" 
+               ItemsSource = "{Binding Source = {StaticResource myEnum}}" />
+                                            </DataGrid.Columns>
+
+                                        </DataGrid>
+                                    </Grid>
+
 
 
                                 </Grid>
@@ -923,6 +1386,7 @@
                                     </Grid.ColumnDefinitions>
 
                                     <Label  >tab fuel details</Label>
+                                   
                                     <Label Grid.Row="1" Grid.Column="2" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10">Date From:</Label>
                                     <DatePicker Grid.Row="1" Grid.Column="2"  ToolTip="modify date to view records" Margin="10" HorizontalAlignment="Right" FontSize="14" Width="120" ></DatePicker>
 
@@ -953,4 +1417,4 @@
 
         </TabControl>
     </Grid>
-</Window>
+   </Window>
