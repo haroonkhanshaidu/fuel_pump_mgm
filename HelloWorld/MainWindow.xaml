@@ -1023,7 +1023,7 @@
                             <Label Grid.Row="2" Content="Demand Draft (PKR)" Margin="50,0,0,0" Foreground="#FFBC6737"/>
                             <Label Grid.Row="3" Content="Demand Draft (Ltr)" Margin="50,0,0,0" Foreground="#FFBC6737"/>
                             <Label Grid.Row="5" Margin="10,0,0,0" Content="Diesel" Foreground="#FF235885"/>
-                        <Label Grid.Row="6" Content="Demand Draft (Ref)" Margin="50,0,0,0" Foreground="#FF235885" />
+                            <Label Grid.Row="6" Content="Demand Draft (Ref)" Margin="50,0,0,0" Foreground="#FF235885" />
                             <Label Grid.Row="7" Content="Demand Draft (PKR)" Margin="50,0,0,0" Foreground="#FF235885" />
                             <Label Grid.Row="8" Content="Demand Draft (Ltr)" Margin="50,0,0,4" Foreground="#FF235885"/>
 
@@ -1162,21 +1162,35 @@
                                             </Rectangle.Effect>
                                        
                                         </Rectangle>
-                                        
-                                    <StackPanel  Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Vertical" >
-                                        
-                                        
-                                        <Label FontSize="50" HorizontalAlignment="Center" Foreground="#FF235885" FontStyle="Oblique"   >Sales</Label>
-                                        <Label Foreground="#FFBC6737"  FontSize="45" Margin="50,0,0,-10">94859.00</Label>
-                                        <Label Foreground="#FFBC6737" HorizontalAlignment="Center" FontSize="15" Margin="0,-10,0,-10">Liters Petrol sold</Label>
-                                        <Label Foreground="#FF4682B4" FontSize="45" Margin="50,0,0,-10" >90383.00</Label>
-                                        <Label Foreground="#FF4682B4" HorizontalAlignment="Center" FontSize="15" Margin="0,-10,0,-10">Liters Diesel sold</Label>
-                                        <Label Foreground="#FFBC6737"  FontSize="25" Margin="50,0,0,-10">94859.00</Label>
-                                        <Label Foreground="#FFBC6737" HorizontalAlignment="Center" FontSize="15" Margin="-210,-15,0,-10">PKR</Label>
-                                        <Label Foreground="#FF4682B4" FontSize="25" Margin="50,-5,0,0" >90383.00</Label>
-                                        <Label Foreground="#FF4682B4" HorizontalAlignment="Center" FontSize="15" Margin="-210,-15,0,-10">PKR</Label>
 
-                                    </StackPanel>
+                                    <Grid  Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
+
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="2*"/>
+                                            <ColumnDefinition Width="1.5*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="1.5*"/>
+                                            <RowDefinition Height="1*"/>
+                                            <RowDefinition Height="1*"/>
+                                            <RowDefinition Height="1*"/>
+                                           
+                                        </Grid.RowDefinitions>
+
+                                        <!--<materialDesign:PackIcon Kind="Calendar" Foreground="Gray" Width="10" Height="10" VerticalAlignment="Center" Margin="5 0"/>-->
+
+                                        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" FontSize="40" Margin="15" HorizontalAlignment="Center" Foreground="#FF235885" FontStyle="Oblique" Content="August Sales" />
+                                        <Label Grid.Row="1" Grid.Column="0" Foreground="#FFBC6737"  FontSize="45" Margin="20,5,5,5">94859.00</Label>
+                                        <Label Grid.Row="1" Grid.Column="0" Foreground="#FFBC6737" HorizontalAlignment="Right" VerticalAlignment="Bottom" FontSize="15" Margin="5">Liters Petrol sold</Label>
+                                        <Label Grid.Row="2" Grid.Column="0" Foreground="#FF4682B4" FontSize="45" Margin="20,5,5,5" >90383.00</Label>
+                                        <Label Grid.Row="2" Grid.Column="0" Foreground="#FF4682B4" HorizontalAlignment="Right" VerticalAlignment="Bottom" FontSize="15" Margin="5">Liters Diesel sold</Label>
+                                        <Label Grid.Row="1" Grid.Column="2" Foreground="#FFBC6737" HorizontalAlignment="Center" FontSize="25" Margin="5">94859.00</Label>
+                                        <Label Grid.Row="1" Grid.Column="2" Foreground="#FFBC6737" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="15" Margin="5">PKR</Label>
+                                        <Label Grid.Row="2" Grid.Column="2" Foreground="#FF4682B4" HorizontalAlignment="Center" FontSize="25" Margin="5" >90383.00</Label>
+                                        <Label Grid.Row="2" Grid.Column="2" Foreground="#FF4682B4" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="15" Margin="5">PKR</Label>
+
+                                    </Grid>
 
 
 
