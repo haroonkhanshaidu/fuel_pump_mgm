@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HelloWorld
 {
-    class Class90
+    class PetrolSalesClass
     {
     }
 }

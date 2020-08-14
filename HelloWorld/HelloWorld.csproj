@@ -107,7 +107,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Class90.cs" />
+    <Compile Include="PetrolSalesClass.cs" />
     <Compile Include="Dashboard1.xaml.cs">
       <DependentUpon>Dashboard1.xaml</DependentUpon>
     </Compile>
