@@ -1496,7 +1496,7 @@ namespace HelloWorld
                 Title = "Minister",
                 WasReElected = false,
                 Affiliation = Party.DemocratRepublican
-            });
+            });          
 
             return employees;
         }
