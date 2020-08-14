@@ -126,7 +126,6 @@
                                 <Grid.Effect>
                                     <DropShadowEffect BlurRadius="20" Color="#FFECECEC" RenderingBias="Quality" ShadowDepth="1"/>
                                 </Grid.Effect>
-                                <materialDesign:PackIcon Kind="ContentCopy" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="5" Foreground="White" Width="20" Height="20"/>
                             </Grid>
                             <TextBlock Text="Espaço Usado" HorizontalAlignment="Right" FontFamily="Champagne &amp; Limousines" Margin="5" VerticalAlignment="Top" Foreground="Gray"/>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="10 20">

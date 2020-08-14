@@ -25,6 +25,7 @@ namespace HelloWorld
 
         public MainWindow()
         {
+
             InitializeComponent();
             //new SplashWindow().ShowDialog();
             //new Dashboard1().ShowDialog();
@@ -33,6 +34,7 @@ namespace HelloWorld
             set_initial_values_petrol();
             expensesEvents();
             demandDraftEvents();
+            OverviewEvents();
 
             testing_diesel_TB.Text = "0";
 
@@ -1314,7 +1316,15 @@ namespace HelloWorld
 
         }
 
+        private void OverviewEvents()
+        {
+            ArrayList expenseboxes = new ArrayList();
+            expenseboxes.Add();
 
+            staffSalaries_expense_TB.TextChanged += (sender, e) => Expenses.calculate(sender, e, expenseboxes);
+
+
+        }
 
 
 

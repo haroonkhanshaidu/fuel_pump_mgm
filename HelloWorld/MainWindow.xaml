@@ -1165,7 +1165,6 @@
                                         
                                     <StackPanel  Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Vertical" >
                                         
-                                    <materialDesign:PackIcon Kind="Calendar" Foreground="Gray" Width="10" Height="10" VerticalAlignment="Center" Margin="5 0"/>
                                         
                                         <Label FontSize="50" HorizontalAlignment="Center" Foreground="#FF235885" FontStyle="Oblique"   >Sales</Label>
                                         <Label Foreground="#FFBC6737"  FontSize="45" Margin="50,0,0,-10">94859.00</Label>
