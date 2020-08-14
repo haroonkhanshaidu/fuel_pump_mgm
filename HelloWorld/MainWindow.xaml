@@ -19,14 +19,12 @@
     <Window.Resources>
 
 
+
         <ObjectDataProvider x:Key = "myEnum" MethodName = "GetValues" 
          ObjectType = "{x:Type System:Enum}">
-
-              </ObjectDataProvider>
-
-        <!--<ResourceDictionary
-                       
-            <Style TargetType="{x:Type Button}">
+        </ObjectDataProvider>
+        
+        <Style TargetType="{x:Type Button}">
                 <Setter Property="Background" Value="#373737" />
                 <Setter Property="Foreground" Value="White" />
                 <Setter Property="FontSize" Value="15" />
@@ -62,7 +60,6 @@
             </Style>
 
             <Style TargetType="DataGrid">
-                --><!-- Make the border and grid lines a little less imposing --><!--
                 <Setter Property="BorderBrush" Value="#DDDDDD" />
                 <Setter Property="HorizontalGridLinesBrush" Value="#DDDDDD" />
                 <Setter Property="VerticalGridLinesBrush" Value="#DDDDDD" />
@@ -71,7 +68,6 @@
                     <Setter.Value>
                         <Style TargetType="DataGridRow">
                             <Style.Triggers>
-                                --><!-- Highlight a grid row as the mouse passes over --><!--
                                 <Trigger Property="IsMouseOver" Value="True">
                                     <Setter Property="Background" Value="LightCyan" />
                                 </Trigger>
@@ -83,7 +79,6 @@
                     <Setter.Value>
                         <Style TargetType="DataGridCell">
                             <Style.Triggers>
-                                --><!-- Highlight selected rows --><!--
                                 <Trigger Property="IsSelected" Value="True">
                                     <Setter Property="Background" Value="#ff66ccff" />
                                     <Setter Property="BorderBrush" Value="Transparent" />
@@ -96,7 +91,6 @@
                                     <Setter Property="Foreground" Value="Black" />
                                 </Trigger>
                             </Style.Triggers>
-                            --><!-- Add some padding around the contents of a cell --><!--
                             <Setter Property="Padding" Value="4,3,4,3" />
                             <Setter Property="BorderBrush" Value="Transparent"/>
                             <Setter Property="BorderThickness" Value="1"/>
@@ -123,7 +117,7 @@
                     </Setter.Value>
                 </Setter>
             </Style>
-        </ResourceDictionary>-->
+      
         
     </Window.Resources>
 
@@ -1029,7 +1023,7 @@
                             <Label Grid.Row="2" Content="Demand Draft (PKR)" Margin="50,0,0,0" Foreground="#FFBC6737"/>
                             <Label Grid.Row="3" Content="Demand Draft (Ltr)" Margin="50,0,0,0" Foreground="#FFBC6737"/>
                             <Label Grid.Row="5" Margin="10,0,0,0" Content="Diesel" Foreground="#FF235885"/>
-                            <Label Grid.Row="6" Content="Demand Draft (Ref)" Margin="50,0,0,0" Foreground="#FFBC6737" />
+                        <Label Grid.Row="6" Content="Demand Draft (Ref)" Margin="50,0,0,0" Foreground="#FF235885" />
                             <Label Grid.Row="7" Content="Demand Draft (PKR)" Margin="50,0,0,0" Foreground="#FF235885" />
                             <Label Grid.Row="8" Content="Demand Draft (Ltr)" Margin="50,0,0,4" Foreground="#FF235885"/>
 

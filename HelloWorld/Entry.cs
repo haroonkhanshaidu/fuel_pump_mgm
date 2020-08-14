@@ -22,7 +22,7 @@ namespace HelloWorld
         {
             DateTime dateTime = datePicker.SelectedDate.Value;
             string date = GlobalFunctions.epochTimeParam(dateTime);
-            if (dateFound(date,table))
+            if (dateFound(datePicker,table))
             {
                 return -1;
             }
@@ -33,10 +33,7 @@ namespace HelloWorld
             sqlite_cmd.CommandText = "insert into " + table + " (opening1,closing1,opening2,closing2,rate,testing,discount,totalPKR,totalLTR,date) " +
                 "values ('" + dict["n1opening"] + "','" + dict["n1closing"] + "','" + dict["n2opening"] + "','" + dict["n2closing"] + "'," +
                 "'" + dict["rate"] + "','" + dict["testing"] + "','" + dict["discount"] + "','" + dict["totalPkrs"] + "','" + dict["totalLtrs"] + "','" + date + "')";
-
-            
-
-           
+  
             return sqlite_cmd.ExecuteNonQuery();
 
         }
@@ -44,8 +41,7 @@ namespace HelloWorld
         static public string getLastEntry(string table,string column)
         {
             
-            string date="28378687445";
-
+            string date="0";
 
             SQLiteDataReader reader;
             SQLiteCommand sqlite_cmd;
@@ -65,6 +61,8 @@ namespace HelloWorld
         static public Boolean dateFound(DatePicker datePicker, string table)
         {
 
+            DateTime dateTime = datePicker.SelectedDate.Value;
+            string date = GlobalFunctions.epochTimeParam(dateTime);
 
             SQLiteDataReader reader;
             SQLiteCommand sqlite_cmd;

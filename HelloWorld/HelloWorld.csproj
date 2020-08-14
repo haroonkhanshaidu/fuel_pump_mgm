@@ -73,6 +73,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.SQLite, Version=1.0.113.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Data.SQLite.Core.1.0.113.1\lib\net46\System.Data.SQLite.dll</HintPath>
@@ -93,9 +94,6 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
-    </Reference>
-    <Reference Include="Telerik.Web.Mvc, Version=2013.2.611.340, Culture=neutral, PublicKeyToken=29ac1a93ec063d92, processorArchitecture=MSIL">
-      <HintPath>..\packages\TelerikMvcExtensions.2013.2.611\lib\net40\Telerik.Web.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
@@ -202,6 +200,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="bin\Debug\database.db" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -230,23 +229,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Content\2013.2.611\Windows7\sprite.png" />
-    <Resource Include="Content\2013.2.611\Windows7\sprite-vertical.png" />
-    <Resource Include="Content\2013.2.611\Windows7\slider-v.gif" />
-    <Resource Include="Content\2013.2.611\Windows7\slider-h.gif" />
-    <Resource Include="Content\2013.2.611\Windows7\loading.gif" />
-    <Resource Include="Content\2013.2.611\Windows7\imagebrowser.png" />
-    <Resource Include="Content\2013.2.611\Windows7\editor.png" />
-    <Resource Include="Content\2013.2.611\WebBlue\treeview-nodes.png" />
-    <Resource Include="Content\2013.2.611\WebBlue\treeview-nodes-rtl.png" />
-    <Resource Include="Content\2013.2.611\WebBlue\treeview-line.png" />
-    <Resource Include="Content\2013.2.611\WebBlue\sprite.png" />
-    <Resource Include="Content\2013.2.611\WebBlue\sprite-vertical.png" />
-    <Resource Include="Content\2013.2.611\WebBlue\slider-v.gif" />
-    <Resource Include="Content\2013.2.611\WebBlue\slider-h.gif" />
-    <Resource Include="Content\2013.2.611\WebBlue\loading.gif" />
-    <Resource Include="Content\2013.2.611\WebBlue\imagebrowser.png" />
-    <Resource Include="Content\2013.2.611\WebBlue\editor.png" />
     <Resource Include="Content\2013.2.611\Web20\treeview-nodes.png" />
     <Resource Include="Content\2013.2.611\Web20\treeview-nodes-rtl.png" />
     <Resource Include="Content\2013.2.611\Web20\treeview-line.png" />
@@ -257,118 +239,6 @@
     <Resource Include="Content\2013.2.611\Web20\loading.gif" />
     <Resource Include="Content\2013.2.611\Web20\imagebrowser.png" />
     <Resource Include="Content\2013.2.611\Web20\editor.png" />
-    <Resource Include="Content\2013.2.611\Vista\sprite.png" />
-    <Resource Include="Content\2013.2.611\Vista\sprite-vertical.png" />
-    <Resource Include="Content\2013.2.611\Vista\slider-v.gif" />
-    <Resource Include="Content\2013.2.611\Vista\slider-h.gif" />
-    <Resource Include="Content\2013.2.611\Vista\loading.gif" />
-    <Resource Include="Content\2013.2.611\Vista\imagebrowser.png" />
-    <Resource Include="Content\2013.2.611\Vista\editor.png" />
-    <Resource Include="Content\2013.2.611\Transparent\widget.png" />
-    <Resource Include="Content\2013.2.611\Transparent\toolbar.png" />
-    <Resource Include="Content\2013.2.611\Transparent\sprite.png" />
-    <Resource Include="Content\2013.2.611\Transparent\sprite-vertical.png" />
-    <Resource Include="Content\2013.2.611\Transparent\slider-v.gif" />
-    <Resource Include="Content\2013.2.611\Transparent\slider-h.gif" />
-    <Resource Include="Content\2013.2.611\Transparent\selected.png" />
-    <Resource Include="Content\2013.2.611\Transparent\loading.gif" />
-    <Resource Include="Content\2013.2.611\Transparent\imagebrowser.png" />
-    <Resource Include="Content\2013.2.611\Transparent\hover.png" />
-    <Resource Include="Content\2013.2.611\Transparent\group.png" />
-    <Resource Include="Content\2013.2.611\Transparent\gradient.png" />
-    <Resource Include="Content\2013.2.611\Transparent\editor.png" />
-    <Resource Include="Content\2013.2.611\Transparent\active.png" />
-    <Resource Include="Content\2013.2.611\Telerik\treeview-nodes.png" />
-    <Resource Include="Content\2013.2.611\Telerik\treeview-nodes-rtl.png" />
-    <Resource Include="Content\2013.2.611\Telerik\treeview-line.png" />
-    <Resource Include="Content\2013.2.611\Telerik\sprite.png" />
-    <Resource Include="Content\2013.2.611\Telerik\sprite-vertical.png" />
-    <Resource Include="Content\2013.2.611\Telerik\slider-v.gif" />
-    <Resource Include="Content\2013.2.611\Telerik\slider-h.gif" />
-    <Resource Include="Content\2013.2.611\Telerik\loading.gif" />
-    <Resource Include="Content\2013.2.611\Telerik\imagebrowser.png" />
-    <Resource Include="Content\2013.2.611\Telerik\editor.png" />
-    <Resource Include="Content\2013.2.611\Sunset\treeview-nodes.png" />
-    <Resource Include="Content\2013.2.611\Sunset\treeview-nodes-rtl.png" />
-    <Resource Include="Content\2013.2.611\Sunset\treeview-line.png" />
-    <Resource Include="Content\2013.2.611\Sunset\sprite.png" />
-    <Resource Include="Content\2013.2.611\Sunset\sprite-vertical.png" />
-    <Resource Include="Content\2013.2.611\Sunset\slider-v.gif" />
-    <Resource Include="Content\2013.2.611\Sunset\slider-h.gif" />
-    <Resource Include="Content\2013.2.611\Sunset\loading.gif" />
-    <Resource Include="Content\2013.2.611\Sunset\imagebrowser.png" />
-    <Resource Include="Content\2013.2.611\Sunset\editor.png" />
-    <Resource Include="Content\2013.2.611\Sitefinity\treeview-nodes.png" />
-    <Resource Include="Content\2013.2.611\Sitefinity\treeview-nodes-rtl.png" />
-    <Resource Include="Content\2013.2.611\Sitefinity\treeview-line.png" />
-    <Resource Include="Content\2013.2.611\Sitefinity\sprite.png" />
-    <Resource Include="Content\2013.2.611\Sitefinity\sprite-vertical.png" />
-    <Resource Include="Content\2013.2.611\Sitefinity\slider-v.gif" />
-    <Resource Include="Content\2013.2.611\Sitefinity\slider-h.gif" />
-    <Resource Include="Content\2013.2.611\Sitefinity\loading.gif" />
-    <Resource Include="Content\2013.2.611\Sitefinity\imagebrowser.png" />
-    <Resource Include="Content\2013.2.611\Sitefinity\editor.png" />
-    <Resource Include="Content\2013.2.611\Simple\treeview-nodes.png" />
-    <Resource Include="Content\2013.2.611\Simple\treeview-nodes-rtl.png" />
-    <Resource Include="Content\2013.2.611\Simple\treeview-line.png" />
-    <Resource Include="Content\2013.2.611\Simple\sprite.png" />
-    <Resource Include="Content\2013.2.611\Simple\slider-v.gif" />
-    <Resource Include="Content\2013.2.611\Simple\slider-h.gif" />
-    <Resource Include="Content\2013.2.611\Simple\loading.gif" />
-    <Resource Include="Content\2013.2.611\Simple\imagebrowser.png" />
-    <Resource Include="Content\2013.2.611\Simple\editor.png" />
-    <Resource Include="Content\2013.2.611\Outlook\treeview-nodes.png" />
-    <Resource Include="Content\2013.2.611\Outlook\treeview-nodes-rtl.png" />
-    <Resource Include="Content\2013.2.611\Outlook\treeview-line.png" />
-    <Resource Include="Content\2013.2.611\Outlook\sprite.png" />
-    <Resource Include="Content\2013.2.611\Outlook\sprite-vertical.png" />
-    <Resource Include="Content\2013.2.611\Outlook\slider-v.gif" />
-    <Resource Include="Content\2013.2.611\Outlook\slider-h.gif" />
-    <Resource Include="Content\2013.2.611\Outlook\loading.gif" />
-    <Resource Include="Content\2013.2.611\Outlook\imagebrowser.png" />
-    <Resource Include="Content\2013.2.611\Outlook\editor.png" />
-    <Resource Include="Content\2013.2.611\Office2010Silver\sprite.png" />
-    <Resource Include="Content\2013.2.611\Office2010Silver\sprite-vertical.png" />
-    <Resource Include="Content\2013.2.611\Office2010Silver\slider-v.gif" />
-    <Resource Include="Content\2013.2.611\Office2010Silver\slider-h.gif" />
-    <Resource Include="Content\2013.2.611\Office2010Silver\loading.gif" />
-    <Resource Include="Content\2013.2.611\Office2010Silver\imagebrowser.png" />
-    <Resource Include="Content\2013.2.611\Office2010Silver\gradient.png" />
-    <Resource Include="Content\2013.2.611\Office2010Silver\editor.png" />
-    <Resource Include="Content\2013.2.611\Office2010Blue\sprite.png" />
-    <Resource Include="Content\2013.2.611\Office2010Blue\sprite-vertical.png" />
-    <Resource Include="Content\2013.2.611\Office2010Blue\slider-v.gif" />
-    <Resource Include="Content\2013.2.611\Office2010Blue\slider-h.gif" />
-    <Resource Include="Content\2013.2.611\Office2010Blue\loading.gif" />
-    <Resource Include="Content\2013.2.611\Office2010Blue\imagebrowser.png" />
-    <Resource Include="Content\2013.2.611\Office2010Blue\gradient.png" />
-    <Resource Include="Content\2013.2.611\Office2010Blue\editor.png" />
-    <Resource Include="Content\2013.2.611\Office2010Black\treeview-nodes.png" />
-    <Resource Include="Content\2013.2.611\Office2010Black\treeview-nodes-rtl.png" />
-    <Resource Include="Content\2013.2.611\Office2010Black\treeview-line.png" />
-    <Resource Include="Content\2013.2.611\Office2010Black\sprite.png" />
-    <Resource Include="Content\2013.2.611\Office2010Black\sprite-vertical.png" />
-    <Resource Include="Content\2013.2.611\Office2010Black\slider-v.gif" />
-    <Resource Include="Content\2013.2.611\Office2010Black\slider-h.gif" />
-    <Resource Include="Content\2013.2.611\Office2010Black\loading.gif" />
-    <Resource Include="Content\2013.2.611\Office2010Black\imagebrowser.png" />
-    <Resource Include="Content\2013.2.611\Office2010Black\editor.png" />
-    <Resource Include="Content\2013.2.611\Office2007\treeview-nodes.png" />
-    <Resource Include="Content\2013.2.611\Office2007\treeview-nodes-rtl.png" />
-    <Resource Include="Content\2013.2.611\Office2007\treeview-line.png" />
-    <Resource Include="Content\2013.2.611\Office2007\sprite.png" />
-    <Resource Include="Content\2013.2.611\Office2007\sprite-vertical.png" />
-    <Resource Include="Content\2013.2.611\Office2007\slider-v.gif" />
-    <Resource Include="Content\2013.2.611\Office2007\slider-h.gif" />
-    <Resource Include="Content\2013.2.611\Office2007\loading.gif" />
-    <Resource Include="Content\2013.2.611\Office2007\imagebrowser.png" />
-    <Resource Include="Content\2013.2.611\Office2007\editor.png" />
-    <Resource Include="Content\2013.2.611\Metro\sprite.png" />
-    <Resource Include="Content\2013.2.611\Metro\slider-v.gif" />
-    <Resource Include="Content\2013.2.611\Metro\slider-h.gif" />
-    <Resource Include="Content\2013.2.611\Metro\loading.gif" />
-    <Resource Include="Content\2013.2.611\Metro\imagebrowser.png" />
-    <Resource Include="Content\2013.2.611\Metro\editor.png" />
     <Resource Include="Content\2013.2.611\Hay\treeview-nodes.png" />
     <Resource Include="Content\2013.2.611\Hay\treeview-nodes-rtl.png" />
     <Resource Include="Content\2013.2.611\Hay\treeview-line.png" />
@@ -379,36 +249,6 @@
     <Resource Include="Content\2013.2.611\Hay\loading.gif" />
     <Resource Include="Content\2013.2.611\Hay\imagebrowser.png" />
     <Resource Include="Content\2013.2.611\Hay\editor.png" />
-    <Resource Include="Content\2013.2.611\Forest\treeview-nodes.png" />
-    <Resource Include="Content\2013.2.611\Forest\treeview-nodes-rtl.png" />
-    <Resource Include="Content\2013.2.611\Forest\treeview-line.png" />
-    <Resource Include="Content\2013.2.611\Forest\sprite.png" />
-    <Resource Include="Content\2013.2.611\Forest\sprite-vertical.png" />
-    <Resource Include="Content\2013.2.611\Forest\slider-v.gif" />
-    <Resource Include="Content\2013.2.611\Forest\slider-h.gif" />
-    <Resource Include="Content\2013.2.611\Forest\loading.gif" />
-    <Resource Include="Content\2013.2.611\Forest\imagebrowser.png" />
-    <Resource Include="Content\2013.2.611\Forest\editor.png" />
-    <Resource Include="Content\2013.2.611\Default\treeview-nodes.png" />
-    <Resource Include="Content\2013.2.611\Default\treeview-nodes-rtl.png" />
-    <Resource Include="Content\2013.2.611\Default\treeview-line.png" />
-    <Resource Include="Content\2013.2.611\Default\sprite.png" />
-    <Resource Include="Content\2013.2.611\Default\sprite-vertical.png" />
-    <Resource Include="Content\2013.2.611\Default\slider-v.gif" />
-    <Resource Include="Content\2013.2.611\Default\slider-h.gif" />
-    <Resource Include="Content\2013.2.611\Default\loading.gif" />
-    <Resource Include="Content\2013.2.611\Default\imagebrowser.png" />
-    <Resource Include="Content\2013.2.611\Default\editor.png" />
-    <Resource Include="Content\2013.2.611\Black\treeview-nodes.png" />
-    <Resource Include="Content\2013.2.611\Black\treeview-nodes-rtl.png" />
-    <Resource Include="Content\2013.2.611\Black\treeview-line.png" />
-    <Resource Include="Content\2013.2.611\Black\sprite.png" />
-    <Resource Include="Content\2013.2.611\Black\sprite-vertical.png" />
-    <Resource Include="Content\2013.2.611\Black\slider-v.gif" />
-    <Resource Include="Content\2013.2.611\Black\slider-h.gif" />
-    <Resource Include="Content\2013.2.611\Black\loading.gif" />
-    <Resource Include="Content\2013.2.611\Black\imagebrowser.png" />
-    <Resource Include="Content\2013.2.611\Black\editor.png" />
     <Content Include="Content\2013.2.611\telerik.black.min.css" />
     <Content Include="Content\2013.2.611\telerik.common.min.css" />
     <Content Include="Content\2013.2.611\telerik.default.min.css" />

@@ -16,7 +16,7 @@ namespace HelloWorld
         {
             SQLiteConnection sqlite_conn;
             // Create a new database connection:
-            sqlite_conn = new SQLiteConnection("Data Source= database.db; Version = 3;");
+            sqlite_conn = new SQLiteConnection("Data Source = database.db; Version = 3;");
             // Open the connection:
             try
             {
