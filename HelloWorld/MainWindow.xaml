@@ -1286,15 +1286,15 @@
 
 
                                     <Grid Grid.Row="2" Grid.ColumnSpan="5">
-                                        <DataGrid Name = "dataGrid" AlternatingRowBackground = "LightBlue"  
-         AlternationCount = "2" AutoGenerateColumns = "False">
+                                        <DataGrid Name = "Sales_dataGrid" AlternatingRowBackground = "LightBlue"  
+                                  AlternationCount = "2" AutoGenerateColumns = "False">
 
                                             <DataGrid.Columns>
-                                                <DataGridTextColumn Header = "Name" Binding = "{Binding Name}" />
-                                                <DataGridTextColumn Header = "Title" Binding = "{Binding Title}" />
-                                                <DataGridCheckBoxColumn Header = "ReElected?" Binding = "{Binding WasReElected}"/>
-                                                <DataGridComboBoxColumn Header = "Party" SelectedItemBinding = "{Binding Affiliation}" 
-               ItemsSource = "{Binding Source = {StaticResource myEnum}}" />
+                                                <DataGridTextColumn Header = "Id" Binding = "{Binding Id}" />
+                                                <DataGridTextColumn Header = "Sale (Liters)" Binding = "{Binding sold_liters}" />
+                                                <DataGridTextColumn Header = "Sale (Rupees)" Binding = "{Binding sold_rupees}"/>
+                                                <DataGridTextColumn Header = "Rate" Binding = "{Binding rate}" 
+                                                ItemsSource = "{Binding Source = {StaticResource myEnum}}" />
                                             </DataGrid.Columns>
 
                                         </DataGrid>

@@ -1319,8 +1319,7 @@ namespace HelloWorld
         private void OverviewEvents()
         {
             ArrayList expenseboxes = new ArrayList();
-            expenseboxes.Add();
-
+            
             staffSalaries_expense_TB.TextChanged += (sender, e) => Expenses.calculate(sender, e, expenseboxes);
 
 
