@@ -1181,13 +1181,13 @@
                                         <!--<materialDesign:PackIcon Kind="Calendar" Foreground="Gray" Width="10" Height="10" VerticalAlignment="Center" Margin="5 0"/>-->
 
                                         <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" FontSize="40" Margin="15" HorizontalAlignment="Center" Foreground="#FF235885" FontStyle="Oblique" Content="August Sales" />
-                                        <Label Grid.Row="1" Grid.Column="0" Foreground="#FFBC6737"  FontSize="45" Margin="20,5,5,5">94859.00</Label>
+                                        <Label Name="LTR_petrol_sold_Lbl" Grid.Row="1" Grid.Column="0" Foreground="#FFBC6737"  FontSize="45" Margin="20,5,5,5">94859.00</Label>
                                         <Label Grid.Row="1" Grid.Column="0" Foreground="#FFBC6737" HorizontalAlignment="Right" VerticalAlignment="Bottom" FontSize="15" Margin="5">Liters Petrol sold</Label>
-                                        <Label Grid.Row="2" Grid.Column="0" Foreground="#FF4682B4" FontSize="45" Margin="20,5,5,5" >90383.00</Label>
+                                        <Label Name="LTR_diesel_sold_Lbl" Grid.Row="2" Grid.Column="0" Foreground="#FF4682B4" FontSize="45" Margin="20,5,5,5" >90383.00</Label>
                                         <Label Grid.Row="2" Grid.Column="0" Foreground="#FF4682B4" HorizontalAlignment="Right" VerticalAlignment="Bottom" FontSize="15" Margin="5">Liters Diesel sold</Label>
-                                        <Label Grid.Row="1" Grid.Column="2" Foreground="#FFBC6737" HorizontalAlignment="Center" FontSize="25" Margin="5">94859.00</Label>
+                                        <Label Name="PKR_petrol_sold_Lbl" Grid.Row="1" Grid.Column="2" Foreground="#FFBC6737" HorizontalAlignment="Center" FontSize="25" Margin="5">94859.00</Label>
                                         <Label Grid.Row="1" Grid.Column="2" Foreground="#FFBC6737" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="15" Margin="5">PKR</Label>
-                                        <Label Grid.Row="2" Grid.Column="2" Foreground="#FF4682B4" HorizontalAlignment="Center" FontSize="25" Margin="5" >90383.00</Label>
+                                        <Label Name="Pkr_diesel_sold_Lbl" Grid.Row="2" Grid.Column="2" Foreground="#FF4682B4" HorizontalAlignment="Center" FontSize="25" Margin="5" >90383.00</Label>
                                         <Label Grid.Row="2" Grid.Column="2" Foreground="#FF4682B4" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="15" Margin="5">PKR</Label>
 
                                     </Grid>
@@ -1207,9 +1207,9 @@
 
                                         <!--<Image Source="sales.png" Width="200" Height="200" />-->
                                         <Label FontSize="50" HorizontalAlignment="Center" Foreground="#FF235885" FontStyle="Oblique" >Fuel Tank</Label>
-                                        <Label Foreground="#FFBC6737" FontSize="75" Margin="10,0,0,-10">39485.00</Label>
+                                        <Label Name="Fueltank_petrol_lbl" Foreground="#FFBC6737"  FontSize="75" Margin="10,0,0,-10">39485.00</Label>
                                         <Label Foreground="#FFBC6737" HorizontalAlignment="Right" FontSize="15" Margin="10,-10,0,-10">Liters petrol</Label>
-                                        <Label Foreground="#FF4682B4" FontSize="75" Margin="10,-5,0,0" >34885.00</Label>
+                                        <Label Name="Fueltank_diesel_lbl" Foreground="#FF4682B4" FontSize="75" Margin="10,-5,0,0" >34885.00</Label>
                                         <Label Foreground="#FF4682B4" HorizontalAlignment="Right" FontSize="15" Margin="10,-20,0,-10">Liters diesel</Label>
                                     </StackPanel>
 
@@ -1227,9 +1227,9 @@
 
                                         <!--<Image Source="sales.png" Width="200" Height="200" />-->
                                         <Label FontSize="50" HorizontalAlignment="Center" Foreground="#FF235885" FontStyle="Oblique" >Profit/Loss (Rate)</Label>
-                                        <Label Foreground="#FFBC6737"  FontSize="75" Margin="10,0,0,-10">39485.00</Label>
+                                        <Label Name="profitloss_petrol_lbl" Foreground="#FFBC6737"  FontSize="75" Margin="10,0,0,-10">39485.00</Label>
                                         <Label Foreground="#FFBC6737" HorizontalAlignment="Right" FontSize="15" Margin="-10,-10,0,-10">From Petrol</Label>
-                                        <Label Foreground="#FF4682B4" FontSize="75" Margin="10,-5,0,0" >34885.00</Label>
+                                        <Label Name="profitloss_diesel_lbl" Foreground="#FF4682B4" FontSize="75" Margin="10,-5,0,0" >34885.00</Label>
                                         <Label Foreground="#FF4682B4" HorizontalAlignment="Right" FontSize="15" Margin="10,-20,0,-10">From Diesel</Label>
                                     </StackPanel>
 
@@ -1246,9 +1246,9 @@
                                         <materialDesign:PackIcon Kind="Calendar" Foreground="Gray" Width="10" Height="10" VerticalAlignment="Center" Margin="5 0"/>
 
                                         <Label FontSize="50" HorizontalAlignment="Center" Foreground="#FF235885" FontStyle="Oblique" >Total Profit</Label>
-                                        <Label Foreground="#FFBC6737"  FontSize="75" Margin="10,0,0,-10">39485.00</Label>
+                                        <Label Name="totalprofit_petrol_lbl" Foreground="#FFBC6737"  FontSize="75" Margin="10,0,0,-10">39485.00</Label>
                                         <Label Foreground="#FFBC6737" HorizontalAlignment="Right" FontSize="15" Margin="-10,-10,0,-10">From Petrol</Label>
-                                        <Label Foreground="#FF4682B4" FontSize="75" Margin="10,-5,0,0" >34885.00</Label>
+                                        <Label Name="totalprofit_diesel_lbl" Foreground="#FF4682B4" FontSize="75" Margin="10,-5,0,0" >34885.00</Label>
                                         <Label Foreground="#FF4682B4" HorizontalAlignment="Right" FontSize="15" Margin="10,-20,0,-10">From Diesel</Label>
 
                                     </StackPanel>
