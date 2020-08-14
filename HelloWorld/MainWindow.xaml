@@ -1207,7 +1207,7 @@
 
                                         <!--<Image Source="sales.png" Width="200" Height="200" />-->
                                         <Label FontSize="50" HorizontalAlignment="Center" Foreground="#FF235885" FontStyle="Oblique" >Fuel Tank</Label>
-                                        <Label Foreground="#FFBC6737"  FontSize="75" Margin="10,0,0,-10">39485.00</Label>
+                                        <Label Foreground="#FFBC6737" FontSize="75" Margin="10,0,0,-10">39485.00</Label>
                                         <Label Foreground="#FFBC6737" HorizontalAlignment="Right" FontSize="15" Margin="10,-10,0,-10">Liters petrol</Label>
                                         <Label Foreground="#FF4682B4" FontSize="75" Margin="10,-5,0,0" >34885.00</Label>
                                         <Label Foreground="#FF4682B4" HorizontalAlignment="Right" FontSize="15" Margin="10,-20,0,-10">Liters diesel</Label>
