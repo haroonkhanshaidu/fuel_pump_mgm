@@ -1318,10 +1318,23 @@ namespace HelloWorld
 
         private void OverviewEvents()
         {
-            ArrayList expenseboxes = new ArrayList();
-            expenseboxes.Add();
+            ArrayList salesLabels = new ArrayList();
+            salesLabels.Add(LTR_petrol_sold_Lbl);
+            salesLabels.Add(PKR_petrol_sold_Lbl);
+            salesLabels.Add(LTR_diesel_sold_Lbl);
+            salesLabels.Add(Pkr_diesel_sold_Lbl);
+            Overview.Sales(salesLabels);
 
-            staffSalaries_expense_TB.TextChanged += (sender, e) => Expenses.calculate(sender, e, expenseboxes);
+            ArrayList fuelLabels = new ArrayList();
+            fuelLabels.Add(Fueltank_petrol_lbl);
+            fuelLabels.Add(Fueltank_diesel_lbl);
+            Overview.FuelTank(fuelLabels);
+
+            ArrayList totalProfit = new ArrayList();
+            totalProfit.Add(totalprofit_petrol_lbl);
+            totalProfit.Add(totalprofit_diesel_lbl);
+            Overview.TotalProfit(totalProfit);
+
 
 
         }
