@@ -12,7 +12,7 @@ namespace HelloWorld
 {
     class Overview
     {
-        static public void Sales(ArrayList salesLabel)
+        static public ArrayList SalesOverview(ArrayList salesLabel)
         {
             Label LtrPetrol = (salesLabel[0] as Label);
             Label PkrPetrol = (salesLabel[1] as Label);
@@ -50,7 +50,10 @@ namespace HelloWorld
             PkrPetrol.Content = totalPkrPetrol.ToString();
             LtrDiesel.Content = totalLtrDiesel.ToString();
             PkrDiesel.Content = totalPkrDiesel.ToString();
-
+            ArrayList totalLTRofPetrolAndDieselList = new ArrayList();
+            totalLTRofPetrolAndDieselList.Add(totalLtrPetrol);
+            totalLTRofPetrolAndDieselList.Add(totalLtrDiesel);
+            return totalLTRofPetrolAndDieselList;
 
         }
 

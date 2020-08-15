@@ -1324,7 +1324,7 @@ namespace HelloWorld
             salesLabels.Add(PKR_petrol_sold_Lbl);
             salesLabels.Add(LTR_diesel_sold_Lbl);
             salesLabels.Add(Pkr_diesel_sold_Lbl);
-            Overview.Sales(salesLabels);
+            Overview.SalesOverview(salesLabels);
 
             ArrayList fuelLabels = new ArrayList();
             fuelLabels.Add(Fueltank_petrol_lbl);

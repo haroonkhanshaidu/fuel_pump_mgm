@@ -15,14 +15,29 @@ namespace HelloWorld
         {
             double fuelToDeduct = fuelLtr;
             double fuelInTank = 0;
+            double totalUsableFuel = 0;
             string fuelRef = "";
 
 
             SQLiteDataReader reader;
             SQLiteCommand sqlite_cmd;
             sqlite_cmd = GlobalFunctions.Connect().CreateCommand();
-            sqlite_cmd.CommandText = "Select Reference, LTRUsable from " + table + "";
+            sqlite_cmd.CommandText = "SELECT LTRUsable FROM " + table + "  WHERE LTRUsable > 0;";
 
+            reader = sqlite_cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                totalUsableFuel = totalUsableFuel + reader.GetDouble(0);
+                
+            }
+            if (fuelToDeduct > totalUsableFuel)
+            {
+                MessageBox.Show("There is not enough Fuel in Tank");
+                return false;
+            }
+            reader.Close();
+
+            sqlite_cmd.CommandText = "SELECT Reference,LTRUsable FROM " + table + "  WHERE LTRUsable > 0 limit 1;";
             reader = sqlite_cmd.ExecuteReader();
             while (reader.Read())
             {
@@ -39,7 +54,7 @@ namespace HelloWorld
 
             if (fuelInTank <= 0)
             {
-                MessageBox.Show("Not enough fuel in Tank");
+                MessageBox.Show("The Fuel tank is empty!");
                 return false;
             }
             if (fuelInTank >= fuelToDeduct)
