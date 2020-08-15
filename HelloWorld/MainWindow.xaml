@@ -1293,9 +1293,8 @@
                                                 <DataGridTextColumn Header = "Id" Binding = "{Binding Id}" />
                                                 <DataGridTextColumn Header = "Sale (Liters)" Binding = "{Binding sold_liters}" />
                                                 <DataGridTextColumn Header = "Sale (Rupees)" Binding = "{Binding sold_rupees}"/>
-                                                <DataGridTextColumn Header = "Rate" Binding = "{Binding rate}" 
-                                                ItemsSource = "{Binding Source = {StaticResource myEnum}}" />
-                                            </DataGrid.Columns>
+                                                <DataGridTextColumn Header = "Rate" Binding = "{Binding rate}" />
+                                                  </DataGrid.Columns>
 
                                         </DataGrid>
                                     </Grid>

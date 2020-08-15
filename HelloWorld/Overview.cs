@@ -89,11 +89,12 @@ namespace HelloWorld
             SQLiteDataReader reader;
             SQLiteCommand sqlite_cmd;
             sqlite_cmd = GlobalFunctions.Connect().CreateCommand();
-            sqlite_cmd.CommandText = "Select totalPKR, totalLTR from petrol ORDER BY id DESC LIMIT 30; ";
+            sqlite_cmd.CommandText = "Select date from creditorData; ";
 
             reader = sqlite_cmd.ExecuteReader();
             while (reader.Read())
             {
+                if(int.Parse(reader.GetString(0))>1599000000)
             }
             reader.Close();
 

@@ -25,7 +25,6 @@ namespace HelloWorld
 
         public MainWindow()
         {
-
             InitializeComponent();
             //new SplashWindow().ShowDialog();
             //new Dashboard1().ShowDialog();
@@ -40,7 +39,7 @@ namespace HelloWorld
 
             //Entry obj = new Entry(getTotalLiters_diesel());
 
-            dataGrid.ItemsSource = Employee.GetEmployees();
+            //dataGrid.ItemsSource = Employee.GetEmployees();
 
         }
 
