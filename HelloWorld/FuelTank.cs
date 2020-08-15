@@ -55,7 +55,6 @@ namespace HelloWorld
 
             return true;
 
-
         }
 
         static private void fuelTankUpdate(string fuelRef,double fuelInTank,string table)
@@ -65,13 +64,7 @@ namespace HelloWorld
             sqlite_cmd = GlobalFunctions.Connect().CreateCommand();
             sqlite_cmd.CommandText = "Update " + table + " set LTRUsable = '" + fuelInTank + "' where Reference = '" + fuelRef + "'";
             sqlite_cmd.ExecuteNonQuery();
-
-
-           
+          
         }
-
-
-       
-
     }
 }
