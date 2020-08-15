@@ -9,6 +9,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Data.SQLite;
+using System.Data;
 
 namespace HelloWorld
 {
@@ -35,11 +36,11 @@ namespace HelloWorld
             demandDraftEvents();
             OverviewEvents();
 
+            get_data("petrol");
+
             testing_diesel_TB.Text = "0";
 
             //Entry obj = new Entry(getTotalLiters_diesel());
-
-            //dataGrid.ItemsSource = Employee.GetEmployees();
 
         }
 
@@ -1397,133 +1398,46 @@ namespace HelloWorld
 
         }
 
+        private void AddPresetButton_Click(object sender, RoutedEventArgs e)
+        {
+            var addButton = sender as FrameworkElement;
+            if (addButton != null)
+            {
+                addButton.ContextMenu.IsOpen = true;
+            }
+
+           
+        }
+
+        public void get_data(string table)
+        {
+            //SQLiteCommand sqlite_cmd;
+            //sqlite_cmd = GlobalFunctions.Connect().CreateCommand();
+            //sqlite_cmd.CommandText = "SELECT * FROM " + table ;
+
+
+
+            SQLiteCommand sqlcmd = GlobalFunctions.Connect().CreateCommand();
+
+            string CommandText = "SELECT * FROM " + table;
+            SQLiteDataAdapter sqlda = new SQLiteDataAdapter(CommandText, GlobalFunctions.Connect());
+
+            DataTable dt;
+            using (dt = new DataTable())
+            {
+                sqlda.Fill(dt);
+                PetrolSales_dataGrid.ItemsSource = dt.DefaultView;
+                GlobalFunctions.CloseConnection();
+            }
+        }
+
+
     }
 
    
 
-    public enum Party
-    {
-        Indepentent,
-        Federalist,
-        DemocratRepublican,
-    }
-
-    public class Employee : INotifyPropertyChanged
-    {
-        private string name;
-
-        public string Name
-        {
-            get { return name; }
-            set
-            {
-                name = value;
-                RaiseProperChanged();
-            }
-        }
-
-        private string title;
-
-        public string Title
-        {
-            get { return title; }
-            set
-            {
-                title = value;
-                RaiseProperChanged();
-            }
-        }
-
-        private bool wasReElected;
-
-        public bool WasReElected
-        {
-            get { return wasReElected; }
-            set
-            {
-                wasReElected = value;
-                RaiseProperChanged();
-            }
-        }
-
-        private Party affiliation;
-
-        public Party Affiliation
-        {
-            get { return affiliation; }
-            set
-            {
-                affiliation = value;
-                RaiseProperChanged();
-            }
-        }
-
-        public static ObservableCollection<Employee> GetEmployees()
-        {
-            var employees = new ObservableCollection<Employee>();
-
-            employees.Add(new Employee()
-            {
-                Name = "Ali",
-                Title = "Minister",
-                WasReElected = true,
-                Affiliation = Party.Indepentent
-            });
-
-            employees.Add(new Employee()
-            {
-                Name = "Ahmed",
-                Title = "CM",
-                WasReElected = false,
-                Affiliation = Party.Federalist
-            });
-
-            employees.Add(new Employee()
-            {
-                Name = "Amjad",
-                Title = "PM",
-                WasReElected = true,
-                Affiliation = Party.DemocratRepublican
-            });
-
-            employees.Add(new Employee()
-            {
-                Name = "Waqas",
-                Title = "Minister",
-                WasReElected = false,
-                Affiliation = Party.Indepentent
-            });
-
-            employees.Add(new Employee()
-            {
-                Name = "Bilal",
-                Title = "Minister",
-                WasReElected = true,
-                Affiliation = Party.Federalist
-            });
-
-            employees.Add(new Employee()
-            {
-                Name = "Waqar",
-                Title = "Minister",
-                WasReElected = false,
-                Affiliation = Party.DemocratRepublican
-            });          
-
-            return employees;
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        private void RaiseProperChanged([CallerMemberName] string caller = "")
-        {
-
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(caller));
-            }
-        }
-    } 
+ 
+   
 
 
 }
