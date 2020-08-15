@@ -59,23 +59,27 @@ namespace HelloWorld
         {
             Label fuelTankPetrol = (salesLabel[0] as Label);
             Label fuelTankDiesel = (salesLabel[1] as Label);
+            double totalPetrolinTank = 0;
+            double totalDIeselinTank = 0;
 
             SQLiteDataReader reader;
             SQLiteCommand sqlite_cmd;
             sqlite_cmd = GlobalFunctions.Connect().CreateCommand();
-            sqlite_cmd.CommandText = "Select LTRUsable from ddPetrol ORDER BY id DESC LIMIT 1; ";
+            sqlite_cmd.CommandText = "Select LTRUsable from ddPetrol WHERE LTRUsable > 0; ";
             reader = sqlite_cmd.ExecuteReader();
             while (reader.Read())
             {
-                fuelTankPetrol.Content = reader.GetString(0);
+                totalPetrolinTank = totalPetrolinTank + (reader.GetDouble(0));
             }
+            fuelTankPetrol.Content = totalPetrolinTank.ToString();
             reader.Close();
-            sqlite_cmd.CommandText = "Select LTRUsable from ddDiesel ORDER BY id DESC LIMIT 1;";
+            sqlite_cmd.CommandText = "Select LTRUsable from ddDiesel WHERE LTRUsable > 0;";
             reader = sqlite_cmd.ExecuteReader();
             while (reader.Read())
             {
-                fuelTankDiesel.Content = reader.GetString(0);
+                totalDIeselinTank = totalDIeselinTank + reader.GetDouble(0);
             }
+            fuelTankDiesel.Content = totalDIeselinTank.ToString();
             reader.Close();
             GlobalFunctions.CloseConnection();
 

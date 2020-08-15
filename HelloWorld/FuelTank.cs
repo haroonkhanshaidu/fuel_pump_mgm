@@ -35,9 +35,12 @@ namespace HelloWorld
                 }
             }
 
-            if (fuelInTank < 0)
+            reader.Close();
+
+            if (fuelInTank <= 0)
             {
                 MessageBox.Show("Not enough fuel in Tank");
+                return false;
             }
             if (fuelInTank >= fuelToDeduct)
             {

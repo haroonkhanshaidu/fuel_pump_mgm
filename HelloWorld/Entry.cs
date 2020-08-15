@@ -22,10 +22,11 @@ namespace HelloWorld
         {
             DateTime dateTime = datePicker.SelectedDate.Value;
             string date = GlobalFunctions.epochTimeParam(dateTime);
-            if (dateFound(datePicker,table))
-            {
-                return -1;
-            }
+            //if (dateFound(datePicker,table))
+            //{
+            //    return -1;
+            //}
+
 
 
             SQLiteCommand sqlite_cmd;
