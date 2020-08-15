@@ -33,8 +33,10 @@ namespace HelloWorld
             sqlite_cmd.CommandText = "insert into " + table + " (opening1,closing1,opening2,closing2,rate,testing,discount,totalPKR,totalLTR,date) " +
                 "values ('" + dict["n1opening"] + "','" + dict["n1closing"] + "','" + dict["n2opening"] + "','" + dict["n2closing"] + "'," +
                 "'" + dict["rate"] + "','" + dict["testing"] + "','" + dict["discount"] + "','" + dict["totalPkrs"] + "','" + dict["totalLtrs"] + "','" + date + "')";
-  
-            return sqlite_cmd.ExecuteNonQuery();
+
+            int commandstatus = sqlite_cmd.ExecuteNonQuery();
+            GlobalFunctions.CloseConnection();
+            return commandstatus;
 
         }
 
@@ -55,6 +57,8 @@ namespace HelloWorld
                 date = reader.GetValue(0).ToString();
             }
 
+            GlobalFunctions.CloseConnection();
+
             return date;
         }
 
@@ -72,8 +76,12 @@ namespace HelloWorld
             reader = sqlite_cmd.ExecuteReader();
             if (reader.HasRows)
             {
+
+                GlobalFunctions.CloseConnection();
                 return true;
             }
+
+            GlobalFunctions.CloseConnection();
             return false;
 
             

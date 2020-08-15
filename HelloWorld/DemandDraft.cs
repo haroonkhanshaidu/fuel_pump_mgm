@@ -50,6 +50,8 @@ namespace HelloWorld
             (textBoxes[0] as TextBox).Text = "";
             (textBoxes[1] as TextBox).Text = "";
             (textBoxes[2] as TextBox).Text = "";
+
+            GlobalFunctions.CloseConnection();
         }
 
 

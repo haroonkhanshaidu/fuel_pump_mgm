@@ -1417,7 +1417,6 @@ namespace HelloWorld
 
 
 
-            SQLiteCommand sqlcmd = GlobalFunctions.Connect().CreateCommand();
 
             string CommandText = "SELECT * FROM " + table;
             SQLiteDataAdapter sqlda = new SQLiteDataAdapter(CommandText, GlobalFunctions.Connect());

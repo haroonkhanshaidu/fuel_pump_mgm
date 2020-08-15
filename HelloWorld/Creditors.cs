@@ -26,6 +26,7 @@ namespace HelloWorld
             sqlite_cmd = GlobalFunctions.Connect().CreateCommand();
             sqlite_cmd.CommandText = "insert into " + table + " (creditorName,amount,date) values ('" + name + "','" + amount + "','" + date + "')";
             sqlite_cmd.ExecuteNonQuery();
+            GlobalFunctions.CloseConnection ();
         }
 
      
@@ -45,7 +46,9 @@ namespace HelloWorld
                 d.Add(reader.GetValue(1).ToString(), reader.GetValue(2).ToString());
             }
 
-            
+            GlobalFunctions.CloseConnection();
+
+
             return d;
 
         }
@@ -63,6 +66,7 @@ namespace HelloWorld
             sqlite_cmd = GlobalFunctions.Connect().CreateCommand();
             sqlite_cmd.CommandText= "Update " + table + " set amount = '" + amount + "', date = '" + date + "' where creditorName = '" + name + "'";
             sqlite_cmd.ExecuteNonQuery();
+            GlobalFunctions.CloseConnection();
 
         }
 

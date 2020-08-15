@@ -71,6 +71,7 @@ namespace HelloWorld
             sqlite_cmd = GlobalFunctions.Connect().CreateCommand();
             sqlite_cmd.CommandText = "insert into expenses (salareis,electricity,maintenance,other,mianSahib,total,date) values (" + textboxesValues + "" + date + ")";
             sqlite_cmd.ExecuteNonQuery();
+            GlobalFunctions.CloseConnection();
 
 
             TextBox withdrawBox = (list[list.Count - 2] as TextBox);
@@ -129,6 +130,7 @@ namespace HelloWorld
             sqlite_cmd = GlobalFunctions.Connect().CreateCommand();
             sqlite_cmd.CommandText = "insert into ownerAmount (depost,withdrawal,total,date) values ('" + deposit + "','" + withdraw + "','" + total + "','" + date + "')";
             sqlite_cmd.ExecuteNonQuery();
+            GlobalFunctions.CloseConnection();
 
 
         }

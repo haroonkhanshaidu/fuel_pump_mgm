@@ -44,6 +44,7 @@ namespace HelloWorld
                 totalPkrDiesel = totalPkrDiesel + double.Parse(reader.GetString(1));
             }
             reader.Close();
+            GlobalFunctions.CloseConnection();
 
             LtrPetrol.Content = totalLtrPetrol.ToString();
             PkrPetrol.Content = totalPkrPetrol.ToString();
@@ -76,6 +77,7 @@ namespace HelloWorld
                 fuelTankDiesel.Content = reader.GetString(0);
             }
             reader.Close();
+            GlobalFunctions.CloseConnection();
 
 
         }
@@ -94,7 +96,7 @@ namespace HelloWorld
             reader = sqlite_cmd.ExecuteReader();
             while (reader.Read())
             {
-                if(int.Parse(reader.GetString(0))>1599000000)
+                if (int.Parse(reader.GetString(0)) > 1599000000) ;
             }
             reader.Close();
 
@@ -104,6 +106,7 @@ namespace HelloWorld
             {
             }
             reader.Close();
+            GlobalFunctions.CloseConnection();
 
 
 

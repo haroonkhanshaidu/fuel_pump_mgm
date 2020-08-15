@@ -53,6 +53,7 @@ namespace HelloWorld
                 FuelDeduction(difference,table);
             }
 
+            GlobalFunctions.CloseConnection();
             return true;
 
 
@@ -65,9 +66,10 @@ namespace HelloWorld
             sqlite_cmd = GlobalFunctions.Connect().CreateCommand();
             sqlite_cmd.CommandText = "Update " + table + " set LTRUsable = '" + fuelInTank + "' where Reference = '" + fuelRef + "'";
             sqlite_cmd.ExecuteNonQuery();
+            GlobalFunctions.CloseConnection();
 
 
-           
+
         }
 
 
