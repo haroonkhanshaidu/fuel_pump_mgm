@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Data.SQLite;
@@ -6,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace HelloWorld
 {
@@ -66,15 +68,64 @@ namespace HelloWorld
             return tt.ToString("dd/MM/yyyy");
         }
 
-        static public string currentMonthepoch(DateTime dateTime)
+        static public ArrayList dateTimeToMonthRange(DateTime dateTime)
         {
-            int currentMonth = dateTime.Month;
-            int currentYear = dateTime.Year;
-            string startDateCurrentMonth = currentMonth + "/1/" + currentYear;
-            DateTime todayDate = Convert.ToDateTime(startDateCurrentMonth);
-            TimeSpan t = todayDate - new DateTime(1970, 1, 1);
-            long currentMonthepoch = (long)t.TotalSeconds;
-            return currentMonthepoch.ToString();
+            int Month = dateTime.Month;
+            int Year = dateTime.Year;
+            int nextMonth = 1;
+            if (Month < 12)
+                nextMonth = Month + 1;
+            string monthStartDate = Month + "/1/" + Year;
+            string monthEndDate = nextMonth + "/1/" + Year;
+            DateTime monthStart = Convert.ToDateTime(monthStartDate);
+            DateTime monthEnd = Convert.ToDateTime(monthEndDate);
+            string monthStartingEpoch = epochTimeParam(monthStart);
+            string monthEndingEpoch = epochTimeParam(monthEnd);
+            ArrayList monthStartandEndEpoch = new ArrayList();
+            monthStartandEndEpoch.Add(monthStartingEpoch);
+            monthStartandEndEpoch.Add(monthEndingEpoch);
+            return monthStartandEndEpoch;
+        }
+
+
+        static public ArrayList dateTimeToYearRange(DateTime dateTime)
+        {
+            int Year = dateTime.Year;
+            int nextYear = Year + 1;
+            string yearStartDate = "1/1/" + Year;
+            string yearEndDate = "1/1/" + nextYear;
+            DateTime yearStart = Convert.ToDateTime(yearStartDate);
+            DateTime yearEnd = Convert.ToDateTime(yearEndDate);
+            string yearStartingEpoch = epochTimeParam(yearStart);
+            string yearEndingEpoch = epochTimeParam(yearEnd);
+            ArrayList yearStartandEndEpoch = new ArrayList();
+            yearStartandEndEpoch.Add(yearStartingEpoch);
+            yearStartandEndEpoch.Add(yearEndingEpoch);
+            return yearStartandEndEpoch;
+        }
+
+        static public ArrayList comboBoxtoDateRangeList(ComboBox monthBox,ComboBox yearBox)
+        {
+            bool isMonthlyRange = false;
+            ArrayList dateRange;
+            string year = DateTime.Now.Year.ToString();
+            string month = "1";
+            string Date = "";
+
+            if (yearBox.SelectedIndex > 0)
+                year = "202" + yearBox.SelectedIndex;
+            if (monthBox.SelectedIndex > 0)
+            {
+                month = monthBox.SelectedIndex.ToString();
+                isMonthlyRange = true;
+            }
+            Date = month + "/01/" + year;
+            DateTime dateTime = Convert.ToDateTime(Date);
+            if (isMonthlyRange)
+                dateRange = GlobalFunctions.dateTimeToMonthRange(dateTime);
+            else
+                dateRange = GlobalFunctions.dateTimeToYearRange(dateTime);
+            return dateRange;
         }
     }
 }

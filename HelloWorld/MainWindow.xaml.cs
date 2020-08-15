@@ -30,7 +30,7 @@ namespace HelloWorld
 
         public MainWindow()
         {
-            
+
             InitializeComponent();
             //new SplashWindow().ShowDialog();
             //new Dashboard1().ShowDialog();
@@ -1325,6 +1325,12 @@ namespace HelloWorld
 
         }
 
+
+
+
+
+
+
         private void OverviewEvents()
         {
             ArrayList salesLabels = new ArrayList();
@@ -1332,7 +1338,8 @@ namespace HelloWorld
             salesLabels.Add(PKR_petrol_sold_Lbl);
             salesLabels.Add(LTR_diesel_sold_Lbl);
             salesLabels.Add(Pkr_diesel_sold_Lbl);
-            Overview.SalesOverview(salesLabels);
+            Overview.SalesOverview(salesLabels, GlobalFunctions.dateTimeToMonthRange(DateTime.Now));
+            
 
             ArrayList fuelLabels = new ArrayList();
             fuelLabels.Add(Fueltank_petrol_lbl);
@@ -1347,19 +1354,6 @@ namespace HelloWorld
 
 
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         private void expensesEvents()
         {
@@ -1406,6 +1400,13 @@ namespace HelloWorld
             savebtn_DD_diesel.Click += (sender, e) => DemandDraft.FuelDemandDraftEntry(sender, e, diesellist, fuel_datepicker, "ddDiesel");
 
         }
+
+
+
+
+
+
+
 
         private void AddPresetButton_Click(object sender, RoutedEventArgs e)
         {
@@ -1547,14 +1548,24 @@ namespace HelloWorld
 
         private void sales_combobox_year_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            ArrayList salesLabels = new ArrayList();
+            salesLabels.Add(LTR_petrol_sold_Lbl);
+            salesLabels.Add(PKR_petrol_sold_Lbl);
+            salesLabels.Add(LTR_diesel_sold_Lbl);
+            salesLabels.Add(Pkr_diesel_sold_Lbl);
+            ArrayList dateRange =  GlobalFunctions.comboBoxtoDateRangeList(sales_combobox_month, sales_combobox_year);
+            Overview.SalesOverview(salesLabels, dateRange);
         }
 
         private void sales_combobox_month_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            ComboBox combobox = sender as ComboBox;
-
-            //MessageBox.Show(combobox.SelectedIndex);
+            ArrayList salesLabels = new ArrayList();
+            salesLabels.Add(LTR_petrol_sold_Lbl);
+            salesLabels.Add(PKR_petrol_sold_Lbl);
+            salesLabels.Add(LTR_diesel_sold_Lbl);
+            salesLabels.Add(Pkr_diesel_sold_Lbl);
+            ArrayList dateRange = GlobalFunctions.comboBoxtoDateRangeList(sales_combobox_month, sales_combobox_year);
+            Overview.SalesOverview(salesLabels, dateRange);
 
         }
 
