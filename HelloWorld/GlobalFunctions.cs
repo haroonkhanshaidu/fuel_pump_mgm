@@ -65,5 +65,16 @@ namespace HelloWorld
             DateTime tt = dateTimeOffset.Date;
             return tt.ToString("dd/MM/yyyy");
         }
+
+        static public string currentMonthepoch(DateTime dateTime)
+        {
+            int currentMonth = dateTime.Month;
+            int currentYear = dateTime.Year;
+            string startDateCurrentMonth = currentMonth + "/1/" + currentYear;
+            DateTime todayDate = Convert.ToDateTime(startDateCurrentMonth);
+            TimeSpan t = todayDate - new DateTime(1970, 1, 1);
+            long currentMonthepoch = (long)t.TotalSeconds;
+            return currentMonthepoch.ToString();
+        }
     }
 }
