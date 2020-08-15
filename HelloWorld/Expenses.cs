@@ -116,7 +116,7 @@ namespace HelloWorld
             reader = sqlite_cmd.ExecuteReader();
             while (reader.Read())
             {
-                total = double.Parse(reader.GetValue(0).ToString());
+                total = reader.GetDouble(0);
             }
 
 

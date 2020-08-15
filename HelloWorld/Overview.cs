@@ -31,8 +31,8 @@ namespace HelloWorld
             reader = sqlite_cmd.ExecuteReader();
             while (reader.Read())
             {
-                totalLtrPetrol = totalLtrPetrol + double.Parse(reader.GetString(0));
-                totalPkrPetrol = totalPkrPetrol + double.Parse(reader.GetString(1));
+                totalLtrPetrol = totalLtrPetrol + reader.GetDouble(0);
+                totalPkrPetrol = totalPkrPetrol + reader.GetDouble(1);
             }
             reader.Close();
 
@@ -40,8 +40,8 @@ namespace HelloWorld
             reader = sqlite_cmd.ExecuteReader();
             while (reader.Read())
             {
-                totalLtrDiesel = totalLtrDiesel + double.Parse(reader.GetString(0));
-                totalPkrDiesel = totalPkrDiesel + double.Parse(reader.GetString(1));
+                totalLtrDiesel = totalLtrDiesel + reader.GetDouble(0);
+                totalPkrDiesel = totalPkrDiesel + reader.GetDouble(1);
             }
             reader.Close();
             GlobalFunctions.CloseConnection();
@@ -100,7 +100,7 @@ namespace HelloWorld
             reader = sqlite_cmd.ExecuteReader();
             while (reader.Read())
             {
-                if (int.Parse(reader.GetString(0)) > 1599000000) ;
+                if (1>2) ;
             }
             reader.Close();
 

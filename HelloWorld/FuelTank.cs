@@ -26,11 +26,11 @@ namespace HelloWorld
             reader = sqlite_cmd.ExecuteReader();
             while (reader.Read())
             {
-                double usableFuel = double.Parse(reader.GetValue(1).ToString());
+                double usableFuel = reader.GetDouble(1);
                 if (usableFuel > 0)
                 {
                     fuelRef = reader.GetValue(0).ToString();
-                    fuelInTank = double.Parse(reader.GetValue(1).ToString());
+                    fuelInTank = reader.GetDouble(1);
                     break;
                 }
             }
