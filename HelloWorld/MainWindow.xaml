@@ -132,7 +132,7 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="ComboBox">
                         <Grid>
-                            <ToggleButton Grid.Column="2" Focusable="false" IsChecked="{Binding Path=IsDropDownOpen,Mode=TwoWay,RelativeSource={RelativeSource TemplatedParent}}" >
+                            <ToggleButton Grid.Column="2" Margin="5" Focusable="false" IsChecked="{Binding Path=IsDropDownOpen,Mode=TwoWay,RelativeSource={RelativeSource TemplatedParent}}" >
                                 <ToggleButton.Template>
                                     <ControlTemplate>
                                         <Grid>
@@ -141,7 +141,7 @@
                                                 <ColumnDefinition Width="*" />
                                             </Grid.ColumnDefinitions>
                                             <Border x:Name="Border"  Grid.ColumnSpan="2" CornerRadius="10" Background="White" BorderBrush="#FF235885" BorderThickness="1" />
-                                            <Border Grid.Column="0" CornerRadius="5,0,0,5"  Margin="1"  Background="White"  BorderBrush="#FF235885" BorderThickness="0,0,1,0" />
+                                            <Border Grid.Column="0" CornerRadius="5,0,0,5"  Margin="3"  Background="White"  BorderBrush="#FF235885" BorderThickness="0,0,1,0" />
                                             <Path x:Name="Arrow" Grid.Column="1"  Fill="Black" HorizontalAlignment="Center" VerticalAlignment="Center" Data="M 0 0 L 4 4 L 8 0 Z"/>
                                         </Grid>
                                         <ControlTemplate.Triggers>
@@ -1299,8 +1299,8 @@
                                             </Grid.ColumnDefinitions>
                                         
 
-                                        <ComboBox Grid.Row="0" Grid.Column="0" Margin="5" x:Name="sales_combobox_year" HorizontalAlignment="Right"  VerticalAlignment="Center" Style="{StaticResource ComboBoxTest2}">
-                                            <ComboBoxItem IsSelected="True">
+                                        <ComboBox Grid.Row="0" Grid.Column="0" Margin="5" x:Name="sales_combobox_year" HorizontalAlignment="Right"  VerticalAlignment="Center" Style="{StaticResource ComboBoxTest2}" SelectionChanged="sales_combobox_year_SelectionChanged">
+                                            <!--<ComboBoxItem IsSelected="True">
                                                 <StackPanel Orientation="Horizontal" >
                                                     <TextBlock  FontSize="18" Foreground="Black">2020</TextBlock>
                                                 </StackPanel>
@@ -1314,16 +1314,21 @@
                                                 <StackPanel Orientation="Horizontal">
                                                         <TextBlock  FontSize="18" Foreground="Black">2022</TextBlock>
                                                 </StackPanel>
-                                            </ComboBoxItem>
+                                            </ComboBoxItem>-->
                                            
                                         </ComboBox>
-                                        <ComboBox Grid.Row="0" Grid.Column="1" Margin="5" x:Name="sales_combobox_month" HorizontalAlignment="Left"  VerticalAlignment="Center" Style="{StaticResource ComboBoxTest2}">
-                                                <ComboBoxItem IsSelected="True">
+                                        <ComboBox Grid.Row="0" Grid.Column="1"  Margin="5" x:Name="sales_combobox_month" HorizontalAlignment="Left"  VerticalAlignment="Center" Style="{StaticResource ComboBoxTest2}" SelectionChanged="sales_combobox_month_SelectionChanged">
+                                                <!--<ComboBoxItem IsSelected="True">
                                                 <StackPanel Orientation="Horizontal" >
-                                                        <TextBlock  FontSize="18" Foreground="Black">January</TextBlock>
+                                                        <TextBlock  FontSize="22" Foreground="Black">All</TextBlock>
                                                 </StackPanel>
                                             </ComboBoxItem>
-                                            <ComboBoxItem>
+                                                <ComboBoxItem >
+                                                    <StackPanel Orientation="Horizontal" >
+                                                        <TextBlock  FontSize="18" Foreground="Black">January</TextBlock>
+                                                    </StackPanel>
+                                                </ComboBoxItem>
+                                                <ComboBoxItem>
                                                 <StackPanel Orientation="Horizontal">
                                                         <TextBlock  FontSize="18" Foreground="Black">Fabuary</TextBlock>
                                                 </StackPanel>
@@ -1377,7 +1382,7 @@
                                                 <StackPanel Orientation="Horizontal">
                                                         <TextBlock  FontSize="18" Foreground="Black">December</TextBlock>
                                                 </StackPanel>
-                                            </ComboBoxItem>
+                                            </ComboBoxItem>-->
                                         </ComboBox>
 
                                         </Grid>
@@ -1470,7 +1475,7 @@
 
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="2*"/>
-                                        <ColumnDefinition Width="2*"/>
+                                        <ColumnDefinition Width="1*"/>
                                         <ColumnDefinition Width="1.5*"/>
                                         <ColumnDefinition Width="1.5*"/>
                                         <ColumnDefinition Width="0.5*"/>
@@ -1514,8 +1519,8 @@
 
 
 
-                                    <ComboBox Grid.Row="0" Grid.Column="1"  VerticalAlignment="Top" Style="{StaticResource ComboBoxTest2}">
-                                        <ComboBoxItem IsSelected="True">
+                                    <ComboBox Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" Margin="5" Name="sales_details_combobox_year" VerticalAlignment="Top" Style="{StaticResource ComboBoxTest2}" SelectionChanged="sales_details_combobox_year_SelectionChanged">
+                                        <!--<ComboBoxItem IsSelected="True">
                                             <StackPanel Orientation="Horizontal" >
                                                 <TextBlock  Foreground="Black">2020</TextBlock>
                                             </StackPanel>
@@ -1529,33 +1534,78 @@
                                             <StackPanel Orientation="Horizontal">
                                                 <TextBlock Foreground="Black">2022</TextBlock>
                                             </StackPanel>
-                                        </ComboBoxItem>
+                                        </ComboBoxItem>-->
                                     </ComboBox>
 
 
-                                    <ComboBox Grid.Row="0" Grid.Column="2" VerticalAlignment="Top" Style="{StaticResource ComboBoxTest2}">
+                                    <ComboBox Grid.Row="0" Grid.Column="2" HorizontalAlignment="Left" Margin="5" Name="sales_details_combobox_months" VerticalAlignment="Top" Style="{StaticResource ComboBoxTest2}" SelectionChanged="sales_details_combobox_months_SelectionChanged">
+                                        <!--<ComboBoxItem IsSelected="True">
+                                            <StackPanel Orientation="Horizontal" >
+                                                <TextBlock  FontSize="22" Foreground="Black">All</TextBlock>
+                                            </StackPanel>
+                                        </ComboBoxItem>
+                                        <ComboBoxItem >
+                                            <StackPanel Orientation="Horizontal" >
+                                                <TextBlock  FontSize="18" Foreground="Black">January</TextBlock>
+                                            </StackPanel>
+                                        </ComboBoxItem>
+                                        <ComboBoxItem>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock  FontSize="18" Foreground="Black">Fabuary</TextBlock>
+                                            </StackPanel>
+                                        </ComboBoxItem>
+                                        <ComboBoxItem>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock  FontSize="18" Foreground="Black">March</TextBlock>
+                                            </StackPanel>
+                                        </ComboBoxItem>
                                         <ComboBoxItem IsSelected="True">
-                                            <StackPanel Orientation="Horizontal">
-                                                <TextBlock Foreground="Black">August</TextBlock>
+                                            <StackPanel Orientation="Horizontal" >
+                                                <TextBlock  FontSize="18" Foreground="Black">April</TextBlock>
                                             </StackPanel>
                                         </ComboBoxItem>
                                         <ComboBoxItem>
                                             <StackPanel Orientation="Horizontal">
-                                                <TextBlock Foreground="Black">September</TextBlock>
+                                                <TextBlock  FontSize="18" Foreground="Black">May</TextBlock>
                                             </StackPanel>
                                         </ComboBoxItem>
                                         <ComboBoxItem>
                                             <StackPanel Orientation="Horizontal">
-                                                <TextBlock Foreground="Black">October</TextBlock>
+                                                <TextBlock  FontSize="18" Foreground="Black">June</TextBlock>
                                             </StackPanel>
                                         </ComboBoxItem>
+                                        <ComboBoxItem IsSelected="True">
+                                            <StackPanel Orientation="Horizontal" >
+                                                <TextBlock  FontSize="18" Foreground="Black">July</TextBlock>
+                                            </StackPanel>
+                                        </ComboBoxItem>
+                                        <ComboBoxItem>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock  FontSize="18" Foreground="Black">August</TextBlock>
+                                            </StackPanel>
+                                        </ComboBoxItem>
+                                        <ComboBoxItem>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock  FontSize="18" Foreground="Black">September</TextBlock>
+                                            </StackPanel>
+                                        </ComboBoxItem>
+                                        <ComboBoxItem IsSelected="True">
+                                            <StackPanel Orientation="Horizontal" >
+                                                <TextBlock  FontSize="18" Foreground="Black">October</TextBlock>
+                                            </StackPanel>
+                                        </ComboBoxItem>
+                                        <ComboBoxItem>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock  FontSize="18" Foreground="Black">November</TextBlock>
+                                            </StackPanel>
+                                        </ComboBoxItem>
+                                        <ComboBoxItem>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock  FontSize="18" Foreground="Black">December</TextBlock>
+                                            </StackPanel>
+                                        </ComboBoxItem>-->
 
-                                        <ComboBoxItem>
-                                            <StackPanel Orientation="Horizontal">
-                                                <TextBlock Foreground="Black">November</TextBlock>
-                                            </StackPanel>
-                                        </ComboBoxItem>
-                                    </ComboBox>
+                                     </ComboBox>
                                     <Image Grid.Row="0" Margin="5" ToolTip="Print" HorizontalAlignment="Right" Grid.Column="4" Source="images/print_icon.png"></Image>
 
 

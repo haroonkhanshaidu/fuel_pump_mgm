@@ -19,6 +19,10 @@ namespace HelloWorld
     public partial class MainWindow : Window
     {
 
+        Months[] months_list;
+
+        Years[] years_list;
+
         Boolean validPetrolData = true;
 
         Boolean validDieselData = true;
@@ -32,9 +36,13 @@ namespace HelloWorld
 
             set_initial_values_diesel();
             set_initial_values_petrol();
+
             expensesEvents();
             demandDraftEvents();
             OverviewEvents();
+
+            FillMonthsCombobox();
+            FillYearsCombobox();
 
             get_data("petrol");
 
@@ -1430,26 +1438,132 @@ namespace HelloWorld
         }
 
 
-        public void setSalesComboBoxValues()
+        class Months
         {
-            var salesMonths = new BindingList<KeyValuePair<string, string>>();
+            public string Name
+            {
+                get;
+                set;
+            }
+            public int index
+            {
+                get;
+                set;
+            }
+           
+            public Months(int i, string n)
+            {
+                index = i;
+                Name = n;
+               
+            }
+        }
 
-            salesMonths.Add(new KeyValuePair<string, string>("0", "[month]"));
-            salesMonths.Add(new KeyValuePair<string, string>("1", "Contract"));
-            salesMonths.Add(new KeyValuePair<string, string>("2", "Part Time"));
-            salesMonths.Add(new KeyValuePair<string, string>("3", "Permanent"));
-            salesMonths.Add(new KeyValuePair<string, string>("4", "Probation"));
-            salesMonths.Add(new KeyValuePair<string, string>("5", "Other"));
 
-            
-            sales_combobox_month.SelectedIndex = 0;
+        class Years
+        {
+            public string Name
+            {
+                get;
+                set;
+            }
+            public int index
+            {
+                get;
+                set;
+            }
+
+            public Years(int i, string n)
+            {
+                index = i;
+                Name = n;
+
+            }
+        }
+
+        private void FillMonthsCombobox()
+        {
+            try
+            {
+               months_list = new Months[] {
+                new Months(0, "All"),
+                new Months(1, "January"),
+                new Months(2, "Fabuary"),
+                new Months(3, "March"),
+                new Months(4, "April"),
+                new Months(5, "May"),
+                new Months(6, "June"),
+                new Months(7, "July"),
+                new Months(8, "August"),
+                new Months(9, "September"),
+                new Months(10, "October"),
+                new Months(11, "November"),
+                new Months(12, "December")
+        };
+                sales_combobox_month.ItemsSource = months_list;
+                sales_combobox_month.DisplayMemberPath = "Name";
+                sales_combobox_month.SelectedIndex = 0;
 
 
+                sales_details_combobox_months.ItemsSource = months_list;
+                sales_details_combobox_months.DisplayMemberPath = "Name";
+                sales_details_combobox_months.SelectedIndex = 0;
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message);
+            }
+        }
 
 
+        private void FillYearsCombobox()
+        {
+            try
+            {
+                years_list = new Years[] {
+                new Years(1, "2020"),
+                new Years(2, "2021"),
+                new Years(3, "2022"),
+                new Years(4, "2023"),
+                new Years(5, "2024"),
+                new Years(6, "2025")
+        };
+                sales_combobox_year.ItemsSource = years_list;
+                sales_combobox_year.DisplayMemberPath = "Name";
+                sales_combobox_year.SelectedIndex = 0;
+
+                sales_details_combobox_year.ItemsSource = years_list;
+                sales_details_combobox_year.DisplayMemberPath = "Name";
+                sales_details_combobox_year.SelectedIndex = 0;
+
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message);
+            }
+        }
 
 
+        private void sales_combobox_year_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
 
+        }
+
+        private void sales_combobox_month_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ComboBox combobox = sender as ComboBox;
+
+            //MessageBox.Show(combobox.SelectedIndex);
+
+        }
+
+        private void sales_details_combobox_year_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void sales_details_combobox_months_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
 
         }
     }
