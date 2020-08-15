@@ -1405,8 +1405,7 @@ namespace HelloWorld
             {
                 addButton.ContextMenu.IsOpen = true;
             }
-
-           
+                   
         }
 
         public void get_data(string table)
@@ -1431,6 +1430,28 @@ namespace HelloWorld
         }
 
 
+        public void setSalesComboBoxValues()
+        {
+            var salesMonths = new BindingList<KeyValuePair<string, string>>();
+
+            salesMonths.Add(new KeyValuePair<string, string>("0", "[month]"));
+            salesMonths.Add(new KeyValuePair<string, string>("1", "Contract"));
+            salesMonths.Add(new KeyValuePair<string, string>("2", "Part Time"));
+            salesMonths.Add(new KeyValuePair<string, string>("3", "Permanent"));
+            salesMonths.Add(new KeyValuePair<string, string>("4", "Probation"));
+            salesMonths.Add(new KeyValuePair<string, string>("5", "Other"));
+
+            
+            sales_combobox_month.SelectedIndex = 0;
+
+
+
+
+
+
+
+
+        }
     }
 
    
