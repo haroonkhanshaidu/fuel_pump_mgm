@@ -30,6 +30,7 @@ namespace HelloWorld
 
         public MainWindow()
         {
+            
             InitializeComponent();
             //new SplashWindow().ShowDialog();
             //new Dashboard1().ShowDialog();
@@ -640,7 +641,7 @@ namespace HelloWorld
                     dict.Add("totalPkrs", double.Parse(total_sales_pkrs_petrol_TB.Text));
 
                     if (!Entry.dateFound(petrol_entry_datepicker, "petrol"))
-                    if (Entry.InsertEntry(sender, e, "petrol", dict, petrol_entry_datepicker) == 1)
+                    //if (Entry.InsertEntry(sender, e, "petrol", dict, petrol_entry_datepicker) == 1)
                     {
                         if (FuelTank.FuelDeduction(dict["totalLtrs"], "ddPetrol"))
                         {
@@ -1331,7 +1332,7 @@ namespace HelloWorld
             salesLabels.Add(PKR_petrol_sold_Lbl);
             salesLabels.Add(LTR_diesel_sold_Lbl);
             salesLabels.Add(Pkr_diesel_sold_Lbl);
-            Overview.Sales(salesLabels);
+            Overview.SalesOverview(salesLabels);
 
             ArrayList fuelLabels = new ArrayList();
             fuelLabels.Add(Fueltank_petrol_lbl);

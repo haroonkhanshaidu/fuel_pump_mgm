@@ -12,7 +12,7 @@ namespace HelloWorld
 {
     class Overview
     {
-        static public void Sales(ArrayList salesLabel)
+        static public ArrayList SalesOverview(ArrayList salesLabel)
         {
             Label LtrPetrol = (salesLabel[0] as Label);
             Label PkrPetrol = (salesLabel[1] as Label);
@@ -31,8 +31,8 @@ namespace HelloWorld
             reader = sqlite_cmd.ExecuteReader();
             while (reader.Read())
             {
-                totalLtrPetrol = totalLtrPetrol + double.Parse(reader.GetString(0));
-                totalPkrPetrol = totalPkrPetrol + double.Parse(reader.GetString(1));
+                totalLtrPetrol = totalLtrPetrol + reader.GetDouble(0);
+                totalPkrPetrol = totalPkrPetrol + reader.GetDouble(1);
             }
             reader.Close();
 
@@ -40,8 +40,8 @@ namespace HelloWorld
             reader = sqlite_cmd.ExecuteReader();
             while (reader.Read())
             {
-                totalLtrDiesel = totalLtrDiesel + double.Parse(reader.GetString(0));
-                totalPkrDiesel = totalPkrDiesel + double.Parse(reader.GetString(1));
+                totalLtrDiesel = totalLtrDiesel + reader.GetDouble(0);
+                totalPkrDiesel = totalPkrDiesel + reader.GetDouble(1);
             }
             reader.Close();
             GlobalFunctions.CloseConnection();
@@ -50,7 +50,10 @@ namespace HelloWorld
             PkrPetrol.Content = totalPkrPetrol.ToString();
             LtrDiesel.Content = totalLtrDiesel.ToString();
             PkrDiesel.Content = totalPkrDiesel.ToString();
-
+            ArrayList totalLTRofPetrolAndDieselList = new ArrayList();
+            totalLTRofPetrolAndDieselList.Add(totalLtrPetrol);
+            totalLTRofPetrolAndDieselList.Add(totalLtrDiesel);
+            return totalLTRofPetrolAndDieselList;
 
         }
 
@@ -59,23 +62,27 @@ namespace HelloWorld
         {
             Label fuelTankPetrol = (salesLabel[0] as Label);
             Label fuelTankDiesel = (salesLabel[1] as Label);
+            double totalPetrolinTank = 0;
+            double totalDIeselinTank = 0;
 
             SQLiteDataReader reader;
             SQLiteCommand sqlite_cmd;
             sqlite_cmd = GlobalFunctions.Connect().CreateCommand();
-            sqlite_cmd.CommandText = "Select LTRUsable from ddPetrol ORDER BY id DESC LIMIT 1; ";
+            sqlite_cmd.CommandText = "Select LTRUsable from ddPetrol WHERE LTRUsable > 0; ";
             reader = sqlite_cmd.ExecuteReader();
             while (reader.Read())
             {
-                fuelTankPetrol.Content = reader.GetString(0);
+                totalPetrolinTank = totalPetrolinTank + (reader.GetDouble(0));
             }
+            fuelTankPetrol.Content = totalPetrolinTank.ToString();
             reader.Close();
-            sqlite_cmd.CommandText = "Select LTRUsable from ddDiesel ORDER BY id DESC LIMIT 1;";
+            sqlite_cmd.CommandText = "Select LTRUsable from ddDiesel WHERE LTRUsable > 0;";
             reader = sqlite_cmd.ExecuteReader();
             while (reader.Read())
             {
-                fuelTankDiesel.Content = reader.GetString(0);
+                totalDIeselinTank = totalDIeselinTank + reader.GetDouble(0);
             }
+            fuelTankDiesel.Content = totalDIeselinTank.ToString();
             reader.Close();
             GlobalFunctions.CloseConnection();
 
@@ -96,7 +103,7 @@ namespace HelloWorld
             reader = sqlite_cmd.ExecuteReader();
             while (reader.Read())
             {
-                if (int.Parse(reader.GetString(0)) > 1599000000) ;
+                if (1>2) ;
             }
             reader.Close();
 
