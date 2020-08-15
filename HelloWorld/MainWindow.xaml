@@ -117,7 +117,119 @@
                     </Setter.Value>
                 </Setter>
             </Style>
-      
+
+
+
+
+
+
+
+
+
+
+        <Style x:Key="ComboBoxTest2" TargetType="{x:Type ComboBox}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ComboBox">
+                        <Grid>
+                            <ToggleButton Grid.Column="2" Focusable="false" IsChecked="{Binding Path=IsDropDownOpen,Mode=TwoWay,RelativeSource={RelativeSource TemplatedParent}}" >
+                                <ToggleButton.Template>
+                                    <ControlTemplate>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="5*" />
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+                                            <Border x:Name="Border"  Grid.ColumnSpan="2" CornerRadius="5" Background="Beige" BorderBrush="Black" BorderThickness="1" />
+                                            <Border Grid.Column="0" CornerRadius="5,0,0,5"  Margin="1"  Background="AliceBlue"  BorderBrush="Black" BorderThickness="0,0,1,0" />
+                                            <Path x:Name="Arrow" Grid.Column="1"  Fill="Orange" HorizontalAlignment="Center" VerticalAlignment="Center" Data="M 0 0 L 4 4 L 8 0 Z"/>
+                                        </Grid>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="ToggleButton.IsMouseOver" Value="true">
+                                                <Setter TargetName="Border" Property="Background" Value="black" />
+                                            </Trigger>
+                                            <Trigger Property="ToggleButton.IsChecked" Value="true">
+                                                <Setter TargetName="Border" Property="Background" Value="black" />
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </ToggleButton.Template>
+                            </ToggleButton>
+                            <ContentPresenter Name="ContentSite" IsHitTestVisible="False"  Content="{TemplateBinding SelectionBoxItem}" ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}" ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}" Margin="3"  />
+                            <TextBox x:Name="PART_EditableTextBox" Visibility="Hidden" IsReadOnly="{TemplateBinding IsReadOnly}"/>
+                            <Popup Name="Popup" Placement="Bottom" IsOpen="{TemplateBinding IsDropDownOpen}" AllowsTransparency="True"  Focusable="False" PopupAnimation="Slide">
+                                <Grid  Name="DropDown" SnapsToDevicePixels="True" MinWidth="{TemplateBinding ActualWidth}" MaxHeight="{TemplateBinding MaxDropDownHeight}">
+                                    <Border x:Name="DropDownBorder" Background="White" />
+                                    <ScrollViewer SnapsToDevicePixels="True">
+                                        <StackPanel IsItemsHost="True" />
+                                    </ScrollViewer>
+                                </Grid>
+                            </Popup>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+            </Style.Triggers>
+        </Style>
+
+
+
+
+        <Style x:Key="ButtonFocusVisual">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Rectangle Margin="2" SnapsToDevicePixels="False" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" StrokeThickness="1" StrokeDashArray="1 2"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <LinearGradientBrush x:Key="ButtonNormalBackground" EndPoint="0,1" StartPoint="0,0">
+            <GradientStop Color="#F3F3F3" Offset="0"/>
+            <GradientStop Color="#EBEBEB" Offset="0.5"/>
+            <GradientStop Color="#DDDDDD" Offset="0.5"/>
+            <GradientStop Color="#CDCDCD" Offset="1"/>
+        </LinearGradientBrush>
+        <SolidColorBrush x:Key="ButtonNormalBorder" Color="#FF707070"/>
+        <Style x:Key="ToggleButtonStyle1" TargetType="{x:Type ToggleButton}">
+            <Setter Property="FocusVisualStyle" Value="{StaticResource ButtonFocusVisual}"/>
+            <Setter Property="Background" Value="{StaticResource ButtonNormalBackground}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource ButtonNormalBorder}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ToggleButton}">
+                        <StackPanel Orientation="Horizontal">
+                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                            <Border x:Name="on" Width="100" Height="30" Background="LightGray" CornerRadius="2,0,0,4" Margin="0,0,0,0">
+                                <TextBlock x:Name="onText" Text="Petrol" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                            <Border x:Name="off" Width="100" Height="30" Background="LightGray" CornerRadius="0,2,4,0">
+                                <TextBlock x:Name="offText" Text="Diesel" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                        </StackPanel>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Foreground" Value="#ADADAD"/>
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="true">
+                                <Setter TargetName="on" Property="Background" Value="#FF235885"/>
+                                <Setter TargetName="onText" Property="Foreground" Value="White"/>
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="False">
+                                <Setter TargetName="off" Property="Background" Value="#FF235885"/>
+                                <Setter TargetName="offText" Property="Foreground" Value="White"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
         
     </Window.Resources>
 
@@ -1261,8 +1373,8 @@
                            >
                                 <Grid Background="Beige">
                                     <Grid.RowDefinitions>
-                                        <RowDefinition Height="*"/>
-                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="1*"/>
+                                        <RowDefinition Height="1*"/>
                                         <RowDefinition Height="12*"/>
                                     </Grid.RowDefinitions>
 
@@ -1275,26 +1387,101 @@
 
                                     </Grid.ColumnDefinitions>
 
-                                    <Label  >tab sales</Label>
-                                    <Label Grid.Row="1" Grid.Column="2" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10">Date From:</Label>
+                               
+
+                                    <ToggleButton IsChecked="True"  HorizontalAlignment="Center" Foreground="#89568952" 
+                                                  Style="{StaticResource ToggleButtonStyle1}"/>
+                                    <!--<Label Grid.Row="1" Grid.Column="2" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10">Date From:</Label>
                                     <DatePicker Grid.Row="1" Grid.Column="2"  ToolTip="modify date to view records" Margin="10" HorizontalAlignment="Right" FontSize="14" Width="120" ></DatePicker>
 
                                     <Label Grid.Row="1" Grid.Column="3" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10">Date To:</Label>
-                                    <DatePicker Grid.Row="1" Grid.Column="3"  ToolTip="modify date to view records" Margin="10" HorizontalAlignment="Right" FontSize="14" Width="120" ></DatePicker>
+                                    <DatePicker Grid.Row="1" Grid.Column="3"  ToolTip="modify date to view records" Margin="10" HorizontalAlignment="Right" FontSize="14" Width="120" ></DatePicker>-->
+                                    <!--<MenuItem Grid.Row="0" Grid.Column="2" Click="AddPresetButton_Click" x:Name="AddPresetButton">
+                                       
+                                        <MenuItem.Header>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text="Select Month" Foreground="SeaGreen"/>
+                                            
+                                            </StackPanel>
+                                        </MenuItem.Header>
+                                        <MenuItem.ContextMenu>
+                                            <ContextMenu>
+                                                <MenuItem Header="january"/>
+                                                <MenuItem Header="Fabuary"/>
+                                                <MenuItem Header="March"/>
+                                                <MenuItem Header="April"/>
+                                                <MenuItem Header="May"/>
+                                                <MenuItem Header="June"/>
+                                                <MenuItem Header="July"/>
+                                                <MenuItem Header="August"/>
+                                                <MenuItem Header="September"/>
+                                                <MenuItem Header="October"/>
+                                                <MenuItem Header="November"/>
+                                                <MenuItem Header="December"/>
+                                            </ContextMenu>
+                                        </MenuItem.ContextMenu>
+                                    </MenuItem>-->
 
-                                    <Image Grid.Row="1" Margin="5" ToolTip="Print" HorizontalAlignment="Right" Grid.Column="4" Source="images/print_icon.png"></Image>
+
+
+                                    <ComboBox Grid.Row="0" Grid.Column="1"  VerticalAlignment="Top" Style="{StaticResource ComboBoxTest2}">
+                                        <ComboBoxItem IsSelected="True">
+                                            <StackPanel Orientation="Horizontal" >
+                                                <TextBlock  Foreground="Black">2020</TextBlock>
+                                            </StackPanel>
+                                        </ComboBoxItem>
+                                        <ComboBoxItem>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock Foreground="Black">2021</TextBlock>
+                                            </StackPanel>
+                                        </ComboBoxItem>
+                                        <ComboBoxItem>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock Foreground="Black">2022</TextBlock>
+                                            </StackPanel>
+                                        </ComboBoxItem>
+                                    </ComboBox>
+
+
+                                    <ComboBox Grid.Row="0" Grid.Column="2" VerticalAlignment="Top" Style="{StaticResource ComboBoxTest2}">
+                                        <ComboBoxItem IsSelected="True">
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock Foreground="Black">August</TextBlock>
+                                            </StackPanel>
+                                        </ComboBoxItem>
+                                        <ComboBoxItem>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock Foreground="Black">September</TextBlock>
+                                            </StackPanel>
+                                        </ComboBoxItem>
+                                        <ComboBoxItem>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock Foreground="Black">October</TextBlock>
+                                            </StackPanel>
+                                        </ComboBoxItem>
+
+                                        <ComboBoxItem>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock Foreground="Black">November</TextBlock>
+                                            </StackPanel>
+                                        </ComboBoxItem>
+                                    </ComboBox>
+                                    <Image Grid.Row="0" Margin="5" ToolTip="Print" HorizontalAlignment="Right" Grid.Column="4" Source="images/print_icon.png"></Image>
 
 
                                     <Grid Grid.Row="2" Grid.ColumnSpan="5">
-                                        <DataGrid Name = "Sales_dataGrid" AlternatingRowBackground = "LightBlue"  
+                                        <DataGrid Name = "PetrolSales_dataGrid" AlternatingRowBackground = "Gray"  
                                   AlternationCount = "2" AutoGenerateColumns = "False">
 
                                             <DataGrid.Columns>
-                                                <DataGridTextColumn Header = "Id" Binding = "{Binding Id}" />
-                                                <DataGridTextColumn Header = "Sale (Liters)" Binding = "{Binding sold_liters}" />
-                                                <DataGridTextColumn Header = "Sale (Rupees)" Binding = "{Binding sold_rupees}"/>
-                                                <DataGridTextColumn Header = "Rate" Binding = "{Binding rate}" 
-                                                ItemsSource = "{Binding Source = {StaticResource myEnum}}" />
+                                                <DataGridTextColumn Foreground="#FF4682B4" Header = "Id" Binding = "{Binding id}" />
+                                                <DataGridTextColumn Foreground="Darkgreen" Header = "Sale (Liters)" Binding = "{Binding totalLTR}" />
+                                                <DataGridTextColumn Foreground="Darkgreen" Header = "Sale (Rupees)" Binding = "{Binding totalPKR}"/>
+                                                <DataGridTextColumn Foreground="Orange" Header = "Rate" Binding = "{Binding rate}"/>
+                                                <DataGridTextColumn Foreground="DarkRed" Header = "Discount" Binding = "{Binding discount}"/>
+                                                <DataGridTextColumn  Header = "Testing" Binding = "{Binding testing}"/>
+                                                <DataGridTextColumn  Header = "Date" Binding = "{Binding date}"/>
+                                                
                                             </DataGrid.Columns>
 
                                         </DataGrid>
