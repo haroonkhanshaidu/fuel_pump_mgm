@@ -1198,9 +1198,13 @@
 
 
 
-            <TabItem Header="Data Overview" Width="200" Height="40" FontFamily="Yu Gothic UI Semibold" FontSize="22" FontWeight="Bold"
-                         Margin="2" >
-               
+            <TabItem Name="date_overview_tab"  Width="200" Height="40" FontFamily="Yu Gothic UI Semibold" FontSize="22" FontWeight="Bold"
+                         Margin="2"  >
+                <TabItem.Header>
+                    <Label Content="Data Overview" 
+                HorizontalAlignment="Stretch" MouseLeftButtonDown="Label_MouseLeftButtonDown"/>
+                </TabItem.Header>
+
 
                 <Grid >
                

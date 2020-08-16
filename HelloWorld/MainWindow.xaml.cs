@@ -1338,6 +1338,11 @@ namespace HelloWorld
 
         private void OverviewEvents()
         {
+            int currentMonth = DateTime.Now.Month;
+            string currentYear = DateTime.Now.Year.ToString();
+            sales_combobox_month.SelectedIndex = currentMonth;
+            sales_combobox_year.Text = currentYear;
+
             ArrayList salesLabels = new ArrayList();
             salesLabels.Add(LTR_petrol_sold_Lbl);
             salesLabels.Add(PKR_petrol_sold_Lbl);
@@ -1618,6 +1623,13 @@ namespace HelloWorld
 
         private void sales_details_combobox_months_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+
+        }
+        
+  
+        private void Label_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            OverviewEvents();
 
         }
     }

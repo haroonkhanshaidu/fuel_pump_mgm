@@ -154,7 +154,7 @@ namespace HelloWorld
             SQLiteDataReader reader;
             SQLiteCommand sqlite_cmd;
             sqlite_cmd = GlobalFunctions.Connect().CreateCommand();
-            sqlite_cmd.CommandText = "SELECT depost, withdrawal FROM ownerAmount where date >" + startRange + " and date < " + endRange + "; ";
+            sqlite_cmd.CommandText = "SELECT deposit, withdrawal FROM ownerAmount where date >" + startRange + " and date < " + endRange + "; ";
 
             reader = sqlite_cmd.ExecuteReader();
             while (reader.Read())
