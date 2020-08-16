@@ -30,7 +30,6 @@ namespace HelloWorld
 
         public MainWindow()
         {
-            Overview.TotalProfit();
             InitializeComponent();
             //new SplashWindow().ShowDialog();
             //new Dashboard1().ShowDialog();
@@ -1352,9 +1351,12 @@ namespace HelloWorld
             fuelLabels.Add(Fueltank_diesel_lbl);
             Overview.FuelTank(fuelLabels);
 
-            ArrayList totalProfit = new ArrayList();
-            totalProfit.Add(totalprofit_petrol_lbl);
-            totalProfit.Add(totalprofit_diesel_lbl);
+            ArrayList totalProfitLabels = new ArrayList();
+            totalProfitLabels.Add(totalprofit_petrol_lbl);
+            totalProfitLabels.Add(totalprofit_diesel_lbl);
+            totalProfitLabels.Add(total_expenses_lbl);
+            totalProfitLabels.Add(netincome_lbl);
+            Overview.TotalProfit(totalProfitLabels, GlobalFunctions.dateTimeToMonthRange(DateTime.Now));
 
 
 
@@ -1553,24 +1555,42 @@ namespace HelloWorld
 
         private void sales_combobox_year_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            ArrayList dateRange = GlobalFunctions.comboBoxtoDateRangeList(sales_combobox_month, sales_combobox_year);
+
             ArrayList salesLabels = new ArrayList();
             salesLabels.Add(LTR_petrol_sold_Lbl);
             salesLabels.Add(PKR_petrol_sold_Lbl);
             salesLabels.Add(LTR_diesel_sold_Lbl);
             salesLabels.Add(Pkr_diesel_sold_Lbl);
-            ArrayList dateRange =  GlobalFunctions.comboBoxtoDateRangeList(sales_combobox_month, sales_combobox_year);
             Overview.SalesOverview(salesLabels, dateRange);
+
+
+            ArrayList totalProfitLabels = new ArrayList();
+            totalProfitLabels.Add(totalprofit_petrol_lbl);
+            totalProfitLabels.Add(totalprofit_diesel_lbl);
+            totalProfitLabels.Add(total_expenses_lbl);
+            totalProfitLabels.Add(netincome_lbl);
+            Overview.TotalProfit(totalProfitLabels, dateRange);
         }
 
         private void sales_combobox_month_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            ArrayList dateRange = GlobalFunctions.comboBoxtoDateRangeList(sales_combobox_month, sales_combobox_year);
+
             ArrayList salesLabels = new ArrayList();
             salesLabels.Add(LTR_petrol_sold_Lbl);
             salesLabels.Add(PKR_petrol_sold_Lbl);
             salesLabels.Add(LTR_diesel_sold_Lbl);
             salesLabels.Add(Pkr_diesel_sold_Lbl);
-            ArrayList dateRange = GlobalFunctions.comboBoxtoDateRangeList(sales_combobox_month, sales_combobox_year);
             Overview.SalesOverview(salesLabels, dateRange);
+
+
+            ArrayList totalProfitLabels = new ArrayList();
+            totalProfitLabels.Add(totalprofit_petrol_lbl);
+            totalProfitLabels.Add(totalprofit_diesel_lbl);
+            totalProfitLabels.Add(total_expenses_lbl);
+            totalProfitLabels.Add(netincome_lbl);
+            Overview.TotalProfit(totalProfitLabels, dateRange);
 
         }
 

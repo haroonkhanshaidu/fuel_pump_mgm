@@ -88,31 +88,52 @@ namespace HelloWorld
         }
 
 
-        static public void TotalProfit()
+        static public void TotalProfit(ArrayList profitLabels, ArrayList dateRange)
         {
-            //Label totalProfitPetrolLabel = (salesLabel[0] as Label);
-            //Label totalProfitDieselLabel = (salesLabel[1] as Label);
+
+            string startRange = dateRange[0].ToString();
+            string endRange = dateRange[1].ToString(); 
+            Label totalProfitPetrolLabel = (profitLabels[0] as Label);
+            Label totalProfitDieselLabel = (profitLabels[1] as Label);
+            Label totalExpensesLabel = (profitLabels[2] as Label);
+            Label netProfitLabel =    (profitLabels[3] as Label);
             double PetrolProfit = 0;
             double DieselProfit = 0;
+            double netProfit = 0;
+            double totalExpenses = 0;
+            double grossProfit = 0;
             SQLiteDataReader reader;
             SQLiteCommand sqlite_cmd;
             sqlite_cmd = GlobalFunctions.Connect().CreateCommand();
-            sqlite_cmd.CommandText = "SELECT totalPKR, totalcost from petrol where date > 987 and date < 8998798798; ";
+            sqlite_cmd.CommandText = "SELECT totalPKR, totalcost, discount from petrol where date > "+startRange+" and date < "+endRange+"; ";
             reader = sqlite_cmd.ExecuteReader();
             while (reader.Read())
             {
-                PetrolProfit = PetrolProfit + (reader.GetDouble(0) - reader.GetDouble(1));
+                PetrolProfit = PetrolProfit + (reader.GetDouble(0) - reader.GetDouble(1)-reader.GetDouble(2));
             }
             reader.Close();
-            int i = 0;
-            sqlite_cmd.CommandText = "SELECT totalPKR, totalcost from diesel where date > 987 and date < 8998798798; ";
+            sqlite_cmd.CommandText = "SELECT totalPKR, totalcost, discount from diesel where date > " + startRange + " and date < " + endRange + "; ";
             reader = sqlite_cmd.ExecuteReader();
             while (reader.Read())
             {
-                DieselProfit = DieselProfit + (reader.GetDouble(0)-reader.GetDouble(16));
+                DieselProfit = DieselProfit + (reader.GetDouble(0) - reader.GetDouble(1)-reader.GetDouble(2));
             }
             reader.Close();
-            MessageBox.Show(DieselProfit.ToString());
+
+            sqlite_cmd.CommandText = "SELECT total FROM expenses where date > " + startRange + " and date < " + endRange + "; ";
+            reader = sqlite_cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                totalExpenses = totalExpenses + reader.GetDouble(0);
+            }
+            reader.Close();
+
+            grossProfit = PetrolProfit + DieselProfit;
+            netProfit = grossProfit - totalExpenses;
+            totalProfitPetrolLabel.Content = PetrolProfit;
+            totalProfitDieselLabel.Content = DieselProfit;
+            totalExpensesLabel.Content = totalExpenses;
+            netProfitLabel.Content = netProfit;
 
             GlobalFunctions.CloseConnection();
 
