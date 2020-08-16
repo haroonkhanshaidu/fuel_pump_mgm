@@ -30,7 +30,7 @@ namespace HelloWorld
 
         public MainWindow()
         {
-
+            Overview.TotalProfit();
             InitializeComponent();
             //new SplashWindow().ShowDialog();
             //new Dashboard1().ShowDialog();
@@ -1355,7 +1355,6 @@ namespace HelloWorld
             ArrayList totalProfit = new ArrayList();
             totalProfit.Add(totalprofit_petrol_lbl);
             totalProfit.Add(totalprofit_diesel_lbl);
-            Overview.TotalProfit(totalProfit);
 
 
 

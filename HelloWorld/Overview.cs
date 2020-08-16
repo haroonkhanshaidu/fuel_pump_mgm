@@ -88,29 +88,32 @@ namespace HelloWorld
         }
 
 
-        static public void TotalProfit(ArrayList salesLabel)
+        static public void TotalProfit()
         {
-            Label totalProfitPetrol = (salesLabel[0] as Label);
-            Label totalProfitDiesel = (salesLabel[1] as Label);
-
+            //Label totalProfitPetrolLabel = (salesLabel[0] as Label);
+            //Label totalProfitDieselLabel = (salesLabel[1] as Label);
+            double PetrolProfit = 0;
+            double DieselProfit = 0;
             SQLiteDataReader reader;
             SQLiteCommand sqlite_cmd;
             sqlite_cmd = GlobalFunctions.Connect().CreateCommand();
-            sqlite_cmd.CommandText = "Select date from creditorData; ";
-
+            sqlite_cmd.CommandText = "SELECT totalPKR, totalcost from petrol where date > 987 and date < 8998798798; ";
             reader = sqlite_cmd.ExecuteReader();
             while (reader.Read())
             {
-                if (1>2) ;
+                PetrolProfit = PetrolProfit + (reader.GetDouble(0) - reader.GetDouble(1));
             }
             reader.Close();
-
-            sqlite_cmd.CommandText = "Select totalLTR, totalPKR from diesel ORDER BY id DESC LIMIT 30; ";
+            int i = 0;
+            sqlite_cmd.CommandText = "SELECT totalPKR, totalcost from diesel where date > 987 and date < 8998798798; ";
             reader = sqlite_cmd.ExecuteReader();
             while (reader.Read())
             {
+                DieselProfit = DieselProfit + (reader.GetDouble(0)-reader.GetDouble(16));
             }
             reader.Close();
+            MessageBox.Show(DieselProfit.ToString());
+
             GlobalFunctions.CloseConnection();
 
 
