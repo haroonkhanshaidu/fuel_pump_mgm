@@ -126,7 +126,7 @@ namespace HelloWorld
             total = (total + deposit) - withdraw;
 
             sqlite_cmd = GlobalFunctions.Connect().CreateCommand();
-            sqlite_cmd.CommandText = "insert into ownerAmount (depost,withdrawal,total,date) values ('" + deposit + "','" + withdraw + "','" + total + "','" + date + "')";
+            sqlite_cmd.CommandText = "insert into ownerAmount (deposit,withdrawal,total,date) values ('" + deposit + "','" + withdraw + "','" + total + "','" + date + "')";
             sqlite_cmd.ExecuteNonQuery();
             GlobalFunctions.CloseConnection();
 

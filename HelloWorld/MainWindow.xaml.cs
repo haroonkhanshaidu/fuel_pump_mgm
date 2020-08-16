@@ -31,7 +31,6 @@ namespace HelloWorld
 
         public MainWindow()
         {
-            Overview.TotalProfit();
             InitializeComponent();
             //new SplashWindow().ShowDialog();
             //new Dashboard1().ShowDialog();
@@ -1346,6 +1345,11 @@ namespace HelloWorld
 
         private void OverviewEvents()
         {
+            int currentMonth = DateTime.Now.Month;
+            string currentYear = DateTime.Now.Year.ToString();
+            sales_combobox_month.SelectedIndex = currentMonth;
+            sales_combobox_year.Text = currentYear;
+
             ArrayList salesLabels = new ArrayList();
             salesLabels.Add(LTR_petrol_sold_Lbl);
             salesLabels.Add(PKR_petrol_sold_Lbl);
@@ -1359,9 +1363,17 @@ namespace HelloWorld
             fuelLabels.Add(Fueltank_diesel_lbl);
             Overview.FuelTank(fuelLabels);
 
-            ArrayList totalProfit = new ArrayList();
-            totalProfit.Add(totalprofit_petrol_lbl);
-            totalProfit.Add(totalprofit_diesel_lbl);
+            ArrayList totalProfitLabels = new ArrayList();
+            totalProfitLabels.Add(totalprofit_petrol_lbl);
+            totalProfitLabels.Add(totalprofit_diesel_lbl);
+            totalProfitLabels.Add(total_expenses_lbl);
+            totalProfitLabels.Add(netincome_lbl);
+            Overview.TotalProfit(totalProfitLabels, GlobalFunctions.dateTimeToMonthRange(DateTime.Now));
+
+            ArrayList ownerAmountLabels = new ArrayList();
+            ownerAmountLabels.Add(total_deposite);
+            ownerAmountLabels.Add(total_withdraw);
+            Overview.OwnerTransactions(ownerAmountLabels, GlobalFunctions.dateTimeToMonthRange(DateTime.Now));
 
 
 
@@ -1570,24 +1582,54 @@ namespace HelloWorld
 
         private void sales_combobox_year_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            ArrayList dateRange = GlobalFunctions.comboBoxtoDateRangeList(sales_combobox_month, sales_combobox_year);
+
             ArrayList salesLabels = new ArrayList();
             salesLabels.Add(LTR_petrol_sold_Lbl);
             salesLabels.Add(PKR_petrol_sold_Lbl);
             salesLabels.Add(LTR_diesel_sold_Lbl);
             salesLabels.Add(Pkr_diesel_sold_Lbl);
-            ArrayList dateRange =  GlobalFunctions.comboBoxtoDateRangeList(sales_combobox_month, sales_combobox_year);
             Overview.SalesOverview(salesLabels, dateRange);
+
+
+            ArrayList totalProfitLabels = new ArrayList();
+            totalProfitLabels.Add(totalprofit_petrol_lbl);
+            totalProfitLabels.Add(totalprofit_diesel_lbl);
+            totalProfitLabels.Add(total_expenses_lbl);
+            totalProfitLabels.Add(netincome_lbl);
+            Overview.TotalProfit(totalProfitLabels, dateRange);
+
+
+            ArrayList ownerAmountLabels = new ArrayList();
+            ownerAmountLabels.Add(total_deposite);
+            ownerAmountLabels.Add(total_withdraw);
+            Overview.OwnerTransactions(ownerAmountLabels, dateRange);
         }
 
         private void sales_combobox_month_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            ArrayList dateRange = GlobalFunctions.comboBoxtoDateRangeList(sales_combobox_month, sales_combobox_year);
+
             ArrayList salesLabels = new ArrayList();
             salesLabels.Add(LTR_petrol_sold_Lbl);
             salesLabels.Add(PKR_petrol_sold_Lbl);
             salesLabels.Add(LTR_diesel_sold_Lbl);
             salesLabels.Add(Pkr_diesel_sold_Lbl);
-            ArrayList dateRange = GlobalFunctions.comboBoxtoDateRangeList(sales_combobox_month, sales_combobox_year);
             Overview.SalesOverview(salesLabels, dateRange);
+
+
+            ArrayList totalProfitLabels = new ArrayList();
+            totalProfitLabels.Add(totalprofit_petrol_lbl);
+            totalProfitLabels.Add(totalprofit_diesel_lbl);
+            totalProfitLabels.Add(total_expenses_lbl);
+            totalProfitLabels.Add(netincome_lbl);
+            Overview.TotalProfit(totalProfitLabels, dateRange);
+
+
+            ArrayList ownerAmountLabels = new ArrayList();
+            ownerAmountLabels.Add(total_deposite);
+            ownerAmountLabels.Add(total_withdraw);
+            Overview.OwnerTransactions(ownerAmountLabels, dateRange);
 
         }
 

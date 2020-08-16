@@ -1198,9 +1198,13 @@
 
 
 
-            <TabItem Header="Data Overview" Width="200" Height="40" FontFamily="Yu Gothic UI Semibold" FontSize="22" FontWeight="Bold"
-                         Margin="2" >
-               
+            <TabItem Name="date_overview_tab"  Width="200" Height="40" FontFamily="Yu Gothic UI Semibold" FontSize="22" FontWeight="Bold"
+                         Margin="2"  >
+                <TabItem.Header>
+                    <Label Content="Data Overview" 
+                HorizontalAlignment="Stretch" MouseLeftButtonDown="Label_MouseLeftButtonDown"/>
+                </TabItem.Header>
+
 
                 <Grid >
                
@@ -1361,14 +1365,14 @@
                                         <Label Grid.Row="3" Name="totalprofit_diesel_lbl" Foreground="#FF4682B4" FontSize="25" Margin="0" >0.00</Label>
 
 
-                                        <Label Grid.Row="2" Grid.Column="2" Grid.RowSpan="2" Foreground="Orange" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="25" Margin="0">0.00</Label>
+                                        <Label Grid.Row="2" Grid.Column="2" Grid.RowSpan="2" Name="total_expenses_lbl" Foreground="Orange" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="25" Margin="0">2000</Label>
 
                                         <Label Grid.Row="2" Grid.Column="1" Grid.RowSpan="2" VerticalAlignment="Center" HorizontalContentAlignment="Center" Foreground="White" FontSize="15" Margin="0">--</Label>
 
 
                                         <Label Grid.Row="2" Grid.Column="3" Grid.RowSpan="2" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="25" Margin="0">=</Label>
 
-                                        <Label Grid.Row="2" Grid.Column="4" Grid.RowSpan="2"   Foreground="Green" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="25" Margin="0">0.00</Label>
+                                        <Label Grid.Row="2" Grid.Column="4" Grid.RowSpan="2" Name="netincome_lbl"   Foreground="Green" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="25" Margin="0">6300</Label>
 
                            
 
