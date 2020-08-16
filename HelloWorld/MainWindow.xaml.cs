@@ -31,7 +31,7 @@ namespace HelloWorld
 
         public MainWindow()
         {
-            InitializeComponent();
+             InitializeComponent();
             //new SplashWindow().ShowDialog();
             //new Dashboard1().ShowDialog();
 

@@ -20,6 +20,7 @@ namespace HelloWorld
 
             DateTime dateTime = datepicker.SelectedDate.Value;
             string date = GlobalFunctions.epochTimeParam(dateTime);
+            string humanDate = GlobalFunctions.epochToDateTime(long.Parse(date));
             foreach (TextBox textBox in textBoxes)
             {
                 if (textBox.Text.Length < 1||textBox.Text=="0")
@@ -44,7 +45,7 @@ namespace HelloWorld
 
             SQLiteCommand sqlite_cmd;
             sqlite_cmd = GlobalFunctions.Connect().CreateCommand();
-            sqlite_cmd.CommandText = "insert into " + table + " (Reference,TotalPKR,LTRUsable,TotalLTR,PerLTRPrice,date) values ('" + Reference + "','" + totalPKR + "','" + totalLTR + "','" + totalLTR + "','" + priceCalculated + "','" + date + "')";
+            sqlite_cmd.CommandText = "insert into " + table + " (Reference,TotalPKR,LTRUsable,TotalLTR,PerLTRPrice,date,humanDate) values ('" + Reference + "','" + totalPKR + "','" + totalLTR + "','" + totalLTR + "','" + priceCalculated + "','" + date + "','"+humanDate+"');";
             sqlite_cmd.ExecuteNonQuery();
 
             (textBoxes[0] as TextBox).Text = "";

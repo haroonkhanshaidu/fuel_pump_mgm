@@ -19,12 +19,13 @@ namespace HelloWorld
         {
             DateTime dateTime = datepicker.SelectedDate.Value;
             string date = GlobalFunctions.epochTimeParam(dateTime);
+            string humanDate = GlobalFunctions.epochToDateTime(long.Parse(date));
             SqlDataAdapter adapter;
             string query;
 
             SQLiteCommand sqlite_cmd;
             sqlite_cmd = GlobalFunctions.Connect().CreateCommand();
-            sqlite_cmd.CommandText = "insert into " + table + " (creditorName,amount,date) values ('" + name + "','" + amount + "','" + date + "')";
+            sqlite_cmd.CommandText = "insert into " + table + " (creditorName,amount,date,humanDate) values ('" + name + "','" + amount + "','" + date + "','"+humanDate+"')";
             sqlite_cmd.ExecuteNonQuery();
             GlobalFunctions.CloseConnection ();
         }
@@ -60,11 +61,12 @@ namespace HelloWorld
 
             DateTime dateTime = datepicker.SelectedDate.Value;
             string date = GlobalFunctions.epochTimeParam(dateTime);
+            string humanDate = GlobalFunctions.epochToDateTime(long.Parse(date));
 
 
             SQLiteCommand sqlite_cmd;
             sqlite_cmd = GlobalFunctions.Connect().CreateCommand();
-            sqlite_cmd.CommandText= "Update " + table + " set amount = '" + amount + "', date = '" + date + "' where creditorName = '" + name + "'";
+            sqlite_cmd.CommandText= "Update " + table + " set amount = '" + amount + "', date = '" + date + "', humanDate = '" + humanDate+"' where creditorName = '" + name + "'";
             sqlite_cmd.ExecuteNonQuery();
             GlobalFunctions.CloseConnection();
 
