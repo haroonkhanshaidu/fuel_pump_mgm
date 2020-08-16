@@ -641,9 +641,12 @@ namespace HelloWorld
                     dict.Add("totalPkrs", double.Parse(total_sales_pkrs_petrol_TB.Text));
 
                     if (!Entry.dateFound(petrol_entry_datepicker, "petrol"))
-                    //if (Entry.InsertEntry(sender, e, "petrol", dict, petrol_entry_datepicker) == 1)
-                    {
-                        if (FuelTank.FuelDeduction(dict["totalLtrs"], "ddPetrol"))
+                    { 
+                        double usedFuelCost = FuelTank.FuelDeduction(dict["totalLtrs"], "ddPetrol");
+                        dict.Add("usedFuelCost", usedFuelCost);
+                        FuelTank.usedFuelTotalCost = 0;
+                        if (usedFuelCost > 0)
+
                         {
                             if (Entry.InsertEntry(sender, e, "petrol", dict, petrol_entry_datepicker) == 1)
                             {
@@ -1271,14 +1274,17 @@ namespace HelloWorld
                     dict.Add("n2opening", double.Parse(meterOpening_dieselN2_TB.Text));
                     dict.Add("n2closing", double.Parse(meterClosing_dieselN2_TB.Text));
                     dict.Add("rate", double.Parse(rate_diesel_TB.Text));
-                    dict.Add("testing", double.Parse(meterClosing_diesel_N1_TB.Text));
+                    dict.Add("testing", double.Parse(testing_diesel_TB.Text));
                     dict.Add("discount", double.Parse(discount_amount_diesel_TB.Text));
                     dict.Add("totalLtrs", double.Parse(total_sales_ltrs_diesel_TB.Text));
                     dict.Add("totalPkrs", double.Parse(total_sales_pkrs_diesel_TB.Text));
 
                     if (!Entry.dateFound(diesel_entry_datepicker, "diesel"))
                     {
-                        if (FuelTank.FuelDeduction(dict["totalLtrs"], "ddDiesel"))
+                        double usedFuelCost = FuelTank.FuelDeduction(dict["totalLtrs"], "ddDiesel");
+                        dict.Add("usedFuelCost", usedFuelCost);
+                        FuelTank.usedFuelTotalCost = 0;
+                        if (usedFuelCost>0)
                         {
                             if (Entry.InsertEntry(sender, e, "diesel", dict, diesel_entry_datepicker) == 1)
                             {
