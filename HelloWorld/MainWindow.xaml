@@ -1249,14 +1249,13 @@
                             <TabItem Header="OverView" Foreground="White"  FontSize="30"  Name="entry"  HorizontalAlignment="Left" FontFamily="Yu Gothic UI Semibold" FontWeight="Bold">
 
                                                                 
-                                <Grid Margin="0,-50,0,0"   Background="Black">
+                                <Grid Margin="0,0,0,0"   Background="Black">
 
-                                
                                     <Grid.RowDefinitions>
-                                        <RowDefinition Height="0*"/>
-                                        <RowDefinition Height="0.5*"/>
+                                        <RowDefinition Height="0.1*"/>
+                                        <RowDefinition Height="0.8*"/>
                                         <RowDefinition Height="5*"/>
-                                        <RowDefinition Height="0.5*"/>
+                                        <RowDefinition Height="0"/>
                                         <RowDefinition Height="5*"/>
                                     </Grid.RowDefinitions>
 
@@ -1267,19 +1266,36 @@
                                         <ColumnDefinition Width="5*"/>
                                     </Grid.ColumnDefinitions>
 
-                      
-                                        <Rectangle Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"  Margin="15,25,15,15" Fill="White" RadiusY="10" RadiusX="10" >
-                                            <Rectangle.Effect>
-                                                <DropShadowEffect BlurRadius="20" Color="White" RenderingBias="Quality" ShadowDepth="5"/>
-                                            </Rectangle.Effect>
-                                       
-                                        </Rectangle>
+                                    <Rectangle Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" Margin="15,0,15,0"  Fill="Black" RadiusY="10" RadiusX="10" >
+                                        <Rectangle.Effect>
+                                            <DropShadowEffect BlurRadius="20" Color="White" RenderingBias="Quality" ShadowDepth="5"/>
+                                        </Rectangle.Effect>
+                                    </Rectangle>
+
+
+                                    <Label Grid.Row="1" Grid.Column="1" Margin="50,0,0,0" HorizontalAlignment="Left"  Foreground="White">Year:</Label>
+
+                                    <ComboBox Grid.Row="1" Grid.Column="1" x:Name="sales_combobox_year" HorizontalAlignment="Right"  VerticalAlignment="Center" Style="{StaticResource ComboBoxTest2}" SelectionChanged="sales_combobox_year_SelectionChanged">
+                                    </ComboBox>
+                                    
+                                    <Label Grid.Row="1" Grid.Column="2" Margin="50,0,0,0" HorizontalAlignment="Left" Foreground="White">Month:</Label>
+
+                                    <ComboBox Grid.Row="1" Grid.Column="2" HorizontalAlignment="Right" x:Name="sales_combobox_month"  VerticalAlignment="Center" Style="{StaticResource ComboBoxTest2}" SelectionChanged="sales_combobox_month_SelectionChanged">
+                                    </ComboBox>
+
+
+                                    <Rectangle Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"  Margin="15,25,15,15" Fill="Black" RadiusY="10" RadiusX="10" >
+                                        <Rectangle.Effect>
+                                            <DropShadowEffect BlurRadius="20" Color="White" RenderingBias="Quality" ShadowDepth="5"/>
+                                        </Rectangle.Effect>
+                                    </Rectangle>
 
                                     <Grid  Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
 
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="1*"/>
-                                            <ColumnDefinition Width="1.5*"/>
+                                            <ColumnDefinition Width="0.5*"/>
+                                            <ColumnDefinition Width="1*"/>
                                         </Grid.ColumnDefinitions>
 
                                         <Grid.RowDefinitions>
@@ -1287,111 +1303,15 @@
                                             <RowDefinition Height="1*"/>
                                             <RowDefinition Height="1*"/>
                                             <RowDefinition Height="1*"/>
+                                            
                                            
                                         </Grid.RowDefinitions>
 
-                                        <!--<materialDesign:PackIcon Kind="Calendar" Foreground="Gray" Width="10" Height="10" VerticalAlignment="Center" Margin="5 0"/>-->
-
-                                        <Grid Grid.Row="0" Grid.Column="1">
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="1*"/>
-                                                <ColumnDefinition Width="2*"/>
-                                            </Grid.ColumnDefinitions>
-                                        
-
-                                        <ComboBox Grid.Row="0" Grid.Column="0" Margin="5" x:Name="sales_combobox_year" HorizontalAlignment="Right"  VerticalAlignment="Center" Style="{StaticResource ComboBoxTest2}" SelectionChanged="sales_combobox_year_SelectionChanged">
-                                            <!--<ComboBoxItem IsSelected="True">
-                                                <StackPanel Orientation="Horizontal" >
-                                                    <TextBlock  FontSize="18" Foreground="Black">2020</TextBlock>
-                                                </StackPanel>
-                                            </ComboBoxItem>
-                                            <ComboBoxItem>
-                                                <StackPanel Orientation="Horizontal">
-                                                        <TextBlock  FontSize="18" Foreground="Black">2021</TextBlock>
-                                                </StackPanel>
-                                            </ComboBoxItem>
-                                            <ComboBoxItem>
-                                                <StackPanel Orientation="Horizontal">
-                                                        <TextBlock  FontSize="18" Foreground="Black">2022</TextBlock>
-                                                </StackPanel>
-                                            </ComboBoxItem>-->
-                                           
-                                        </ComboBox>
-                                        <ComboBox Grid.Row="0" Grid.Column="1"  Margin="5" x:Name="sales_combobox_month" HorizontalAlignment="Left"  VerticalAlignment="Center" Style="{StaticResource ComboBoxTest2}" SelectionChanged="sales_combobox_month_SelectionChanged">
-                                                <!--<ComboBoxItem IsSelected="True">
-                                                <StackPanel Orientation="Horizontal" >
-                                                        <TextBlock  FontSize="22" Foreground="Black">All</TextBlock>
-                                                </StackPanel>
-                                            </ComboBoxItem>
-                                                <ComboBoxItem >
-                                                    <StackPanel Orientation="Horizontal" >
-                                                        <TextBlock  FontSize="18" Foreground="Black">January</TextBlock>
-                                                    </StackPanel>
-                                                </ComboBoxItem>
-                                                <ComboBoxItem>
-                                                <StackPanel Orientation="Horizontal">
-                                                        <TextBlock  FontSize="18" Foreground="Black">Fabuary</TextBlock>
-                                                </StackPanel>
-                                            </ComboBoxItem>
-                                            <ComboBoxItem>
-                                                <StackPanel Orientation="Horizontal">
-                                                        <TextBlock  FontSize="18" Foreground="Black">March</TextBlock>
-                                                </StackPanel>
-                                            </ComboBoxItem>
-                                            <ComboBoxItem IsSelected="True">
-                                                <StackPanel Orientation="Horizontal" >
-                                                        <TextBlock  FontSize="18" Foreground="Black">April</TextBlock>
-                                                </StackPanel>
-                                            </ComboBoxItem>
-                                            <ComboBoxItem>
-                                                <StackPanel Orientation="Horizontal">
-                                                        <TextBlock  FontSize="18" Foreground="Black">May</TextBlock>
-                                                </StackPanel>
-                                            </ComboBoxItem>
-                                            <ComboBoxItem>
-                                                <StackPanel Orientation="Horizontal">
-                                                        <TextBlock  FontSize="18" Foreground="Black">June</TextBlock>
-                                                </StackPanel>
-                                            </ComboBoxItem>
-                                            <ComboBoxItem IsSelected="True">
-                                                <StackPanel Orientation="Horizontal" >
-                                                        <TextBlock  FontSize="18" Foreground="Black">July</TextBlock>
-                                                </StackPanel>
-                                            </ComboBoxItem>
-                                            <ComboBoxItem>
-                                                <StackPanel Orientation="Horizontal">
-                                                        <TextBlock  FontSize="18" Foreground="Black">August</TextBlock>
-                                                </StackPanel>
-                                            </ComboBoxItem>
-                                            <ComboBoxItem>
-                                                <StackPanel Orientation="Horizontal">
-                                                        <TextBlock  FontSize="18" Foreground="Black">September</TextBlock>
-                                                </StackPanel>
-                                            </ComboBoxItem>
-                                            <ComboBoxItem IsSelected="True">
-                                                <StackPanel Orientation="Horizontal" >
-                                                        <TextBlock  FontSize="18" Foreground="Black">October</TextBlock>
-                                                </StackPanel>
-                                            </ComboBoxItem>
-                                            <ComboBoxItem>
-                                                <StackPanel Orientation="Horizontal">
-                                                        <TextBlock  FontSize="18" Foreground="Black">November</TextBlock>
-                                                </StackPanel>
-                                            </ComboBoxItem>
-                                            <ComboBoxItem>
-                                                <StackPanel Orientation="Horizontal">
-                                                        <TextBlock  FontSize="18" Foreground="Black">December</TextBlock>
-                                                </StackPanel>
-                                            </ComboBoxItem>-->
-                                        </ComboBox>
-
-                                        </Grid>
-                                        
                                         <Label Grid.Row="0" Grid.Column="0"  FontSize="40" Margin="15" HorizontalAlignment="Center" Foreground="#FF235885" FontStyle="Oblique" Content="Sales" />
                                         <Label Name="LTR_petrol_sold_Lbl" Grid.Row="1" Grid.Column="0" Foreground="#FFBC6737"  FontSize="45" Margin="20,5,5,5">94859.00</Label>
-                                        <Label Grid.Row="1" Grid.Column="0" Foreground="#FFBC6737" HorizontalAlignment="Right" VerticalAlignment="Bottom" FontSize="15" Margin="5">Liters Petrol sold</Label>
+                                        <Label Grid.Row="1" Grid.Column="1" Foreground="#FFBC6737" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontSize="15" Margin="5">Ltrs Petrol</Label>
                                         <Label Name="LTR_diesel_sold_Lbl" Grid.Row="2" Grid.Column="0" Foreground="#FF4682B4" FontSize="45" Margin="20,5,5,5" >90383.00</Label>
-                                        <Label Grid.Row="2" Grid.Column="0" Foreground="#FF4682B4" HorizontalAlignment="Right" VerticalAlignment="Bottom" FontSize="15" Margin="5">Liters Diesel sold</Label>
+                                        <Label Grid.Row="2" Grid.Column="1" Foreground="#FF4682B4" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontSize="15" Margin="5">Ltrs Diesel</Label>
                                         <Label Name="PKR_petrol_sold_Lbl" Grid.Row="1" Grid.Column="2" Foreground="#FFBC6737" HorizontalAlignment="Center" FontSize="25" Margin="5">94859.00</Label>
                                         <Label Grid.Row="1" Grid.Column="2" Foreground="#FFBC6737" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="15" Margin="5">PKR</Label>
                                         <Label Name="Pkr_diesel_sold_Lbl" Grid.Row="2" Grid.Column="2" Foreground="#FF4682B4" HorizontalAlignment="Center" FontSize="25" Margin="5" >90383.00</Label>
@@ -1401,65 +1321,121 @@
 
 
 
-                                    <Rectangle Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2"  Margin="15,25,15,15" Fill="White" RadiusY="10" RadiusX="10" >
+                                    <Rectangle Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2"  Margin="15,25,15,15" Fill="Black" RadiusY="10" RadiusX="10" >
                                         <Rectangle.Effect>
                                             <DropShadowEffect BlurRadius="20" Color="White" RenderingBias="Quality" ShadowDepth="5"/>
                                         </Rectangle.Effect>
-
                                     </Rectangle>
-                                    
-                                    <StackPanel Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2"  Margin="15,0,15,15" Orientation="Vertical" HorizontalAlignment="Center">
 
-                                        <materialDesign:PackIcon Kind="Calendar" Foreground="Gray" Width="10" Height="10" VerticalAlignment="Center" Margin="5 0"/>
+                                    <Grid Grid.Row="2" Grid.Column="2" Margin="20,30,20,20" Grid.ColumnSpan="2" Background="Black" >
 
+                                        <!--<materialDesign:PackIcon Kind="Calendar" Foreground="Gray" Width="10" Height="10" VerticalAlignment="Center" Margin="5 0"/>-->
                                         <!--<Image Source="sales.png" Width="200" Height="200" />-->
-                                        <Label FontSize="50" HorizontalAlignment="Center" Foreground="#FF235885" FontStyle="Oblique" >Fuel Tank</Label>
-                                        <Label Name="Fueltank_petrol_lbl" Foreground="#FFBC6737"  FontSize="75" Margin="10,0,0,-10">39485.00</Label>
-                                        <Label Foreground="#FFBC6737" HorizontalAlignment="Right" FontSize="15" Margin="10,-10,0,-10">Liters petrol</Label>
-                                        <Label Name="Fueltank_diesel_lbl" Foreground="#FF4682B4" FontSize="75" Margin="10,-5,0,0" >34885.00</Label>
-                                        <Label Foreground="#FF4682B4" HorizontalAlignment="Right" FontSize="15" Margin="10,-20,0,-10">Liters diesel</Label>
-                                    </StackPanel>
+
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="1*"/>
+                                            <RowDefinition Height="1*"/>
+                                            <RowDefinition Height="1*"/>
+                                            <RowDefinition Height="1*"/>
+                                            <RowDefinition Height="1*"/>
+                                        </Grid.RowDefinitions>
+
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="1.2*"/>
+                                            <ColumnDefinition Width="0.2*"/>
+                                            
+                                            <ColumnDefinition Width="1*"/>
+                                            <ColumnDefinition Width="0.2*"/>
+
+                                            <ColumnDefinition Width="1*"/>
+                                        </Grid.ColumnDefinitions>
+                                        
+                                        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="35"  Foreground="#FF235885" FontStyle="Oblique" >Profit</Label>
+                                        <Label Grid.Row="1" Grid.Column="0"  Foreground="White" FontSize="25" Margin="0" >Gross Income</Label>
+                                        <Label Grid.Row="2" Grid.Column="0" Name="totalprofit_petrol_lbl" Foreground="#FFBC6737"  FontSize="25" Margin="0">4400.00</Label>
+                                        <Label Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalContentAlignment="Center" Foreground="White" FontSize="15" Margin="0">--</Label>
+                                        <Label Grid.Row="1" Grid.Column="2" Foreground="Orange" HorizontalAlignment="Center" FontSize="25" Margin="0">Expense</Label>
+                                        <Label Grid.Row="1" Grid.Column="3" Foreground="White" HorizontalAlignment="Center" FontSize="25" Margin="0">=</Label>
+                                        <Label Grid.Row="1" Grid.Column="4" Foreground="Green" HorizontalAlignment="Center" FontSize="25" Margin="0">Net Income</Label>
+                                        
+                                        <Label Grid.Row="3" Name="totalprofit_diesel_lbl" Foreground="#FF4682B4" FontSize="25" Margin="0" >3900.00</Label>
 
 
-                                    <Rectangle Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2"  Margin="15,25,15,15" Fill="Black" RadiusY="10" RadiusX="10" >
+                                        <Label Grid.Row="2" Grid.Column="2" Grid.RowSpan="2" Foreground="Orange" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="25" Margin="0">2000</Label>
+
+                                        <Label Grid.Row="2" Grid.Column="1" Grid.RowSpan="2" VerticalAlignment="Center" HorizontalContentAlignment="Center" Foreground="White" FontSize="15" Margin="0">--</Label>
+
+
+                                        <Label Grid.Row="2" Grid.Column="3" Grid.RowSpan="2" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="25" Margin="0">=</Label>
+
+                                        <Label Grid.Row="2" Grid.Column="4" Grid.RowSpan="2"   Foreground="Green" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="25" Margin="0">6300</Label>
+
+                           
+
+                                    </Grid>
+
+
+                                    <Rectangle Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2"  Margin="15,25,15,15" Fill="White" RadiusY="10" RadiusX="10" >
                                         <Rectangle.Effect>
                                             <DropShadowEffect BlurRadius="20" Color="#FFDEDEDE" RenderingBias="Quality" ShadowDepth="1"/>
                                         </Rectangle.Effect>
 
                                     </Rectangle>
 
-                                    <StackPanel Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2"  Margin="15,0,15,15" Orientation="Vertical" HorizontalAlignment="Center">
-
-                                        <materialDesign:PackIcon Kind="Calendar" Foreground="Gray" Width="10" Height="10" VerticalAlignment="Center" Margin="5 0"/>
-
-                                        <!--<Image Source="sales.png" Width="200" Height="200" />-->
-                                        <Label FontSize="50" HorizontalAlignment="Center" Foreground="#FF235885" FontStyle="Oblique" >Profit/Loss (Rate)</Label>
-                                        <Label Name="profitloss_petrol_lbl" Foreground="#FFBC6737"  FontSize="75" Margin="10,0,0,-10">39485.00</Label>
-                                        <Label Foreground="#FFBC6737" HorizontalAlignment="Right" FontSize="15" Margin="-10,-10,0,-10">From Petrol</Label>
-                                        <Label Name="profitloss_diesel_lbl" Foreground="#FF4682B4" FontSize="75" Margin="10,-5,0,0" >34885.00</Label>
-                                        <Label Foreground="#FF4682B4" HorizontalAlignment="Right" FontSize="15" Margin="10,-20,0,-10">From Diesel</Label>
-                                    </StackPanel>
+                                    <Grid Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2"  Margin="15,0,15,15" >
 
 
-                                    <Rectangle Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="2"  Margin="15,25,15,15" Fill="Black" RadiusY="10" RadiusX="10" >
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="1*"/>
+                                            <RowDefinition Height="1*"/>
+                                            <RowDefinition Height="1*"/>
+
+                                        </Grid.RowDefinitions>
+
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="1*"/>
+                                            <ColumnDefinition Width="1.5*"/>
+
+                                        </Grid.ColumnDefinitions>
+
+                                        <Label Grid.ColumnSpan="4"  FontSize="35" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#FF235885" FontStyle="Oblique" >Owner Transactions</Label>
+                                        <Label Grid.Row="1"  Foreground="#FF235885"  FontSize="25" Margin="30,0,0,0">Total Deposit: </Label>
+                                        <Label Name="total_deposite" Grid.Row="1" Grid.Column="1" Foreground="Black" HorizontalAlignment="Center" FontSize="25" >484958349</Label>
+                                        <Label Grid.Row="2" Grid.Column="0"  Foreground="#FF235885" FontSize="25" HorizontalAlignment="Center" Margin="30,0,0,0" >Total Withdraw: </Label>
+                                        <Label Name="total_withdraw" Grid.Row="2" Grid.Column="1" Foreground="Black" HorizontalAlignment="Center" FontSize="25" >3483943</Label>
+                                    </Grid>
+
+
+                                    <Rectangle Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="2"  Margin="15,25,15,15" Fill="White" RadiusY="10" RadiusX="10" >
                                         <Rectangle.Effect>
                                             <DropShadowEffect BlurRadius="20" Color="#FFDEDEDE" RenderingBias="Quality" ShadowDepth="1"/>
                                         </Rectangle.Effect>
-
                                     </Rectangle>
-                                    
-                                    <StackPanel  Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="2"  Margin="15,0,15,15" Orientation="Vertical" HorizontalAlignment="Center">
 
-                                        <materialDesign:PackIcon Kind="Calendar" Foreground="Gray" Width="10" Height="10" VerticalAlignment="Center" Margin="5 0"/>
+                                    <Grid  Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="2"  Margin="20,30,20,20" >
 
-                                        <Label FontSize="50" HorizontalAlignment="Center" Foreground="#FF235885" FontStyle="Oblique" >Total Profit</Label>
-                                        <Label Name="totalprofit_petrol_lbl" Foreground="#FFBC6737"  FontSize="75" Margin="10,0,0,-10">39485.00</Label>
-                                        <Label Foreground="#FFBC6737" HorizontalAlignment="Right" FontSize="15" Margin="-10,-10,0,-10">From Petrol</Label>
-                                        <Label Name="totalprofit_diesel_lbl" Foreground="#FF4682B4" FontSize="75" Margin="10,-5,0,0" >34885.00</Label>
-                                        <Label Foreground="#FF4682B4" HorizontalAlignment="Right" FontSize="15" Margin="10,-20,0,-10">From Diesel</Label>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="1*"/>
+                                            <RowDefinition Height="1*"/>
+                                            <RowDefinition Height="1*"/>
+                                          
+                                        </Grid.RowDefinitions>
 
-                                    </StackPanel>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="0.5*"/>
+                                            <ColumnDefinition Width="2*"/>
+                                            
+                                            <ColumnDefinition Width="2*"/>
+                                            <ColumnDefinition Width="1*"/>
+                                        </Grid.ColumnDefinitions>
 
+                                        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" VerticalAlignment="Top" FontSize="35" HorizontalAlignment="Center" Foreground="#FF235885" FontStyle="Oblique" >Fuel Tank</Label>
+                                        <Label Grid.Row="1" Grid.Column="1" Name="Fueltank_petrol_lbl" Foreground="#FFBC6737"  FontSize="35" Margin="2">39485.00</Label>
+                                        <Label Grid.Row="1" Grid.Column="2" Foreground="#FFBC6737" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15">Liters petrol</Label>
+                                        <Label Grid.Row="2" Grid.Column="1" Name="Fueltank_diesel_lbl" Foreground="#FF4682B4" FontSize="35">34885.00</Label>
+                                        <Label Grid.Row="2" Grid.Column="2" Foreground="#FF4682B4" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" >Liters diesel</Label>
+
+                                    </Grid>
 
                                 </Grid>
 
