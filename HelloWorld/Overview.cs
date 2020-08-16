@@ -28,7 +28,7 @@ namespace HelloWorld
             SQLiteDataReader reader;
             SQLiteCommand sqlite_cmd;
             sqlite_cmd = GlobalFunctions.Connect().CreateCommand();
-            sqlite_cmd.CommandText = "Select totalPKR, totalLTR from petrol where date >"+startRange+" and date < "+endRange+"; ";
+            sqlite_cmd.CommandText = "Select totalPKR, totalLTR from petrol where date >" + startRange + " and date < " + endRange + "; ";
 
             reader = sqlite_cmd.ExecuteReader();
             while (reader.Read())
@@ -138,6 +138,35 @@ namespace HelloWorld
             GlobalFunctions.CloseConnection();
 
 
+
+        }
+
+
+        static public void OwnerTransactions(ArrayList salesLabel, ArrayList selectedDateRange)
+        {
+            string startRange = selectedDateRange[0].ToString();
+            string endRange = selectedDateRange[1].ToString();
+            Label depositLabel = (salesLabel[0] as Label);
+            Label withdrawLabel = (salesLabel[1] as Label);
+            double totalDepost = 0;
+            double totalwithdraw = 0;
+
+            SQLiteDataReader reader;
+            SQLiteCommand sqlite_cmd;
+            sqlite_cmd = GlobalFunctions.Connect().CreateCommand();
+            sqlite_cmd.CommandText = "SELECT depost, withdrawal FROM ownerAmount where date >" + startRange + " and date < " + endRange + "; ";
+
+            reader = sqlite_cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                totalDepost = totalDepost + reader.GetDouble(0);
+                totalwithdraw = totalwithdraw + reader.GetDouble(1);
+            }
+            reader.Close();
+            GlobalFunctions.CloseConnection();
+
+            depositLabel.Content = totalDepost.ToString();
+            withdrawLabel.Content = totalwithdraw.ToString();
 
         }
 

@@ -69,7 +69,7 @@ namespace HelloWorld
 
             SQLiteCommand sqlite_cmd;
             sqlite_cmd = GlobalFunctions.Connect().CreateCommand();
-            sqlite_cmd.CommandText = "insert into expenses (salareis,electricity,maintenance,other,mianSahib,total,date) values (" + textboxesValues + "" + date + ")";
+            sqlite_cmd.CommandText = "insert into expenses (salaries,electricity,maintenance,other,withdraw,total,date) values (" + textboxesValues + "" + date + ")";
             sqlite_cmd.ExecuteNonQuery();
             GlobalFunctions.CloseConnection();
 

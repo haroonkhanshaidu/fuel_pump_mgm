@@ -1358,6 +1358,11 @@ namespace HelloWorld
             totalProfitLabels.Add(netincome_lbl);
             Overview.TotalProfit(totalProfitLabels, GlobalFunctions.dateTimeToMonthRange(DateTime.Now));
 
+            ArrayList ownerAmountLabels = new ArrayList();
+            ownerAmountLabels.Add(total_deposite);
+            ownerAmountLabels.Add(total_withdraw);
+            Overview.OwnerTransactions(ownerAmountLabels, GlobalFunctions.dateTimeToMonthRange(DateTime.Now));
+
 
 
         }
@@ -1571,6 +1576,12 @@ namespace HelloWorld
             totalProfitLabels.Add(total_expenses_lbl);
             totalProfitLabels.Add(netincome_lbl);
             Overview.TotalProfit(totalProfitLabels, dateRange);
+
+
+            ArrayList ownerAmountLabels = new ArrayList();
+            ownerAmountLabels.Add(total_deposite);
+            ownerAmountLabels.Add(total_withdraw);
+            Overview.OwnerTransactions(ownerAmountLabels, dateRange);
         }
 
         private void sales_combobox_month_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -1591,6 +1602,12 @@ namespace HelloWorld
             totalProfitLabels.Add(total_expenses_lbl);
             totalProfitLabels.Add(netincome_lbl);
             Overview.TotalProfit(totalProfitLabels, dateRange);
+
+
+            ArrayList ownerAmountLabels = new ArrayList();
+            ownerAmountLabels.Add(total_deposite);
+            ownerAmountLabels.Add(total_withdraw);
+            Overview.OwnerTransactions(ownerAmountLabels, dateRange);
 
         }
 
