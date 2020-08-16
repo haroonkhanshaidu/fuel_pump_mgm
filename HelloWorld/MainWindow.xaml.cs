@@ -10,6 +10,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Data.SQLite;
 using System.Data;
+using System.Windows.Controls.Primitives;
 
 namespace HelloWorld
 {
@@ -45,7 +46,13 @@ namespace HelloWorld
             FillMonthsCombobox();
             FillYearsCombobox();
 
-            get_data("petrol");
+            get_Sales_data("petrol");
+            get_Expenses_data("");
+            get_FuelDetail_data("ddPetrol");
+            get_OwnerAmount_data();
+            get_Creditors_data();
+
+           
 
             testing_diesel_TB.Text = "0";
 
@@ -1423,7 +1430,7 @@ namespace HelloWorld
                    
         }
 
-        public void get_data(string table)
+        public void get_Sales_data(string table)
         {
             //SQLiteCommand sqlite_cmd;
             //sqlite_cmd = GlobalFunctions.Connect().CreateCommand();
@@ -1432,7 +1439,7 @@ namespace HelloWorld
 
 
 
-            string CommandText = "SELECT * FROM " + table;
+            string CommandText = "SELECT * FROM " + table ;
             SQLiteDataAdapter sqlda = new SQLiteDataAdapter(CommandText, GlobalFunctions.Connect());
 
             DataTable dt;
@@ -1515,6 +1522,10 @@ namespace HelloWorld
                 sales_details_combobox_months.ItemsSource = months_list;
                 sales_details_combobox_months.DisplayMemberPath = "Name";
                 sales_details_combobox_months.SelectedIndex = 0;
+
+                expense_details_combobox_months.ItemsSource = months_list;
+                expense_details_combobox_months.DisplayMemberPath = "Name";
+                expense_details_combobox_months.SelectedIndex = 0;
             }
             catch (Exception exc)
             {
@@ -1542,6 +1553,12 @@ namespace HelloWorld
                 sales_details_combobox_year.ItemsSource = years_list;
                 sales_details_combobox_year.DisplayMemberPath = "Name";
                 sales_details_combobox_year.SelectedIndex = 0;
+
+
+                expense_details_combobox_year.ItemsSource = years_list;
+                expense_details_combobox_year.DisplayMemberPath = "Name";
+                expense_details_combobox_year.SelectedIndex = 0;
+
 
             }
             catch (Exception exc)
@@ -1583,6 +1600,101 @@ namespace HelloWorld
         {
 
         }
+
+
+        private void sales_switch_button_Click(object sender, RoutedEventArgs e)
+        {
+            ToggleButton toggleButton = sender as ToggleButton;
+
+            if (toggleButton.IsChecked == true)
+            {
+                get_Sales_data("petrol");
+            }
+            else
+            {
+                get_Sales_data("diesel");
+            }
+            
+
+        }
+
+        public void get_Expenses_data(string table)
+        {
+
+            string CommandText = "SELECT * FROM Expenses ORDER BY id DESC";
+            SQLiteDataAdapter sqlda = new SQLiteDataAdapter(CommandText, GlobalFunctions.Connect());
+
+            DataTable dt;
+            using (dt = new DataTable())
+            {
+                sqlda.Fill(dt);
+                expense_dataGrid.ItemsSource = dt.DefaultView;
+                GlobalFunctions.CloseConnection();
+            }
+        }
+
+        public void get_FuelDetail_data(string table)
+        {
+
+            string CommandText = "SELECT * FROM "+table+" ORDER BY id DESC";
+            SQLiteDataAdapter sqlda = new SQLiteDataAdapter(CommandText, GlobalFunctions.Connect());
+
+            DataTable dt;
+            using (dt = new DataTable())
+            {
+                sqlda.Fill(dt);
+                fueldetails_dataGrid.ItemsSource = dt.DefaultView;
+                GlobalFunctions.CloseConnection();
+            }
+        }
+
+        private void fueldetail_switch_button_Click(object sender, RoutedEventArgs e)
+        {
+            ToggleButton toggleButton = sender as ToggleButton;
+
+            if (toggleButton.IsChecked == true)
+            {
+                get_FuelDetail_data("ddPetrol");
+            }
+            else
+            {
+                get_FuelDetail_data("ddDiesel");
+            }
+        }
+
+
+        public void get_OwnerAmount_data()
+        {
+
+            string CommandText = "SELECT * FROM ownerAmount ORDER BY id DESC";
+            SQLiteDataAdapter sqlda = new SQLiteDataAdapter(CommandText, GlobalFunctions.Connect());
+
+            DataTable dt;
+            using (dt = new DataTable())
+            {
+                sqlda.Fill(dt);
+                owner_dataGrid.ItemsSource = dt.DefaultView;
+                GlobalFunctions.CloseConnection();
+            }
+        }
+
+        public void get_Creditors_data()
+        {
+
+            string CommandText = "SELECT * FROM creditorData";
+            SQLiteDataAdapter sqlda = new SQLiteDataAdapter(CommandText, GlobalFunctions.Connect());
+
+            DataTable dt;
+            using (dt = new DataTable())
+            {
+                sqlda.Fill(dt);
+                creditors_dataGrid.ItemsSource = dt.DefaultView;
+                GlobalFunctions.CloseConnection();
+            }
+        }
+
+
+
     }
 
    

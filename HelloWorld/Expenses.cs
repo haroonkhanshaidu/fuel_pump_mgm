@@ -69,10 +69,9 @@ namespace HelloWorld
 
             SQLiteCommand sqlite_cmd;
             sqlite_cmd = GlobalFunctions.Connect().CreateCommand();
-            sqlite_cmd.CommandText = "insert into expenses (salareis,electricity,maintenance,other,mianSahib,total,date) values (" + textboxesValues + "" + date + ")";
+            sqlite_cmd.CommandText = "insert into expenses (salaries,electricity,maintenance,other,withdraw,total,date) values (" + textboxesValues + "" + date + ")";
             sqlite_cmd.ExecuteNonQuery();
             GlobalFunctions.CloseConnection();
-
 
             TextBox withdrawBox = (list[list.Count - 2] as TextBox);
             if (withdrawBox.Text.Length > 0)
@@ -85,7 +84,6 @@ namespace HelloWorld
                  textBox.Text="";
             }
         }
-
 
         static public void ownerDeposit(object sender, EventArgs e, TextBox depositbox, DatePicker datepicker)
         {

@@ -1308,13 +1308,13 @@
                                         </Grid.RowDefinitions>
 
                                         <Label Grid.Row="0" Grid.Column="0"  FontSize="40" Margin="15" HorizontalAlignment="Center" Foreground="#FF235885" FontStyle="Oblique" Content="Sales" />
-                                        <Label Name="LTR_petrol_sold_Lbl" Grid.Row="1" Grid.Column="0" Foreground="#FFBC6737"  FontSize="45" Margin="20,5,5,5">94859.00</Label>
+                                        <Label Name="LTR_petrol_sold_Lbl" Grid.Row="1" Grid.Column="0" Foreground="#FFBC6737"  FontSize="35" Margin="20,5,5,5">0.00</Label>
                                         <Label Grid.Row="1" Grid.Column="1" Foreground="#FFBC6737" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontSize="15" Margin="5">Ltrs Petrol</Label>
-                                        <Label Name="LTR_diesel_sold_Lbl" Grid.Row="2" Grid.Column="0" Foreground="#FF4682B4" FontSize="45" Margin="20,5,5,5" >90383.00</Label>
+                                        <Label Name="LTR_diesel_sold_Lbl" Grid.Row="2" Grid.Column="0" Foreground="#FF4682B4" FontSize="35" Margin="20,5,5,5" >0.00</Label>
                                         <Label Grid.Row="2" Grid.Column="1" Foreground="#FF4682B4" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontSize="15" Margin="5">Ltrs Diesel</Label>
-                                        <Label Name="PKR_petrol_sold_Lbl" Grid.Row="1" Grid.Column="2" Foreground="#FFBC6737" HorizontalAlignment="Center" FontSize="25" Margin="5">94859.00</Label>
+                                        <Label Name="PKR_petrol_sold_Lbl" Grid.Row="1" Grid.Column="2" Foreground="#FFBC6737" HorizontalAlignment="Center" FontSize="25" Margin="5">0.00</Label>
                                         <Label Grid.Row="1" Grid.Column="2" Foreground="#FFBC6737" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="15" Margin="5">PKR</Label>
-                                        <Label Name="Pkr_diesel_sold_Lbl" Grid.Row="2" Grid.Column="2" Foreground="#FF4682B4" HorizontalAlignment="Center" FontSize="25" Margin="5" >90383.00</Label>
+                                        <Label Name="Pkr_diesel_sold_Lbl" Grid.Row="2" Grid.Column="2" Foreground="#FF4682B4" HorizontalAlignment="Center" FontSize="25" Margin="5" >0.00</Label>
                                         <Label Grid.Row="2" Grid.Column="2" Foreground="#FF4682B4" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="15" Margin="5">PKR</Label>
 
                                     </Grid>
@@ -1352,23 +1352,23 @@
                                         
                                         <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="35"  Foreground="#FF235885" FontStyle="Oblique" >Profit</Label>
                                         <Label Grid.Row="1" Grid.Column="0"  Foreground="White" FontSize="25" Margin="0" >Gross Income</Label>
-                                        <Label Grid.Row="2" Grid.Column="0" Name="totalprofit_petrol_lbl" Foreground="#FFBC6737"  FontSize="25" Margin="0">4400.00</Label>
+                                        <Label Grid.Row="2" Grid.Column="0" Name="totalprofit_petrol_lbl" Foreground="#FFBC6737"  FontSize="25" Margin="0">0.00</Label>
                                         <Label Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalContentAlignment="Center" Foreground="White" FontSize="15" Margin="0">--</Label>
                                         <Label Grid.Row="1" Grid.Column="2" Foreground="Orange" HorizontalAlignment="Center" FontSize="25" Margin="0">Expense</Label>
                                         <Label Grid.Row="1" Grid.Column="3" Foreground="White" HorizontalAlignment="Center" FontSize="25" Margin="0">=</Label>
                                         <Label Grid.Row="1" Grid.Column="4" Foreground="Green" HorizontalAlignment="Center" FontSize="25" Margin="0">Net Income</Label>
-                                        
-                                        <Label Grid.Row="3" Name="totalprofit_diesel_lbl" Foreground="#FF4682B4" FontSize="25" Margin="0" >3900.00</Label>
+
+                                        <Label Grid.Row="3" Name="totalprofit_diesel_lbl" Foreground="#FF4682B4" FontSize="25" Margin="0" >0.00</Label>
 
 
-                                        <Label Grid.Row="2" Grid.Column="2" Grid.RowSpan="2" Foreground="Orange" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="25" Margin="0">2000</Label>
+                                        <Label Grid.Row="2" Grid.Column="2" Grid.RowSpan="2" Foreground="Orange" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="25" Margin="0">0.00</Label>
 
                                         <Label Grid.Row="2" Grid.Column="1" Grid.RowSpan="2" VerticalAlignment="Center" HorizontalContentAlignment="Center" Foreground="White" FontSize="15" Margin="0">--</Label>
 
 
                                         <Label Grid.Row="2" Grid.Column="3" Grid.RowSpan="2" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="25" Margin="0">=</Label>
 
-                                        <Label Grid.Row="2" Grid.Column="4" Grid.RowSpan="2"   Foreground="Green" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="25" Margin="0">6300</Label>
+                                        <Label Grid.Row="2" Grid.Column="4" Grid.RowSpan="2"   Foreground="Green" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="25" Margin="0">0.00</Label>
 
                            
 
@@ -1399,10 +1399,10 @@
                                         </Grid.ColumnDefinitions>
 
                                         <Label Grid.ColumnSpan="4"  FontSize="35" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#FF235885" FontStyle="Oblique" >Owner Transactions</Label>
-                                        <Label Grid.Row="1"  Foreground="#FF235885"  FontSize="25" Margin="30,0,0,0">Total Deposit: </Label>
-                                        <Label Name="total_deposite" Grid.Row="1" Grid.Column="1" Foreground="Black" HorizontalAlignment="Center" FontSize="25" >484958349</Label>
-                                        <Label Grid.Row="2" Grid.Column="0"  Foreground="#FF235885" FontSize="25" HorizontalAlignment="Center" Margin="30,0,0,0" >Total Withdraw: </Label>
-                                        <Label Name="total_withdraw" Grid.Row="2" Grid.Column="1" Foreground="Black" HorizontalAlignment="Center" FontSize="25" >3483943</Label>
+                                        <Label Grid.Row="1"  Foreground="#FF235885"  FontSize="25" HorizontalAlignment="Left" Margin="30,0,0,0">Total Deposit: </Label>
+                                        <Label Name="total_deposite" Grid.Row="1" Grid.Column="1" Foreground="Black" HorizontalAlignment="Center" FontSize="25" >0.00</Label>
+                                        <Label Grid.Row="2" Grid.Column="0"  Foreground="#FF235885" FontSize="25" HorizontalAlignment="Left" Margin="30,0,0,0" >Total Withdraw: </Label>
+                                        <Label Name="total_withdraw" Grid.Row="2" Grid.Column="1" Foreground="Black" HorizontalAlignment="Center" FontSize="25" >0.00</Label>
                                     </Grid>
 
 
@@ -1422,18 +1422,18 @@
                                         </Grid.RowDefinitions>
 
                                         <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="0.5*"/>
+                                           
                                             <ColumnDefinition Width="2*"/>
                                             
                                             <ColumnDefinition Width="2*"/>
-                                            <ColumnDefinition Width="1*"/>
+                                            
                                         </Grid.ColumnDefinitions>
 
-                                        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" VerticalAlignment="Top" FontSize="35" HorizontalAlignment="Center" Foreground="#FF235885" FontStyle="Oblique" >Fuel Tank</Label>
-                                        <Label Grid.Row="1" Grid.Column="1" Name="Fueltank_petrol_lbl" Foreground="#FFBC6737"  FontSize="35" Margin="2">39485.00</Label>
-                                        <Label Grid.Row="1" Grid.Column="2" Foreground="#FFBC6737" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15">Liters petrol</Label>
-                                        <Label Grid.Row="2" Grid.Column="1" Name="Fueltank_diesel_lbl" Foreground="#FF4682B4" FontSize="35">34885.00</Label>
-                                        <Label Grid.Row="2" Grid.Column="2" Foreground="#FF4682B4" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" >Liters diesel</Label>
+                                        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" VerticalAlignment="Top" FontSize="35" HorizontalAlignment="Center" Foreground="#FF235885" FontStyle="Oblique" >Fuel in Tank</Label>
+                                        <Label Grid.Row="1" Grid.Column="0" Name="Fueltank_petrol_lbl" Foreground="#FFBC6737" HorizontalAlignment="Left" Margin="30,0,0,0" FontSize="35">0.00</Label>
+                                        <Label Grid.Row="1" Grid.Column="1" Foreground="#FFBC6737" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="15">Ltrs petrol</Label>
+                                        <Label Grid.Row="2" Grid.Column="0" Name="Fueltank_diesel_lbl" Foreground="#FF4682B4" HorizontalAlignment="Left" Margin="30,0,0,0"  FontSize="35">0.00</Label>
+                                        <Label Grid.Row="2" Grid.Column="1" Foreground="#FF4682B4" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="15" >Ltrs diesel</Label>
 
                                     </Grid>
 
@@ -1445,7 +1445,7 @@
                                 <Grid Background="Beige">
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="1*"/>
-                                        <RowDefinition Height="1*"/>
+                                        
                                         <RowDefinition Height="12*"/>
                                     </Grid.RowDefinitions>
 
@@ -1460,133 +1460,26 @@
 
                                
 
-                                    <ToggleButton IsChecked="True"  HorizontalAlignment="Center" Foreground="#89568952" 
-                                                  Style="{StaticResource ToggleButtonStyle1}"/>
-                                    <!--<Label Grid.Row="1" Grid.Column="2" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10">Date From:</Label>
-                                    <DatePicker Grid.Row="1" Grid.Column="2"  ToolTip="modify date to view records" Margin="10" HorizontalAlignment="Right" FontSize="14" Width="120" ></DatePicker>
-
-                                    <Label Grid.Row="1" Grid.Column="3" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10">Date To:</Label>
-                                    <DatePicker Grid.Row="1" Grid.Column="3"  ToolTip="modify date to view records" Margin="10" HorizontalAlignment="Right" FontSize="14" Width="120" ></DatePicker>-->
-                                    <!--<MenuItem Grid.Row="0" Grid.Column="2" Click="AddPresetButton_Click" x:Name="AddPresetButton">
-                                       
-                                        <MenuItem.Header>
-                                            <StackPanel Orientation="Horizontal">
-                                                <TextBlock Text="Select Month" Foreground="SeaGreen"/>
-                                            
-                                            </StackPanel>
-                                        </MenuItem.Header>
-                                        <MenuItem.ContextMenu>
-                                            <ContextMenu>
-                                                <MenuItem Header="january"/>
-                                                <MenuItem Header="Fabuary"/>
-                                                <MenuItem Header="March"/>
-                                                <MenuItem Header="April"/>
-                                                <MenuItem Header="May"/>
-                                                <MenuItem Header="June"/>
-                                                <MenuItem Header="July"/>
-                                                <MenuItem Header="August"/>
-                                                <MenuItem Header="September"/>
-                                                <MenuItem Header="October"/>
-                                                <MenuItem Header="November"/>
-                                                <MenuItem Header="December"/>
-                                            </ContextMenu>
-                                        </MenuItem.ContextMenu>
-                                    </MenuItem>-->
+                                    <ToggleButton IsChecked="True" Name="sales_switch_button"  HorizontalAlignment="Center" Foreground="#89568952" 
+                                                  Style="{StaticResource ToggleButtonStyle1}"  Click="sales_switch_button_Click"/>
 
 
 
-                                    <ComboBox Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" Margin="5" Name="sales_details_combobox_year" VerticalAlignment="Top" Style="{StaticResource ComboBoxTest2}" SelectionChanged="sales_details_combobox_year_SelectionChanged">
-                                        <!--<ComboBoxItem IsSelected="True">
-                                            <StackPanel Orientation="Horizontal" >
-                                                <TextBlock  Foreground="Black">2020</TextBlock>
-                                            </StackPanel>
-                                        </ComboBoxItem>
-                                        <ComboBoxItem>
-                                            <StackPanel Orientation="Horizontal">
-                                                <TextBlock Foreground="Black">2021</TextBlock>
-                                            </StackPanel>
-                                        </ComboBoxItem>
-                                        <ComboBoxItem>
-                                            <StackPanel Orientation="Horizontal">
-                                                <TextBlock Foreground="Black">2022</TextBlock>
-                                            </StackPanel>
-                                        </ComboBoxItem>-->
+                                    <Label Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" > Filter:</Label>
+                                    <ComboBox Grid.Row="0" Grid.Column="2" HorizontalAlignment="Center" Margin="5" Name="sales_details_combobox_year" VerticalAlignment="Top" Style="{StaticResource ComboBoxTest2}" SelectionChanged="sales_details_combobox_year_SelectionChanged">
+                                    
                                     </ComboBox>
 
 
-                                    <ComboBox Grid.Row="0" Grid.Column="2" HorizontalAlignment="Left" Margin="5" Name="sales_details_combobox_months" VerticalAlignment="Top" Style="{StaticResource ComboBoxTest2}" SelectionChanged="sales_details_combobox_months_SelectionChanged">
-                                        <!--<ComboBoxItem IsSelected="True">
-                                            <StackPanel Orientation="Horizontal" >
-                                                <TextBlock  FontSize="22" Foreground="Black">All</TextBlock>
-                                            </StackPanel>
-                                        </ComboBoxItem>
-                                        <ComboBoxItem >
-                                            <StackPanel Orientation="Horizontal" >
-                                                <TextBlock  FontSize="18" Foreground="Black">January</TextBlock>
-                                            </StackPanel>
-                                        </ComboBoxItem>
-                                        <ComboBoxItem>
-                                            <StackPanel Orientation="Horizontal">
-                                                <TextBlock  FontSize="18" Foreground="Black">Fabuary</TextBlock>
-                                            </StackPanel>
-                                        </ComboBoxItem>
-                                        <ComboBoxItem>
-                                            <StackPanel Orientation="Horizontal">
-                                                <TextBlock  FontSize="18" Foreground="Black">March</TextBlock>
-                                            </StackPanel>
-                                        </ComboBoxItem>
-                                        <ComboBoxItem IsSelected="True">
-                                            <StackPanel Orientation="Horizontal" >
-                                                <TextBlock  FontSize="18" Foreground="Black">April</TextBlock>
-                                            </StackPanel>
-                                        </ComboBoxItem>
-                                        <ComboBoxItem>
-                                            <StackPanel Orientation="Horizontal">
-                                                <TextBlock  FontSize="18" Foreground="Black">May</TextBlock>
-                                            </StackPanel>
-                                        </ComboBoxItem>
-                                        <ComboBoxItem>
-                                            <StackPanel Orientation="Horizontal">
-                                                <TextBlock  FontSize="18" Foreground="Black">June</TextBlock>
-                                            </StackPanel>
-                                        </ComboBoxItem>
-                                        <ComboBoxItem IsSelected="True">
-                                            <StackPanel Orientation="Horizontal" >
-                                                <TextBlock  FontSize="18" Foreground="Black">July</TextBlock>
-                                            </StackPanel>
-                                        </ComboBoxItem>
-                                        <ComboBoxItem>
-                                            <StackPanel Orientation="Horizontal">
-                                                <TextBlock  FontSize="18" Foreground="Black">August</TextBlock>
-                                            </StackPanel>
-                                        </ComboBoxItem>
-                                        <ComboBoxItem>
-                                            <StackPanel Orientation="Horizontal">
-                                                <TextBlock  FontSize="18" Foreground="Black">September</TextBlock>
-                                            </StackPanel>
-                                        </ComboBoxItem>
-                                        <ComboBoxItem IsSelected="True">
-                                            <StackPanel Orientation="Horizontal" >
-                                                <TextBlock  FontSize="18" Foreground="Black">October</TextBlock>
-                                            </StackPanel>
-                                        </ComboBoxItem>
-                                        <ComboBoxItem>
-                                            <StackPanel Orientation="Horizontal">
-                                                <TextBlock  FontSize="18" Foreground="Black">November</TextBlock>
-                                            </StackPanel>
-                                        </ComboBoxItem>
-                                        <ComboBoxItem>
-                                            <StackPanel Orientation="Horizontal">
-                                                <TextBlock  FontSize="18" Foreground="Black">December</TextBlock>
-                                            </StackPanel>
-                                        </ComboBoxItem>-->
+                                    <ComboBox Grid.Row="0" Grid.Column="3" HorizontalAlignment="Center" Margin="5" Name="sales_details_combobox_months" VerticalAlignment="Top" Style="{StaticResource ComboBoxTest2}" SelectionChanged="sales_details_combobox_months_SelectionChanged">
+                                      
 
                                      </ComboBox>
                                     <Image Grid.Row="0" Margin="5" ToolTip="Print" HorizontalAlignment="Right" Grid.Column="4" Source="images/print_icon.png"></Image>
 
 
                                     <Grid Grid.Row="2" Grid.ColumnSpan="5">
-                                        <DataGrid Name = "PetrolSales_dataGrid" AlternatingRowBackground = "Gray"  
+                                        <DataGrid Name = "PetrolSales_dataGrid" AlternatingRowBackground = "LightGray"  
                                   AlternationCount = "2" AutoGenerateColumns = "False">
 
                                             <DataGrid.Columns>
@@ -1612,109 +1505,183 @@
                          Margin="2"  >
                                 <Grid Background="Beige">
                                     <Grid.RowDefinitions>
-                                        <RowDefinition Height="*"/>
-                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="1*"/>
                                         <RowDefinition Height="12*"/>
                                     </Grid.RowDefinitions>
 
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="2*"/>
-                                        <ColumnDefinition Width="2*"/>
+                                        <ColumnDefinition Width="1*"/>
                                         <ColumnDefinition Width="1.5*"/>
                                         <ColumnDefinition Width="1.5*"/>
                                         <ColumnDefinition Width="0.5*"/>
 
                                     </Grid.ColumnDefinitions>
 
-                                    <Label  >tab expense</Label>
-                                    <Label Grid.Row="1" Grid.Column="2" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10">Date From:</Label>
-                                    <DatePicker Grid.Row="1" Grid.Column="2"  ToolTip="modify date to view records" Margin="10" HorizontalAlignment="Right" FontSize="14" Width="120" ></DatePicker>
+                                    <Label Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" >Filter:</Label>
 
-                                    <Label Grid.Row="1" Grid.Column="3" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10">Date To:</Label>
-                                    <DatePicker Grid.Row="1" Grid.Column="3"  ToolTip="modify date to view records" Margin="10" HorizontalAlignment="Right" FontSize="14" Width="120" ></DatePicker>
 
-                                    <Image Grid.Row="1" Margin="5" ToolTip="Print" HorizontalAlignment="Right" Grid.Column="4" Source="images/print_icon.png"></Image>
+                                    <ComboBox Grid.Row="0" Grid.Column="2" HorizontalAlignment="Center" Margin="5" Name="expense_details_combobox_year" VerticalAlignment="Top" Style="{StaticResource ComboBoxTest2}" SelectionChanged="sales_details_combobox_year_SelectionChanged">
 
-                                    <Image Grid.Row="2" Grid.ColumnSpan="5" Source="images/Blog_how_to_do_a_weekly_sales_report_graph_3.png" Stretch="Fill" >
+                                    </ComboBox>
 
-                                    </Image>
 
+                                    <ComboBox Grid.Row="0" Grid.Column="3" HorizontalAlignment="Center" Margin="5" Name="expense_details_combobox_months" VerticalAlignment="Top" Style="{StaticResource ComboBoxTest2}" SelectionChanged="sales_details_combobox_months_SelectionChanged">
+
+
+                                    </ComboBox>
+                                    <Image Grid.Row="0" Margin="5" ToolTip="Print" HorizontalAlignment="Right" Grid.Column="4" Source="images/print_icon.png"></Image>
+
+
+                                    <Grid Grid.Row="2" Grid.ColumnSpan="5">
+                                        <DataGrid Name = "expense_dataGrid" AlternatingRowBackground = "LightGray"  
+                                  AlternationCount = "2" AutoGenerateColumns = "False">
+
+                                            <DataGrid.Columns>
+                                                <DataGridTextColumn Foreground="#FF4682B4" Header = "Id" Binding = "{Binding id}" />
+                                                <DataGridTextColumn Foreground="Orange" Header = "Salaries" Binding = "{Binding salaries}" />
+                                                <DataGridTextColumn Foreground="Orange" Header = "Electricity" Binding = "{Binding electricity}"/>
+                                                <DataGridTextColumn Foreground="Orange" Header = "Maintenance" Binding = "{Binding maintenance}"/>
+                                                <DataGridTextColumn Foreground="Orange" Header = "Other" Binding = "{Binding other}"/>
+                                                <DataGridTextColumn Foreground="DarkRed" Header = "Owner Withdraw" Binding = "{Binding withdraw}"/>
+                                                <DataGridTextColumn Foreground="#FF4682B4" Header = "Total" Binding = "{Binding total}"/>
+                                                <DataGridTextColumn  Header = "Date" Binding = "{Binding date}"/>
+                                            </DataGrid.Columns>
+
+                                        </DataGrid>
+                                    </Grid>
 
                                 </Grid>
                             </TabItem>
                             <TabItem Header="Fuel Details"  Foreground="White" FontSize="30"  HorizontalAlignment="Left" FontFamily="Yu Gothic UI Semibold" FontWeight="Bold"
                          Margin="2" Background="AliceBlue" >
-                                <Grid>
+                                <Grid Background="Beige">
                                     <Grid.RowDefinitions>
-                                        <RowDefinition Height="*"/>
-                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="1*"/>
+
                                         <RowDefinition Height="12*"/>
                                     </Grid.RowDefinitions>
 
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="2*"/>
-                                        <ColumnDefinition Width="2*"/>
+                                        <ColumnDefinition Width="1*"/>
                                         <ColumnDefinition Width="1.5*"/>
                                         <ColumnDefinition Width="1.5*"/>
                                         <ColumnDefinition Width="0.5*"/>
 
                                     </Grid.ColumnDefinitions>
 
-                                    <Label  >tab fuel details</Label>
-                                    <Label Grid.Row="1" Grid.Column="2" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10">Date From:</Label>
-                                    <DatePicker Grid.Row="1" Grid.Column="2"  ToolTip="modify date to view records" Margin="10" HorizontalAlignment="Right" FontSize="14" Width="120" ></DatePicker>
 
-                                    <Label Grid.Row="1" Grid.Column="3" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10">Date To:</Label>
-                                    <DatePicker Grid.Row="1" Grid.Column="3"  ToolTip="modify date to view records" Margin="10" HorizontalAlignment="Right" FontSize="14" Width="120" ></DatePicker>
 
-                                    <Image Grid.Row="1" Margin="5" ToolTip="Print" HorizontalAlignment="Right" Grid.Column="4" Source="images/print_icon.png"></Image>
+                                    <ToggleButton IsChecked="True" Name="fueldetail_switch_button"  HorizontalAlignment="Center" Foreground="#89568952" 
+                                                  Style="{StaticResource ToggleButtonStyle1}" Click="fueldetail_switch_button_Click" />
 
-                                    <Image Grid.Row="2" Grid.ColumnSpan="5" Source="images/oilstorage.png" Stretch="Fill" >
+                                    <Image Grid.Row="0" Margin="5" ToolTip="Print" HorizontalAlignment="Right" Grid.Column="4" Source="images/print_icon.png"></Image>
 
-                                    </Image>
+
+                                    <Grid Grid.Row="2" Grid.ColumnSpan="5">
+                                        <DataGrid Name = "fueldetails_dataGrid" AlternatingRowBackground = "LightGray"  
+                                  AlternationCount = "2" AutoGenerateColumns = "False">
+
+                                            <DataGrid.Columns>
+                                                <DataGridTextColumn Foreground="#FF4682B4" Header = "Id" Binding = "{Binding id}" />
+                                                <DataGridTextColumn Foreground="Darkgreen" Header = "Reference" Binding = "{Binding Reference}" />
+                                                <DataGridTextColumn Foreground="Darkgreen" Header = "Total PKR" Binding = "{Binding TotalPKR}"/>
+                                                <DataGridTextColumn Foreground="Orange" Header = "Total LTRs" Binding = "{Binding TotalLTR}"/>
+                                                <DataGridTextColumn Foreground="DarkRed" Header = "Purchase Rate" Binding = "{Binding PerLTRPrice}"/>
+                                                <DataGridTextColumn  Header = "Date" Binding = "{Binding date}"/>
+
+                                            </DataGrid.Columns>
+
+                                        </DataGrid>
+                                    </Grid>
+
 
 
                                 </Grid>
                             </TabItem>
-                            <TabItem Header="Mian Saib"  Foreground="White" FontSize="30"  HorizontalAlignment="Left" FontFamily="Yu Gothic UI Semibold" FontWeight="Bold"
+                            <TabItem Header="Owner"  Foreground="White" FontSize="30"  HorizontalAlignment="Left" FontFamily="Yu Gothic UI Semibold" FontWeight="Bold"
                             Margin="2" Background="AliceBlue" >
 
-                                <Grid>
+                                <Grid Background="Beige">
                                     <Grid.RowDefinitions>
-                                        <RowDefinition Height="*"/>
-                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="1*"/>
                                         <RowDefinition Height="12*"/>
                                     </Grid.RowDefinitions>
 
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="2*"/>
-                                        <ColumnDefinition Width="2*"/>
+                                        <ColumnDefinition Width="1*"/>
                                         <ColumnDefinition Width="1.5*"/>
                                         <ColumnDefinition Width="1.5*"/>
                                         <ColumnDefinition Width="0.5*"/>
 
                                     </Grid.ColumnDefinitions>
 
-                                    <Label  >tab fuel details</Label>
-                                   
-                                    <Label Grid.Row="1" Grid.Column="2" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10">Date From:</Label>
-                                    <DatePicker Grid.Row="1" Grid.Column="2"  ToolTip="modify date to view records" Margin="10" HorizontalAlignment="Right" FontSize="14" Width="120" ></DatePicker>
+                               
+                                    <Image Grid.Row="0" Margin="5" ToolTip="Print" HorizontalAlignment="Right" Grid.Column="4" Source="images/print_icon.png"></Image>
 
-                                    <Label Grid.Row="1" Grid.Column="3" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10">Date To:</Label>
-                                    <DatePicker Grid.Row="1" Grid.Column="3"  ToolTip="modify date to view records" Margin="10" HorizontalAlignment="Right" FontSize="14" Width="120" ></DatePicker>
 
-                                    <Image Grid.Row="1" Margin="5" ToolTip="Print" HorizontalAlignment="Right" Grid.Column="4" Source="images/print_icon.png"></Image>
+                                    <Grid Grid.Row="2" Grid.ColumnSpan="5">
+                                        <DataGrid Name = "owner_dataGrid" AlternatingRowBackground = "LightGray"  
+                                  AlternationCount = "2" AutoGenerateColumns = "False">
 
-                                    <Image Grid.Row="2" Grid.ColumnSpan="5" Source="images/Blog_how_to_do_a_weekly_sales_report_graph_3.png" Stretch="Fill" >
+                                            <DataGrid.Columns>
+                                                <DataGridTextColumn Foreground="#FF4682B4" Header = "Id" Binding = "{Binding id}" />
+                                                <DataGridTextColumn Foreground="Green" Header = "Deposit" Binding = "{Binding deposit}" />
+                                                <DataGridTextColumn Foreground="Orange" Header = "WithDraw" Binding = "{Binding withdrawal}"/>
+                                                <DataGridTextColumn Foreground="#FF4682B4" Header = "Remaining Total" Binding = "{Binding total}"/>
+                                                <DataGridTextColumn  Header = "Date" Binding = "{Binding date}"/>
+                                            </DataGrid.Columns>
 
-                                    </Image>
-
+                                        </DataGrid>
+                                    </Grid>
 
                                 </Grid>
 
 
                             </TabItem>
 
+                            <TabItem Header="Creditors"  Foreground="White" FontSize="30"  HorizontalAlignment="Left" FontFamily="Yu Gothic UI Semibold" FontWeight="Bold"
+                            Margin="2" Background="AliceBlue" >
+
+                                <Grid Background="Beige">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="1*"/>
+                                        <RowDefinition Height="12*"/>
+                                    </Grid.RowDefinitions>
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="2*"/>
+                                        <ColumnDefinition Width="1*"/>
+                                        <ColumnDefinition Width="1.5*"/>
+                                        <ColumnDefinition Width="1.5*"/>
+                                        <ColumnDefinition Width="0.5*"/>
+
+                                    </Grid.ColumnDefinitions>
+
+
+                                    <Image Grid.Row="0" Margin="5" ToolTip="Print" HorizontalAlignment="Right" Grid.Column="4" Source="images/print_icon.png"></Image>
+
+
+                                    <Grid Grid.Row="2" Grid.ColumnSpan="5">
+                                        <DataGrid Name = "creditors_dataGrid" AlternatingRowBackground = "LightGray"  
+                                  AlternationCount = "2" AutoGenerateColumns = "False">
+
+                                            <DataGrid.Columns>
+                                                <DataGridTextColumn Foreground="#FF4682B4" Header = "Id" Binding = "{Binding id}" />
+                                                <DataGridTextColumn Foreground="Green" Header = "Name" Binding = "{Binding creditorName}" />
+                                                <DataGridTextColumn Foreground="Orange" Header = "Amount" Binding = "{Binding amount}"/>
+                                                <DataGridTextColumn  Header = "Date" Binding = "{Binding date}"/>
+                                            </DataGrid.Columns>
+
+                                        </DataGrid>
+                                    </Grid>
+
+                                </Grid>
+
+
+                            </TabItem>
 
                         </TabControl>
 

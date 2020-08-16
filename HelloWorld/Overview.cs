@@ -109,7 +109,7 @@ namespace HelloWorld
             reader = sqlite_cmd.ExecuteReader();
             while (reader.Read())
             {
-                DieselProfit = DieselProfit + (reader.GetDouble(0)-reader.GetDouble(16));
+                DieselProfit = DieselProfit + (reader.GetDouble(0)-reader.GetDouble(1));
             }
             reader.Close();
             MessageBox.Show(DieselProfit.ToString());
