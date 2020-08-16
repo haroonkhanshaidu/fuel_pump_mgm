@@ -42,16 +42,7 @@ namespace HelloWorld
             demandDraftEvents();
             OverviewEvents();
 
-            FillMonthsCombobox();
-            FillYearsCombobox();
-
-            get_Sales_data("petrol");
-            get_Expenses_data("");
-            get_FuelDetail_data("ddPetrol");
-            get_OwnerAmount_data();
-            get_Creditors_data();
-
-           
+                     
 
             testing_diesel_TB.Text = "0";
 
@@ -1376,6 +1367,15 @@ namespace HelloWorld
             Overview.OwnerTransactions(ownerAmountLabels, GlobalFunctions.dateTimeToMonthRange(DateTime.Now));
 
 
+            FillMonthsCombobox();
+            FillYearsCombobox();
+
+            get_Sales_data("petrol");
+            get_Expenses_data("");
+            get_FuelDetail_data("ddPetrol");
+            get_OwnerAmount_data();
+            get_Creditors_data();
+
 
         }
 
@@ -1396,8 +1396,8 @@ namespace HelloWorld
             others_expense_TB.TextChanged += (sender, e) => Expenses.calculate(sender, e, expenseboxes);
             miansahid_expense_TB.TextChanged += (sender, e) => Expenses.calculate(sender, e, expenseboxes);
             save_button_expenses.Click += (sender, e) => Expenses.saveExpenseData(sender, e, expenseboxes, expense_datepicker);
-            save_button_deposit.Click += (sender, e) => Expenses.ownerDeposit(sender, e, owner_deposit_TB, expense_datepicker);
-            owner_deposit_TB.TextChanged += Expenses.depositBoxClear;
+            //save_button_deposit.Click += (sender, e) => Expenses.ownerDeposit(sender, e, owner_deposit_TB, expense_datepicker);
+            //owner_deposit_TB.TextChanged += Expenses.depositBoxClear;
         }
 
         private void demandDraftEvents()
@@ -1708,7 +1708,7 @@ namespace HelloWorld
         public void get_OwnerAmount_data()
         {
 
-            string CommandText = "SELECT * FROM ownerAmount ORDER BY id DESC";
+            string CommandText = "SELECT * FROM ownerAmount";
             SQLiteDataAdapter sqlda = new SQLiteDataAdapter(CommandText, GlobalFunctions.Connect());
 
             DataTable dt;

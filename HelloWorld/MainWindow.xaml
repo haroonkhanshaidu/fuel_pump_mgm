@@ -1043,7 +1043,7 @@
             </TabItem>
 
 
-            <TabItem Header="Fuel" FontSize="22" FontFamily="Yu Gothic UI Semibold" FontWeight="Bold" Width="200" Height="50"
+            <TabItem Header="Fuel (DD)" FontSize="22" FontFamily="Yu Gothic UI Semibold" FontWeight="Bold" Width="200" Height="50"
                    
                          Margin="2" >
 
@@ -1145,7 +1145,7 @@
                             <TextBox Grid.Row="1" Grid.Column="2" Name="DD_petrolRF_TB" PreviewTextInput="NumberValidationTextBox" Text="" Margin="50,5,50,5" />
                             <TextBox Grid.Row="2" Grid.Column="2" Name="DD_petrolPKR_TB" PreviewTextInput="NumberValidationTextBox" Text="" Margin="50,5,50,5"  />
                             <TextBox Grid.Row="3" Grid.Column="2" Name="DD_petrolLTR_TB" PreviewTextInput="NumberValidationTextBox" Text="" Margin="50,5,50,5"  />
-                        <Button Grid.Row="4" Grid.Column="2" Content="Save" Name="savebtn_DD_petrol" Foreground="White" Margin="120,5,50,0" FontSize="15"  Background="#FF235885">
+                        <Button Grid.Row="4" Grid.Column="2" Content="Save" Name="savebtn_DD_petrol" Foreground="White" Margin="120,5,50,0" FontSize="15"  Background="#FFBC6737">
                             <Button.Effect>
                                 <DropShadowEffect BlurRadius="15" Color="Black" RenderingBias="Quality" ShadowDepth="10"/>
                             </Button.Effect>
@@ -1161,7 +1161,7 @@
                         </Button>
 
 
-                            <Rectangle Grid.Row="11" Grid.Column="0" Grid.ColumnSpan="3" Grid.RowSpan="3"  Fill="#FF235885" RadiusY="10" RadiusX="10" >
+                            <!--<Rectangle Grid.Row="11" Grid.Column="0" Grid.ColumnSpan="3" Grid.RowSpan="3"  Fill="#FF235885" RadiusY="10" RadiusX="10" >
 
                                 <Rectangle.Effect>
                                     <DropShadowEffect BlurRadius="20" Color="Black" RenderingBias="Quality" ShadowDepth="10"/>
@@ -1186,7 +1186,7 @@
 
 
 
-                            </Grid>
+                            </Grid>-->
 
 
                         </Grid>
@@ -1493,7 +1493,7 @@
                                                 <DataGridTextColumn Foreground="Orange" Header = "Rate" Binding = "{Binding rate}"/>
                                                 <DataGridTextColumn Foreground="DarkRed" Header = "Discount" Binding = "{Binding discount}"/>
                                                 <DataGridTextColumn  Header = "Testing" Binding = "{Binding testing}"/>
-                                                <DataGridTextColumn  Header = "Date" Binding = "{Binding date}"/>
+                                                <DataGridTextColumn  Header = "Date" Binding = "{Binding humanDate}"/>
                                                 
                                             </DataGrid.Columns>
 
@@ -1539,7 +1539,7 @@
 
                                     <Grid Grid.Row="2" Grid.ColumnSpan="5">
                                         <DataGrid Name = "expense_dataGrid" AlternatingRowBackground = "LightGray"  
-                                  AlternationCount = "2" AutoGenerateColumns = "False">
+                                  AlternationCount = "2" AutoGenerateColumns = "False" >
 
                                             <DataGrid.Columns>
                                                 <DataGridTextColumn Foreground="#FF4682B4" Header = "Id" Binding = "{Binding id}" />
@@ -1549,7 +1549,7 @@
                                                 <DataGridTextColumn Foreground="Orange" Header = "Other" Binding = "{Binding other}"/>
                                                 <DataGridTextColumn Foreground="DarkRed" Header = "Owner Withdraw" Binding = "{Binding withdraw}"/>
                                                 <DataGridTextColumn Foreground="#FF4682B4" Header = "Total" Binding = "{Binding total}"/>
-                                                <DataGridTextColumn  Header = "Date" Binding = "{Binding date}"/>
+                                                <DataGridTextColumn  Header = "Date" Binding = "{Binding humanDate}"/>
                                             </DataGrid.Columns>
 
                                         </DataGrid>
@@ -1593,7 +1593,7 @@
                                                 <DataGridTextColumn Foreground="Darkgreen" Header = "Total PKR" Binding = "{Binding TotalPKR}"/>
                                                 <DataGridTextColumn Foreground="Orange" Header = "Total LTRs" Binding = "{Binding TotalLTR}"/>
                                                 <DataGridTextColumn Foreground="DarkRed" Header = "Purchase Rate" Binding = "{Binding PerLTRPrice}"/>
-                                                <DataGridTextColumn  Header = "Date" Binding = "{Binding date}"/>
+                                                <DataGridTextColumn  Header = "Date" Binding = "{Binding humanDate}"/>
 
                                             </DataGrid.Columns>
 
@@ -1635,7 +1635,7 @@
                                                 <DataGridTextColumn Foreground="Green" Header = "Deposit" Binding = "{Binding deposit}" />
                                                 <DataGridTextColumn Foreground="Orange" Header = "WithDraw" Binding = "{Binding withdrawal}"/>
                                                 <DataGridTextColumn Foreground="#FF4682B4" Header = "Remaining Total" Binding = "{Binding total}"/>
-                                                <DataGridTextColumn  Header = "Date" Binding = "{Binding date}"/>
+                                                <DataGridTextColumn  Header = "Date" Binding = "{Binding humanDate}"/>
                                             </DataGrid.Columns>
 
                                         </DataGrid>
@@ -1676,7 +1676,7 @@
                                                 <DataGridTextColumn Foreground="#FF4682B4" Header = "Id" Binding = "{Binding id}" />
                                                 <DataGridTextColumn Foreground="Green" Header = "Name" Binding = "{Binding creditorName}" />
                                                 <DataGridTextColumn Foreground="Orange" Header = "Amount" Binding = "{Binding amount}"/>
-                                                <DataGridTextColumn  Header = "Date" Binding = "{Binding date}"/>
+                                                <DataGridTextColumn  Header = "Date" Binding = "{Binding humanDate}"/>
                                             </DataGrid.Columns>
 
                                         </DataGrid>
