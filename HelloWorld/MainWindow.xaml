@@ -1202,7 +1202,7 @@
                          Margin="2"  >
                 <TabItem.Header>
                     <Label Content="Data Overview" 
-                HorizontalAlignment="Stretch" MouseLeftButtonDown="Label_MouseLeftButtonDown"/>
+                HorizontalAlignment="Stretch" MouseDown="Label_MouseDown" />
                 </TabItem.Header>
 
 

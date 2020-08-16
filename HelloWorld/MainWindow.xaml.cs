@@ -1735,8 +1735,10 @@ namespace HelloWorld
             }
         }
 
-
-
+        private void Label_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            OverviewEvents();
+        }
     }
 
    
