@@ -44,6 +44,7 @@ namespace HelloWorld
 
             DateTime dateTime = datepicker.SelectedDate.Value;
             string date = GlobalFunctions.epochTimeParam(dateTime);
+            string humanDate = GlobalFunctions.epochToDateTime(long.Parse(date));
 
             if ((list[list.Count - 1] as TextBox).Text.Length < 1 || (list[list.Count - 1] as TextBox).Text == "0")
             {
@@ -69,7 +70,7 @@ namespace HelloWorld
 
             SQLiteCommand sqlite_cmd;
             sqlite_cmd = GlobalFunctions.Connect().CreateCommand();
-            sqlite_cmd.CommandText = "insert into expenses (salaries,electricity,maintenance,other,withdraw,total,date) values (" + textboxesValues + "" + date + ")";
+            sqlite_cmd.CommandText = "insert into expenses (salaries,electricity,maintenance,other,withdraw,total,date,humanDate) values (" + textboxesValues + "" + date + ",'"+humanDate+"')";
             sqlite_cmd.ExecuteNonQuery();
             GlobalFunctions.CloseConnection();
 
@@ -100,6 +101,7 @@ namespace HelloWorld
 
         static private void ownerDepositWithdrawCalculator(TextBox textBox, string status, string date)
         {
+            string humanDate = GlobalFunctions.epochToDateTime(long.Parse(date));
 
             double total = 0;
             double deposit = 0;
@@ -126,7 +128,7 @@ namespace HelloWorld
             total = (total + deposit) - withdraw;
 
             sqlite_cmd = GlobalFunctions.Connect().CreateCommand();
-            sqlite_cmd.CommandText = "insert into ownerAmount (deposit,withdrawal,total,date) values ('" + deposit + "','" + withdraw + "','" + total + "','" + date + "')";
+            sqlite_cmd.CommandText = "insert into ownerAmount (deposit,withdrawal,total,date,humanDate) values ('" + deposit + "','" + withdraw + "','" + total + "','" + date + "','"+humanDate+"')";
             sqlite_cmd.ExecuteNonQuery();
             GlobalFunctions.CloseConnection();
 

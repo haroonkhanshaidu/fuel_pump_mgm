@@ -22,14 +22,15 @@ namespace HelloWorld
         {
             DateTime dateTime = datePicker.SelectedDate.Value;
             string date = GlobalFunctions.epochTimeParam(dateTime);
+            string humanDate = GlobalFunctions.epochToDateTime(long.Parse(date));
             double dailyProfit = dict["totalPkrs"] - dict["usedFuelCost"];
 
 
             SQLiteCommand sqlite_cmd;
             sqlite_cmd = GlobalFunctions.Connect().CreateCommand();
-            sqlite_cmd.CommandText = "insert into " + table + " (opening1,closing1,opening2,closing2,rate,testing,discount,totalPKR,totalLTR,totalcost,profit,date) " +
+            sqlite_cmd.CommandText = "insert into " + table + " (opening1,closing1,opening2,closing2,rate,testing,discount,totalPKR,totalLTR,totalcost,profit,date,humanDate) " +
                 "values ('" + dict["n1opening"] + "','" + dict["n1closing"] + "','" + dict["n2opening"] + "','" + dict["n2closing"] + "'," +
-                "'" + dict["rate"] + "','" + dict["testing"] + "','" + dict["discount"] + "','" + dict["totalPkrs"] + "','" + dict["totalLtrs"] + "','" + dict["usedFuelCost"] + "','" +dailyProfit+ "','" + date + "')";
+                "'" + dict["rate"] + "','" + dict["testing"] + "','" + dict["discount"] + "','" + dict["totalPkrs"] + "','" + dict["totalLtrs"] + "','" + dict["usedFuelCost"] + "','" +dailyProfit+ "','" + date + "','"+humanDate+"')";
 
             int commandstatus = sqlite_cmd.ExecuteNonQuery();
             GlobalFunctions.CloseConnection();
