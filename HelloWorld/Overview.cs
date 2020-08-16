@@ -105,18 +105,18 @@ namespace HelloWorld
             SQLiteDataReader reader;
             SQLiteCommand sqlite_cmd;
             sqlite_cmd = GlobalFunctions.Connect().CreateCommand();
-            sqlite_cmd.CommandText = "SELECT totalPKR, totalcost, discount from petrol where date > "+startRange+" and date < "+endRange+"; ";
+            sqlite_cmd.CommandText = "SELECT totalPKR, totalcost from petrol where date > "+startRange+" and date < "+endRange+"; ";
             reader = sqlite_cmd.ExecuteReader();
             while (reader.Read())
             {
-                PetrolProfit = PetrolProfit + (reader.GetDouble(0) - reader.GetDouble(1)-reader.GetDouble(2));
+                PetrolProfit = PetrolProfit + (reader.GetDouble(0) - reader.GetDouble(1));
             }
             reader.Close();
-            sqlite_cmd.CommandText = "SELECT totalPKR, totalcost, discount from diesel where date > " + startRange + " and date < " + endRange + "; ";
+            sqlite_cmd.CommandText = "SELECT totalPKR, totalcost from diesel where date > " + startRange + " and date < " + endRange + "; ";
             reader = sqlite_cmd.ExecuteReader();
             while (reader.Read())
             {
-                DieselProfit = DieselProfit + (reader.GetDouble(0) - reader.GetDouble(1)-reader.GetDouble(2));
+                DieselProfit = DieselProfit + (reader.GetDouble(0) - reader.GetDouble(1));
             }
             reader.Close();
 
