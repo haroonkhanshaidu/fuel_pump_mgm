@@ -12,8 +12,10 @@ namespace HelloWorld
 {
     class Overview
     {
-        static public ArrayList SalesOverview(ArrayList salesLabel)
+        static public void SalesOverview(ArrayList salesLabel, ArrayList selectedDateRange)
         {
+            string startRange = selectedDateRange[0].ToString();
+            string endRange = selectedDateRange[1].ToString();
             Label LtrPetrol = (salesLabel[0] as Label);
             Label PkrPetrol = (salesLabel[1] as Label);
             Label LtrDiesel = (salesLabel[2] as Label);
@@ -26,7 +28,7 @@ namespace HelloWorld
             SQLiteDataReader reader;
             SQLiteCommand sqlite_cmd;
             sqlite_cmd = GlobalFunctions.Connect().CreateCommand();
-            sqlite_cmd.CommandText = "Select totalPKR, totalLTR from petrol ORDER BY id DESC LIMIT 30; ";
+            sqlite_cmd.CommandText = "Select totalPKR, totalLTR from petrol where date >"+startRange+" and date < "+endRange+"; ";
 
             reader = sqlite_cmd.ExecuteReader();
             while (reader.Read())
@@ -36,7 +38,7 @@ namespace HelloWorld
             }
             reader.Close();
 
-            sqlite_cmd.CommandText = "Select totalLTR, totalPKR from diesel ORDER BY id DESC LIMIT 30; ";
+            sqlite_cmd.CommandText = "Select totalLTR, totalPKR from diesel where date >" + startRange + " and date < " + endRange + "; ";
             reader = sqlite_cmd.ExecuteReader();
             while (reader.Read())
             {
@@ -50,10 +52,6 @@ namespace HelloWorld
             PkrPetrol.Content = totalPkrPetrol.ToString();
             LtrDiesel.Content = totalLtrDiesel.ToString();
             PkrDiesel.Content = totalPkrDiesel.ToString();
-            ArrayList totalLTRofPetrolAndDieselList = new ArrayList();
-            totalLTRofPetrolAndDieselList.Add(totalLtrPetrol);
-            totalLTRofPetrolAndDieselList.Add(totalLtrDiesel);
-            return totalLTRofPetrolAndDieselList;
 
         }
 
@@ -90,29 +88,32 @@ namespace HelloWorld
         }
 
 
-        static public void TotalProfit(ArrayList salesLabel)
+        static public void TotalProfit()
         {
-            Label totalProfitPetrol = (salesLabel[0] as Label);
-            Label totalProfitDiesel = (salesLabel[1] as Label);
-
+            //Label totalProfitPetrolLabel = (salesLabel[0] as Label);
+            //Label totalProfitDieselLabel = (salesLabel[1] as Label);
+            double PetrolProfit = 0;
+            double DieselProfit = 0;
             SQLiteDataReader reader;
             SQLiteCommand sqlite_cmd;
             sqlite_cmd = GlobalFunctions.Connect().CreateCommand();
-            sqlite_cmd.CommandText = "Select date from creditorData; ";
-
+            sqlite_cmd.CommandText = "SELECT totalPKR, totalcost from petrol where date > 987 and date < 8998798798; ";
             reader = sqlite_cmd.ExecuteReader();
             while (reader.Read())
             {
-                if (1>2) ;
+                PetrolProfit = PetrolProfit + (reader.GetDouble(0) - reader.GetDouble(1));
             }
             reader.Close();
-
-            sqlite_cmd.CommandText = "Select totalLTR, totalPKR from diesel ORDER BY id DESC LIMIT 30; ";
+            int i = 0;
+            sqlite_cmd.CommandText = "SELECT totalPKR, totalcost from diesel where date > 987 and date < 8998798798; ";
             reader = sqlite_cmd.ExecuteReader();
             while (reader.Read())
             {
+                DieselProfit = DieselProfit + (reader.GetDouble(0)-reader.GetDouble(16));
             }
             reader.Close();
+            MessageBox.Show(DieselProfit.ToString());
+
             GlobalFunctions.CloseConnection();
 
 

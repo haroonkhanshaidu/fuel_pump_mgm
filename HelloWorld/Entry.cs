@@ -28,12 +28,11 @@ namespace HelloWorld
             //}
 
 
-
             SQLiteCommand sqlite_cmd;
             sqlite_cmd = GlobalFunctions.Connect().CreateCommand();
-            sqlite_cmd.CommandText = "insert into " + table + " (opening1,closing1,opening2,closing2,rate,testing,discount,totalPKR,totalLTR,date) " +
+            sqlite_cmd.CommandText = "insert into " + table + " (opening1,closing1,opening2,closing2,rate,testing,discount,totalPKR,totalLTR,totalcost,date) " +
                 "values ('" + dict["n1opening"] + "','" + dict["n1closing"] + "','" + dict["n2opening"] + "','" + dict["n2closing"] + "'," +
-                "'" + dict["rate"] + "','" + dict["testing"] + "','" + dict["discount"] + "','" + dict["totalPkrs"] + "','" + dict["totalLtrs"] + "','" + date + "')";
+                "'" + dict["rate"] + "','" + dict["testing"] + "','" + dict["discount"] + "','" + dict["totalPkrs"] + "','" + dict["totalLtrs"] + "','" + dict["usedFuelCost"] + "','"+ date + "')";
 
             int commandstatus = sqlite_cmd.ExecuteNonQuery();
             GlobalFunctions.CloseConnection();

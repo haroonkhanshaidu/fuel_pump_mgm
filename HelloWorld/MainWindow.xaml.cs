@@ -30,7 +30,7 @@ namespace HelloWorld
 
         public MainWindow()
         {
-            
+            Overview.TotalProfit();
             InitializeComponent();
             //new SplashWindow().ShowDialog();
             //new Dashboard1().ShowDialog();
@@ -641,9 +641,12 @@ namespace HelloWorld
                     dict.Add("totalPkrs", double.Parse(total_sales_pkrs_petrol_TB.Text));
 
                     if (!Entry.dateFound(petrol_entry_datepicker, "petrol"))
-                    //if (Entry.InsertEntry(sender, e, "petrol", dict, petrol_entry_datepicker) == 1)
-                    {
-                        if (FuelTank.FuelDeduction(dict["totalLtrs"], "ddPetrol"))
+                    { 
+                        double usedFuelCost = FuelTank.FuelDeduction(dict["totalLtrs"], "ddPetrol");
+                        dict.Add("usedFuelCost", usedFuelCost);
+                        FuelTank.usedFuelTotalCost = 0;
+                        if (usedFuelCost > 0)
+
                         {
                             if (Entry.InsertEntry(sender, e, "petrol", dict, petrol_entry_datepicker) == 1)
                             {
@@ -1271,14 +1274,17 @@ namespace HelloWorld
                     dict.Add("n2opening", double.Parse(meterOpening_dieselN2_TB.Text));
                     dict.Add("n2closing", double.Parse(meterClosing_dieselN2_TB.Text));
                     dict.Add("rate", double.Parse(rate_diesel_TB.Text));
-                    dict.Add("testing", double.Parse(meterClosing_diesel_N1_TB.Text));
+                    dict.Add("testing", double.Parse(testing_diesel_TB.Text));
                     dict.Add("discount", double.Parse(discount_amount_diesel_TB.Text));
                     dict.Add("totalLtrs", double.Parse(total_sales_ltrs_diesel_TB.Text));
                     dict.Add("totalPkrs", double.Parse(total_sales_pkrs_diesel_TB.Text));
 
                     if (!Entry.dateFound(diesel_entry_datepicker, "diesel"))
                     {
-                        if (FuelTank.FuelDeduction(dict["totalLtrs"], "ddDiesel"))
+                        double usedFuelCost = FuelTank.FuelDeduction(dict["totalLtrs"], "ddDiesel");
+                        dict.Add("usedFuelCost", usedFuelCost);
+                        FuelTank.usedFuelTotalCost = 0;
+                        if (usedFuelCost>0)
                         {
                             if (Entry.InsertEntry(sender, e, "diesel", dict, diesel_entry_datepicker) == 1)
                             {
@@ -1325,6 +1331,12 @@ namespace HelloWorld
 
         }
 
+
+
+
+
+
+
         private void OverviewEvents()
         {
             ArrayList salesLabels = new ArrayList();
@@ -1332,7 +1344,8 @@ namespace HelloWorld
             salesLabels.Add(PKR_petrol_sold_Lbl);
             salesLabels.Add(LTR_diesel_sold_Lbl);
             salesLabels.Add(Pkr_diesel_sold_Lbl);
-            Overview.SalesOverview(salesLabels);
+            Overview.SalesOverview(salesLabels, GlobalFunctions.dateTimeToMonthRange(DateTime.Now));
+            
 
             ArrayList fuelLabels = new ArrayList();
             fuelLabels.Add(Fueltank_petrol_lbl);
@@ -1342,24 +1355,10 @@ namespace HelloWorld
             ArrayList totalProfit = new ArrayList();
             totalProfit.Add(totalprofit_petrol_lbl);
             totalProfit.Add(totalprofit_diesel_lbl);
-            Overview.TotalProfit(totalProfit);
 
 
 
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         private void expensesEvents()
         {
@@ -1406,6 +1405,13 @@ namespace HelloWorld
             savebtn_DD_diesel.Click += (sender, e) => DemandDraft.FuelDemandDraftEntry(sender, e, diesellist, fuel_datepicker, "ddDiesel");
 
         }
+
+
+
+
+
+
+
 
         private void AddPresetButton_Click(object sender, RoutedEventArgs e)
         {
@@ -1547,14 +1553,24 @@ namespace HelloWorld
 
         private void sales_combobox_year_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            ArrayList salesLabels = new ArrayList();
+            salesLabels.Add(LTR_petrol_sold_Lbl);
+            salesLabels.Add(PKR_petrol_sold_Lbl);
+            salesLabels.Add(LTR_diesel_sold_Lbl);
+            salesLabels.Add(Pkr_diesel_sold_Lbl);
+            ArrayList dateRange =  GlobalFunctions.comboBoxtoDateRangeList(sales_combobox_month, sales_combobox_year);
+            Overview.SalesOverview(salesLabels, dateRange);
         }
 
         private void sales_combobox_month_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            ComboBox combobox = sender as ComboBox;
-
-            //MessageBox.Show(combobox.SelectedIndex);
+            ArrayList salesLabels = new ArrayList();
+            salesLabels.Add(LTR_petrol_sold_Lbl);
+            salesLabels.Add(PKR_petrol_sold_Lbl);
+            salesLabels.Add(LTR_diesel_sold_Lbl);
+            salesLabels.Add(Pkr_diesel_sold_Lbl);
+            ArrayList dateRange = GlobalFunctions.comboBoxtoDateRangeList(sales_combobox_month, sales_combobox_year);
+            Overview.SalesOverview(salesLabels, dateRange);
 
         }
 
